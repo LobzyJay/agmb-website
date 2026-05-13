@@ -116,18 +116,18 @@
 }
 
 /* ── HERO: unify mobile text/CTA positioning across all pages.
-   Reference is the contact page (image #24): padding-top:80px so H1
-   starts ~260px down, padding-bottom:40px, content stacked from the
-   top with a 28px gap between H1/lede/CTAs. Most other pages have
-   min-height:100-125vh + justify-content:center on desktop, which on
-   mobile pushes the H1 to the middle of a tall hero. Force the
-   contact-style flush-top layout on mobile only — desktop untouched. */
+   Reference is the contact page (image #24): H1 starts at ~260px from
+   top via padding-top:80px, content stacked from the top with a 28px
+   gap. Most other pages had justify-content:center which pushed text
+   to the middle of a tall hero.
+   We only touch text-position properties — NOT min-height. Pages with
+   a viz (home, products, mortgages) keep their tall hero so the viz
+   has room to display below the text. Contact has min-height:auto
+   natively so it stays compact regardless. -------------------------- */
 @media (max-width: 768px) {
   .hero,
   .hero--centered {
-    min-height: auto !important;
     padding-top: 80px !important;
-    padding-bottom: 40px !important;
     padding-left: clamp(20px, 6vw, 32px) !important;
     padding-right: clamp(20px, 6vw, 32px) !important;
     justify-content: flex-start !important;
@@ -136,6 +136,15 @@
   .hero__content--centered {
     gap: 28px !important;
     margin: 0 auto !important;
+  }
+  /* Mortgages page viz has height:88vh hard-coded in its base CSS, which
+     makes the building canvas ~700px tall at mobile. Positioned bottom:
+     -24px of the hero, it overlaps the H1/lede/CTAs. The page's own
+     mobile rule sets aspect-ratio but never overrides height, so aspect
+     ratio is ignored. Force height:auto so aspect-ratio governs. */
+  .hero__viz--mortgages,
+  .hero--centered .hero__viz.hero__viz--mortgages {
+    height: auto !important;
   }
 }
 
