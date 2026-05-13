@@ -122,6 +122,10 @@
   .footer__col { width: calc(50% - 24px) !important; }
   .footer__bottom { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
   .footer__name { font-size: 24px !important; }
+  /* Hide the disclosures strip on mobile — long regulatory link list
+     stacks awkwardly and bloats vertical space. Available on desktop. */
+  .footer__disclosures,
+  .footer__rule { display: none !important; }
 }
 @media (max-width: 480px) {
   .footer { padding: 40px 20px !important; }
