@@ -93,6 +93,11 @@
   .nav .nav__links { display: none !important; }
   .nav--scrolled { margin: 0 12px !important; padding: 10px 16px !important; }
 
+  /* When the mobile drawer is open (z-index:55), the nav (with the X
+     hamburger inside) must paint ABOVE it. Per-page nav z-index is
+     only 5–50; raise it explicitly so the X stays visible and clickable. */
+  .nav { z-index: 60 !important; }
+
   /* ── LOGO: consistent sizing across all pages on mobile.
      Per-page CSS sometimes overrides .logo__icon with width:44px which
      squashes the wordmark (SVG is wider than tall). Force height-based
@@ -129,9 +134,12 @@
 }
 @media (max-width: 480px) {
   .footer { padding: 40px 20px !important; }
-  .footer__panel { padding: 36px 24px !important; gap: 32px !important; border-radius: 20px !important; }
-  .footer__cols { gap: 28px 32px !important; }
-  .footer__col { width: 100% !important; }
+  .footer__panel { padding: 32px 22px !important; gap: 28px !important; border-radius: 20px !important; }
+  .footer__cols { gap: 24px 20px !important; }
+  /* Keep 2-up grid at phone widths — was width:100% which forced 1-up stack */
+  .footer__col { width: calc(50% - 10px) !important; }
+  /* Slightly smaller list text so 'Commercial Mortgage' fits one line */
+  .footer__col li { font-size: 14px !important; line-height: 175% !important; }
   .footer__disclosures { flex-direction: column !important; gap: 10px !important; }
   .footer__disclosures .sep { display: none !important; }
 }
