@@ -92,6 +92,44 @@
   .nav__hamburger.is-open .nav__hamburger-bar:nth-child(3) { top: 21px; transform: rotate(-45deg); }
   .nav .nav__links { display: none !important; }
   .nav--scrolled { margin: 0 12px !important; padding: 10px 16px !important; }
+
+  /* ── LOGO: consistent sizing across all pages on mobile.
+     Per-page CSS sometimes overrides .logo__icon with width:44px which
+     squashes the wordmark (SVG is wider than tall). Force height-based
+     sizing so the wordmark stays readable on every page. ----------------- */
+  .logo__icon {
+    width: auto !important;
+    height: 36px !important;
+    flex-shrink: 0 !important;
+  }
+  .logo {
+    gap: 10px !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+  }
+}
+
+/* ── FOOTER: unify mobile layout across all pages.
+   Most pages have decent footer CSS at ≤1024px but a few (contact, etc.)
+   are missing the column-width rule that makes the 4-up nav columns
+   stack into a clean 2-up grid. Home page's settings are the reference. */
+@media (max-width: 1024px) {
+  .footer { padding: 56px 32px !important; }
+  .footer__panel { padding: 48px 36px !important; gap: 40px !important; border-radius: 24px !important; }
+  .footer__top { flex-direction: column !important; gap: 40px !important; }
+  .footer__cols { flex-wrap: wrap !important; gap: 32px 48px !important; }
+  .footer__col { width: calc(50% - 24px) !important; }
+  .footer__bottom { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  .footer__name { font-size: 24px !important; }
+}
+@media (max-width: 480px) {
+  .footer { padding: 40px 20px !important; }
+  .footer__panel { padding: 36px 24px !important; gap: 32px !important; border-radius: 20px !important; }
+  .footer__cols { gap: 28px 32px !important; }
+  .footer__col { width: 100% !important; }
+  .footer__disclosures { flex-direction: column !important; gap: 10px !important; }
+  .footer__disclosures .sep { display: none !important; }
 }
 
 /* ── MOBILE DRAWER ─────────────────────────────────────────────────────── */
