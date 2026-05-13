@@ -3743,6 +3743,24 @@ pageId: home
      and cause the fact-strip / stat-bar to "jump" back into place. */
   var CASCADE_RUN_MS = 1200;
   function endCascade() {
+    /* Lock cascade-controlled elements to opacity:1 via inline style BEFORE
+       removing the cascade classes. shared.css has a global .hero .h1 etc.
+       { opacity:0 } rule for FOUC prevention on non-cascade pages; without
+       this lock-in, removing the cascade classes lets that rule re-hide
+       everything once the animation's fill state stops matching. Inline
+       style has higher specificity than any non-!important CSS rule. */
+    document.querySelectorAll(
+      '.nav, .scroll-progress,' +
+      '.hero .status-row, .hero .hero__eyebrow,' +
+      '.hero .h1, .hero .h1--centered,' +
+      '.hero .hero__lede, .hero .hero__lede--centered,' +
+      '.hero .ctas, .hero .ctas--centered, .hero .hero-ctas,' +
+      '.hero .hero__viz,' +
+      '.hero .fact-strip,' +
+      '.hero .hero-stat-bar, .hero-stat-bar,' +
+      '.hero--calculator .hero__col-text > *,' +
+      '.hero--calculator .hero__col-calc'
+    ).forEach(function (el) { el.style.opacity = '1'; });
     docEl.classList.remove('agmb-cascade');
     docEl.classList.remove('agmb-cascade-run');
   }
