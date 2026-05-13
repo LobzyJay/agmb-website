@@ -3767,10 +3767,6 @@ pageId: home
   if (REDUCED) {
     docEl.classList.remove('agmb-cascade'); // ensure no hidden hero
     /* No animation needed — reduced-motion users skip the cascade entirely. */
-  } else if (cfg.isReload || cfg.hasFlag) {
-    /* Reload or in-session navigation — let the browser restore scroll cleanly
-       and skip the hero cascade. The bootstrap already left .agmb-cascade off
-       <html>, so hero children render at their natural opacity. */
   } else if (loader) {
     var HOLD = 500;
     var t0 = Date.now();
