@@ -37,15 +37,19 @@
     <a href="agmb-contact.html"{% if pageId == "contact" %} class="is-current" aria-current="page"{% endif %}>Contact</a>
     <a class="nav__cta" href="{{ applyHref | default('agmb-apply.html') }}">{{ applyLabel | default('Start application') }} <span>&rarr;</span></a>
   </div>
-  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-    <div class="mobile-nav__panel">
-      <a href="index.html">Home</a>
-      <a href="agmb-mortgages.html">Mortgages</a>
-      <a href="agmb-calculator.html">Calculator</a>
-      <a href="agmb-about.html">About</a>
-      <a href="agmb-insights.html">Insights</a>
-      <a href="agmb-contact.html">Contact</a>
-      <a class="mobile-nav__cta" href="{{ applyHref | default('agmb-apply.html') }}">{{ applyLabel | default('Start application') }} <span>&rarr;</span></a>
-    </div>
-  </div>
 </nav>
+<!-- Mobile drawer is a SIBLING of <nav>, not a child. The nav uses
+     backdrop-filter when scrolled, which creates a containing block that
+     would trap a child fixed-position drawer to the nav's small height
+     instead of the full viewport. -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav__panel">
+    <a href="index.html">Home</a>
+    <a href="agmb-mortgages.html">Mortgages</a>
+    <a href="agmb-calculator.html">Calculator</a>
+    <a href="agmb-about.html">About</a>
+    <a href="agmb-insights.html">Insights</a>
+    <a href="agmb-contact.html">Contact</a>
+    <a class="mobile-nav__cta" href="{{ applyHref | default('agmb-apply.html') }}">{{ applyLabel | default('Start application') }} <span>&rarr;</span></a>
+  </div>
+</div>

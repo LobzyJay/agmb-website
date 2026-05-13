@@ -151,6 +151,7 @@
   font: 500 28px/1.1 'Inter', sans-serif; letter-spacing: -0.025em;
   color: var(--cream-warm, #FAF3E8); text-decoration: none;
   padding: 12px 0; border-bottom: 1px solid rgba(250,243,232,0.10);
+  text-align: center;
 }
 .mobile-nav__panel > .mobile-nav__cta {
   display: inline-flex; align-items: center; justify-content: center;
