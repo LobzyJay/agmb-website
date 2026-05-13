@@ -2,15 +2,14 @@
   'use strict';
 
   /* ── HEADING LINE REVEAL ────────────────────────────────────────────────
-     Splits each hero h1 into word spans, detects visual lines by grouping
-     words with the same getBoundingClientRect().top, then animates each
-     line as a unit (slide-up + fade). Lede/body text fades in after.
-
-     Preserves <em> and any other inline elements — only text nodes are
-     split; element nodes are recursed into so their children become words.
-
-     Cascade pages (home / about) are excluded — they manage their own
-     agmbFadeUp sequence via the per-page cascade JS. -------------------- */
+     CSS (shared.css) sets .hero .h1 { opacity:0 } so text is hidden before
+     JS fires — no FOUC. This function:
+       1. Wraps text nodes into .agmb-w word spans (preserves <em> etc.)
+       2. Groups words by visual line via getBoundingClientRect
+       3. Sets words to opacity:0 via GSAP, then reveals heading container
+       4. Animates each line with gsap.to (slide-up + fade)
+       5. Fades in the lede after the last line completes
+     Cascade pages (home/about) are excluded — they use agmbFadeUp. ------- */
   function initHeadingReveal() {
     if (typeof gsap === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -22,9 +21,7 @@
         if (heading.dataset.agmbDone) return;
         heading.dataset.agmbDone = '1';
 
-        /* 1. Walk the heading DOM, split text nodes into .agmb-w spans.
-              Element nodes (em, strong, etc.) are recursed into so their
-              text children become word spans — styling is inherited. */
+        /* 1. Split text nodes into .agmb-w word spans */
         var words = [];
         function wrapNode(node) {
           if (node.nodeType === 3) {
@@ -48,63 +45,63 @@
         Array.from(heading.childNodes).forEach(wrapNode);
         if (!words.length) return;
 
-        /* 2. Group words by visual line (same rounded top = same line). */
+        /* 2. Group words by visual line */
         var lineMap = {};
         words.forEach(function (w) {
           var top = Math.round(w.getBoundingClientRect().top);
           (lineMap[top] = lineMap[top] || []).push(w);
         });
-        var lines = Object.keys(lineMap)
-          .map(Number)
+        var lines = Object.keys(lineMap).map(Number)
           .sort(function (a, b) { return a - b; })
           .map(function (k) { return lineMap[k]; });
 
-        /* 3. Animate each line: slide up from 44px, fade in. */
+        /* 3. Set words hidden, then reveal heading container */
+        gsap.set(words, { opacity: 0, y: 44 });
+        heading.style.opacity = '1';
+
+        /* 4. Animate each line */
         var perLine = 0.13;
         lines.forEach(function (line, i) {
-          gsap.from(line, {
-            y: 44,
-            opacity: 0,
+          gsap.to(line, {
+            opacity: 1,
+            y: 0,
             duration: 0.7,
             ease: 'power3.out',
-            delay: 0.08 + i * perLine,
-            clearProps: 'transform,opacity'
+            delay: 0.08 + i * perLine
           });
         });
 
-        /* 4. Lede / body text fades in after the last heading line. */
+        /* 5. Fade in the lede after heading finishes */
         var hero = heading.closest(
-          '.hero, .hero--centered, .hero--about, .hero--calculator, .hero--apply'
+          '.hero, .hero--centered, .hero--about, .hero--calculator, .hero--apply, .hero--nhf'
         );
         var lede = hero && hero.querySelector(
           '.hero__lede, .hero__lede--centered, .lede, .lede--centered'
         );
         if (lede && !lede.dataset.agmbDone) {
           lede.dataset.agmbDone = '1';
-          gsap.from(lede, {
-            opacity: 0,
-            y: 16,
-            duration: 0.55,
-            ease: 'power2.out',
-            delay: 0.08 + lines.length * perLine + 0.08,
-            clearProps: 'all'
-          });
+          lede.style.opacity = '1';
+          gsap.fromTo(lede,
+            { opacity: 0, y: 16 },
+            { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', delay: 0.08 + lines.length * perLine + 0.08 }
+          );
         }
       });
     });
   }
 
   /* ── SUPPORTING HERO ELEMENTS ───────────────────────────────────────────
-     CTAs, stat bar, viz canvas, form, contact card — fade up together
-     after the heading lines have appeared. Delay is set long enough to
-     clear even a 3-line heading (3 × 0.13 + 0.08 ≈ 0.47s). ------------ */
+     Stat bar, CTAs, viz canvas, form, contact card — fade up after heading.
+     Includes both .fact-strip (mortgages/NHF) and .hero__stat-bar (products)
+     and .hero-stat-bar (shared cascade name). ----------------------------- */
   function initHeroSupporting() {
     if (typeof gsap === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (document.documentElement.classList.contains('agmb-cascade')) return;
 
     var els = document.querySelectorAll(
-      '.ctas, .ctas--centered, .hero-ctas, .hero-stat-bar,' +
+      '.ctas, .ctas--centered, .hero-ctas,' +
+      '.hero-stat-bar, .hero__stat-bar, .fact-strip,' +
       '.hero__viz, .hero__col-calc, .form-shell, .contact-twin, .hero__squircle'
     );
     if (!els.length) return;
@@ -120,9 +117,8 @@
   }
 
   /* ── SCROLL REVEAL via ScrollTrigger ────────────────────────────────────
-     Works alongside the per-page IntersectionObserver — both add .in-view,
-     idempotent. Double rAF lets page initReveals() auto-stamp sections
-     with .reveal before we query them. ---------------------------------- */
+     Runs alongside the per-page IntersectionObserver — both add .in-view,
+     idempotent. Double rAF lets page initReveals() stamp .reveal first. -- */
   function initScrollReveal() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -148,15 +144,22 @@
     });
   }
 
-  /* ── BOOT ──────────────────────────────────────────────────────────────
-     Wait for fonts before running heading + supporting animations so GSAP
-     never plays against a fallback font (which would cause a layout shift
-     when the webfont swaps in mid-tween). ScrollTrigger setup is font-
-     agnostic so it starts immediately. ---------------------------------- */
+  /* ── GSAP FALLBACK ──────────────────────────────────────────────────────
+     If GSAP CDN fails, reveal all hidden headings/ledes immediately so the
+     page doesn't show blank text. ---------------------------------------- */
+  function applyFallback() {
+    document.querySelectorAll(
+      '.hero .h1, .hero .h1--centered, .hero .hero__lede, .hero .hero__lede--centered'
+    ).forEach(function (el) { el.style.opacity = '1'; });
+  }
+
+  /* ── BOOT ──────────────────────────────────────────────────────────── */
   function boot() {
+    if (typeof gsap === 'undefined') {
+      applyFallback();
+      return;
+    }
     initScrollReveal();
-    // Fonts already cached (return instantly) or load within ~150ms on
-    // Google CDN — either way the heading animation starts at the right time.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function () {
         initHeadingReveal();

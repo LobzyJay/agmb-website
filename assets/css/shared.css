@@ -8,6 +8,32 @@
   filter: invert(1) grayscale(1) !important;
 }
 
+/* ── HERO ENTRANCE — initial hidden state ──────────────────────────────────
+   Headings and ledes start invisible so GSAP / cascade animation has
+   something to animate FROM. Without this, text is briefly visible before
+   JS fires (FOUC). Cascade pages override via agmbFadeUp. Non-cascade pages
+   are shown by site.js immediately before the word animation starts.
+   Fallback (reduced motion / no GSAP): opacity:1 always. --------------- */
+.hero .h1,
+.hero .h1--centered {
+  opacity: 0;
+}
+.hero .hero__lede,
+.hero .hero__lede--centered {
+  opacity: 0;
+  /* Safety clamp: hero ledes never exceed 5 lines regardless of content */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .h1, .hero .h1--centered,
+  .hero .hero__lede, .hero .hero__lede--centered {
+    opacity: 1 !important;
+  }
+}
+
 /* ── HEADING WORD SPANS (created by line-reveal JS) ───────────────────────
    display:inline-block lets getBoundingClientRect() return the correct
    visual top per word so JS can group them into lines. Natural wrapping
