@@ -1407,8 +1407,10 @@ pageId: home
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* While agmb-cascade is set on <html>, hero children start hidden.
-     They reveal once .agmb-cascade-run is also set (added by JS after loader). */
+  /* While agmb-cascade is set on <html>, ALL visible chrome starts hidden
+     so the loader covers a fully-black screen with nothing peeking through. */
+  html.agmb-cascade .nav,
+  html.agmb-cascade .scroll-progress,
   html.agmb-cascade .hero .status-row,
   html.agmb-cascade .hero .hero__eyebrow,
   html.agmb-cascade .hero .h1,
@@ -1425,6 +1427,15 @@ pageId: home
   html.agmb-cascade .hero--calculator .hero__col-text > *,
   html.agmb-cascade .hero--calculator .hero__col-calc {
     opacity: 0;
+  }
+  /* Nav + scroll bar fade in quickly once cascade-run fires */
+  html.agmb-cascade.agmb-cascade-run .nav {
+    opacity: 1;
+    transition: opacity 0.4s ease 0.1s;
+  }
+  html.agmb-cascade.agmb-cascade-run .scroll-progress {
+    opacity: 1;
+    transition: opacity 0.4s ease;
   }
   html.agmb-cascade.agmb-cascade-run .hero .status-row,
   html.agmb-cascade.agmb-cascade-run .hero .hero__eyebrow {
@@ -1960,14 +1971,11 @@ pageId: home
           if (n && n[0]) isReload = n[0].type === 'reload';
         }
       } catch (e) {}
-      /* On a real reload the browser will restore scroll itself — skip the loader so
-         we don't repaint a fullscreen overlay over a mid-page restore. The loader
-         only fires on a genuine first-load (no session flag, not a reload). */
-      var showLoader = !hasFlag && !isReload;
+      /* Always show the loader + cascade on every load and refresh so the
+         page always feels fresh from the beginning. */
+      var showLoader = !REDUCED;
       window.__agmbMotion = { showLoader: showLoader, reduced: REDUCED, hasFlag: hasFlag, isReload: isReload };
-      /* Only arm the hero cascade on a true first paint. Reloads + back-nav use
-         scroll restoration and shouldn't re-play the hero animation. */
-      if (!REDUCED && !hasFlag && !isReload) {
+      if (!REDUCED) {
         document.documentElement.classList.add('agmb-cascade');
       }
     } catch (e) { /* swallow */ }
