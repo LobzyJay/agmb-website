@@ -148,11 +148,24 @@
     });
   }
 
-  /* ── BOOT ──────────────────────────────────────────────────────────── */
+  /* ── BOOT ──────────────────────────────────────────────────────────────
+     Wait for fonts before running heading + supporting animations so GSAP
+     never plays against a fallback font (which would cause a layout shift
+     when the webfont swaps in mid-tween). ScrollTrigger setup is font-
+     agnostic so it starts immediately. ---------------------------------- */
   function boot() {
-    initHeadingReveal();
-    initHeroSupporting();
     initScrollReveal();
+    // Fonts already cached (return instantly) or load within ~150ms on
+    // Google CDN — either way the heading animation starts at the right time.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        initHeadingReveal();
+        initHeroSupporting();
+      });
+    } else {
+      initHeadingReveal();
+      initHeroSupporting();
+    }
   }
 
   if (document.readyState === 'loading') {
