@@ -102,8 +102,10 @@
     var els = document.querySelectorAll(
       '.ctas, .ctas--centered, .hero-ctas,' +
       '.hero-stat-bar, .hero__stat-bar, .fact-strip,' +
-      '.hero__viz, .hero__col-calc, .form-shell, .contact-twin, .hero__squircle'
+      '.hero__col-calc, .form-shell, .contact-twin, .hero__squircle'
     );
+    // .hero__viz intentionally excluded — product page vizzes run their own
+    // scroll-parallax JS (heroStage translateY) that conflicts with GSAP y tween.
     if (!els.length) return;
 
     gsap.from(els, {
