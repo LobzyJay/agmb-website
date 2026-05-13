@@ -1,0 +1,1612 @@
+---
+pageId: calculator
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mortgage Calculator &middot; AG Mortgage Bank Plc</title>
+<meta name="viewport" content="width=2377">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+<style>
+  .scroll-progress { display: none !important; }
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { overflow-x: hidden; max-width: 100%; overscroll-behavior-y: none; }
+  html { background: #000; }
+  html.smooth-scroll { scroll-behavior: smooth; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #000; color: #FAF3E8; zoom: 0.8; }
+  @-moz-document url-prefix() { body { zoom: unset; transform: scale(0.8); transform-origin: top left; width: 125%; } }
+  .page { width: 100%; margin: 0; background: #000; }
+  :root {
+    --navy-deep: #061A2E; --navy: #0A2540; --navy-vivid: #1F4FA8; --navy-soft: #0F2F50;
+    --cream: #F8F5EF; --cream-warm: #FAF3E8; --cream-vivid: #FFEFC2; --cream-deep: #EDE5D5;
+    --gold-rich: #E0B040; --gold-vivid: #F0C441; --green-deep: #14613A; --green-vivid: #22C55E;
+  }
+  /* type */
+  .h1 { font: 500 72px/104% 'Inter', sans-serif; font-size: clamp(40px, 4.2vw + 1rem, 72px); letter-spacing: -0.065em; color: var(--navy-deep); margin: 0; }
+  .h2 { font: 500 48px/105% 'Inter', sans-serif; font-size: clamp(28px, 2.6vw + 0.5rem, 48px); letter-spacing: -0.06em; margin: 0; }
+  .h1 em, .h2 em { font-family: 'Libre Baskerville', serif; font-style: normal; font-weight: 400; letter-spacing: -0.045em; color: var(--green-vivid); }
+  /* scroll progress */
+  .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: transparent; z-index: 200; pointer-events: none; }
+  .scroll-progress__bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold-rich) 0%, var(--gold-vivid) 60%, rgba(240,196,65,0.4) 100%); box-shadow: 0 0 12px rgba(240,196,65,0.5); transition: width 0.08s linear; }
+  /* nav */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    padding: 24px clamp(24px, 6vw, 160px); background: #000;
+    border-bottom: 1px solid rgba(250,243,232,0.06);
+    border-radius: 0; margin: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: padding 0.32s cubic-bezier(0.4,0,0.2,1), background-color 0.32s ease, margin 0.32s cubic-bezier(0.4,0,0.2,1), border-radius 0.32s cubic-bezier(0.4,0,0.2,1), box-shadow 0.32s ease;
+  }
+  .nav--scrolled { top: 16px; margin: 0 80px; padding: 14px 32px; background: rgba(6,26,46,0.62); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); border: 1px solid rgba(250,243,232,0.10); border-radius: 999px; box-shadow: 0 8px 32px -8px rgba(0,0,0,0.55); }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo__icon { width: auto; height: 44px; display: block; }
+  .logo__text, .logo__name, .logo__sub { display: none; }
+  .nav__links { display: flex; align-items: center; gap: 36px; }
+  .nav__links a:not(.nav__cta) { font: 500 14px/1 'Inter', sans-serif; color: var(--cream-warm); text-decoration: none; letter-spacing: -0.005em; transition: color 0.18s ease; }
+  .nav__links a:not(.nav__cta):hover { color: var(--gold-vivid); }
+  .nav__cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--cream-warm); border-radius: 999px; color: var(--navy-deep); font: 500 14px/1 'Inter', sans-serif; text-decoration: none; }
+  /* hero — black bg, fills the full viewport. Hero text aligned to top
+     so it sits at the same Y as the section titles below (consistent
+     vertical rhythm). Calc widget sits below the text, still inside the
+     viewport-tall hero. */
+  .hero--calculator {
+    background: #000;
+    /* Hero owns the full visual viewport (125vh layout = 100vh visual after
+       body { zoom: 0.8 }) so nothing from the next section leaks above the fold.
+       Hero text sits at the top; .hero__col-calc grows (flex: 1) to fill the
+       remaining vertical space and the twin panels distribute their content
+       across that full height — no mid-air black gap, no white leak below. */
+    padding: 80px clamp(20px, 4vw, 80px) clamp(20px, 4vw, 80px);
+    min-height: 125vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+  .hero__grid { display: contents; }
+  .hero__col-text { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 900px; margin: 0 auto; }
+  .hero__col-text .h1 { text-align: center; }
+  .hero__col-text .hero__sub { text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
+  .hero__col-text .hero-stat-bar { margin-left: auto; margin-right: auto; max-width: 900px; }
+  .hero__col-text .hero-ctas { justify-content: center; }
+  .hero__col-calc {
+    width: 100%;
+    max-width: none;
+    margin: 32px 0 0;     /* small breathing gap from hero text to bento, like contact */
+    text-align: left;
+    flex: 1 0 auto;       /* fills the remaining hero vertical space below the text */
+    display: flex;
+  }
+  /* twin fills .hero__col-calc; floor matches the contact bento dimensions */
+  .hero__col-calc .twin {
+    border-radius: 28px;
+    flex: 1;
+    min-height: clamp(560px, 65vh, 720px);
+  }
+  .hero__col-calc .input-panel, .hero__col-calc .output-panel { padding: 48px; text-align: left; }
+  .hero__col-calc .field__value, .hero__col-calc .field__label, .hero__col-calc .output-big, .hero__col-calc .detail-row { text-align: left; }
+  @media (max-width: 1024px) {
+    /* Reset desktop "fill the hero" treatment so the twin sits at content height,
+       stacked under the H1+stat-bar, not stretched to fill 125vh. */
+    .hero--calculator { min-height: auto !important; padding: 64px 32px !important; }
+    .hero__col-calc { flex: none !important; display: block !important; margin-top: 24px !important; }
+    .hero__col-calc .twin { flex: none !important; flex-direction: column !important; min-height: auto !important; }
+    /* Cancel the desktop space-between distribution — at narrower widths
+       content stacks naturally; space-between on a tall narrow panel scatters
+       fields awkwardly. Falls back to natural top-stack with explicit gap. */
+    .input-panel, .output-panel { justify-content: flex-start !important; }
+    .input-panel { gap: 28px !important; }
+    .output-panel { gap: 24px !important; }
+  }
+  .hero--calculator .h1 { color: var(--cream-warm); }
+  .hero__sub { font: 400 18px/162.5% 'Inter', sans-serif; font-size: clamp(15px, 0.6vw + 0.7rem, 18px); color: rgba(250,243,232,0.72); max-width: 680px; margin-top: 16px; }
+  .hero-stat-bar { display: flex; margin-top: 40px; border: 1px solid rgba(250,243,232,0.12); border-radius: 16px; overflow: hidden; max-width: 900px; }
+  .hero-stat-bar__cell { flex: 1; padding: 20px 28px; display: flex; flex-direction: column; gap: 6px; border-right: 1px solid rgba(250,243,232,0.10); }
+  .hero-stat-bar__cell:last-child { border-right: none; }
+  .hero-stat-bar__label { font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.5); }
+  .hero-stat-bar__value { font: 500 15px/1 'Inter Tight', sans-serif; letter-spacing: -0.03em; color: var(--cream-warm); font-variant-numeric: tabular-nums; }
+  .hero-ctas { display: flex; align-items: center; gap: 14px; margin-top: 36px; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 10px; padding: 16px 26px; border-radius: 12px; font: 500 15px/1 'Inter', sans-serif; text-decoration: none; }
+  .hero-cta--primary { background: var(--cream-warm); color: var(--navy-deep); }
+  .hero-cta--secondary { border: 1.5px solid rgba(250,243,232,0.22); color: var(--cream-warm); }
+  @media(hover:hover){.hero-cta--primary:hover{filter:brightness(1.05);}.hero-cta--secondary:hover{background:rgba(250,243,232,0.05);}}
+  /* calc widget — continues the black bg seamlessly from the hero */
+  /* seg control */
+  .seg { display: flex; padding: 4px; background: var(--green-vivid); border: none; border-radius: 999px; position: relative; }
+  .seg__indicator { position: absolute; top: 4px; left: 4px; height: calc(100% - 8px); background: #000; border-radius: 999px; transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), width 0.28s cubic-bezier(0.4,0,0.2,1); pointer-events: none; z-index: 1; }
+  .seg__item { position: relative; z-index: 2; padding: 9px 18px; color: var(--navy-deep); font: 500 13px/1 'Inter', sans-serif; cursor: pointer; user-select: none; border-radius: 999px; transition: color 0.24s ease; white-space: nowrap; }
+  .seg__item--active { color: var(--cream-warm); }
+  .seg__item:focus-visible { outline: none; }
+  /* twin panel */
+  .twin { display: flex; border-radius: 32px; overflow: hidden; }
+  .input-panel { flex: 1; background: var(--cream-warm); padding: 56px; display: flex; flex-direction: column; gap: 32px; justify-content: space-between; color: var(--navy-deep); }   /* space-between distributes the 4 fields + cap-notice across the panel height */
+  .input-top { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .input-top__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-deep); }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field__row { display: flex; justify-content: space-between; align-items: baseline; }
+  .field__label { font: 400 13px/1 'Inter', sans-serif; color: rgba(6,26,46,0.5); }
+  .field__value { font: 500 36px/110% 'Inter Tight', sans-serif; letter-spacing: -0.04em; color: var(--navy-deep); font-variant-numeric: tabular-nums; }
+  .bar { width: 100%; height: 6px; background: rgba(6,26,46,0.08); border-radius: 999px; overflow: hidden; }
+  .bar__fill { height: 100%; background: var(--green-vivid); border-radius: 999px; transition: width 0.42s cubic-bezier(0.4,0,0.2,1); }
+  /* slider + tooltip */
+  .slider-wrap { position: relative; }
+  .slider { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: rgba(6,26,46,0.08); border-radius: 999px; outline: none; margin-top: 12px; cursor: pointer; }
+  .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--cream-warm); border: 2px solid var(--navy-deep); cursor: pointer; transition: transform 0.18s ease, box-shadow 0.22s ease; box-shadow: 0 2px 8px -2px rgba(6,26,46,0.25); }
+  .slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .slider:active::-webkit-slider-thumb { box-shadow: 0 0 0 6px rgba(34,197,94,0.18), 0 4px 12px -2px rgba(6,26,46,0.35); transform: scale(1.18); }
+  .slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--cream-warm); border: 2px solid var(--navy-deep); cursor: pointer; }
+  .slider:focus-visible { outline: 2px solid var(--green-vivid); outline-offset: 4px; }
+  .slider-tooltip { position: absolute; top: -36px; background: var(--navy-deep); color: var(--cream-warm); font: 500 12px/1 'Inter Tight', sans-serif; font-variant-numeric: tabular-nums; padding: 6px 10px; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transform: translateX(-50%); transition: opacity 0.12s ease; z-index: 10; }
+  .slider-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--navy-deep); }
+  .slider-tooltip.visible { opacity: 1; }
+  .cap-notice { margin-top: 4px; padding: 12px 16px; background: rgba(224,176,64,0.14); border-left: 2px solid var(--gold-rich); font: 500 13px/1.45 'Inter', sans-serif; color: var(--gold-rich); border-radius: 4px; display: none; }
+  /* output panel */
+  .output-panel { flex: 1; background: var(--navy-deep); padding: 56px; display: flex; flex-direction: column; gap: 28px; justify-content: space-between; color: var(--cream-warm); }   /* spreads output-top → output-big → ratio → details → ctas across the panel */
+  .output-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .output-top__l { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.4); }
+  .output-top__r { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-vivid); text-align: right; }
+  .output-rate-ts { font: 400 11px/1 'Inter', sans-serif; font-variant-numeric: tabular-nums; color: rgba(250,243,232,0.35); margin-top: 4px; text-align: right; }
+  .output-big { font: 500 96px/100% 'Inter Tight', sans-serif; letter-spacing: -0.065em; color: var(--cream-warm); font-variant-numeric: tabular-nums; }
+  .ratio-bar { display: flex; width: 100%; height: 6px; background: rgba(250,243,232,0.1); border-radius: 999px; overflow: hidden; }
+  .ratio-bar > div:first-child { background: var(--cream-warm); transition: width 0.42s cubic-bezier(0.4,0,0.2,1); }
+  .ratio-bar > div:last-child { background: var(--green-vivid); transition: width 0.42s cubic-bezier(0.4,0,0.2,1); }
+  .detail-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(250,243,232,0.08); }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-row__l { font: 400 14px/1 'Inter', sans-serif; color: rgba(250,243,232,0.6); }
+  .detail-row__r { font: 500 14px/1 'Inter Tight', sans-serif; color: var(--cream-warm); font-variant-numeric: tabular-nums; }
+  .output-ctas { display: flex; gap: 12px; margin-top: 8px; }
+  .output-cta { flex: 1; text-align: center; padding: 16px 24px; border-radius: 12px; font: 500 15px/1 'Inter', sans-serif; text-decoration: none; cursor: pointer; background: transparent; border: none; transition: filter 0.18s ease, background 0.18s ease, border-color 0.18s ease; }
+  .output-cta--primary { background: var(--cream-warm); color: var(--navy-deep); }
+  .output-cta--secondary { border: 1px solid rgba(250,243,232,0.2); color: var(--cream-warm); }
+  @media(hover:hover){.output-cta--primary:hover{filter:brightness(0.95);}.output-cta--secondary:hover{background:rgba(250,243,232,0.06);border-color:rgba(250,243,232,0.34);}}
+  /* chart */
+  .chart-section { background: var(--cream-warm); padding: 80px clamp(24px, 6vw, 160px); }
+  .chart-wrap { position: relative; margin: 40px auto 0; max-width: 1280px; border: 1px solid rgba(6,26,46,0.10); border-radius: 24px; overflow: hidden; background: #fff; }
+  .chart-canvas { display: block; width: 100%; cursor: crosshair; }
+  .chart-tooltip { position: absolute; top: 0; left: 0; background: var(--navy-deep); color: var(--cream-warm); font: 400 13px/1.5 'Inter', sans-serif; font-variant-numeric: tabular-nums; padding: 10px 14px; border-radius: 8px; pointer-events: none; opacity: 0; transition: opacity 0.12s ease; white-space: nowrap; z-index: 10; box-shadow: 0 4px 16px -4px rgba(0,0,0,0.4); }
+  .chart-hairline { position: absolute; top: 24px; bottom: 48px; width: 1px; background: rgba(6,26,46,0.18); pointer-events: none; opacity: 0; transition: opacity 0.12s ease; }
+  .chart-legend { display: flex; gap: 24px; margin-top: 16px; }
+  .chart-legend__item { display: flex; align-items: center; gap: 8px; font: 400 13px/1 'Inter', sans-serif; color: rgba(6,26,46,0.6); }
+  .chart-legend__dot { width: 10px; height: 10px; border-radius: 50%; }
+  /* scenario cards */
+  .scenarios-section { background: #fff; padding: 64px clamp(24px, 6vw, 160px); min-height: clamp(480px, 62.5vh, 720px); display: flex; flex-direction: column; justify-content: center; }
+  @media (max-width: 1024px) { .scenarios-section { min-height: auto !important; } }
+  .scenario-grid { display: flex; gap: 24px; margin-top: 48px; }
+  .scenario-card { flex: 1; background: var(--cream-warm); border-radius: 28px; padding: 32px; display: flex; flex-direction: column; gap: 20px; border: 1.5px solid rgba(6,26,46,0.06); cursor: pointer; transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease; color: var(--navy-deep); position: relative; }
+  .scenario-card--yours { border-color: rgba(34,197,94,0.3); }
+  @media(hover:hover){.scenario-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px -12px rgba(0,0,0,0.4);}}
+  .scenario-card__badge { font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(6,26,46,0.08); color: rgba(6,26,46,0.5); align-self: flex-start; }
+  .scenario-card__badge--live { background: rgba(34,197,94,0.14); color: var(--green-deep); }
+  .scenario-card__name { font: 500 20px/1 'Inter', sans-serif; letter-spacing: -0.025em; }
+  .scenario-card__monthly { font: 500 32px/1 'Inter Tight', sans-serif; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+  .scenario-card__stats { display: flex; flex-direction: column; gap: 0; }
+  .scenario-card__stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(6,26,46,0.08); }
+  .scenario-card__stat:last-child { border-bottom: none; }
+  .sc-stat-l { font: 400 12px/1 'Inter', sans-serif; color: rgba(6,26,46,0.5); }
+  .sc-stat-r { font: 500 14px/1 'Inter Tight', sans-serif; font-variant-numeric: tabular-nums; }
+  .scenario-load-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 999px; background: var(--navy-deep); color: var(--cream-warm); font: 500 13px/1 'Inter', sans-serif; border: none; cursor: pointer; align-self: flex-start; transition: filter 0.18s ease; }
+  @media(hover:hover){.scenario-load-btn:hover{filter:brightness(1.2);}}
+  .scenario-load-btn:focus-visible{outline:2px solid var(--gold-vivid);outline-offset:3px;}
+  /* stress test */
+  /* bento section: Sensitivity (left) + Affordability (right).
+     Fills the section width edge-to-edge (sensitivity stretches LEFT,
+     affordability stretches RIGHT). Cells share a locked height. */
+  .bento-section { background: var(--cream-warm); padding: 64px clamp(24px, 6vw, 160px); min-height: clamp(480px, 62.5vh, 720px); display: flex; flex-direction: column; justify-content: center; }
+  @media (max-width: 1024px) { .bento-section { min-height: auto !important; } }
+  .bento-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; width: 100%; max-width: none; margin: 0; }
+  .bento-cell { background: #fff; border: 1px solid rgba(6,26,46,0.10); border-radius: 28px; padding: 48px; display: flex; flex-direction: column; gap: 24px; min-height: 520px; overflow: hidden; }
+  .bento-cell .h2--bento { font-size: 40px; line-height: 110%; margin: 0; }
+  @media (max-width: 1024px) { .bento-grid { grid-template-columns: 1fr !important; gap: 24px !important; } .bento-cell { padding: 36px !important; } }
+  @media (max-width: 480px) { .bento-cell { padding: 24px !important; } .bento-cell .h2--bento { font-size: 28px !important; } }
+  .stress-section { background: var(--cream-warm); padding: 80px clamp(24px, 6vw, 160px); }
+  .stress-grid { display: flex; gap: 12px; margin-top: 48px; }
+  .stress-cell { flex: 1; padding: 24px 20px; background: rgba(6,26,46,0.04); border: 1.5px solid rgba(6,26,46,0.08); border-radius: 20px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; text-align: center; transition: border-color 0.22s ease, background 0.22s ease, transform 0.22s cubic-bezier(0.16,1,0.3,1); }
+  @media(hover:hover){.stress-cell:hover{border-color:rgba(6,26,46,0.22);transform:translateY(-2px);}}
+  .stress-cell--today { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
+  .stress-cell--active { background: rgba(31,79,168,0.08); border-color: rgba(31,79,168,0.35); box-shadow: 0 0 0 3px rgba(31,79,168,0.1); }
+  .stress-cell:focus-visible{outline:2px solid var(--gold-vivid);outline-offset:3px;border-radius:20px;}
+  .stress-delta { font: 600 11px/1 'Inter', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(6,26,46,0.5); }
+  .stress-cell--today .stress-delta { color: var(--green-deep); }
+  .stress-rate { font: 500 22px/1 'Inter Tight', sans-serif; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--navy-deep); }
+  .stress-monthly { font: 400 13px/1 'Inter', sans-serif; color: rgba(6,26,46,0.6); font-variant-numeric: tabular-nums; }
+  .stress-diff { font: 500 12px/1 'Inter', sans-serif; font-variant-numeric: tabular-nums; }
+  .stress-diff--up { color: #DC2626; }
+  .stress-diff--dn { color: var(--green-deep); }
+  .stress-note { margin-top: 28px; font: 400 14px/160% 'Inter', sans-serif; color: rgba(6,26,46,0.55); max-width: 760px; }
+  /* routes */
+  .routes-section { background: #000; padding: 80px clamp(24px, 6vw, 160px); }
+  .route-grid { display: flex; gap: 20px; margin-top: 48px; }
+  .route-col { flex: 1; background: rgba(250,243,232,0.04); border: 1.5px solid rgba(250,243,232,0.08); border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px; transition: border-color 0.22s ease, background 0.22s ease; }
+  .route-col--active { border-color: var(--gold-vivid); background: rgba(240,196,65,0.04); border-top-width: 4px; }
+  .route-col__name { font: 500 18px/1 'Inter', sans-serif; letter-spacing: -0.02em; color: var(--cream-warm); }
+  .route-col__rate { font: 500 28px/1 'Inter Tight', sans-serif; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--gold-vivid); }
+  .route-col__stats { display: flex; flex-direction: column; gap: 0; }
+  .route-col__stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(250,243,232,0.08); }
+  .route-col__stat:last-child { border-bottom: none; }
+  .rc-stat-l { font: 400 12px/1 'Inter', sans-serif; color: rgba(250,243,232,0.45); }
+  .rc-stat-r { font: 500 13px/1 'Inter Tight', sans-serif; font-variant-numeric: tabular-nums; color: var(--cream-warm); }
+  .route-switch-btn { display: flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: 999px; background: rgba(250,243,232,0.08); color: var(--cream-warm); border: 1px solid rgba(250,243,232,0.15); font: 500 13px/1 'Inter', sans-serif; cursor: pointer; transition: background 0.18s ease; width: 100%; }
+  .route-col--active .route-switch-btn { background: var(--gold-vivid); color: var(--navy-deep); border-color: var(--gold-vivid); }
+  @media(hover:hover){.route-switch-btn:hover{background:rgba(250,243,232,0.14);}.route-col--active .route-switch-btn:hover{filter:brightness(1.08);}}
+  .route-switch-btn:focus-visible{outline:2px solid var(--gold-vivid);outline-offset:3px;}
+  /* affordability */
+  .afford-section { background: var(--cream-warm); padding: 80px clamp(24px, 6vw, 160px); }
+  .afford-row { display: flex; gap: 16px; align-items: flex-end; margin-top: 40px; max-width: 640px; }
+  .afford-field { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .afford-label { font: 600 11px/1 'Inter', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(6,26,46,0.5); }
+  .afford-input { padding: 16px 20px; background: rgba(6,26,46,0.04); border: 1.5px solid rgba(6,26,46,0.14); border-radius: 12px; font: 500 18px/1 'Inter Tight', sans-serif; font-variant-numeric: tabular-nums; color: var(--navy-deep); outline: none; transition: border-color 0.18s ease; width: 100%; }
+  .afford-input:focus { border-color: var(--green-vivid); }
+  .afford-btn { padding: 16px 28px; background: var(--navy-deep); color: var(--cream-warm); border: none; border-radius: 12px; font: 500 15px/1 'Inter', sans-serif; cursor: pointer; flex-shrink: 0; transition: filter 0.18s ease; }
+  @media(hover:hover){.afford-btn:hover{filter:brightness(1.2);}}
+  .afford-btn:focus-visible{outline:2px solid var(--gold-vivid);outline-offset:3px;}
+  .afford-results { display: flex; gap: 20px; margin-top: 32px; opacity: 0; transition: opacity 0.32s ease; pointer-events: none; }
+  .afford-results.visible { opacity: 1; pointer-events: auto; }
+  .afford-cell { flex: 1; padding: 28px 24px; border: 1.5px solid rgba(6,26,46,0.10); border-radius: 20px; background: rgba(6,26,46,0.03); display: flex; flex-direction: column; gap: 10px; }
+  .afford-cell__label { font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(6,26,46,0.45); }
+  .afford-cell__value { font: 500 28px/1 'Inter Tight', sans-serif; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--navy-deep); }
+  .afford-cell__note { font: 400 13px/1.4 'Inter', sans-serif; color: rgba(6,26,46,0.55); }
+  .afford-ok { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+  .afford-tight { border-color: rgba(240,196,65,0.35); background: rgba(240,196,65,0.05); }
+  .afford-stretch { border-color: rgba(220,38,38,0.3); background: rgba(220,38,38,0.04); }
+  /* disclosures */
+  .disclosures-section { background: var(--navy-deep); padding: 96px clamp(24px, 6vw, 160px); }
+  .disclosure-text { font: 400 13px/1.75 'Inter', sans-serif; color: rgba(250,243,232,0.5); max-width: 840px; margin-top: 32px; }
+  .final-ctas { display: flex; gap: 16px; margin-top: 48px; flex-wrap: wrap; }
+  .final-cta { display: inline-flex; align-items: center; gap: 10px; padding: 18px 32px; border-radius: 14px; font: 500 16px/1 'Inter', sans-serif; text-decoration: none; cursor: pointer; border: none; transition: filter 0.18s ease, transform 0.18s ease; }
+  .final-cta--primary { background: var(--cream-warm); color: var(--navy-deep); }
+  .final-cta--secondary { border: 1.5px solid rgba(250,243,232,0.22); color: var(--cream-warm); background: transparent; }
+  @media(hover:hover){.final-cta--primary:hover{filter:brightness(0.95);transform:translateY(-1px);}.final-cta--secondary:hover{background:rgba(250,243,232,0.06);}}
+  .final-cta:focus-visible{outline:2px solid var(--gold-vivid);outline-offset:3px;}
+  /* section shared */
+  .sec-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .sec-eyebrow__dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .sec-eyebrow__label { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
+  /* advisory */
+  .advisory-wrap { background: #000; padding: 80px clamp(24px, 6vw, 80px); }
+  .advisory { position: relative; background: var(--navy-vivid); border-radius: 28px; padding: 48px; display: flex; align-items: center; justify-content: space-between; gap: 48px; overflow: hidden; }
+  .advisory__inner { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; z-index: 2; }
+  .advisory__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.4); }
+  .advisory__title { font: 500 30px/110% 'Inter', sans-serif; letter-spacing: -0.04em; color: var(--cream-warm); }
+  .advisory__copy { font: 400 15px/155% 'Inter', sans-serif; color: rgba(250,243,232,0.6); }
+  .advisory__cta { display: inline-flex; align-items: center; gap: 12px; padding: 18px 28px; background: var(--cream-warm); border-radius: 999px; color: var(--navy-deep); font: 500 15px/1 'Inter', sans-serif; text-decoration: none; z-index: 2; flex-shrink: 0; }
+  .advisory__aside { display: flex; flex-direction: column; align-items: flex-end; gap: 24px; z-index: 2; flex-shrink: 0; }
+  .advisory__stat-num { font: 500 56px/1 'Inter', sans-serif; letter-spacing: -0.05em; color: var(--cream-warm); }
+  .advisory__stat-num em { font: 400 64px/1 'Libre Baskerville', serif; font-style: normal; letter-spacing: -0.04em; color: var(--green-vivid); margin-right: 6px; }
+  .advisory__stat-sub { font: 400 13px/145% 'Inter', sans-serif; color: rgba(250,243,232,0.55); margin-top: 10px; max-width: 240px; margin-left: auto; }
+  /* news */
+  .news { background: #000; padding: 100px clamp(24px, 4vw, 80px) 120px; display: flex; flex-direction: column; gap: 64px; }
+  .news__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+  .eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .eyebrow-row > span:first-child { width: 4px; height: 4px; background: var(--gold-vivid); display: inline-block; }
+  .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .news__head .h2 { color: var(--cream-warm); }
+  .news__all { display: inline-flex; align-items: center; gap: 8px; }
+  .news__all span:first-child { font: 500 16px/1 'Inter', sans-serif; color: var(--cream-warm); border-bottom: 1px solid rgba(250,243,232,0.6); padding-bottom: 2px; }
+  .news__row { display: flex; gap: 48px; }
+  .featured { display: flex; flex-direction: column; gap: 24px; flex: 1; }
+  .featured__tile { position: relative; height: 520px; background-image: url('agmb-office-building.webp'); background-size: cover; background-position: center; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 36px; }
+  .featured__tile::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg,rgba(6,26,46,.2) 0%,rgba(6,26,46,.55) 55%,rgba(6,26,46,.92) 100%); z-index: 1; }
+  .featured__tile > * { position: relative; z-index: 2; }
+  .featured__top { display: flex; justify-content: space-between; align-items: center; }
+  .featured__chip { padding: 8px 14px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); border-radius: 999px; font: 600 11px/1 'Inter', sans-serif; letter-spacing: 0.18em; color: var(--gold-vivid); text-transform: uppercase; }
+  .featured__date { font: 500 13px/1 'Inter', sans-serif; color: rgba(250,243,232,0.6); }
+  .featured__body { display: flex; flex-direction: column; gap: 16px; }
+  .featured__title { font: 500 28px/110% 'Inter', sans-serif; letter-spacing: -0.04em; color: var(--cream-warm); }
+  .featured__cta { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; background: var(--cream-warm); color: var(--navy-deep); font: 500 14px/1 'Inter', sans-serif; border-radius: 999px; text-decoration: none; align-self: flex-start; }
+  .featured__dek { font: 400 16px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.75); }
+  .secondary { width: 560px; display: flex; flex-direction: column; }
+  .story { padding: 28px 0; border-bottom: 1px solid rgba(250,243,232,0.1); }
+  .story:last-child { border-bottom: none; }
+  .story--image { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: start; }
+  .story__thumb { width: 180px; height: 124px; object-fit: cover; border-radius: 4px; display: block; }
+  .story__body { display: flex; flex-direction: column; gap: 12px; }
+  .story__meta { font: 400 12px/1 'Inter', sans-serif; color: rgba(250,243,232,0.5); letter-spacing: 0.06em; text-transform: uppercase; }
+  .story__title { font: 500 19px/120% 'Inter Tight', sans-serif; letter-spacing: -0.04em; color: var(--cream-warm); }
+  /* footer */
+  .footer { background: #000; padding: 80px; }
+  .footer__panel { background: var(--navy); border-radius: 36px; padding: 80px; display: flex; flex-direction: column; gap: 56px; }
+  .footer__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 80px; }
+  .footer__brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer__brand-row { display: flex; align-items: center; gap: 14px; }
+  .footer__mark img { width: auto; height: 48px; display: block; }
+  .footer__name { display: none; }
+  .footer__tag { font: 400 14px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.7); max-width: 480px; }
+  .footer__cols { display: flex; gap: 64px; }
+  .footer__col { width: 220px; display: flex; flex-direction: column; gap: 20px; }
+  .footer__col h4 { margin: 0; font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .footer__col li { font: 400 15px/200% 'Inter', sans-serif; color: rgba(250,243,232,0.85); }
+  .footer__col li a { color: inherit; text-decoration: none; }
+  .footer__rule { width: 100%; height: 1px; background: rgba(250,243,232,0.15); }
+  .footer__disclosures { display: flex; flex-wrap: wrap; align-items: center; }
+  .footer__disclosures a { font: 500 13px/1.6 'Inter', sans-serif; color: rgba(250,243,232,0.85); text-decoration: none; }
+  .footer__disclosures .sep { font: 500 13px/1.6 'Inter', sans-serif; color: rgba(250,243,232,0.3); padding: 0 14px; }
+  .footer__bottom { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; }
+  .footer__bottom > div { font: 400 12px/137.5% 'Inter', sans-serif; color: rgba(250,243,232,0.5); }
+  .footer__stamp { font: 600 11px/150% 'Inter', sans-serif !important; letter-spacing: 0.18em; text-transform: uppercase; }
+  /* toast */
+  .toast { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: var(--navy-deep); color: var(--cream-warm); font: 500 14px/1 'Inter', sans-serif; padding: 14px 24px; border-radius: 999px; box-shadow: 0 8px 24px -4px rgba(0,0,0,0.4); z-index: 999; pointer-events: none; opacity: 0; transition: opacity 0.24s ease; white-space: nowrap; }
+  .toast.show { opacity: 1; }
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  @media(max-width:1024px){
+    body{zoom:unset!important;transform:none!important;width:100%!important;}
+    .nav{flex-direction:column;align-items:stretch;gap:16px;padding:20px 32px;}
+    .nav__links{flex-wrap:wrap;gap:16px 24px;padding-top:12px;border-top:1px solid rgba(250,243,232,0.08);}
+    .nav--scrolled{top:0!important;margin:0!important;border-radius:0!important;}
+    .hero--calculator{padding:80px 32px 32px;}    /* bottom = side */
+    .hero--calculator .h1{font-size:52px;}
+    .hero-stat-bar{max-width:100%;}
+    .twin{flex-direction:column;border-radius:24px;}
+    .input-panel,.output-panel{padding:36px;}
+    .output-big{font-size:64px!important;}
+    .chart-section,.scenarios-section,.stress-section,.routes-section,.afford-section,.disclosures-section{padding:60px 32px;}
+    .scenario-grid{flex-wrap:wrap;}
+    .scenario-card{flex:0 0 calc(50% - 12px);}
+    .stress-grid{flex-wrap:wrap;}
+    .stress-cell{flex:0 0 calc(33.33% - 8px);}
+    .route-grid{flex-wrap:wrap;}
+    .route-col{flex:0 0 calc(50% - 10px);}
+    .advisory-wrap{padding:0 32px 60px;}
+    .advisory{flex-direction:column;align-items:flex-start;gap:28px;padding:36px;}
+    .news{padding:72px 32px 88px;}
+    .news__row{flex-direction:column;}
+    .secondary{width:100%;}
+    .footer{padding:56px 32px;}
+    .footer__panel{padding:48px 36px;border-radius:24px;}
+    .footer__top{flex-direction:column;gap:40px;}
+    .footer__cols{flex-wrap:wrap;gap:32px 48px;}
+    .footer__col{width:calc(50% - 24px);}
+    .h2{font-size:40px;}
+  }
+  @media(max-width:768px){
+    .hero--calculator{padding:60px 24px 24px;}    /* bottom = side */
+    .hero--calculator .h1{font-size:40px;}
+    .hero-stat-bar{flex-direction:column;border-radius:12px;}
+    .hero-stat-bar__cell{border-right:none;border-bottom:1px solid rgba(6,26,46,0.10);}
+    .hero-stat-bar__cell:last-child{border-bottom:none;}
+    .input-panel,.output-panel{padding:28px;}
+    .output-big{font-size:48px!important;}
+    .scenario-grid,.stress-grid,.route-grid{flex-direction:column;}
+    .scenario-card,.stress-cell,.route-col{flex:1;}
+    .afford-row{flex-direction:column;}
+    .final-ctas{flex-direction:column;}
+    .chart-section,.scenarios-section,.stress-section,.routes-section,.afford-section,.disclosures-section{padding:48px 24px;}
+    .advisory-wrap{padding:0 24px 48px;}
+    .news{padding:56px 24px 72px;}
+    .news__row{flex-direction:column;}
+    .secondary{width:100%;}
+    .featured__tile{height:380px;}
+    .story--image{grid-template-columns:120px 1fr;}
+    .story__thumb{width:120px;height:84px;}
+    .footer{padding:48px 24px;}
+    .footer__panel{padding:36px 28px;}
+    .footer__cols{flex-direction:column;}
+    .footer__col{width:100%;}
+    .h2{font-size:32px;}
+    .afford-results{flex-direction:column;}
+  }
+  @media(max-width:480px){
+    .nav{flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;}
+    .nav__links{flex:0 0 auto;padding-top:0;border-top:none;}
+    .nav__links a:not(.nav__cta){display:none;}
+    .hero--calculator{padding:48px 16px 16px;}    /* bottom = side */
+    .hero--calculator .h1{font-size:32px;}
+    .hero-ctas{flex-direction:column;}
+    .hero-cta{width:100%;justify-content:center;}
+    .input-panel,.output-panel{padding:22px;}
+    .output-big{font-size:38px!important;}
+    .output-ctas{flex-direction:column;}
+    .seg__item{padding:8px 10px;font-size:11px;}
+    .chart-section,.scenarios-section,.stress-section,.routes-section,.afford-section,.disclosures-section{padding:40px 16px;}
+    .advisory-wrap{padding:0 16px 40px;}
+    .news{padding:40px 16px 56px;}
+    .footer{padding:32px 16px;}
+    .footer__panel{padding:28px 22px;border-radius:18px;}
+    .footer__cols{display:grid;grid-template-columns:1fr 1fr;}
+    .footer__col{width:auto;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;}
+    .reveal{opacity:1!important;transform:none!important;}
+    html.smooth-scroll{scroll-behavior:auto;}
+  }
+</style>
+<style id="agmb-motion-css">
+  /* ───── AGMB shared motion module (loader + cascade + reveal + hover) ───── */
+
+  /* page-load loader */
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .page-loader__mark {
+    width: 64px;
+    height: 64px;
+    opacity: 0.9;
+    animation: agmbLoaderPulse 1.2s ease-in-out infinite;
+  }
+  .page-loader--hidden { opacity: 0; pointer-events: none; }
+  @keyframes agmbLoaderPulse {
+    0%, 100% { opacity: 0.55; transform: scale(0.96); }
+    50%      { opacity: 1;    transform: scale(1.00); }
+  }
+
+  /* hero cascade keyframes */
+  @keyframes agmbFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes agmbFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* While agmb-cascade is set on <html>, hero children start hidden.
+     They reveal once .agmb-cascade-run is also set (added by JS after loader). */
+  html.agmb-cascade .hero .status-row,
+  html.agmb-cascade .hero .hero__eyebrow,
+  html.agmb-cascade .hero .h1,
+  html.agmb-cascade .hero .h1--centered,
+  html.agmb-cascade .hero .hero__lede,
+  html.agmb-cascade .hero .hero__lede--centered,
+  html.agmb-cascade .hero .ctas,
+  html.agmb-cascade .hero .ctas--centered,
+  html.agmb-cascade .hero .hero__viz,
+  html.agmb-cascade .hero .fact-strip,
+  html.agmb-cascade .hero .hero-stat-bar,
+  html.agmb-cascade .hero .hero-ctas,
+  html.agmb-cascade .hero-stat-bar,
+  html.agmb-cascade .hero--calculator .hero__col-text > *,
+  html.agmb-cascade .hero--calculator .hero__col-calc {
+    opacity: 0;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .status-row,
+  html.agmb-cascade.agmb-cascade-run .hero .hero__eyebrow {
+    animation: agmbFadeUp 300ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .h1,
+  html.agmb-cascade.agmb-cascade-run .hero .h1--centered {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .hero__lede,
+  html.agmb-cascade.agmb-cascade-run .hero .hero__lede--centered {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .ctas,
+  html.agmb-cascade.agmb-cascade-run .hero .ctas--centered,
+  html.agmb-cascade.agmb-cascade-run .hero .hero-ctas {
+    animation: agmbFadeUp 440ms cubic-bezier(0.16, 1, 0.3, 1) 280ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .hero__viz {
+    animation: agmbFadeIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .fact-strip,
+  html.agmb-cascade.agmb-cascade-run .hero .hero-stat-bar,
+  html.agmb-cascade.agmb-cascade-run .hero-stat-bar {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 380ms both;
+  }
+  /* calculator hero — col text children + the calc widget */
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(1) {
+    animation: agmbFadeUp 440ms cubic-bezier(0.16, 1, 0.3, 1)   0ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(2) {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1)  80ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(3) {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(4) {
+    animation: agmbFadeUp 440ms cubic-bezier(0.16, 1, 0.3, 1) 280ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-calc {
+    animation: agmbFadeIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+  }
+
+  /* ── scroll-reveal: re-enable the .reveal cascade earlier rules nuked ── */
+  body .reveal,
+  body .reveal .stagger > * {
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  /* sections themselves stay visible — only inner .stagger children animate */
+  body .reveal, body .reveal:not(.in-view) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  body .reveal:not(.in-view) .stagger > * {
+    opacity: 0 !important;
+    transform: translateY(14px) !important;
+  }
+  body .reveal.in-view .stagger > * {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  body .reveal.in-view .stagger > *:nth-child(1) { transition-delay: 0.06s; }
+  body .reveal.in-view .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+  body .reveal.in-view .stagger > *:nth-child(3) { transition-delay: 0.18s; }
+  body .reveal.in-view .stagger > *:nth-child(4) { transition-delay: 0.24s; }
+  body .reveal.in-view .stagger > *:nth-child(5) { transition-delay: 0.30s; }
+  body .reveal.in-view .stagger > *:nth-child(6) { transition-delay: 0.36s; }
+
+  /* ── hover micro-interactions: restore minimal lift the kill block removed ── */
+  body .cta,
+  body .nav__cta,
+  body .advisory__cta,
+  body .output-cta--primary {
+    transition:
+      transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.18s ease,
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      opacity 0.18s ease !important;
+  }
+  @media (hover: hover) {
+    body .cta:hover,
+    body .nav__cta:hover,
+    body .advisory__cta:hover,
+    body .output-cta--primary:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 20px -8px rgba(0,0,0,0.4) !important;
+      filter: brightness(1.04);
+    }
+    body .cta:active,
+    body .nav__cta:active,
+    body .advisory__cta:active,
+    body .output-cta--primary:active {
+      transform: translateY(0) !important;
+      filter: brightness(0.96);
+    }
+  }
+
+  body .tile {
+    transition:
+      transform 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.24s ease !important;
+  }
+  @media (hover: hover) {
+    body .tile:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 12px 32px -10px rgba(0,0,0,0.25) !important;
+    }
+  }
+
+  body .featured__tile {
+    transition:
+      transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.28s ease,
+      box-shadow 0.28s ease !important;
+  }
+  @media (hover: hover) {
+    body .featured__tile:hover {
+      transform: translateY(-2px) !important;
+    }
+  }
+
+  /* reduced motion: nuke loader + cascade animations + hover lift */
+  @media (prefers-reduced-motion: reduce) {
+    .page-loader { transition: none !important; }
+    .page-loader__mark { animation: none !important; }
+    html.agmb-cascade .hero .status-row,
+    html.agmb-cascade .hero .hero__eyebrow,
+    html.agmb-cascade .hero .h1,
+    html.agmb-cascade .hero .h1--centered,
+    html.agmb-cascade .hero .hero__lede,
+    html.agmb-cascade .hero .hero__lede--centered,
+    html.agmb-cascade .hero .ctas,
+    html.agmb-cascade .hero .ctas--centered,
+    html.agmb-cascade .hero .hero__viz,
+    html.agmb-cascade .hero .fact-strip,
+    html.agmb-cascade .hero .hero-stat-bar,
+    html.agmb-cascade .hero .hero-ctas,
+    html.agmb-cascade .hero-stat-bar,
+    html.agmb-cascade .hero--calculator .hero__col-text > *,
+    html.agmb-cascade .hero--calculator .hero__col-calc {
+      opacity: 1 !important;
+      animation: none !important;
+    }
+    body .reveal,
+    body .reveal .stagger > * {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    body .cta:hover, body .nav__cta:hover, body .advisory__cta:hover,
+    body .tile:hover, body .featured__tile:hover,
+    body .output-cta--primary:hover {
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+
+  /* ───── Floating-pill nav (post-pivot, applies on top of legacy .nav rules) ───── */
+  body .nav {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 24px 160px !important;
+    background: #000 !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(250,243,232,0.06) !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    z-index: 50;
+    transition: padding 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.32s ease,
+                margin 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                border-radius 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.32s ease;
+  }
+  body .nav--scrolled {
+    position: fixed !important;
+    top: 16px !important;
+    margin: 0 80px !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 14px 32px !important;
+    background: rgba(6,26,46,0.62) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(250,243,232,0.10) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.55) !important;
+  }
+  @media (max-width: 1024px) {
+    body .nav { padding: 16px 32px !important; }
+    body .nav--scrolled { margin: 0 16px !important; padding: 12px 20px !important; }
+  }
+
+/* ───── Mobile hamburger + drawer (≤1024px) ───── */
+.nav__hamburger {
+  display: none;
+  position: relative;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 60;
+}
+.nav__hamburger-bar {
+  position: absolute;
+  left: 10px; right: 10px;
+  height: 2px;
+  background: var(--cream-warm);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease;
+}
+.nav__hamburger-bar:nth-child(1) { top: 14px; }
+.nav__hamburger-bar:nth-child(2) { top: 21px; }
+.nav__hamburger-bar:nth-child(3) { top: 28px; }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(2) { opacity: 0; }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,26,46,0.95);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+  z-index: 55;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-nav.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-nav__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 48px;
+  width: min(100%, 480px);
+  align-items: stretch;
+}
+.mobile-nav__panel > a {
+  font: 500 28px/1.1 'Inter', sans-serif;
+  letter-spacing: -0.025em;
+  color: var(--cream-warm);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(250,243,232,0.10);
+  transition: color 0.18s ease, opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(8px);
+}
+.mobile-nav__panel > a:hover { color: var(--gold-vivid); }
+.mobile-nav__panel > .mobile-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 18px 28px;
+  background: var(--cream-warm);
+  color: var(--navy-deep);
+  border-radius: 999px;
+  border: 0;
+  font: 500 16px/1 'Inter', sans-serif;
+  letter-spacing: -0.005em;
+  text-align: center;
+}
+.mobile-nav.is-open .mobile-nav__panel > a {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* stagger entries */
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(1) { transition-delay: 0.08s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(2) { transition-delay: 0.14s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(3) { transition-delay: 0.20s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(4) { transition-delay: 0.26s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(5) { transition-delay: 0.32s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(6) { transition-delay: 0.38s; }
+
+@media (max-width: 1024px) {
+  body .nav__hamburger { display: block; }
+  body .nav .nav__links { display: none; }
+  body .nav { padding: 14px 24px !important; }
+  body .nav--scrolled { margin: 0 12px !important; padding: 10px 16px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav, .mobile-nav__panel > a, .nav__hamburger-bar { transition: none !important; }
+}
+/* ───── /Mobile hamburger + drawer ───── */
+</style>
+<script id="agmb-motion-head-bootstrap">
+  /* Synchronous head-stage bootstrap: decide whether to show the loader,
+     and pre-apply .agmb-cascade so hero children render hidden (no FOUC). */
+  (function () {
+    try {
+      /* Force native scroll restoration on refresh — without this the page-loader
+         + cascade can race the browser's restore and snap the page back to the hero. */
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch (e) {}
+
+      var KEY = 'agmb-loaded';
+      var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasFlag = false;
+      try { hasFlag = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+      var isReload = false;
+      try {
+        if (performance && performance.navigation) isReload = performance.navigation.type === 1;
+        else if (performance && performance.getEntriesByType) {
+          var n = performance.getEntriesByType('navigation');
+          if (n && n[0]) isReload = n[0].type === 'reload';
+        }
+      } catch (e) {}
+      /* On a real reload the browser will restore scroll itself — skip the loader so
+         we don't repaint a fullscreen overlay over a mid-page restore. The loader
+         only fires on a genuine first-load (no session flag, not a reload). */
+      var showLoader = !hasFlag && !isReload;
+      window.__agmbMotion = { showLoader: showLoader, reduced: REDUCED, hasFlag: hasFlag, isReload: isReload };
+      /* Only arm the hero cascade on a true first paint. Reloads + back-nav use
+         scroll restoration and shouldn't re-play the hero animation. */
+      if (!REDUCED && !hasFlag && !isReload) {
+        document.documentElement.classList.add('agmb-cascade');
+      }
+    } catch (e) { /* swallow */ }
+  })();
+</script>
+</head>
+<body>
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scroll-progress"></div></div>
+<div class="page">
+
+<!-- NAV -->
+{% include "header.njk" %}
+
+<!-- 1. HERO — 2-col: text on the left, calculator widget on the right -->
+<section class="hero--calculator reveal">
+  <div class="hero__grid">
+    <div class="hero__col-text">
+      <h1 class="h1">Run the <em>numbers.</em><br>Own the <em>decision.</em></h1>
+      <p class="hero__sub">Every figure is live. Every rate is current. No credit check at this stage.</p>
+      <div class="hero-stat-bar" role="list">
+        <div class="hero-stat-bar__cell" role="listitem">
+          <div class="hero-stat-bar__label">4 routes</div>
+          <div class="hero-stat-bar__value">NHF &middot; M-REIF &middot; Classic &middot; Diaspora</div>
+        </div>
+        <div class="hero-stat-bar__cell" role="listitem">
+          <div class="hero-stat-bar__label">Loan range</div>
+          <div class="hero-stat-bar__value">&#x20A6;15M &ndash; &#x20A6;300M</div>
+        </div>
+        <div class="hero-stat-bar__cell" role="listitem">
+          <div class="hero-stat-bar__label">Tenor range</div>
+          <div class="hero-stat-bar__value">5 &ndash; 30 years</div>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <a class="hero-cta hero-cta--primary" href="#calc-bento">Check your fit &darr;</a>
+        <a class="hero-cta hero-cta--secondary" href="#calc-routes">Compare all routes &darr;</a>
+      </div>
+    </div>
+
+    <div class="hero__col-calc" id="calc-widget">
+  <div class="twin">
+    <div class="input-panel">
+      <div class="input-top">
+        <div class="input-top__cat" id="val-route-label">Route &middot; National Housing Fund</div>
+        <div class="seg" id="seg-control" role="tablist" aria-label="Mortgage route">
+          <div class="seg__indicator" id="seg-indicator"></div>
+          <span class="seg__item seg__item--active" data-segment="nhf" role="tab" tabindex="0" aria-selected="true">NHF</span>
+          <span class="seg__item" data-segment="mreif" role="tab" tabindex="0" aria-selected="false">M-REIF</span>
+          <span class="seg__item" data-segment="classic" role="tab" tabindex="0" aria-selected="false">Classic</span>
+          <span class="seg__item" data-segment="diaspora" role="tab" tabindex="0" aria-selected="false">Diaspora</span>
+        </div>
+      </div>
+      <div class="field">
+        <div class="field__row"><span class="field__label">Property value</span><span class="field__label">&#x20A6;15M &ndash; &#x20A6;300M</span></div>
+        <div class="field__value" id="val-property">&#x20A6;116,500,000</div>
+        <div class="slider-wrap">
+          <div class="slider-tooltip" id="tt-property">&#x20A6;116,500,000</div>
+          <input type="range" class="slider" id="slider-property" min="15000000" max="300000000" step="500000" value="116500000" aria-label="Property value">
+        </div>
+      </div>
+      <div class="field">
+        <div class="field__row"><span class="field__label">Down payment</span><span class="field__label" id="val-downpayment-amt">&#x20A6;23,300,000</span></div>
+        <div class="field__value" id="val-downpayment-pct">% 20</div>
+        <div class="slider-wrap">
+          <div class="slider-tooltip" id="tt-down">20%</div>
+          <input type="range" class="slider" id="slider-downpayment" min="5" max="50" step="1" value="20" aria-label="Down payment percent">
+        </div>
+      </div>
+      <div class="field">
+        <div class="field__row"><span class="field__label">Loan-to-value</span><span class="field__label" id="val-ltv-pct">80%</span></div>
+        <div class="bar"><div class="bar__fill" id="val-ltv-bar" style="width:80%"></div></div>
+      </div>
+      <div class="field">
+        <div class="field__row"><span class="field__label">Tenor</span><span class="field__label">5 &ndash; 30 years</span></div>
+        <div class="field__value" id="val-tenor">&darr; 20 years</div>
+        <div class="slider-wrap">
+          <div class="slider-tooltip" id="tt-tenor">20 years</div>
+          <input type="range" class="slider" id="slider-tenor" min="5" max="30" step="1" value="20" aria-label="Tenor in years">
+        </div>
+      </div>
+      <div class="cap-notice" id="cap-notice" role="alert"></div>
+    </div>
+    <div class="output-panel">
+      <div class="output-top">
+        <div class="output-top__l">Monthly repayment</div>
+        <div>
+          <div class="output-top__r" id="val-rate-label">At 6.0% p.a. &middot; fixed</div>
+          <div class="output-rate-ts">Rates effective 12 May 2026 &middot; Subject to CBN MPR adjustment</div>
+        </div>
+      </div>
+      <div class="output-big" id="val-monthly" aria-live="polite" aria-atomic="true">&#x20A6;667,714/mo</div>
+      <div class="field">
+        <div class="field__row" style="color:rgba(250,243,232,0.6);font-size:13px;">
+          <span>Principal &middot; Interest</span>
+          <span style="color:var(--green-vivid);" id="val-interest-pct">Interest 45%</span>
+        </div>
+        <div class="ratio-bar"><div id="val-ratio-principal" style="width:55%"></div><div id="val-ratio-interest" style="width:45%"></div></div>
+        <div class="field__row" style="font-size:12px;color:rgba(250,243,232,0.4);font-variant-numeric:tabular-nums;">
+          <span id="val-pi-principal">&#x20A6;93,200,000</span><span id="val-pi-interest">&#x20A6;67,329,366</span>
+        </div>
+      </div>
+      <div>
+        <div class="detail-row"><span class="detail-row__l">Principal financed</span><span class="detail-row__r" id="val-principal">&#x20A6;93,200,000</span></div>
+        <div class="detail-row"><span class="detail-row__l">Total amount to repay</span><span class="detail-row__r" id="val-total-repay">&#x20A6;160,251,360</span></div>
+        <div class="detail-row"><span class="detail-row__l">Decision in principle</span><span class="detail-row__r">Within 48 hours</span></div>
+        <div class="detail-row"><span class="detail-row__l">Rate-lock window</span><span class="detail-row__r">90 days</span></div>
+        <div class="detail-row"><span class="detail-row__l">Effective interest</span><span class="detail-row__r" id="val-interest-pct-detail">45%</span></div>
+      </div>
+      <div class="output-ctas">
+        <a class="output-cta output-cta--primary" id="cta-apply" href="agmb-apply.html">Continue to enquiry &rarr;</a>
+        <button class="output-cta output-cta--secondary" id="btn-share">Share this scenario</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. AMORTIZATION CHART — removed per UX feedback (too noisy / hard to read) -->
+
+<!-- 4. SCENARIO CARDS -->
+<section class="scenarios-section reveal" id="calc-scenarios">
+  <div class="sec-eyebrow">
+    <span class="sec-eyebrow__dot" style="background:var(--gold-vivid)"></span>
+    <span class="sec-eyebrow__label" style="color:rgba(6,26,46,0.6)">Scenarios</span>
+  </div>
+  <h2 class="h2" style="color:var(--navy-deep)">Three approaches. Pick your own pace.</h2>
+  <div class="scenario-grid" id="scenario-grid" role="list"></div>
+</section>
+
+<!-- 5+7 MERGED BENTO: Sensitivity (left) + Affordability (right) -->
+<section class="bento-section reveal" id="calc-bento">
+  <div class="bento-grid">
+    <div class="bento-cell bento-cell--stress" id="calc-stress">
+      <div class="sec-eyebrow">
+        <span class="sec-eyebrow__dot" style="background:var(--navy-vivid)"></span>
+        <span class="sec-eyebrow__label" style="color:rgba(6,26,46,0.6)">Sensitivity</span>
+      </div>
+      <h2 class="h2 h2--bento" style="color:var(--navy-deep)">If rates move.</h2>
+      <div class="stress-grid" id="stress-grid" role="list"></div>
+      <p class="stress-note">Variable-rate adjustments are published quarterly. Indicative pricing is locked at offer for 90 days.</p>
+    </div>
+
+    <div class="bento-cell bento-cell--afford" id="calc-affordability">
+      <div class="sec-eyebrow">
+        <span class="sec-eyebrow__dot" style="background:var(--green-vivid)"></span>
+        <span class="sec-eyebrow__label" style="color:rgba(6,26,46,0.6)">Affordability</span>
+      </div>
+      <h2 class="h2 h2--bento" style="color:var(--navy-deep)">Within your means?</h2>
+      <div class="afford-row">
+        <div class="afford-field">
+          <label class="afford-label" for="income-input">Your monthly gross income (&#x20A6;)</label>
+          <input class="afford-input" type="number" id="income-input" placeholder="e.g. 500000" min="1">
+        </div>
+        <button class="afford-btn" id="afford-btn">Calculate</button>
+      </div>
+      <div class="afford-results" id="afford-results" aria-live="polite">
+        <div class="afford-cell" id="afford-lti">
+          <div class="afford-cell__label">Loan-to-income</div>
+          <div class="afford-cell__value" id="afford-lti-val">&mdash;</div>
+          <div class="afford-cell__note" id="afford-lti-note">&mdash;</div>
+        </div>
+        <div class="afford-cell" id="afford-dsr">
+          <div class="afford-cell__label">Debt service ratio</div>
+          <div class="afford-cell__value" id="afford-dsr-val">&mdash;</div>
+          <div class="afford-cell__note" id="afford-dsr-note">&mdash;</div>
+        </div>
+        <div class="afford-cell" id="afford-assess">
+          <div class="afford-cell__label">Institutional assessment</div>
+          <div class="afford-cell__value" id="afford-assess-val">&mdash;</div>
+          <div class="afford-cell__note" id="afford-assess-note">&mdash;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ROUTE COMPARISON (full-width) -->
+<section class="routes-section reveal" id="calc-routes">
+  <div class="sec-eyebrow">
+    <span class="sec-eyebrow__dot" style="background:var(--gold-vivid)"></span>
+    <span class="sec-eyebrow__label" style="color:rgba(250,243,232,0.6)">All routes</span>
+  </div>
+  <h2 class="h2" style="color:var(--cream-warm)">All four routes, your numbers.</h2>
+  <div class="route-grid" id="route-grid" role="list"></div>
+</section>
+
+<!-- 8. DISCLOSURES — removed per UX feedback. CTAs live in the hero + widget already. -->
+
+<!-- 9. ADVISORY (locked) -->
+<div class="advisory-wrap">
+  <div class="advisory">
+    <div class="advisory__inner">
+      <div class="advisory__cat">Talk to a mortgage advisor</div>
+      <div class="advisory__title">Not sure which product fits? We&rsquo;ll route you.</div>
+      <div class="advisory__copy">One call to walk through eligibility for NHF, M-REIF, Commercial, Construction, and REI. No commitment.</div>
+    </div>
+    <div class="advisory__aside">
+      <div><div class="advisory__stat-num"><em>21</em> years</div><div class="advisory__stat-sub">advising Nigerian homebuyers since 2005</div></div>
+      <a class="advisory__cta" href="agmb-contact.html">Book a 15-minute call &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- 10. NEWS (locked) -->
+<!-- (newsroom lives on the home page) -->
+
+<!-- FOOTER -->
+  {% include "footer.njk" %}
+
+</div><!-- .page -->
+<div class="toast" id="toast" role="status" aria-live="polite">Link copied</div>
+
+<script>
+(() => {
+'use strict';
+
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const SEGS = {
+  nhf:      { rate: 6.0,  cap: 15e6,  label: 'National Housing Fund', short: 'NHF',      rateLabel: '6.0% p.a. · fixed' },
+  mreif:    { rate: 9.5,  cap: 50e6,  label: 'M-REIF · Underserved', short: 'M-REIF',  rateLabel: '9.5% p.a. · indicative' },
+  classic:  { rate: 22.0, cap: null,  label: 'Classic Mortgage',      short: 'Classic',  rateLabel: '22.0% p.a. · indicative' },
+  diaspora: { rate: 18.0, cap: 80e6,  label: 'Diaspora-NHF',          short: 'Diaspora', rateLabel: '18.0% p.a. · indicative' }
+};
+const ROUTE_KEYS = ['nhf','mreif','classic','diaspora'];
+
+const st = { seg: 'nhf', prop: 116.5e6, down: 20, tenor: 20, stress: 0, lastMo: 0 };
+const $ = id => document.getElementById(id);
+
+function amort(P, annRate, yrs) {
+  const r = annRate / 100 / 12, n = yrs * 12;
+  if (P <= 0 || n <= 0) return { mo: 0, total: 0, int: 0 };
+  if (r === 0) return { mo: P / n, total: P, int: 0 };
+  const f = Math.pow(1 + r, n), M = P * r * f / (f - 1);
+  return { mo: M, total: M * n, int: M * n - P };
+}
+function balAt(P, r12, n, k) {
+  if (r12 === 0) return Math.max(P - (P / n) * k, 0);
+  const fn = Math.pow(1 + r12, n), fk = Math.pow(1 + r12, k);
+  return Math.max(P * (fn - fk) / (fn - 1), 0);
+}
+function N(v, c) {
+  if (c) {
+    if (v >= 1e9) return '₦' + (v/1e9).toFixed(1) + 'B';
+    if (v >= 1e6) return '₦' + (v/1e6).toFixed(1) + 'M';
+    if (v >= 1e3) return '₦' + (v/1e3).toFixed(0) + 'K';
+  }
+  return '₦' + Math.round(v).toLocaleString('en-NG');
+}
+
+// number tween
+let tweenID = null;
+function tweenEl(el, from, to, dur, fmt) {
+  if (REDUCED) { el.textContent = fmt(to); return; }
+  if (tweenID) cancelAnimationFrame(tweenID);
+  const t0 = performance.now();
+  (function tick(now) {
+    const t = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - t, 3);
+    el.textContent = fmt(from + (to - from) * e);
+    if (t < 1) tweenID = requestAnimationFrame(tick);
+  })(t0);
+}
+
+function effRate() { return SEGS[st.seg].rate + st.stress; }
+
+function compute() {
+  const seg = SEGS[st.seg], er = effRate();
+  const des = st.prop * (1 - st.down / 100);
+  const P = seg.cap ? Math.min(des, seg.cap) : des;
+  const dn = st.prop * st.down / 100;
+  const out = amort(P, er, st.tenor);
+  const ltv = P / st.prop * 100;
+  const ipct = out.total > 0 ? out.int / out.total * 100 : 0;
+  return { seg, er, des, P, dn, out, ltv, ipct, ppct: 100 - ipct };
+}
+
+function update(tween) {
+  const { seg, er, P, dn, out, ltv, ipct, ppct } = compute();
+  $('val-property').textContent = N(st.prop);
+  $('val-downpayment-amt').textContent = N(dn);
+  $('val-downpayment-pct').textContent = '% ' + st.down;
+  $('val-ltv-pct').textContent = ltv.toFixed(0) + '%';
+  $('val-ltv-bar').style.width = Math.min(ltv, 100) + '%';
+  $('val-tenor').textContent = '↓ ' + st.tenor + ' years';
+  $('val-route-label').textContent = 'Route · ' + seg.label;
+  $('val-rate-label').textContent = st.stress !== 0
+    ? 'At ' + er.toFixed(1) + '% p.a. (stress ' + (st.stress > 0 ? '+' : '') + st.stress + '%)'
+    : 'At ' + seg.rateLabel;
+  if (tween && st.lastMo && st.lastMo !== out.mo)
+    tweenEl($('val-monthly'), st.lastMo, out.mo, 180, v => N(Math.round(v)) + '/mo');
+  else
+    $('val-monthly').textContent = N(out.mo) + '/mo';
+  st.lastMo = out.mo;
+  $('val-interest-pct').textContent = 'Interest ' + ipct.toFixed(0) + '%';
+  $('val-interest-pct-detail').textContent = ipct.toFixed(0) + '%';
+  $('val-ratio-principal').style.width = ppct + '%';
+  $('val-ratio-interest').style.width = ipct + '%';
+  $('val-pi-principal').textContent = N(P);
+  $('val-pi-interest').textContent = N(out.int);
+  $('val-principal').textContent = N(P);
+  $('val-total-repay').textContent = N(out.total);
+  const cap = $('cap-notice'), des2 = st.prop * (1 - st.down / 100);
+  if (seg.cap && des2 > seg.cap) {
+    cap.textContent = seg.short + ' caps principal at ' + N(seg.cap) + ' — ' + N(des2 - seg.cap) + ' top-up arranged separately.';
+    cap.style.display = 'block';
+  } else cap.style.display = 'none';
+  updateApplyURL(); renderScenarios(); renderStress(); renderRoutes();
+}
+
+// seg indicator — use offsetLeft/offsetWidth (pre-zoom local coords) instead of
+// getBoundingClientRect() so the indicator slides the correct distance under
+// body { zoom: 0.8 } / 0.6. With getBoundingClientRect, the diff is already
+// scaled by zoom, then re-scaled when applied as translateX on a zoomed child
+// (net 0.64x of intended).
+function posInd(el) {
+  const ind = $('seg-indicator');
+  ind.style.width = el.offsetWidth + 'px';
+  ind.style.transform = 'translateX(' + (el.offsetLeft - 4) + 'px)';
+}
+function switchSeg(btn) {
+  document.querySelectorAll('.seg__item').forEach(b => { b.classList.remove('seg__item--active'); b.setAttribute('aria-selected','false'); });
+  btn.classList.add('seg__item--active'); btn.setAttribute('aria-selected','true');
+  st.seg = btn.dataset.segment; posInd(btn); update(true);
+}
+document.querySelectorAll('.seg__item').forEach(b => {
+  b.addEventListener('click', () => switchSeg(b));
+  b.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){e.preventDefault();switchSeg(b);} });
+});
+window.addEventListener('load', () => { const a = document.querySelector('.seg__item--active'); if(a) posInd(a); });
+// Defensive: re-sync after fonts settle in case label widths shifted
+setTimeout(() => { const a = document.querySelector('.seg__item--active'); if(a) posInd(a); }, 400);
+
+// slider tooltips
+function posTT(sl, tt, txt) {
+  const pct = (sl.value - sl.min) / (sl.max - sl.min);
+  const left = pct * (sl.offsetWidth - 22) + 11;
+  tt.style.left = left + 'px'; tt.textContent = txt;
+}
+function mkSlider(sid, ttid, fmt, key) {
+  const sl = $(sid), tt = $(ttid);
+  const show = () => tt.classList.add('visible'), hide = () => tt.classList.remove('visible');
+  sl.addEventListener('mousedown', show); sl.addEventListener('touchstart', show, {passive:true});
+  sl.addEventListener('mouseup', hide); sl.addEventListener('touchend', hide);
+  sl.addEventListener('input', e => { st[key] = +e.target.value; posTT(sl, tt, fmt(+e.target.value)); update(true); });
+}
+mkSlider('slider-property','tt-property', v => N(v), 'prop');
+mkSlider('slider-downpayment','tt-down', v => v+'%', 'down');
+mkSlider('slider-tenor','tt-tenor', v => v+' years', 'tenor');
+
+// (amortization chart removed — section deleted)
+
+// scenarios
+const SCENS = [
+  { id:'aggressive', name:'Aggressive', badge:'Fastest payoff', tenor:10, down:35 },
+  { id:'standard',   name:'Standard',   badge:'Balanced',       tenor:25, down:20 },
+  { id:'stretched',  name:'Stretched',  badge:'Lowest monthly', tenor:30, down:10 }
+];
+function renderScenarios() {
+  const g = $('scenario-grid'), seg = SEGS[st.seg], er = effRate();
+  const mkCard = (id, name, badge, tenor, down, isYours) => {
+    const des = st.prop*(1-down/100), P = seg.cap?Math.min(des,seg.cap):des, out = amort(P,er,tenor);
+    const ip = out.total>0?(out.int/out.total*100).toFixed(0):'0';
+    return '<div class="scenario-card' + (isYours?' scenario-card--yours':'') + '" role="listitem" tabindex="0">' +
+      '<span class="scenario-card__badge' + (isYours?' scenario-card__badge--live':'') + '">' + badge + '</span>' +
+      '<div class="scenario-card__name">' + name + '</div>' +
+      '<div class="scenario-card__monthly">' + N(out.mo) + '<span style="font:400 14px/1 Inter,sans-serif;color:rgba(6,26,46,0.5)">/mo</span></div>' +
+      '<div class="scenario-card__stats">' +
+        '<div class="scenario-card__stat"><span class="sc-stat-l">Tenor</span><span class="sc-stat-r">'+tenor+' years</span></div>' +
+        '<div class="scenario-card__stat"><span class="sc-stat-l">Down payment</span><span class="sc-stat-r">'+down+'%</span></div>' +
+        '<div class="scenario-card__stat"><span class="sc-stat-l">Total interest</span><span class="sc-stat-r">'+N(out.int,true)+'</span></div>' +
+        '<div class="scenario-card__stat"><span class="sc-stat-l">Interest share</span><span class="sc-stat-r">'+ip+'%</span></div>' +
+      '</div>' +
+      (isYours
+        ? '<button class="scenario-load-btn" id="sc-share-btn">Save &amp; share &nearr;</button>'
+        : '<button class="scenario-load-btn" data-lt="'+tenor+'" data-ld="'+down+'">Load this &rarr;</button>') +
+    '</div>';
+  };
+  g.innerHTML = SCENS.map(s=>mkCard(s.id,s.name,s.badge,s.tenor,s.down,false)).join('') +
+    mkCard('yours','Your scenario','Live',st.tenor,st.down,true);
+  g.querySelectorAll('[data-lt]').forEach(b => b.addEventListener('click', e => {
+    e.stopPropagation(); animSliders({tenor:+b.dataset.lt, down:+b.dataset.ld});
+  }));
+  const sb = $('sc-share-btn'); if(sb) sb.addEventListener('click', shareScenario);
+}
+
+// animate sliders
+function animSliders({ tenor, down, prop }) {
+  if (REDUCED) {
+    if(tenor!==undefined){st.tenor=tenor;$('slider-tenor').value=tenor;}
+    if(down!==undefined){st.down=down;$('slider-downpayment').value=down;}
+    if(prop!==undefined){st.prop=prop;$('slider-property').value=prop;}
+    update(true); return;
+  }
+  const t0=st.tenor,d0=st.down,p0=st.prop, tT=tenor??st.tenor,tD=down??st.down,tP=prop??st.prop;
+  const dur=400, s0=performance.now();
+  (function tick(now) {
+    const t=Math.min((now-s0)/dur,1), e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+    st.tenor=Math.round(t0+(tT-t0)*e); st.down=Math.round(d0+(tD-d0)*e); st.prop=Math.round(p0+(tP-p0)*e);
+    $('slider-tenor').value=st.tenor; $('slider-downpayment').value=st.down; $('slider-property').value=st.prop;
+    update(t>.1);
+    if(t<1) requestAnimationFrame(tick);
+  })(s0);
+}
+
+// stress
+const DELTAS = [-2,-1,0,1,2,3];
+function renderStress() {
+  const g=$('stress-grid'), seg=SEGS[st.seg], des=st.prop*(1-st.down/100), P=seg.cap?Math.min(des,seg.cap):des;
+  const base=amort(P,seg.rate,st.tenor);
+  g.innerHTML = DELTAS.map(d => {
+    const r=Math.max(0,seg.rate+d), out=amort(P,r,st.tenor), diff=out.mo-base.mo;
+    const today=d===0, active=d===st.stress&&d!==0;
+    const ds=diff!==0?(diff>0?'+':'')+N(Math.abs(diff),true):'';
+    return '<div class="stress-cell'+(today?' stress-cell--today':'')+(active?' stress-cell--active':'')+
+      '" data-d="'+d+'" role="listitem" tabindex="0" aria-label="Rate scenario '+(d>=0?'+':'')+d+'% ('+r.toFixed(1)+'% p.a.)">' +
+      '<div class="stress-delta">'+(d===0?'Today':(d>0?'+':'')+d+'%')+'</div>' +
+      '<div class="stress-rate">'+r.toFixed(1)+'%</div>' +
+      '<div class="stress-monthly">'+N(out.mo)+'<span style="font-size:11px">/mo</span></div>' +
+      (ds?'<div class="stress-diff'+(diff>0?' stress-diff--up':' stress-diff--dn')+'">'+ds+'</div>':'')+
+    '</div>';
+  }).join('');
+  g.querySelectorAll('.stress-cell').forEach(c => {
+    const act = () => { const d=+c.dataset.d; st.stress=(st.stress===d&&d!==0)?0:d; update(true); };
+    c.addEventListener('click', act);
+    c.addEventListener('keydown', e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+  });
+}
+
+// route comparison
+function renderRoutes() {
+  const g=$('route-grid'), des=st.prop*(1-st.down/100);
+  g.innerHTML = ROUTE_KEYS.map(k => {
+    const seg=SEGS[k], P=seg.cap?Math.min(des,seg.cap):des, out=amort(P,seg.rate,st.tenor), active=k===st.seg;
+    return '<div class="route-col'+(active?' route-col--active':'')+'" role="listitem">' +
+      '<div class="route-col__name">'+seg.label+'</div>' +
+      '<div class="route-col__rate">'+seg.rate.toFixed(1)+'%</div>' +
+      '<div class="route-col__stats">' +
+        '<div class="route-col__stat"><span class="rc-stat-l">Max loan</span><span class="rc-stat-r">'+(seg.cap?N(seg.cap,true):'Uncapped')+'</span></div>' +
+        '<div class="route-col__stat"><span class="rc-stat-l">Max tenor</span><span class="rc-stat-r">30 years</span></div>' +
+        '<div class="route-col__stat"><span class="rc-stat-l">Your principal</span><span class="rc-stat-r">'+N(P,true)+'</span></div>' +
+        '<div class="route-col__stat"><span class="rc-stat-l">Monthly (your scenario)</span><span class="rc-stat-r" style="font-size:15px">'+N(out.mo)+'/mo</span></div>' +
+      '</div>' +
+      '<button class="route-switch-btn" data-route="'+k+'">'+(active?'Current route ✓':'Switch to this route')+'</button>' +
+    '</div>';
+  }).join('');
+  g.querySelectorAll('.route-switch-btn').forEach(b => b.addEventListener('click', () => {
+    const k=b.dataset.route; if(k===st.seg) return;
+    st.seg=k;
+    document.querySelectorAll('.seg__item').forEach(s=>{const m=s.dataset.segment===k;s.classList.toggle('seg__item--active',m);if(m)posInd(s);});
+    update(true);
+    $('calc-widget').scrollIntoView({behavior:'smooth',block:'start'});
+  }));
+}
+
+// affordability
+function calcAfford() {
+  const inc = parseFloat($('income-input').value); if(!inc||inc<=0) return;
+  const {P, out} = compute();
+  const lti=P/(inc*12), dsr=out.mo/inc*100;
+  $('afford-lti-val').textContent = lti.toFixed(1)+'x';
+  $('afford-dsr-val').textContent = dsr.toFixed(0)+'%';
+  const [lc,ln] = lti<=4?['afford-ok','Within typical 4× income threshold.']:lti<=6?['afford-tight','Elevated; lender discretion applies.']:['afford-stretch','Above standard prudential limits.'];
+  const [dc,dn] = dsr<=33?['afford-ok','Comfortable — below the 33% guideline.']:dsr<=45?['afford-tight','Tight — within lender discretion zone.']:['afford-stretch','Stretched — above standard CBN guidance.'];
+  const ok=lti<=4&&dsr<=33, tight=lti<=6&&dsr<=45;
+  const [ac,av,an] = ok?['afford-ok','Comfortable','Within CBN prudential limits for residential mortgage lending.']:tight?['afford-tight','Tight','Eligible subject to full underwriting review.']:['afford-stretch','Stretched','Reduce principal or supplement income — advisor can help.'];
+  $('afford-lti').className='afford-cell '+lc; $('afford-lti-note').textContent=ln;
+  $('afford-dsr').className='afford-cell '+dc; $('afford-dsr-note').textContent=dn;
+  $('afford-assess').className='afford-cell '+ac; $('afford-assess-val').textContent=av; $('afford-assess-note').textContent=an;
+  $('afford-results').classList.add('visible');
+}
+$('afford-btn').addEventListener('click', calcAfford);
+$('income-input').addEventListener('keydown', e=>{if(e.key==='Enter') calcAfford();});
+
+// share / URL
+function buildURL() {
+  const u=new URL(location.href);
+  u.searchParams.set('value',st.prop); u.searchParams.set('dp',st.down);
+  u.searchParams.set('tenor',st.tenor); u.searchParams.set('route',st.seg);
+  return u.toString();
+}
+function updateApplyURL() {
+  const q='?route='+st.seg+'&value='+st.prop+'&dp='+st.down+'&tenor='+st.tenor;
+  [$('cta-apply'),$('cta-apply-final')].forEach(e=>{if(e) e.href='agmb-apply.html'+q;});
+}
+function prefill() {
+  const p=new URLSearchParams(location.search);
+  if(p.has('value')){const v=+p.get('value');if(v>=15e6&&v<=300e6){st.prop=v;$('slider-property').value=v;}}
+  if(p.has('dp')){const v=+p.get('dp');if(v>=5&&v<=50){st.down=v;$('slider-downpayment').value=v;}}
+  if(p.has('tenor')){const v=+p.get('tenor');if(v>=5&&v<=30){st.tenor=v;$('slider-tenor').value=v;}}
+  if(p.has('route')&&SEGS[p.get('route')]){
+    st.seg=p.get('route');
+    document.querySelectorAll('.seg__item').forEach(b=>b.classList.toggle('seg__item--active',b.dataset.segment===st.seg));
+  }
+}
+function toast(msg) {
+  const t=$('toast'); t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1500);
+}
+function shareScenario() {
+  const u=buildURL();
+  navigator.clipboard?navigator.clipboard.writeText(u).then(()=>toast('Link copied')):(() => {
+    const ta=document.createElement('textarea');ta.value=u;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('Link copied');
+  })();
+}
+[$('btn-share'),$('btn-share-final')].forEach(b=>{if(b) b.addEventListener('click',shareScenario);});
+
+// scroll/nav
+const nav=$('main-nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('nav--scrolled',scrollY>80);
+  const sp=$('scroll-progress');
+  if(sp){const tot=document.documentElement.scrollHeight-innerHeight;sp.style.width=(scrollY/tot*100)+'%';}
+},{passive:true});
+
+// reveal
+new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');o.unobserve(e.target);}});},{threshold:0.08})
+  .observe.bind(null,...[]); // workaround: use forEach
+const io = new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');o.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// chart resize
+// (resize → no chart to re-render; sliders + grids recompute on input)
+
+// init
+prefill(); st.lastMo=0; update(false);
+requestAnimationFrame(()=>{const a=document.querySelector('.seg__item--active');if(a)posInd(a);});
+
+})();
+</script>
+<script id="agmb-motion-js">
+(function () {
+  'use strict';
+
+  var cfg = window.__agmbMotion || { showLoader: false, reduced: false, hasFlag: true };
+  var REDUCED = cfg.reduced;
+  var SESSION_KEY = 'agmb-loaded';
+  var docEl = document.documentElement;
+
+  /* ───── 1. Page loader (hard-refresh / direct-load only) ───── */
+  var loader = null;
+  if (cfg.showLoader && !REDUCED) {
+    loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.setAttribute('aria-hidden', 'true');
+    var mark = document.createElement('img');
+    mark.className = 'page-loader__mark';
+    mark.src = 'agmb-icon-white.svg';
+    mark.alt = '';
+    loader.appendChild(mark);
+    document.body.insertBefore(loader, document.body.firstChild);
+  }
+
+  /* Longest cascade animation = 380ms delay + 720ms duration ≈ 1100ms.
+     After this we strip .agmb-cascade so the cascade rules (which carry
+     will-change + animation declarations) no longer match the hero children.
+     Without this strip, any layer invalidation (nav-state toggle, scrollback
+     into the hero) can re-paint with the cascade keyframes still attached
+     and cause the fact-strip / stat-bar to "jump" back into place. */
+  var CASCADE_RUN_MS = 1200;
+  function endCascade() {
+    docEl.classList.remove('agmb-cascade');
+    docEl.classList.remove('agmb-cascade-run');
+  }
+
+  function startCascade() {
+    /* Skip entirely when the cascade was never armed (reload / back-nav path). */
+    if (!docEl.classList.contains('agmb-cascade')) return;
+    docEl.classList.add('agmb-cascade-run');
+    setTimeout(endCascade, CASCADE_RUN_MS);
+  }
+
+  function hideLoader() {
+    if (!loader) { startCascade(); return; }
+    loader.classList.add('page-loader--hidden');
+    startCascade();
+    setTimeout(function () {
+      if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    }, 700);
+  }
+
+  try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+
+  if (REDUCED) {
+    docEl.classList.remove('agmb-cascade'); // ensure no hidden hero
+    /* No animation needed — reduced-motion users skip the cascade entirely. */
+  } else if (cfg.isReload || cfg.hasFlag) {
+    /* Reload or in-session navigation — let the browser restore scroll cleanly
+       and skip the hero cascade. The bootstrap already left .agmb-cascade off
+       <html>, so hero children render at their natural opacity. */
+  } else if (loader) {
+    var HOLD = 500;
+    var t0 = Date.now();
+    function release() {
+      var wait = Math.max(0, HOLD - (Date.now() - t0));
+      setTimeout(hideLoader, wait);
+    }
+    if (document.readyState === 'complete') {
+      release();
+    } else {
+      window.addEventListener('load', release, { once: true });
+      setTimeout(release, 2500); // hard cap
+    }
+  } else {
+    // No loader: trigger the cascade immediately so hero children animate in.
+    if (document.readyState !== 'loading') {
+      startCascade();
+    } else {
+      document.addEventListener('DOMContentLoaded', startCascade, { once: true });
+    }
+  }
+
+  /* ───── 2. Scroll-reveal IntersectionObserver ───── */
+  function initReveals() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('in-view');
+      });
+      return;
+    }
+
+    // Tag every top-level section (and the footer) with .reveal — except the hero.
+    // Also auto-tag inner grid/list containers with .stagger so their children
+    // cascade in (per Adewale's "micro animations in inner sections" ask).
+    var sections = document.querySelectorAll('section, footer.footer');
+    var STAGGER_SELECTOR = '.bento, .bento__top, .bento__bot, .reg-grid, .stat-row, .stats, .news__row, .featured__body, .use-case-cards, .rate-stat-grid, .step-grid, .trust-grid, .press-grid, .leadership-grid, .chapter-grid, .news-grid, .cards-track, .nhf-grid, .accordion, .accordions, .reasons, .reasons__grid, .principles, .principles__grid, .timeline, .audience-grid, .pillars, .pillars__grid, [data-stagger]';
+    sections.forEach(function (sec) {
+      if (sec.classList.contains('hero') ||
+          sec.classList.contains('hero--centered') ||
+          sec.classList.contains('hero--about') ||
+          sec.classList.contains('hero--calculator') ||
+          sec.classList.contains('hero--apply')) return;
+      if (!sec.classList.contains('reveal')) sec.classList.add('reveal');
+      sec.querySelectorAll(STAGGER_SELECTOR).forEach(function (cont) {
+        if (!cont.classList.contains('stagger') && cont.children.length >= 2) cont.classList.add('stagger');
+      });
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      // If already in view at init (above the fold), mark visible immediately
+      if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+        el.classList.add('in-view');
+      } else {
+        io.observe(el);
+      }
+    });
+  }
+
+  /* ───── 3. Number-counter for [data-animate] stats ───── */
+  function easeOutHouse(t) {
+    // ease-out approximation matching cubic-bezier(0.16, 1, 0.3, 1)
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function tweenNumber(el) {
+    var target = parseFloat(el.dataset.target);
+    if (!isFinite(target)) return;
+    var format = el.dataset.format || 'int';
+    if (REDUCED) {
+      el.textContent = format === 'billions'
+        ? '₦' + target.toFixed(1) + 'B+'
+        : Math.round(target).toString();
+      return;
+    }
+    var DURATION = 1200;
+    var start = null;
+    function frame(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / DURATION);
+      var eased = easeOutHouse(p);
+      var value = target * eased;
+      if (format === 'billions') {
+        el.textContent = '₦' + value.toFixed(1) + 'B+';
+      } else {
+        el.textContent = Math.round(value).toString();
+      }
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        el.textContent = format === 'billions'
+          ? '₦' + target.toFixed(1) + 'B+'
+          : Math.round(target).toString();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function initStatCounters() {
+    var nodes = document.querySelectorAll('[data-animate]');
+    if (!nodes.length) return;
+
+    // Reset to zero state for re-animation (the existing inline home script renders
+    // these statically at parse time — we override that here).
+    nodes.forEach(function (el) {
+      var fmt = el.dataset.format || 'int';
+      el.textContent = fmt === 'billions' ? '₦0.0B+' : '0';
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach(tweenNumber);
+      return;
+    }
+    var statsIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          tweenNumber(entry.target);
+          statsIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    nodes.forEach(function (el) { statsIO.observe(el); });
+  }
+
+  /* ───── In-page anchor smooth-scroll (scoped, off by default) ─────
+     scroll-behavior: smooth lives behind .smooth-scroll on <html> so browser
+     scroll-restoration on refresh isn't animated from 0. We turn it on for
+     the duration of an in-page anchor click, then strip it. */
+  function initAnchorSmoothScroll() {
+    if (REDUCED) return;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      var id = href.slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      docEl.classList.add('smooth-scroll');
+      setTimeout(function () { docEl.classList.remove('smooth-scroll'); }, 900);
+    }, true);
+  }
+
+  /* ───── boot ───── */
+  function boot() {
+    initReveals();
+    initStatCounters();
+    initAnchorSmoothScroll();
+  }
+  if (document.readyState !== 'loading') {
+    boot();
+  } else {
+    document.addEventListener('DOMContentLoaded', boot);
+  }
+})();
+</script>
+
+<script>
+  /* Floating-pill nav scroll handler */
+  (function () {
+    function initNavScroll() {
+      var nav = document.querySelector('.nav');
+      if (!nav) return;
+      var threshold = 24;
+      function update() {
+        if (window.scrollY > threshold) nav.classList.add('nav--scrolled');
+        else nav.classList.remove('nav--scrolled');
+      }
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initNavScroll);
+    else initNavScroll();
+  })();
+</script>
+<script>
+/* ───── Mobile hamburger + drawer ───── */
+(function () {
+  function initMobileNav() {
+    var hamburger = document.querySelector('.nav__hamburger');
+    var drawer = document.querySelector('.mobile-nav');
+    if (!hamburger || !drawer) return;
+    function toggle(open) {
+      hamburger.classList.toggle('is-open', open);
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.classList.toggle('is-open', open);
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', function () {
+      toggle(!hamburger.classList.contains('is-open'));
+    });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { toggle(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && hamburger.classList.contains('is-open')) toggle(false);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMobileNav);
+  else initMobileNav();
+})();
+</script>
+</body>
+</html>

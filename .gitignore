@@ -1,0 +1,13 @@
+node_modules
+_site
+.DS_Store
+*.log
+
+# QA artefacts (local-only)
+_baseline-1440/
+_verify-responsive/
+_verify-*.png
+.playwright-mcp/
+
+# Design briefs / PRDs — source docs, not part of the deployed site
+agmb-*.md

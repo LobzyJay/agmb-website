@@ -1,0 +1,70 @@
+<footer class="footer">
+  <div class="footer__panel">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__brand-row">
+          <div class="footer__mark"><img src="agmb-wordmark-coloured.svg" alt="AG Mortgage Bank"></div>
+          <div class="footer__name">AG Mortgage Bank</div>
+        </div>
+        <div class="footer__tag">A Central Bank of Nigeria&ndash;licensed Primary Mortgage Bank serving working Nigerians since 21 July 2004.</div>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Mortgages</h4>
+          <ul>
+            <li><a href="agmb-products-nhf.html">NHF Mortgage</a></li>
+            <li><a href="agmb-products-nhf.html">Diaspora-NHF</a></li>
+            <li><a href="agmb-products-commercial.html">Commercial Mortgage</a></li>
+            <li><a href="agmb-products-reif.html">Equity Release</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Calculator</h4>
+          <ul>
+            <li><a href="agmb-calculator.html#calc-affordability">Affordability</a></li>
+            <li><a href="agmb-calculator.html#calc-widget">Repayment</a></li>
+            <li><a href="agmb-products-m-reif.html">Refinance</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <ul>
+            <li>First-time Buyer Guide</li>
+            <li>Rates &amp; Fees</li>
+            <li>Newsroom</li>
+            <li><a href="agmb-contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__rule"></div>
+    <div class="footer__disclosures">
+      <a href="/legal/cbn-licensing">CBN licensing &amp; supervision</a>
+      <span class="sep">&middot;</span>
+      <a href="/legal/ndic-insurance">NDIC deposit insurance</a>
+      <span class="sep">&middot;</span>
+      <a href="/legal/nhf-terms">NHF terms</a>
+      <span class="sep">&middot;</span>
+      <a href="/legal/complaints">Complaints &amp; dispute resolution</a>
+      <span class="sep">&middot;</span>
+      <a href="/legal/sitemap">Sitemap &amp; accessibility</a>
+    </div>
+    <div class="footer__bottom">
+      <div>&copy; 2026 AG Mortgage Bank Plc. All rights reserved.</div>
+      <div>Plot 14, Adeola Odeku Street, Victoria Island, Lagos &middot; +234 (0) 1 888 4400</div>
+      <div class="footer__stamp">ISO 9001:2015 certified  &middot;  NDIC insured  &middot;  CBN licensed PMB</div>
+    </div>
+  </div>
+  <script>
+  (function () {
+    if (window.__agmbRevealInited) return;
+    window.__agmbRevealInited = true;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  })();
+  </script>
+</footer>

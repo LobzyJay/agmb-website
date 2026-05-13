@@ -1,0 +1,595 @@
+---
+pageId: contact
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contact &middot; AG Mortgage Bank Plc</title>
+<meta name="viewport" content="width=2377">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { overflow-x: hidden; max-width: 100%; overscroll-behavior-y: none; }
+  html { background: #000; }
+  /* Smooth scroll only when explicitly armed by an in-page anchor click —
+     leaving it permanently on breaks the browser's native scroll-restoration. */
+  html.smooth-scroll { scroll-behavior: smooth; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #000; color: #FAF3E8; zoom: 0.8; }
+  @-moz-document url-prefix() { body { zoom: unset; transform: scale(0.8); transform-origin: top left; width: 125%; } }
+  .page { width: 100%; margin: 0; background: #000; }
+  :root {
+    --navy-deep: #061A2E; --navy: #0A2540; --navy-vivid: #1F4FA8; --navy-soft: #0F2F50;
+    --cream: #F8F5EF; --cream-warm: #FAF3E8; --cream-vivid: #FFEFC2; --cream-deep: #EDE5D5;
+    --gold-rich: #E0B040; --gold-vivid: #F0C441; --green-deep: #14613A; --green-vivid: #22C55E;
+  }
+
+  /* type */
+  .h1 { font: 500 72px/104% 'Inter', sans-serif; font-size: clamp(40px, 4.2vw + 1rem, 72px); letter-spacing: -0.065em; color: var(--cream-warm); margin: 0; max-width: 900px; }
+  .h2 { font: 500 48px/105% 'Inter', sans-serif; font-size: clamp(28px, 2.6vw + 0.5rem, 48px); letter-spacing: -0.06em; margin: 0; }
+  .h1 em, .h2 em, .contact-twin__panel h3 em { font-family: 'Libre Baskerville', serif; font-style: normal; font-weight: 400; letter-spacing: -0.04em; color: var(--gold-vivid); }
+  .h1--centered { text-align: center; max-width: 1100px; margin: 0 auto; }
+  .lede { font: 400 19px/162.5% 'Inter', sans-serif; font-size: clamp(15px, 0.6vw + 0.7rem, 19px); color: rgba(250,243,232,0.78); max-width: 720px; margin-top: 24px; letter-spacing: -0.005em; }
+  .lede--centered { margin-left: auto; margin-right: auto; text-align: center; }
+  .eyebrow-row { display: inline-flex; align-items: center; gap: 10px; }
+  .eyebrow-row > span:first-child { width: 4px; height: 4px; background: var(--gold-vivid); display: inline-block; }
+  .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+
+  /* nav — matches insights pattern: solid black sticky bar → floating glass pill on scroll */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    padding: 24px clamp(24px, 6vw, 160px);
+    background: #000;
+    border-bottom: 1px solid rgba(250,243,232,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    transition: padding 0.32s cubic-bezier(0.4,0,0.2,1), background-color 0.32s ease, margin 0.32s cubic-bezier(0.4,0,0.2,1), border-radius 0.32s cubic-bezier(0.4,0,0.2,1), box-shadow 0.32s ease;
+  }
+  .nav--scrolled { position: fixed; top: 16px; margin: 0 80px; left: 0; right: 0; padding: 14px 32px; background: rgba(6,26,46,0.62); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); border: 1px solid rgba(250,243,232,0.10); border-radius: 999px; box-shadow: 0 8px 32px -8px rgba(0,0,0,0.55); }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo__icon { width: auto; height: 44px; display: block; }
+  .logo__text, .logo__name, .logo__sub { display: none; }
+  .nav__links { display: flex; align-items: center; gap: 36px; }
+  .nav__links a:not(.nav__cta) { font: 500 14px/1 'Inter', sans-serif; color: var(--cream-warm); text-decoration: none; letter-spacing: -0.005em; transition: color 0.18s ease; }
+  .nav__links a:not(.nav__cta):hover { color: var(--gold-vivid); }
+  .nav__cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--cream-warm); border-radius: 999px; color: var(--navy-deep); font: 500 14px/1 'Inter', sans-serif; text-decoration: none; }
+  .nav__hamburger { display: none; }
+  .mobile-nav { display: none; }
+
+  /* hero — centered, dark, no big visual (the contact card is the visual below) */
+  .hero { background: #000; }
+  /* Hero on contact is intentionally compact — H1 + lede + CTAs stack at the top
+     so the bento card below them sits high on the page (mirrors about/insights
+     where the hero squircle photo lives just below the centered text, not 90vh
+     down). The bento section (.contact-section) follows immediately and gets
+     padding-top: 0 so it touches the hero text rather than starting after a gap. */
+  .hero--centered {
+    background: #000;
+    min-height: auto;
+    padding: 80px clamp(24px, 6vw, 160px) 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 28px;
+    position: relative;
+  }
+  .hero__content--centered {
+    display: flex; flex-direction: column; align-items: center; gap: 28px;
+    max-width: 1280px;
+  }
+  .ctas--centered { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+  .cta { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 999px; font: 500 15px/1 'Inter', sans-serif; text-decoration: none; transition: filter 0.18s ease, transform 0.18s ease; border: 1.5px solid transparent; }
+  .cta--primary { background: var(--cream-warm); color: var(--navy-deep); border-color: var(--cream-warm); }
+  .cta--secondary { background: var(--navy-vivid); color: var(--cream-warm); border-color: var(--navy-vivid); }
+  .cta:hover { filter: brightness(1.06); }
+
+  /* ───── CONTACT CARD SECTION — matches calc-widget-wrap width + twin pattern ───── */
+  .contact-section { background: #000; }
+  .contact-section__wrap { padding: 0 clamp(24px, 6vw, 160px) 96px; }
+  .contact-twin {
+    display: flex;
+    border-radius: 32px;
+    overflow: hidden;
+    min-height: clamp(560px, 65vh, 720px);
+    box-shadow: 0 24px 64px -24px rgba(0,0,0,0.6);
+  }
+  .contact-twin__panel {
+    flex: 1;
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    color: var(--navy-deep);
+    background: var(--cream-warm);
+  }
+  .contact-twin__panel--form {
+    background: var(--cream);
+    border-left: 1px solid rgba(6,26,46,0.06);
+  }
+
+  /* left panel: contact info */
+  .contact-twin__panel h3 {
+    font: 500 40px/110% 'Inter', sans-serif;
+    letter-spacing: -0.045em;
+    color: var(--navy-deep);
+    margin: 0;
+    max-width: 480px;
+  }
+  .contact-twin__panel .contact-eyebrow {
+    font: 600 11px/1 'Inter', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-rich);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .contact-twin__panel .contact-eyebrow::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gold-rich);
+    display: inline-block;
+  }
+  .contact-twin__panel .contact-copy {
+    font: 400 15px/162.5% 'Inter', sans-serif;
+    color: rgba(6,26,46,0.7);
+    max-width: 440px;
+  }
+  .contact-rows {
+    display: flex; flex-direction: column;
+    gap: 24px;
+    margin-top: 8px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(6,26,46,0.10);
+  }
+  .contact-row {
+    display: flex; flex-direction: column;
+    gap: 4px;
+  }
+  .contact-row__lbl {
+    font: 600 10px/1 'Inter', sans-serif;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(6,26,46,0.55);
+  }
+  .contact-row__val {
+    font: 500 17px/140% 'Inter', sans-serif;
+    color: var(--navy-deep);
+    letter-spacing: -0.01em;
+  }
+  .contact-row__sub {
+    font: 400 13px/150% 'Inter Tight', sans-serif;
+    color: rgba(6,26,46,0.55);
+    font-variant-numeric: tabular-nums;
+  }
+  .contact-row a {
+    color: var(--navy-deep);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(6,26,46,0.18);
+    transition: border-color 0.18s ease;
+  }
+  .contact-row a:hover { border-color: var(--navy-deep); }
+  .contact-actions {
+    display: flex; flex-direction: column;
+    gap: 12px;            /* matches .form-actions gap so CTA/whistle align with submit/reassurance */
+    margin-top: auto;     /* push to bottom of left panel */
+    /* Lift the block by the height delta between the (single-line) whistle
+       link and the (3-line) form reassurance text — keeps the CTA at the
+       same Y as the Send button and the whistle starting at the same Y as
+       the "By submitting..." line. */
+    margin-bottom: 30px;
+  }
+  .contact-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 24px;
+    border-radius: 999px;
+    background: var(--navy-deep);
+    color: var(--cream-warm);
+    font: 500 15px/1 'Inter', sans-serif;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: filter 0.18s ease;
+  }
+  .contact-cta:hover { filter: brightness(1.1); }
+  .contact-whistle {
+    font: 400 13px/1.4 'Inter', sans-serif;
+    color: rgba(6,26,46,0.55);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    align-self: flex-start;
+  }
+  .contact-whistle:hover { color: var(--navy-deep); }
+
+  /* right panel: form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 4px;
+  }
+  .contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field-label {
+    font: 600 11px/1 'Inter', sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(6,26,46,0.55);
+  }
+  .field-input,
+  .field-select,
+  .field-textarea {
+    padding: 14px 18px;
+    background: rgba(6,26,46,0.04);
+    border: 1.5px solid rgba(6,26,46,0.14);
+    border-radius: 12px;
+    font: 500 16px/1.4 'Inter', sans-serif;
+    color: var(--navy-deep);
+    outline: none;
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+    width: 100%;
+    font-family: inherit;
+  }
+  .field-input:focus,
+  .field-select:focus,
+  .field-textarea:focus {
+    border-color: var(--green-vivid);
+    background: #fff;
+  }
+  .field-textarea { resize: vertical; min-height: 132px; line-height: 1.55; }
+  .field-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M3 5.5l4 4 4-4' stroke='%23061A2E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    padding-right: 44px;
+  }
+  /* Form actions wrapper — mirrors .contact-actions on the left panel so the
+     submit button aligns with the contact-cta and the reassurance text aligns
+     with the whistleblower link. Both wrappers use margin-top: auto + gap: 12px. */
+  .form-actions {
+    display: flex; flex-direction: column;
+    gap: 12px;
+    margin-top: auto;
+  }
+  .form-submit {
+    align-self: flex-start;
+    padding: 16px 28px;
+    background: var(--green-deep);
+    color: var(--cream-warm);
+    border: none;
+    border-radius: 999px;
+    font: 500 15px/1 'Inter', sans-serif;
+    cursor: pointer;
+    transition: filter 0.18s ease;
+    font-family: inherit;
+  }
+  .form-submit:hover { filter: brightness(1.1); }
+  .form-reassurance {
+    font: 400 12px/155% 'Inter', sans-serif;
+    color: rgba(6,26,46,0.45);
+    margin: 0;
+    max-width: 480px;
+  }
+
+  /* icon-row variant — Phone / Email / Location embedded in the left contact panel.
+     Replaced the standalone 3-tile strip section that used to live below the bento. */
+  .contact-row--icon {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(6,26,46,0.08);
+  }
+  .contact-row--icon:last-of-type { border-bottom: 0; }
+  .contact-row__icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--navy-deep);
+    color: var(--cream-warm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-row__body { display: flex; flex-direction: column; gap: 4px; }
+
+  /* advisory — bright blue, site-wide pattern (canonical from home) */
+  .advisory-wrap { background: #000; padding: 80px clamp(24px, 6vw, 160px); }
+  .advisory { position: relative; background: var(--navy-vivid); border-radius: 28px; padding: 48px; display: flex; align-items: center; justify-content: space-between; gap: 48px; overflow: hidden; }
+  .advisory__inner { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; z-index: 2; }
+  .advisory__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.4); }
+  .advisory__title { font: 500 30px/110% 'Inter', sans-serif; letter-spacing: -0.04em; color: var(--cream-warm); }
+  .advisory__copy { font: 400 15px/155% 'Inter', sans-serif; color: rgba(250,243,232,0.6); }
+  .advisory__cta { display: inline-flex; align-items: center; gap: 12px; padding: 18px 28px; background: var(--cream-warm); border-radius: 999px; color: var(--navy-deep); font: 500 15px/1 'Inter', sans-serif; z-index: 2; flex-shrink: 0; text-decoration: none; }
+  .advisory__aside { display: flex; flex-direction: column; align-items: flex-end; gap: 24px; z-index: 2; flex-shrink: 0; }
+  .advisory__stat { text-align: right; }
+  .advisory__stat-num { font: 500 56px/1 'Inter', sans-serif; letter-spacing: -0.05em; color: var(--cream-warm); }
+  .advisory__stat-num em { font: 400 64px/1 'Libre Baskerville', serif; font-style: normal; letter-spacing: -0.04em; color: var(--green-vivid); margin-right: 6px; }
+  .advisory__stat-sub { font: 400 13px/145% 'Inter', sans-serif; color: rgba(250,243,232,0.55); margin-top: 10px; max-width: 240px; margin-left: auto; }
+
+  /* ───── footer (canonical from home) ───── */
+  .footer { background: #000; padding: 80px; }
+  .footer__panel { background: var(--navy); border-radius: 36px; padding: 80px; display: flex; flex-direction: column; gap: 56px; }
+  .footer__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 80px; }
+  .footer__brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer__brand-row { display: flex; align-items: center; gap: 14px; }
+  .footer__mark { display: inline-flex; align-items: center; }
+  .footer__mark img { width: auto; height: 48px; display: block; }
+  .footer__name { display: none; }
+  .footer__tag { font: 400 14px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.7); max-width: 480px; }
+  .footer__cols { display: flex; gap: 64px; }
+  .footer__col { width: 220px; display: flex; flex-direction: column; gap: 20px; }
+  .footer__col h4 { margin: 0; font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .footer__col li { font: 400 15px/200% 'Inter', sans-serif; color: rgba(250,243,232,0.85); transition: color 0.18s ease, padding-left 0.22s ease; cursor: pointer; }
+  .footer__col li a { color: inherit; text-decoration: none; }
+  .footer__col li:hover { color: var(--cream-warm); padding-left: 4px; }
+  .footer__rule { width: 100%; height: 1px; background: rgba(250,243,232,0.15); }
+  .footer__disclosures { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; }
+  .footer__disclosures a { font: 500 13px/1.6 'Inter', sans-serif; letter-spacing: -0.005em; color: rgba(250,243,232,0.85); text-decoration: none; transition: color 0.15s ease; }
+  .footer__disclosures a:hover { color: var(--cream-warm); }
+  .footer__disclosures .sep { font: 500 13px/1.6 'Inter', sans-serif; color: rgba(250,243,232,0.3); padding: 0 14px; user-select: none; }
+  .footer__bottom { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; }
+  .footer__bottom > div { font: 400 12px/137.5% 'Inter', sans-serif; color: rgba(250,243,232,0.5); }
+  .footer__stamp { font: 600 11px/150% 'Inter', sans-serif !important; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ────────────── responsive: page-level fall-back to mobile/tablet ──────────────
+     The full responsive pass is the next session's work. These breakpoints just
+     keep the contact page from breaking on smaller widths until then. */
+  @media (max-width: 1024px) {
+    body { zoom: unset !important; transform: none !important; width: 100% !important; }
+    @-moz-document url-prefix() { body { zoom: unset !important; transform: none !important; width: 100% !important; } }
+    .h1 { font-size: 56px !important; }
+    .nav { padding: 16px 32px !important; }
+    .nav--scrolled { margin: 0 16px !important; padding: 12px 20px !important; }
+    .nav__links { display: none !important; }
+    .hero--centered { padding: 80px 32px 56px !important; min-height: auto !important; }
+    .lede { font-size: 17px !important; }
+    .contact-section__wrap { padding: 16px 32px 64px !important; }
+    .contact-twin { flex-direction: column !important; min-height: auto !important; border-radius: 24px !important; }
+    .contact-twin__panel { padding: 40px 32px !important; }
+    .contact-twin__panel--form { border-left: 0 !important; border-top: 1px solid rgba(6,26,46,0.06) !important; }
+    .contact-rows { gap: 20px !important; }
+    .contact-actions { margin-top: 32px !important; }
+    .advisory-wrap { padding: 48px 32px !important; }
+    .advisory { flex-direction: column !important; align-items: flex-start !important; padding: 36px !important; }
+    .advisory__aside { align-items: flex-start !important; }
+    .advisory__stat-sub { text-align: left !important; }
+    .footer { padding: 32px !important; }
+    .footer__panel { padding: 48px 32px !important; }
+    .footer__top { flex-direction: column !important; gap: 40px !important; }
+    .footer__cols { flex-wrap: wrap !important; gap: 40px !important; }
+    .footer__bottom { flex-direction: column !important; align-items: flex-start !important; }
+  }
+  @media (max-width: 768px) {
+    /* New tier — contact previously skipped 768. Tighter padding + 1-col fields. */
+    .hero--centered { padding: 64px 24px 40px !important; }
+    .contact-section__wrap { padding: 8px 24px 48px !important; }
+    .contact-twin__panel { padding: 32px 24px !important; }
+    .contact-twin__panel h3 { font-size: 28px !important; }
+    .field-row-2 { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .ctas--centered { flex-direction: column !important; align-items: stretch !important; }
+    .ctas--centered .cta { width: 100% !important; justify-content: center !important; }
+  }
+  @media (max-width: 480px) {
+    .h1 { font-size: 42px !important; }
+    .contact-form-row { grid-template-columns: 1fr !important; }
+    .contact-twin__panel { padding: 24px 18px !important; }
+    .contact-twin__panel h3 { font-size: 22px !important; }
+    .contact-actions { flex-direction: column !important; gap: 8px !important; align-items: stretch !important; }
+    .contact-cta { width: 100% !important; justify-content: center !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  {% include "header.njk" %}
+
+  <!-- HERO -->
+  <section class="hero hero--centered">
+    <div class="hero__content--centered">
+      <h1 class="h1 h1--centered">Talk to a mortgage<br>advisor or to <em>us</em>.</h1>
+      <p class="lede lede--centered">Three offices, one switchboard, and a partner desk in Port Harcourt. We answer 8.30 to 17.00 on banking days; the form below routes to the right desk overnight.</p>
+      <div class="ctas--centered">
+        <a class="cta cta--primary" href="agmb-about.html#regulatory">See our regulatory standing <span>&rarr;</span></a>
+        <a class="cta cta--secondary" href="#contact-form">Book a 15-minute call <span>&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CARD — calculator-width -->
+  <section class="contact-section reveal">
+    <div class="contact-section__wrap">
+      <div class="contact-twin">
+        <!-- LEFT: contact details -->
+        <div class="contact-twin__panel contact-twin__panel--info">
+          <div class="contact-eyebrow">Contact us</div>
+          <h3>Three offices, one switchboard.</h3>
+          <p class="contact-copy">If you're not sure which product fits, call the switchboard and we'll route you. For a written response, the form on the right reaches the same desks within one banking day.</p>
+
+          <div class="contact-rows">
+            <div class="contact-row contact-row--icon">
+              <div class="contact-row__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+              </div>
+              <div class="contact-row__body">
+                <div class="contact-row__lbl">Phone</div>
+                <div class="contact-row__val"><a href="tel:+2348155543000">+234 (0) 1 888 4400</a></div>
+                <div class="contact-row__sub">Switchboard &middot; 8.30 to 17.00 on banking days</div>
+              </div>
+            </div>
+            <div class="contact-row contact-row--icon">
+              <div class="contact-row__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-row__body">
+                <div class="contact-row__lbl">Email</div>
+                <div class="contact-row__val"><a href="mailto:contact@agmortgagebankplc.com">contact@agmortgagebankplc.com</a></div>
+                <div class="contact-row__sub">Replies within one banking day</div>
+              </div>
+            </div>
+            <div class="contact-row contact-row--icon">
+              <div class="contact-row__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-row__body">
+                <div class="contact-row__lbl">Offices</div>
+                <div class="contact-row__val">Lagos &middot; Abuja &middot; Port Harcourt</div>
+                <div class="contact-row__sub">Plot 14, Adeola Odeku Street, Victoria Island, Lagos &middot; <a href="https://maps.google.com/?q=Plot+14+Adeola+Odeku+Street+Victoria+Island+Lagos" target="_blank" rel="noopener">Map</a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <a class="contact-cta" href="#contact-form">Book a 15-minute call <span>&rarr;</span></a>
+            <a class="contact-whistle" href="agmb-about.html#whistleblower">I'd like to blow a whistle instead</a>
+          </div>
+        </div>
+
+        <!-- RIGHT: message form (anchor target for on-page Book-call CTAs) -->
+        <div class="contact-twin__panel contact-twin__panel--form" id="contact-form">
+          <div class="contact-eyebrow">Send a message</div>
+          <h3>Write to the right <em>desk</em>.</h3>
+          <p class="contact-copy">Pick a category so the message reaches the right team on the first try. We respond within one banking day.</p>
+
+          <!-- TODO: wire action="..." to backend endpoint -->
+          <form class="contact-form" action="#" method="post" novalidate>
+            <div class="field">
+              <label class="field-label" for="cf-category">Support category</label>
+              <select class="field-select" id="cf-category" name="category" required>
+                <option value="" disabled selected>Choose a category</option>
+                <option value="mortgage">Mortgage enquiry (NHF, M-REIF, Commercial)</option>
+                <option value="application">Active application status</option>
+                <option value="repayment">Repayment / account</option>
+                <option value="rates">Rates &amp; product info</option>
+                <option value="press">Press / media</option>
+                <option value="careers">Careers</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label" for="cf-subject">Subject</label>
+              <input class="field-input" type="text" id="cf-subject" name="subject" placeholder="One-line summary" required>
+            </div>
+            <div class="field">
+              <label class="field-label" for="cf-message">Message</label>
+              <textarea class="field-textarea" id="cf-message" name="message" placeholder="Tell us what you need." required></textarea>
+            </div>
+            <div class="contact-form-row">
+              <div class="field">
+                <label class="field-label" for="cf-name">Full name</label>
+                <input class="field-input" type="text" id="cf-name" name="name" placeholder="First and last" required>
+              </div>
+              <div class="field">
+                <label class="field-label" for="cf-email">Email</label>
+                <input class="field-input" type="email" id="cf-email" name="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label" for="cf-phone">Phone (optional)</label>
+              <input class="field-input" type="tel" id="cf-phone" name="phone" placeholder="+234 ..." inputmode="tel">
+            </div>
+            <div class="form-actions">
+              <button class="form-submit" type="submit">Send message <span>&rarr;</span></button>
+              <p class="form-reassurance">By submitting, you consent to AGMB processing your details for the purpose of responding to this enquiry. We don't share contact data with third parties. AG Mortgage Bank Plc is a CBN-licensed Primary Mortgage Bank &mdash; PMB/L/004.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- (3-tile Phone/Email/Location strip removed — content lives in the left contact panel as icon rows) -->
+
+  <!-- (advisory strip removed on contact page — it routes back here, redundant.
+        Hero+bento goes straight to footer.) -->
+
+  <!-- FOOTER -->
+  {% include "footer.njk" %}
+
+</div>
+
+<script>
+  /* Floating-pill nav scroll handler — same pattern as every other page */
+  (function () {
+    function initNavScroll() {
+      var nav = document.querySelector('.nav');
+      if (!nav) return;
+      var threshold = 24;
+      function update() {
+        if (window.scrollY > threshold) nav.classList.add('nav--scrolled');
+        else nav.classList.remove('nav--scrolled');
+      }
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initNavScroll);
+    else initNavScroll();
+  })();
+
+  /* Force native scroll restoration on refresh + scope smooth-scroll to
+     in-page anchor clicks only (mirrors the other AGMB pages). */
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch (e) {}
+  (function () {
+    var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (REDUCED) return;
+    var docEl = document.documentElement;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      var target = document.getElementById(href.slice(1));
+      if (!target) return;
+      docEl.classList.add('smooth-scroll');
+      setTimeout(function () { docEl.classList.remove('smooth-scroll'); }, 900);
+    }, true);
+  })();
+</script>
+<script>
+/* ───── Mobile hamburger + drawer ───── (canonical handler — was missing on contact only) */
+(function () {
+  function initMobileNav() {
+    var hamburger = document.querySelector('.nav__hamburger');
+    var drawer = document.querySelector('.mobile-nav');
+    if (!hamburger || !drawer) return;
+    function toggle(open) {
+      hamburger.classList.toggle('is-open', open);
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.classList.toggle('is-open', open);
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', function () {
+      toggle(!hamburger.classList.contains('is-open'));
+    });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { toggle(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && hamburger.classList.contains('is-open')) toggle(false);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMobileNav);
+  else initMobileNav();
+})();
+</script>
+
+</body>
+</html>
+</content>
+</invoke>

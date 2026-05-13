@@ -1,0 +1,3827 @@
+---
+pageId: construction
+applyHref: agmb-apply.html?route=classic
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Construction Finance · AG Mortgage Bank Plc · Build it stage by stage, financed stage by stage.</title>
+<meta name="viewport" content="width=2377">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+<style>
+  .scroll-progress { display: none !important; }
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { overflow-x: hidden; max-width: 100%; overscroll-behavior-y: none; }
+  html { background: #000; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #000; color: #FAF3E8; zoom: 0.8; }
+  /* Firefox <126 fallback — uses transform instead of zoom */
+  @-moz-document url-prefix() {
+    body { zoom: unset; transform: scale(0.8); transform-origin: top left; width: 125%; }
+  }
+  .page { width: 100%; margin: 0; background: #000; }
+  .container { padding: 0 clamp(24px, 6vw, 160px); }
+  /* tokens */
+  :root {
+    --navy-deep: #061A2E;
+    --navy: #0A2540;
+    --navy-vivid: #1F4FA8;
+    --navy-soft: #0F2F50;
+    --cream: #F8F5EF;
+    --cream-warm: #FAF3E8;
+    --cream-vivid: #FFEFC2;
+    --cream-deep: #EDE5D5;
+    --gold-rich: #E0B040;
+    --gold-vivid: #F0C441;
+    --green-deep: #14613A;
+    --green-vivid: #22C55E;
+  }
+  /* shared type helpers */
+  .h1 { font: 500 72px/104% 'Inter', sans-serif; font-size: clamp(40px, 4.2vw + 1rem, 72px); letter-spacing: -0.065em; color: var(--cream-warm); margin: 0; max-width: 900px; }
+  .h2 { font: 500 48px/105% 'Inter', sans-serif; font-size: clamp(28px, 2.6vw + 0.5rem, 48px); letter-spacing: -0.06em; margin: 0; }
+  .lede { font: 400 18px/162.5% 'Inter', sans-serif; font-size: clamp(15px, 0.6vw + 0.7rem, 18px); }
+  .eyebrow { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
+  .numeric { font: 500 30px/120% 'Inter Tight', sans-serif; letter-spacing: -0.055em; font-variant-numeric: tabular-nums; }
+  .caption { font: 400 12px/137.5% 'Inter', sans-serif; }
+  /* hero */
+  .hero { position: relative; height: 1584px; overflow: hidden; background: #000; }
+  .hero__asset { position: absolute; top: -80px; right: -440px; width: 1600px; height: 1525px; z-index: 1; pointer-events: none; }
+  .nav { position: absolute; top: 56px; left: 160px; right: 160px; display: flex; align-items: center; justify-content: space-between; z-index: 5; }
+  .logo { display: flex; align-items: center; gap: 14px; }
+  .logo__mark { width: 48px; height: 48px; border-radius: 50%; background: var(--cream-warm); color: var(--navy-deep); font: 600 18px/1 'Inter', sans-serif; letter-spacing: -0.03em; display: flex; align-items: center; justify-content: center; }
+  .logo__name { font: 500 18px/1 'Inter', sans-serif; letter-spacing: -0.02em; color: var(--cream-warm); }
+  .logo__sub { font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.22em; color: rgba(250,243,232,0.4); text-transform: uppercase; margin-top: 2px; }
+  .nav__links { display: flex; align-items: center; gap: 48px; }
+  .nav__links a:not(.nav__cta) { font: 500 14px/1 'Inter', sans-serif; color: var(--cream-warm); text-decoration: none; letter-spacing: -0.005em; }
+  .nav__cta { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; background: var(--cream-warm); border-radius: 999px; color: var(--navy-deep); font: 500 14px/1 'Inter', sans-serif; letter-spacing: -0.005em; }
+  .hero__content { position: absolute; top: 560px; left: 160px; width: 1280px; display: flex; flex-direction: column; gap: 32px; z-index: 3; }
+  .status-row { display: flex; align-items: center; gap: 24px; }
+  .status-row .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--green-vivid); box-shadow: 0 0 0 4px rgba(34,197,94,0.18); display: inline-block; }
+  .status-row span { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .status-row .dot { color: rgba(250,243,232,0.4); }
+  .hero__lede { max-width: 576px; font: 400 18px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.75); }
+  .ctas { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
+  .cta { display: inline-flex; align-items: center; gap: 12px; padding: 18px 28px; border-radius: 14px; font: 500 16px/1 'Inter', sans-serif; letter-spacing: -0.005em; cursor: pointer; }
+  .cta--primary { background: var(--cream-warm); color: var(--navy-deep); }
+  .cta--secondary { background: var(--navy-vivid); color: var(--cream-warm); }
+  /* fact strip */
+  .fact-strip { position: absolute; bottom: 96px; left: 160px; right: 160px; padding: 32px 48px; background: var(--cream-warm); border-radius: 24px; display: flex; align-items: stretch; gap: 32px; z-index: 4; }
+  .fact { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .fact__eyebrow { display: flex; align-items: center; gap: 10px; }
+  .fact__eyebrow span:first-child { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .fact__eyebrow span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(6,26,46,0.7); }
+  .fact__numeric { font: 500 30px/120% 'Inter Tight', sans-serif; letter-spacing: -0.055em; color: #000; font-variant-numeric: tabular-nums; }
+  .fact__caption { font: 400 12px/137.5% 'Inter', sans-serif; color: rgba(0,0,0,0.55); }
+  .fact-strip .divider { width: 1px; background: rgba(0,0,0,0.08); flex-shrink: 0; }
+  /* stats */
+  .stats { background: var(--cream-warm); padding: 120px clamp(24px, 6vw, 160px); color: var(--navy-deep); display: flex; flex-direction: column; gap: 80px; }
+  .stats__head { display: flex; flex-direction: column; gap: 16px; max-width: 1280px; }
+  .stats__head .eyebrow-row { display: flex; align-items: center; gap: 10px; }
+  .stats__head .eyebrow-row > span:first-child { width: 8px; height: 8px; border-radius: 50%; background: var(--green-vivid); }
+  .stats__head .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(6,26,46,0.7); }
+  .stats__head .h2 { color: var(--navy-deep); }
+  .stat-row { display: flex; gap: 48px; }
+  .stat { flex: 1; padding-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+  .stat__eyebrow { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(6,26,46,0.6); }
+  .stat__numeric { font: 500 80px/100% 'Inter Tight', sans-serif; letter-spacing: -0.08em; color: var(--navy-deep); font-variant-numeric: tabular-nums; }
+  .stat__cap { font: 400 14px/155% 'Inter', sans-serif; color: rgba(6,26,46,0.6); max-width: 360px; }
+  /* products */
+  .products { background: #000; padding: 140px clamp(24px, 6vw, 160px); display: flex; flex-direction: column; gap: 56px; }
+  .products__head .h2 { color: var(--cream-warm); }
+  .products__head .lede { color: rgba(255,255,255,0.65); max-width: 576px; margin-top: 8px; }
+  .products__head .eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .products__head .eyebrow-row > span:first-child { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-vivid); }
+  .products__head .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .bento { display: flex; flex-direction: column; gap: 24px; }
+  .bento__top { display: flex; gap: 24px; }
+  .bento__bot { display: flex; gap: 24px; }
+  .tile { background: var(--cream-warm); border-radius: 28px; padding: 40px; display: flex; flex-direction: column; gap: 16px; color: var(--navy-deep); }
+  .tile--flagship { flex: 1.55; padding: 48px; min-height: 600px; justify-content: space-between; }
+  .tile__stack { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+  .tile__stack .tile { flex: 1; }
+  .tile__top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .tile__icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(6,26,46,0.14); border-radius: 12px; flex-shrink: 0; }
+  .tile__icon svg { display: block; }
+  .tile__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
+  .tile__rate { font: 500 14px/1 'Inter', sans-serif; color: rgba(6,26,46,0.6); letter-spacing: -0.005em; }
+  .tile__name { font: 500 24px/115% 'Inter', sans-serif; letter-spacing: -0.035em; color: var(--navy-deep); }
+  .tile--flagship .tile__name { font-size: 36px; letter-spacing: -0.04em; line-height: 110%; }
+  .tile__copy { font: 400 14px/155% 'Inter', sans-serif; color: var(--navy-deep); }
+  .tile--flagship .tile__copy { font-size: 16px; max-width: 560px; }
+  .tile__link { font: 500 13px/1 'Inter', sans-serif; letter-spacing: -0.005em; margin-top: auto; }
+  /* advisory */
+  .advisory { position: relative; background: var(--navy-vivid); border-radius: 28px; padding: 48px; display: flex; align-items: center; justify-content: space-between; gap: 48px; overflow: hidden; }
+  .advisory__inner { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; z-index: 2; }
+  .advisory__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.4); }
+  .advisory__title { font: 500 30px/110% 'Inter', sans-serif; letter-spacing: -0.04em; color: var(--cream-warm); }
+  .advisory__copy { font: 400 15px/155% 'Inter', sans-serif; color: rgba(250,243,232,0.6); }
+  .advisory__cta { display: inline-flex; align-items: center; gap: 12px; padding: 18px 28px; background: var(--cream-warm); border-radius: 999px; color: var(--navy-deep); font: 500 15px/1 'Inter', sans-serif; z-index: 2; flex-shrink: 0; }
+  .advisory__aside { display: flex; flex-direction: column; align-items: flex-end; gap: 24px; z-index: 2; flex-shrink: 0; }
+  .advisory__stat { text-align: right; }
+  .advisory__stat-num { font: 500 56px/1 'Inter', sans-serif; letter-spacing: -0.05em; color: var(--cream-warm); }
+  .advisory__stat-num em { font: 400 64px/1 'Libre Baskerville', serif; font-style: normal; letter-spacing: -0.04em; color: var(--green-vivid); margin-right: 6px; }
+  .advisory__stat-sub { font: 400 13px/145% 'Inter', sans-serif; color: rgba(250,243,232,0.55); margin-top: 10px; max-width: 240px; margin-left: auto; }
+  .advisory__asset { display: none; }
+  /* how it works */
+  .how { background: var(--cream-warm); padding: 140px clamp(24px, 6vw, 160px); color: var(--navy-deep); display: flex; flex-direction: column; gap: 80px; }
+  .how__head .eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .how__head .eyebrow-row > span:first-child { width: 8px; height: 8px; border-radius: 50%; background: var(--navy-vivid); }
+  .how__head .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(6,26,46,0.7); }
+  .how__head .h2 { color: var(--navy-deep); }
+  .steps { display: flex; gap: 32px; }
+  .step { flex: 1; padding-top: 28px; display: flex; flex-direction: column; gap: 20px; }
+  .step__num { font: 400 72px/100% 'Inter Tight', sans-serif; letter-spacing: -0.06em; color: var(--navy-deep); font-variant-numeric: tabular-nums; }
+  .step__name { font: 500 22px/120% 'Inter', sans-serif; letter-spacing: -0.03em; color: var(--navy-deep); }
+  .step__copy { font: 400 14px/155% 'Inter', sans-serif; color: rgba(6,26,46,0.6); max-width: 360px; }
+  /* calculator */
+  .calc { background: #000; padding: 140px clamp(24px, 6vw, 160px); display: flex; flex-direction: column; gap: 64px; }
+  .calc__head .eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .calc__head .eyebrow-row > span:first-child { width: 8px; height: 8px; border-radius: 50%; background: var(--green-vivid); }
+  .calc__head .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .calc__head .h2 { color: var(--cream-warm); }
+  .calc__head .lede { color: rgba(255,255,255,0.65); max-width: 720px; margin-top: 16px; }
+  .twin { display: flex; border-radius: 32px; overflow: hidden; }
+  .input-panel { flex: 1; background: var(--cream-warm); padding: 56px; display: flex; flex-direction: column; gap: 32px; color: var(--navy-deep); }
+  .input-top { display: flex; justify-content: space-between; align-items: center; }
+  .input-top__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-deep); }
+  .seg { display: flex; gap: 4px; padding: 4px; background: var(--green-vivid); border-radius: 999px; }
+  .seg__item { padding: 8px 16px; color: var(--navy-deep); font: 500 13px/1 'Inter', sans-serif; }
+  .seg__item--active { background: #000; color: var(--cream-warm); border-radius: 999px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field__row { display: flex; justify-content: space-between; }
+  .field__label { font: 400 13px/1 'Inter', sans-serif; color: rgba(6,26,46,0.5); }
+  .field__value { font: 500 36px/110% 'Inter Tight', sans-serif; letter-spacing: -0.04em; color: var(--navy-deep); font-variant-numeric: tabular-nums; }
+  .bar { width: 100%; height: 6px; background: rgba(6,26,46,0.08); border-radius: 999px; overflow: hidden; }
+  .bar__fill { height: 100%; background: var(--green-vivid); }
+  .output-panel { flex: 1; background: var(--navy-deep); padding: 56px; display: flex; flex-direction: column; gap: 32px; color: var(--cream-warm); }
+  .output-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .output-top__l { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.4); }
+  .output-top__r { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-vivid); }
+  .output-big { font: 500 72px/100% 'Inter Tight', sans-serif; letter-spacing: -0.065em; color: var(--cream-warm); font-variant-numeric: tabular-nums; }
+  .ratio-bar { display: flex; width: 100%; height: 6px; background: rgba(250,243,232,0.1); border-radius: 999px; overflow: hidden; }
+  .ratio-bar > div:first-child { background: var(--cream-warm); }
+  .ratio-bar > div:last-child { background: var(--green-vivid); }
+  .detail-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(250,243,232,0.08); }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-row__l { font: 400 14px/1 'Inter', sans-serif; color: rgba(250,243,232,0.6); }
+  .detail-row__r { font: 500 14px/1 'Inter Tight', sans-serif; color: var(--cream-warm); font-variant-numeric: tabular-nums; }
+  .output-ctas { display: flex; gap: 12px; margin-top: 8px; }
+  .output-cta { flex: 1; text-align: center; padding: 16px 24px; border-radius: 12px; font: 500 15px/1 'Inter', sans-serif; letter-spacing: -0.005em; }
+  .output-cta--primary { background: var(--cream-warm); color: var(--navy-deep); }
+  .output-cta--secondary { background: transparent; border: 1px solid rgba(250,243,232,0.2); color: var(--cream-warm); }
+  /* trust */
+  .trust { background: #000; padding: 140px clamp(24px, 6vw, 160px) 120px; display: flex; flex-direction: column; gap: 64px; }
+  .trust__head .eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .trust__head .eyebrow-row > span:first-child { width: 4px; height: 4px; background: var(--gold-vivid); }
+  .trust__head .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .trust__head .h2 { color: var(--cream-warm); }
+  .trust__head .lede { color: rgba(255,255,255,0.65); max-width: 720px; margin-top: 16px; }
+  .reg-grid { display: flex; gap: 48px; padding-top: 48px; border-top: 1px solid rgba(250,243,232,0.1); }
+  .reg { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+  .reg__eyebrow { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-vivid); }
+  .reg__name { font: 500 20px/120% 'Inter', sans-serif; letter-spacing: -0.02em; color: var(--cream-warm); }
+  .reg__copy { font: 400 14px/150% 'Inter', sans-serif; color: rgba(250,243,232,0.65); }
+  /* news */
+  .news { background: #000; padding: 120px clamp(24px, 6vw, 160px) 140px; display: flex; flex-direction: column; gap: 64px; }
+  .news__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+  .news__head .eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .news__head .eyebrow-row > span:first-child { width: 4px; height: 4px; background: var(--gold-vivid); }
+  .news__head .eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .news__head .h2 { color: var(--cream-warm); max-width: 1280px; }
+  .news__all { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 8px; }
+  .news__all span:first-child { font: 500 16px/1 'Inter', sans-serif; color: var(--cream-warm); border-bottom: 1px solid rgba(250,243,232,0.6); padding-bottom: 2px; }
+  .news__row { display: flex; gap: 48px; }
+  .featured { width: 1232px; display: flex; flex-direction: column; gap: 24px; }
+  .featured__tile { position: relative; width: 1232px; height: 693px; background: var(--navy); border: 1px solid rgba(250,243,232,0.1); border-radius: 24px; overflow: hidden; display: flex; align-items: flex-end; padding: 40px; }
+  .featured__chip { position: absolute; top: 24px; left: 24px; padding: 8px 14px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); border-radius: 999px; font: 600 11px/1 'Inter', sans-serif; letter-spacing: 0.18em; color: var(--gold-vivid); text-transform: uppercase; }
+  .featured__date { position: absolute; top: 24px; right: 24px; font: 500 13px/1 'Inter', sans-serif; color: rgba(250,243,232,0.6); font-variant-numeric: tabular-nums; }
+  .featured__title { font: 500 32px/110% 'Inter', sans-serif; letter-spacing: -0.04em; color: var(--cream-warm); max-width: 1000px; }
+  .featured__dek { font: 400 18px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.75); max-width: 1000px; }
+  .secondary { width: 776px; display: flex; flex-direction: column; }
+  .story { padding: 28px 0; border-bottom: 1px solid rgba(250,243,232,0.1); display: flex; flex-direction: column; gap: 12px; }
+  .story:last-child { border-bottom: none; }
+  .story__meta { font: 400 12px/1 'Inter', sans-serif; color: rgba(250,243,232,0.5); letter-spacing: 0.06em; text-transform: uppercase; }
+  .story__title { font: 500 20px/118% 'Inter Tight', sans-serif; letter-spacing: -0.05em; color: var(--cream-warm); }
+  /* footer */
+  .footer { background: #000; padding: 80px; }
+  .footer__panel { background: var(--navy); border-radius: 36px; padding: 80px; display: flex; flex-direction: column; gap: 56px; }
+  .footer__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 80px; }
+  .footer__brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer__brand-row { display: flex; align-items: center; gap: 14px; }
+  .footer__mark { display: inline-flex; align-items: center; }
+  .footer__mark img { width: auto; height: 48px; display: block; }
+  .footer__name { display: none; }
+  .footer__tag { font: 400 14px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.7); max-width: 480px; }
+  .footer__cols { display: flex; gap: 64px; }
+  .footer__col { width: 220px; display: flex; flex-direction: column; gap: 20px; }
+  .footer__col h4 { margin: 0; font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .footer__col li { font: 400 15px/200% 'Inter', sans-serif; color: rgba(250,243,232,0.85); }
+  .footer__col li a { color: inherit; text-decoration: none; }
+  .footer__rule { width: 100%; height: 1px; background: rgba(250,243,232,0.15); }
+  .footer__disclosures { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; }
+  .footer__disclosures a { font: 500 13px/1.6 'Inter', sans-serif; letter-spacing: -0.005em; color: rgba(250,243,232,0.85); text-decoration: none; transition: color 0.15s ease; }
+  .footer__disclosures a:hover { color: var(--cream-warm); }
+  .footer__disclosures .sep { font: 500 13px/1.6 'Inter', sans-serif; color: rgba(250,243,232,0.3); padding: 0 14px; user-select: none; }
+  .footer__bottom { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; }
+  .footer__bottom > div { font: 400 12px/137.5% 'Inter', sans-serif; color: rgba(250,243,232,0.5); }
+  .footer__stamp { font: 600 11px/150% 'Inter', sans-serif !important; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* ───── animations ─────────────────────────────────── */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(34,197,94,0.18); }
+    50% { transform: scale(1.15); box-shadow: 0 0 0 10px rgba(34,197,94,0.04); }
+  }
+  .status-row .pulse { animation: pulse 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite; transform-origin: center; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(0.4deg); }
+  }
+  .hero__asset { animation: float 9s cubic-bezier(0.45, 0, 0.55, 1) infinite; will-change: transform; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fact-strip { animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both; }
+
+  /* ───── scroll-driven nav ──────────────────────────── */
+  .nav { transition: background-color 0.32s ease, backdrop-filter 0.32s ease, padding 0.32s ease; padding: 12px 24px; border-radius: 999px; }
+  .nav--scrolled { position: fixed; top: 24px; left: 160px; right: 160px; background-color: rgba(6,26,46,0.78); backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); border: 1px solid rgba(250,243,232,0.08); }
+
+  /* ───── shadcn-style button state system ──────────────
+     applied to existing .cta / .nav__cta / .advisory__cta / .output-cta selectors */
+  .cta, .nav__cta, .advisory__cta, .output-cta {
+    position: relative;
+    isolation: isolate;
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.18s ease,
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      opacity 0.18s ease;
+  }
+  /* default elevation on primary surfaces */
+  .cta--primary, .nav__cta, .advisory__cta, .output-cta--primary {
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 1px 2px rgba(0,0,0,0.18);
+  }
+  /* :hover — lift + brightness, only when pointer is fine */
+  @media (hover: hover) {
+    .cta:hover, .nav__cta:hover, .advisory__cta:hover, .output-cta--primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+      box-shadow: 0 8px 24px -10px rgba(0,0,0,0.5), 0 2px 6px -2px rgba(0,0,0,0.25);
+    }
+    .output-cta--secondary:hover { background: rgba(250,243,232,0.06); border-color: rgba(250,243,232,0.34); }
+  }
+  /* :active — pressed-in feel; the 100ms transition for press feedback */
+  .cta:active, .nav__cta:active, .advisory__cta:active, .output-cta:active {
+    transform: translateY(0) scale(0.985);
+    filter: brightness(0.96);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.22), 0 0 0 rgba(0,0,0,0);
+    transition-duration: 0.08s, 0.08s, 0.08s, 0.08s, 0.08s, 0.08s;
+  }
+  /* :focus-visible — gold-vivid ring (keyboard only, not mouse) */
+  .cta:focus-visible, .nav__cta:focus-visible, .advisory__cta:focus-visible, .output-cta:focus-visible {
+    outline: 2px solid var(--gold-vivid);
+    outline-offset: 3px;
+    border-radius: inherit;
+  }
+  /* [disabled] — accessible disabled state */
+  .cta[disabled], .cta[aria-disabled="true"],
+  .nav__cta[disabled], .nav__cta[aria-disabled="true"],
+  .advisory__cta[disabled], .advisory__cta[aria-disabled="true"],
+  .output-cta[disabled], .output-cta[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.5;
+    filter: grayscale(0.4);
+    cursor: not-allowed;
+  }
+  /* [aria-busy="true"] — loading state, with inline spinner */
+  .cta[aria-busy="true"], .nav__cta[aria-busy="true"],
+  .advisory__cta[aria-busy="true"], .output-cta[aria-busy="true"] {
+    color: transparent !important;
+    pointer-events: none;
+    position: relative;
+  }
+  .cta[aria-busy="true"]::after, .nav__cta[aria-busy="true"]::after,
+  .advisory__cta[aria-busy="true"]::after, .output-cta[aria-busy="true"]::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 16px; height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    color: var(--navy-deep);
+    animation: spin 0.7s linear infinite;
+    opacity: 0.7;
+  }
+  .output-cta--primary[aria-busy="true"]::after { color: var(--navy-deep); }
+  .nav__cta[aria-busy="true"]::after, .advisory__cta[aria-busy="true"]::after,
+  .cta--primary[aria-busy="true"]::after, .output-cta--primary[aria-busy="true"]::after { color: var(--navy-deep); }
+  .cta--secondary[aria-busy="true"]::after, .output-cta--secondary[aria-busy="true"]::after { color: var(--cream-warm); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* trailing arrow micro-shift on hover (kept from previous pass) */
+  .cta span:last-child, .nav__cta span:last-child, .advisory__cta span:last-child {
+    transition: transform 0.22s cubic-bezier(0.4,0,0.2,1);
+    display: inline-block;
+  }
+  @media (hover: hover) {
+    .cta:hover span:last-child, .nav__cta:hover span:last-child, .advisory__cta:hover span:last-child {
+      transform: translateX(4px);
+    }
+  }
+  .cta:active span:last-child, .nav__cta:active span:last-child, .advisory__cta:active span:last-child {
+    transform: translateX(2px);
+  }
+
+  /* universal focus-visible ring for ALL interactive elements — keyboard accessibility */
+  a:focus-visible:not(.cta):not(.nav__cta):not(.advisory__cta):not(.output-cta):not(.tile__link),
+  button:focus-visible,
+  [role="tab"]:focus-visible,
+  .tile:focus-visible,
+  .story:focus-visible,
+  .featured__tile:focus-visible {
+    outline: 2px solid var(--gold-vivid);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .seg__item:focus-visible { outline: 2px solid var(--navy-deep); outline-offset: 2px; }
+
+  .nav__links a { transition: color 0.18s ease; position: relative; }
+  .nav__links a:not(.nav__cta):hover { color: var(--gold-vivid); }
+  .nav__links a:not(.nav__cta)::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: var(--gold-vivid); transform: scaleX(0); transform-origin: left; transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); }
+  .nav__links a:not(.nav__cta):hover::after { transform: scaleX(1); }
+
+  .tile { transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s ease; cursor: pointer; }
+  .tile:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -12px rgba(0,0,0,0.35); }
+  .tile__icon { transition: border-color 0.22s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1); }
+  .tile:hover .tile__icon { border-color: var(--navy-deep); transform: rotate(-4deg); }
+  .tile__link { transition: gap 0.22s ease, transform 0.22s ease; display: inline-flex; align-items: center; gap: 4px; }
+  .tile:hover .tile__link { gap: 10px; }
+
+  .story { transition: padding 0.22s ease, border-color 0.22s ease; cursor: pointer; }
+  .story:hover { padding-left: 16px; }
+  .story:hover .story__title { color: var(--gold-vivid); }
+  .story__title { transition: color 0.22s ease; }
+
+  .featured__tile { transition: transform 0.32s ease, border-color 0.32s ease; cursor: pointer; }
+  .featured__tile:hover { transform: translateY(-3px); border-color: rgba(240,196,65,0.4); }
+  .featured__tile:hover .featured__chip { background: rgba(240,196,65,0.16); }
+  .featured__chip { transition: background 0.22s ease; }
+
+  .reg { transition: transform 0.22s ease; }
+  .reg:hover { transform: translateY(-2px); }
+  .reg:hover .reg__eyebrow { color: var(--gold-rich); }
+  .reg__eyebrow { transition: color 0.22s ease; }
+
+  .footer__col li { transition: color 0.18s ease, padding-left 0.22s ease; cursor: pointer; }
+  .footer__col li:hover { color: var(--cream-warm); padding-left: 4px; }
+
+  /* ───── calculator sliders ────────────────────────── */
+  .slider { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: rgba(6,26,46,0.08); border-radius: 999px; outline: none; margin-top: 12px; }
+  .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--cream-warm); border: 2px solid var(--navy-deep); cursor: pointer; transition: transform 0.18s ease, box-shadow 0.22s ease; box-shadow: 0 2px 8px -2px rgba(6,26,46,0.25); }
+  .slider::-webkit-slider-thumb:hover, .slider:focus-visible::-webkit-slider-thumb { transform: scale(1.15); box-shadow: 0 4px 12px -2px rgba(6,26,46,0.35); }
+  .slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--cream-warm); border: 2px solid var(--navy-deep); cursor: pointer; box-shadow: 0 2px 8px -2px rgba(6,26,46,0.25); }
+  .slider:focus-visible { outline: 2px solid var(--green-vivid); outline-offset: 4px; }
+
+  /* segmented control transitions */
+  .seg__item { transition: background 0.24s cubic-bezier(0.4,0,0.2,1), color 0.24s ease; cursor: pointer; user-select: none; }
+  .seg__item:not(.seg__item--active):hover { background: rgba(6,26,46,0.05); border-radius: 999px; }
+
+  /* live-output transitions */
+  .field__value, .output-big, .detail-row__r, .field__row span { transition: opacity 0.18s ease; }
+  .bar__fill, .ratio-bar > div { transition: width 0.42s cubic-bezier(0.4,0,0.2,1); }
+  .calc-update { animation: cellFlash 0.45s ease; }
+  @keyframes cellFlash { 0% { background: rgba(34,197,94,0.0); } 30% { background: rgba(34,197,94,0.08); } 100% { background: rgba(34,197,94,0.0); } }
+
+  .cap-notice { margin-top: 12px; padding: 12px 16px; background: rgba(224,176,64,0.14); border-left: 2px solid var(--gold-rich); font: 500 13px/1.45 'Inter', sans-serif; color: var(--gold-rich); border-radius: 4px; display: none; }
+
+  /* trust ribbon improvement: license-number chip */
+  .reg { position: relative; padding-top: 16px; }
+  .reg__chip { position: absolute; top: -16px; right: 0; font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.18em; color: var(--gold-vivid); padding: 6px 10px; border: 1px solid rgba(240,196,65,0.35); border-radius: 4px; text-transform: uppercase; font-variant-numeric: tabular-nums; background: rgba(0,0,0,0.4); }
+
+  /* ───── scroll progress bar (gold thread at top) ───── */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 2px;
+    background: transparent;
+    z-index: 200;
+    pointer-events: none;
+  }
+  .scroll-progress__bar {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--gold-rich) 0%, var(--gold-vivid) 60%, rgba(240,196,65,0.4) 100%);
+    box-shadow: 0 0 12px rgba(240,196,65,0.5);
+    transition: width 0.08s linear;
+  }
+
+  /* ───── section reveal-on-scroll ───────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  /* stagger children of a revealed section */
+  .reveal .stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in-view .stagger > * { opacity: 1; transform: translateY(0); }
+  .reveal.in-view .stagger > *:nth-child(1) { transition-delay: 0.05s; }
+  .reveal.in-view .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+  .reveal.in-view .stagger > *:nth-child(3) { transition-delay: 0.19s; }
+  .reveal.in-view .stagger > *:nth-child(4) { transition-delay: 0.26s; }
+  .reveal.in-view .stagger > *:nth-child(5) { transition-delay: 0.33s; }
+
+  /* ───── hero parallax + spotlight follow ───────────── */
+  .hero { cursor: default; }
+  .hero__spotlight {
+    position: absolute;
+    pointer-events: none;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(240,196,65,0.05) 0%, rgba(240,196,65,0) 70%);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: opacity 0.4s ease;
+    opacity: 0;
+    will-change: transform;
+  }
+  .hero:hover .hero__spotlight { opacity: 1; }
+
+  /* hero asset now also responds to scroll via JS (transform set inline) */
+  .hero__asset { transition: transform 0.05s linear; }
+
+  /* number flip / pulse when calculator updates */
+  .output-big.updating, .field__value.updating {
+    animation: numberPulse 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes numberPulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.025); color: var(--gold-vivid); }
+    100% { transform: scale(1); }
+  }
+  .output-big { transition: color 0.3s ease; }
+
+  /* slider thumb activity ring when grabbing */
+  .slider:active::-webkit-slider-thumb {
+    box-shadow: 0 0 0 6px rgba(34,197,94,0.18), 0 4px 12px -2px rgba(6,26,46,0.35);
+    transform: scale(1.18);
+  }
+
+  /* magnetic CTA — slight transform toward cursor (JS controlled) */
+  .magnetic { transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* anchor links smooth scroll */
+  html.smooth-scroll { scroll-behavior: smooth; }
+
+  /* respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .reveal .stagger > * { opacity: 1 !important; transform: none !important; }
+    html.smooth-scroll { scroll-behavior: auto; }
+  }
+
+  /* ───── CONSTRUCTION PAGE — page-specific styles ───── */
+
+  /* hero stat bar */
+  .con-stat-bar {
+    display: flex; align-items: center; gap: 32px;
+    padding: 20px 32px;
+    background: rgba(200,151,42,0.10);
+    border: 1px solid rgba(200,151,42,0.28);
+    border-radius: 16px;
+    margin: 4px 0;
+  }
+  .con-stat-cell { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+  .con-stat-num { font: 500 22px/1 'Inter Tight', sans-serif; letter-spacing: -0.05em; color: var(--cream-warm); font-variant-numeric: tabular-nums; }
+  .con-stat-label { font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.55); }
+  .con-stat-div { width: 1px; height: 36px; background: rgba(200,151,42,0.35); flex-shrink: 0; }
+
+  /* hero viz override — fill the centered hero like the tile-viz */
+  .hero__viz {
+    position: relative;
+    width: min(100%, calc(78vh * 16 / 9));
+    max-width: 1600px;
+    aspect-ratio: 16 / 9;
+    max-height: 78vh;
+    margin: -15px auto 24px;
+    overflow: hidden;
+  }
+  .hero--centered .hero__viz .tile-viz__canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+    cursor: crosshair;
+    background: transparent;
+  }
+
+  /* shared construction section helpers */
+  .con-section-head { display: flex; flex-direction: column; gap: 14px; }
+  .con-eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .con-eyebrow-row > span:last-child { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.65); }
+  .con-eyebrow-row--dark > span:last-child { color: rgba(6,26,46,0.65); }
+  .con-dot { width: 8px; height: 8px; border-radius: 50%; background: #C8972A; display: inline-block; flex-shrink: 0; }
+  .con-dot--dark { background: #C8972A; }
+
+  /* how: override top border for construction steps */
+  .con-how .steps { gap: 48px; }
+
+  /* eligibility section */
+  .con-eligibility { background: #000; padding: 140px clamp(20px, 4vw, 80px); }
+  .con-eligibility__inner { display: flex; flex-direction: column; gap: 64px; max-width: 1280px; }
+  .con-checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(200,151,42,0.20); }
+  .con-check-item { display: flex; align-items: flex-start; gap: 20px; padding: 28px 0; border-bottom: 1px solid rgba(200,151,42,0.12); }
+  .con-check-icon { font: 500 16px/1 'Inter', sans-serif; color: #C8972A; flex-shrink: 0; width: 24px; text-align: center; margin-top: 2px; }
+  .con-check-item > span:last-child { font: 400 17px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.80); }
+
+  /* documents section */
+  .con-docs { background: var(--cream-warm); padding: 140px clamp(20px, 4vw, 80px); }
+  .con-docs__inner { display: flex; flex-direction: column; gap: 64px; }
+  .con-docs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; border: 1px solid rgba(6,26,46,0.10); border-radius: 20px; overflow: hidden; }
+  .con-doc-item { background: var(--cream-warm); padding: 36px 32px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid rgba(6,26,46,0.08); border-bottom: 1px solid rgba(6,26,46,0.08); }
+  .con-doc-item:nth-child(3n) { border-right: none; }
+  .con-doc-item:nth-child(n+4) { border-bottom: none; }
+  .con-doc-cat { font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.20em; text-transform: uppercase; color: #C8972A; }
+  .con-doc-name { font: 500 18px/120% 'Inter', sans-serif; letter-spacing: -0.025em; color: var(--navy-deep); }
+  .con-doc-note { font: 400 14px/155% 'Inter', sans-serif; color: rgba(6,26,46,0.62); }
+
+  /* rate numbers panel */
+  .con-numbers { background: #000; padding: 140px clamp(20px, 4vw, 80px); }
+  .con-numbers__inner { display: flex; flex-direction: column; gap: 64px; }
+  .con-numbers-grid { display: flex; gap: 0; border: 1px solid rgba(200,151,42,0.22); border-radius: 20px; overflow: hidden; }
+  .con-num-cell { flex: 1; padding: 48px 40px; display: flex; flex-direction: column; gap: 12px; border-right: 1px solid rgba(200,151,42,0.18); }
+  .con-num-cell:last-child { border-right: none; }
+  .con-num-big { font: 500 64px/100% 'Inter Tight', sans-serif; letter-spacing: -0.07em; color: #C8972A; font-variant-numeric: tabular-nums; }
+  .con-num-label { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,243,232,0.55); }
+  .con-num-note { font: 400 14px/155% 'Inter', sans-serif; color: rgba(250,243,232,0.60); max-width: 320px; }
+  .con-rate-note { font: 400 14px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.50); max-width: 960px; padding-top: 32px; border-top: 1px solid rgba(200,151,42,0.14); }
+
+  /* use cases section */
+  .con-usecases { background: var(--cream-warm); padding: 140px clamp(20px, 4vw, 80px); }
+  .con-usecases__inner { display: flex; flex-direction: column; gap: 64px; }
+  .con-scenario-grid { display: flex; gap: 24px; }
+  .con-scenario { flex: 1; background: #fff; border-radius: 20px; padding: 40px 36px; display: flex; flex-direction: column; gap: 16px; border: 1px solid rgba(6,26,46,0.08); }
+  .con-scenario-label { font: 600 10px/1 'Inter', sans-serif; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(6,26,46,0.40); }
+  .con-scenario-name { font: 500 20px/120% 'Inter', sans-serif; letter-spacing: -0.025em; color: var(--navy-deep); }
+  .con-scenario-body { font: 400 14px/160% 'Inter', sans-serif; color: rgba(6,26,46,0.65); flex: 1; }
+  .con-scenario-stat { display: flex; align-items: center; gap: 10px; padding-top: 16px; border-top: 1px solid rgba(200,151,42,0.25); }
+  .con-scenario-stat span:first-child { font: 500 22px/1 'Inter Tight', sans-serif; letter-spacing: -0.05em; color: #C8972A; font-variant-numeric: tabular-nums; }
+  .con-scenario-stat span:last-child { font: 400 13px/1 'Inter', sans-serif; color: rgba(6,26,46,0.55); }
+
+  /* FAQ section */
+  .con-faq { background: #000; padding: 140px clamp(20px, 4vw, 80px); }
+  .con-faq__inner { display: flex; flex-direction: column; gap: 64px; }
+  .con-faq-list { display: flex; flex-direction: column; border-top: 1px solid rgba(200,151,42,0.22); }
+  .con-faq-item { border-bottom: 1px solid rgba(200,151,42,0.14); }
+  .con-faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%; padding: 28px 0; gap: 24px;
+    background: none; border: none; cursor: pointer; text-align: left;
+    font: 500 18px/130% 'Inter', sans-serif; letter-spacing: -0.02em;
+    color: var(--cream-warm);
+  }
+  .con-faq-q::after {
+    content: '+'; flex-shrink: 0;
+    font: 400 24px/1 'Inter', sans-serif; color: #C8972A;
+    transition: transform 0.22s cubic-bezier(0.4,0,0.2,1), content 0.22s;
+  }
+  .con-faq-q[aria-expanded="true"]::after { transform: rotate(45deg); }
+  .con-faq-a {
+    padding: 0 0 28px 0;
+    font: 400 16px/162.5% 'Inter', sans-serif;
+    color: rgba(250,243,232,0.70);
+    max-width: 800px;
+  }
+  .con-faq-q:focus-visible { outline: 2px solid #C8972A; outline-offset: 3px; border-radius: 4px; }
+
+  /* final CTA section */
+  .con-final-cta { background: var(--cream-warm); padding: 140px clamp(20px, 4vw, 80px); }
+  .con-final-cta__inner { display: flex; flex-direction: column; gap: 32px; max-width: 1280px; }
+  .con-reassurance { font: 400 13px/155% 'Inter', sans-serif; color: rgba(6,26,46,0.50); max-width: 560px; margin-top: 8px; }
+
+  /* responsive adjustments for construction sections */
+  @media (max-width: 1024px) {
+    .con-eligibility { padding: 80px 32px !important; }
+    .con-docs { padding: 80px 32px !important; }
+    .con-numbers { padding: 80px 32px !important; }
+    .con-usecases { padding: 80px 32px !important; }
+    .con-faq { padding: 80px 32px !important; }
+    .con-final-cta { padding: 80px 32px !important; }
+    .con-docs-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .con-numbers-grid { flex-direction: column !important; border: none !important; gap: 16px !important; border-radius: 0 !important; }
+    .con-num-cell { border-right: none !important; border: 1px solid rgba(200,151,42,0.22) !important; border-radius: 14px !important; padding: 32px 28px !important; }
+    .con-num-big { font-size: 48px !important; }
+    .con-scenario-grid { flex-direction: column !important; gap: 16px !important; }
+    .con-stat-bar { flex-direction: column !important; gap: 16px !important; align-items: flex-start !important; padding: 20px 24px !important; }
+    .con-stat-div { display: none !important; }
+    .con-stat-cell { align-items: flex-start !important; }
+  }
+  @media (max-width: 768px) {
+    .con-eligibility { padding: 64px 24px !important; }
+    .con-docs { padding: 64px 24px !important; }
+    .con-numbers { padding: 64px 24px !important; }
+    .con-usecases { padding: 64px 24px !important; }
+    .con-faq { padding: 64px 24px !important; }
+    .con-final-cta { padding: 64px 24px !important; }
+    .con-docs-grid { grid-template-columns: 1fr !important; border-radius: 14px !important; }
+    .con-doc-item { border-right: none !important; }
+    .con-doc-item:nth-child(3n) { border-right: none !important; }
+    .con-check-item > span:last-child { font-size: 15px !important; }
+    .con-faq-q { font-size: 16px !important; padding: 22px 0 !important; }
+    .con-faq-a { font-size: 15px !important; }
+    .con-num-big { font-size: 40px !important; }
+  }
+  @media (max-width: 480px) {
+    .con-eligibility { padding: 48px 16px !important; }
+    .con-docs { padding: 48px 16px !important; }
+    .con-numbers { padding: 48px 16px !important; }
+    .con-usecases { padding: 48px 16px !important; }
+    .con-faq { padding: 48px 16px !important; }
+    .con-final-cta { padding: 48px 16px !important; }
+    .con-stat-bar { padding: 16px !important; }
+    .con-stat-num { font-size: 18px !important; }
+    .con-faq-q { font-size: 15px !important; }
+  }
+
+  /* ───── HERO REDESIGN — concept 2 (centered) with wireframe→particle reveal */
+
+  /* kill the legacy 3D-asset + spotlight + reveal cruft */
+  .hero__asset, .hero__spotlight, .hero__bg, .hero__veil { display: none !important; }
+  .status-row .pulse, .pulse { animation: none !important; }
+  .fact-strip { animation: none !important; }
+  .reveal, .reveal .stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .cta, .nav__cta, .advisory__cta, .output-cta { transform: none !important; }
+  .cta:hover, .nav__cta:hover, .advisory__cta:hover { transform: none !important; box-shadow: none !important; filter: none !important; }
+  .tile:hover { transform: none !important; box-shadow: none !important; }
+  .featured__tile:hover { transform: none !important; }
+  .reg:hover { transform: none !important; }
+
+  /* centered hero shell — ALWAYS fills the visual viewport.
+     body has zoom: 0.8 so 100vh CSS only renders at 80% visual. Using 125vh
+     to compensate so the hero always covers 100% of the visible viewport
+     (and the cream stats section is fully off the fold). */
+  .hero--centered { background: #000; height: auto; min-height: 125vh; overflow: hidden; padding-bottom: 0; position: relative; }
+
+  /* real AGMB logo */
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo__icon { width: auto; height: 44px; display: block; }
+  .logo__text, .logo__name, .logo__sub { display: none; }
+  /* nav — two states: top (subtle-glass bar) and scrolled (floating glass pill).
+     At-rest gets a light blur so the header reads as glass over scrolling content. */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    padding: 24px 160px;
+    background: rgba(6,26,46,0.72);
+    border-bottom: 1px solid rgba(250,243,232,0.06);
+    border-radius: 0;
+    margin: 0;
+    transition: padding 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.32s ease,
+                margin 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                border-radius 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.32s ease;
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
+    backdrop-filter: blur(10px) saturate(130%);
+  }
+  .nav--scrolled {
+    top: 16px;
+    margin: 0 80px;
+    padding: 14px 32px;
+    background: rgba(6,26,46,0.62);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(250,243,232,0.10);
+    border-radius: 999px;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.55);
+  }
+  .nav__links a:not(.nav__cta)::after { display: none !important; }
+  .nav__links { gap: 36px; }
+
+  /* centered hero content stack — reset absolute base class, tighter gaps */
+  .hero__content--centered {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+    z-index: 4;
+    max-width: 1000px;
+    margin: 48px auto 36px !important;
+    padding: 0 24px;
+    display: flex !important; flex-direction: column !important; align-items: center !important;
+    gap: 24px !important;
+    text-align: center;
+    width: auto !important;
+  }
+  /* Hero H1 sync: when an eyebrow status-line sits above the H1, tighten the content
+     top margin so the H1 lands at the same Y position as on pages without an eyebrow. */
+  .hero .hero__content--centered:has(> .status-line:first-child) { margin-top: 13px !important; }
+  /* bi-script: Nigerians (and any em in h1) in Libre Baskerville upright */
+  .h1 em, .h1--centered em {
+    font-family: 'Libre Baskerville', serif;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    color: var(--green-vivid);
+  }
+  .status-line { display: inline-flex; align-items: center; gap: 18px;
+    font: 600 11px/1 'Inter', sans-serif; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(250,243,232,0.70);
+  }
+  .status-line__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-vivid); display: inline-block; }
+  .status-line__sep { color: rgba(250,243,232,0.30); }
+  .h1--centered { text-align: center; max-width: none; margin: 0 auto; }
+  .hero__lede--centered { text-align: center; max-width: 720px; margin: 0 auto; color: rgba(250,243,232,0.82); }
+  .ctas--centered { justify-content: center; }
+
+  /* hero viz: image visible + canvas trace overlay on the building's lines.
+     width is derived from max-height × 16/9 so the container stays at exact
+     16:9 even when height is capped — keeps the image (object-fit: contain)
+     and the canvas (100% stretch) locked to the same dimensions. */
+  .hero__viz {
+    position: relative; z-index: 1;
+    width: min(100%, calc(78vh * 16 / 9));
+    max-width: 1900px;
+    margin: -15px auto 24px;
+    aspect-ratio: 16 / 9;
+    max-height: 78vh;
+    overflow: hidden;
+  }
+  /* bottom-locked viz override — match mortgages-page pattern */
+  .hero--centered .hero__viz[data-viz="construction"] {
+    position: absolute;
+    bottom: -64px;
+    left: 0;
+    right: 0;
+    width: min(100%, calc(78vh * 16 / 9));
+    max-width: 1900px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    max-height: 100vh;
+    overflow: hidden;
+    background: transparent;
+  }
+  .hero__viz-stage {
+    position: absolute; inset: 0;
+    transform: translateY(-60px);
+    transform-origin: center center;
+    will-change: transform;
+  }
+  .hero__viz-img, .hero__viz-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain; object-position: center;
+    display: block;
+    opacity: 0.93;            /* dimmed by ~7% so the trace particles read brighter */
+  }
+  .hero__viz-trace {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+    cursor: crosshair;
+    z-index: 10;                    /* above blur (4) and fades (2) */
+    transform: translateY(-60px);   /* match the stage's translate so particles align with image */
+    transform-origin: center center;
+    will-change: transform;
+    pointer-events: auto;
+  }
+  /* progressive blur at the bottom — smudges the pavement into the strip bar */
+  .hero__viz-blur {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 36%; z-index: 4; pointer-events: none;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.85) 70%, #000 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.85) 70%, #000 100%);
+  }
+
+  /* edge gradients fade the building into the black ground */
+  .hero__viz-fade {
+    position: absolute; pointer-events: none; z-index: 2;
+  }
+  .hero__viz-fade--top {
+    top: 0; left: 0; right: 0; height: 26%;
+    background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0) 100%);
+  }
+  .hero__viz-fade--bottom {
+    bottom: 0; left: 0; right: 0; height: 30%;
+    background: linear-gradient(0deg, #000 0%, rgba(0,0,0,0.85) 35%, rgba(0,0,0,0) 100%);
+  }
+  .hero__viz-fade--left {
+    top: 0; bottom: 0; left: 0; width: 14%;
+    background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 100%);
+  }
+  .hero__viz-fade--right {
+    top: 0; bottom: 0; right: 0; width: 14%;
+    background: linear-gradient(-90deg, #000 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 100%);
+  }
+
+  /* fact strip overlays the lower portion of the hero, sitting just below
+     the flower vases — the building's pavement/floor remains visible BELOW
+     the strip. Clean overlay, no shadow. */
+  .hero--centered .fact-strip {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    bottom: 50px;
+    margin: 0;
+    z-index: 6;
+    box-shadow: none;
+    animation: none;
+  }
+
+  /* reduce horizontal padding on inner sections (less L/R whitespace) */
+  .how { padding: 120px 80px !important; }
+  .calc { padding: 120px 80px !important; }
+  .products { padding: 120px 80px !important; }
+  .trust { padding: 120px 80px !important; }
+  .news { padding: 100px 80px 120px !important; }
+  .stats { padding: 80px 80px 96px !important; }
+
+  /* news section restructure: rotating carousel + hover-reveal thumbnails */
+  .news__row--rotating { gap: 64px; }
+  .featured__title-overlay {
+    position: absolute; bottom: 32px; left: 32px; right: 32px;
+    font: 500 32px/110% 'Inter', sans-serif; letter-spacing: -0.04em;
+    color: var(--cream-warm); z-index: 3; max-width: 90%;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+  }
+  .featured__plate {
+    transition: background-image 0.45s ease;
+    background-size: cover !important;
+    background-position: center !important;
+  }
+  .featured__plate::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(6,26,46,0.20) 0%, rgba(6,26,46,0.30) 40%, rgba(6,26,46,0.85) 100%);
+    z-index: 1;
+  }
+  .featured__plate > * { position: relative; z-index: 2; }
+
+  /* rotating story rows: title visible, thumbnail reveals on hover */
+  .story.story--rotating {
+    display: grid !important;
+    grid-template-columns: 0fr 1fr;
+    gap: 0;
+    align-items: center;
+    transition: grid-template-columns 0.32s cubic-bezier(0.4, 0, 0.2, 1), padding-left 0.18s ease, background-color 0.22s ease;
+    border-bottom: 1px solid rgba(250,243,232,0.12);
+    padding: 24px 12px 24px 0;
+    cursor: pointer;
+  }
+  .story.story--rotating .story__thumb {
+    width: 0; height: 110px;
+    object-fit: cover; display: block;
+    opacity: 0; border-radius: 4px;
+    transition: opacity 0.32s ease, width 0.32s cubic-bezier(0.4, 0, 0.2, 1), margin-right 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-right: 0;
+  }
+  .story.story--rotating:hover {
+    grid-template-columns: 160px 1fr;
+    background: rgba(250,243,232,0.04);
+    padding-left: 16px;
+  }
+  .story.story--rotating:hover .story__thumb {
+    width: 160px; opacity: 1;
+    margin-right: 24px;
+  }
+  .story.story--rotating.is-active {
+    background: rgba(240,196,65,0.08);
+  }
+
+  /* parallax: hero canvas translates slower than scroll */
+  .hero__viz-canvas {
+    will-change: transform;
+    transition: transform 0.05s linear;
+  }
+
+  /* static button overrides for the new buttons */
+  .cta--primary { background: var(--cream-warm); color: var(--navy-deep); border: 1px solid var(--cream-warm); }
+  .cta--primary:hover { background: var(--cream); }
+  .cta--secondary { background: var(--navy-vivid); color: var(--cream-warm); border: 1px solid var(--navy-vivid); }
+  .cta--secondary:hover { background: var(--navy); border-color: var(--navy-vivid); }
+  .nav__cta { background: var(--cream-warm); color: var(--navy-deep); }
+  .nav__cta:hover { background: var(--cream); transform: none; }
+  .cta span:last-child, .nav__cta span:last-child { transform: none !important; }
+  .cta:hover span:last-child, .nav__cta:hover span:last-child { transform: none !important; }
+
+  /* news featured: brand image replaces placeholder */
+  .featured__tile {
+    background-image: url('agmb-office-building.webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: none !important;          /* gold outline gone */
+  }
+  .featured__tile::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(6,26,46,0.20) 0%, rgba(6,26,46,0.55) 55%, rgba(6,26,46,0.92) 100%);
+    z-index: 1;
+  }
+  .featured__tile > * { position: relative; z-index: 2; }
+
+  /* inline CTA inside the featured news tile */
+  .featured__cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    background: var(--cream-warm); color: var(--navy-deep);
+    font: 500 14px/1 'Inter', sans-serif; letter-spacing: -0.005em;
+    border-radius: 999px;
+    text-decoration: none;
+    align-self: flex-start;
+    margin-top: 14px;
+    transition: background-color 0.16s ease;
+  }
+  .featured__cta:hover { background: var(--cream-vivid, #FFEFC2); }
+  .featured__cta:active { opacity: 0.92; }
+  .featured__cta:focus-visible { outline: 2px solid var(--gold-vivid); outline-offset: 3px; }
+
+  /* refined nav__cta padding — slightly tighter so it sits cleanly in the pill nav */
+  .nav__cta { padding: 10px 18px !important; }
+
+  /* ───── BENTO TILES — interactive viz on the right ─────────────── */
+  .tile {
+    flex-direction: row !important;
+    gap: 28px !important;
+    align-items: stretch !important;
+    position: relative;
+  }
+  .tile__content {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  /* tile__top now flows naturally as the first row of content (icon + cat
+     on left). The rate is REMOVED from the flex flow and pinned to the
+     tile's top-right corner. */
+  .tile__top {
+    justify-content: flex-start !important;
+  }
+  .tile__rate {
+    position: absolute !important;
+    top: 36px; right: 36px;
+    z-index: 5;
+  }
+  .tile--flagship .tile__rate { top: 48px; right: 48px; }
+  .tile-viz {
+    flex: 0 0 46%;
+    position: relative;
+    min-height: 200px;
+    overflow: hidden;
+  }
+  .tile-viz__canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+    background: transparent;     /* embeds into the cream tile, no own bg */
+    cursor: crosshair;
+  }
+
+  /* flagship — viz is bigger, top-right square area */
+  .tile--flagship {
+    display: grid !important;
+    grid-template-columns: 1.05fr 1fr !important;
+    grid-template-rows: auto;
+    gap: 32px !important;
+    flex-direction: unset !important;
+    align-items: stretch !important;
+  }
+  .tile--flagship .tile__content {
+    grid-column: 1; grid-row: 1;
+  }
+  .tile--flagship .tile-viz {
+    grid-column: 2; grid-row: 1;
+    flex: none; width: 100%;
+    min-height: 420px;
+  }
+  /* pin the link (Check NHF eligibility / Learn more) to the bottom of
+     each tile without redistributing the rest of the text. */
+  .tile__content { min-height: 280px; }
+  .tile--flagship .tile__content { min-height: 420px; }
+  .tile__content > div:last-of-type {
+    flex: 1;                       /* this block (name + copy + link) takes remaining height */
+    display: flex; flex-direction: column;
+    gap: 16px;
+    justify-content: flex-start;   /* name/copy stay at the top together */
+  }
+  .tile__link {
+    margin-top: auto !important;   /* link alone is pushed to the bottom */
+    align-self: flex-start;
+  }
+
+  /* newsroom: chip + date now flow as a proper top row, no overlap */
+  .featured__chip { position: static !important; top: auto !important; left: auto !important; }
+  .featured__date { position: static !important; top: auto !important; right: auto !important; }
+  .featured__top {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%; gap: 16px;
+    position: relative; z-index: 2;
+  }
+  .featured__body {
+    display: flex; flex-direction: column; gap: 18px;
+    align-items: flex-start;
+    position: relative; z-index: 2;
+  }
+  .featured__tile {
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    padding: 36px !important;
+  }
+
+  /* news secondary stories with brand-image thumbnails */
+  .story--image { display: grid !important; grid-template-columns: 200px 1fr; gap: 28px; align-items: start; }
+  .story__thumb { width: 200px; height: 140px; object-fit: cover; display: block; border-radius: 4px; }
+  .story__body { display: flex; flex-direction: column; gap: 12px; }
+  .story.story--image:hover { padding-left: 0 !important; }
+  .story.story--image:hover .story__thumb { opacity: 0.85; transition: opacity 0.22s ease; }
+  .story__thumb { transition: opacity 0.22s ease; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__viz-img--wire { animation: none; opacity: 0; }
+    .hero__viz-img--particle { animation: none; opacity: 1; }
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════
+     RESPONSIVE BREAKPOINTS
+     Native canvas: 2377px. Desktop default: body { zoom: 0.8 }.
+     Progressively rescale + collapse for tablet/phone.
+     ─────────────────────────────────────────────────────────────────── */
+
+  /* ───── ≤ 1440px : tighten the desktop zoom so the 2377px canvas fits ───── */
+  @media (max-width: 1440px) {
+    body { zoom: 0.6; }
+    /* compensate hero min-height for zoom 0.6 → 100vh visual = 167vh CSS */
+    .hero--centered { min-height: 167vh; }
+    @-moz-document url-prefix() {
+      body { zoom: unset; transform: scale(0.6); transform-origin: top left; width: 166.66%; }
+    }
+  }
+
+  /* ═══════════════ ≤ 1024px : TABLET LANDSCAPE / LARGE MOBILE ═══════════════
+     Abandon the 2377px zoom canvas — natural layout.
+     Bento → single column. Calculator stacks. News stacks. Padding → 32px.
+  ─────────────────────────────────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    body { zoom: unset !important; transform: none !important; width: 100% !important; }
+    @-moz-document url-prefix() {
+      body { zoom: unset !important; transform: none !important; width: 100% !important; }
+    }
+    .page { width: 100% !important; max-width: 100% !important; }
+    .container { padding: 0 32px !important; }
+
+    /* nav: stack links vertically below the logo */
+    .nav {
+      position: sticky !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 16px !important;
+      padding: 20px 32px !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      background: #000 !important;
+      border-bottom: 1px solid rgba(250,243,232,0.08) !important;
+    }
+    .nav--scrolled {
+      top: 0 !important;
+      margin: 0 !important;
+      padding: 14px 32px !important;
+      border-radius: 0 !important;
+      box-shadow: 0 4px 16px -4px rgba(0,0,0,0.45) !important;
+    }
+    .nav__links {
+      flex-wrap: wrap !important;
+      gap: 20px 24px !important;
+      justify-content: flex-start !important;
+      padding-top: 12px !important;
+      border-top: 1px solid rgba(250,243,232,0.08) !important;
+    }
+    .nav__links a { font-size: 15px !important; }
+    .nav__cta { margin-left: auto !important; }
+
+    /* hero */
+    .hero, .hero--centered { min-height: 100vh !important; padding-bottom: 64px !important; }
+    .hero__content--centered { margin: 40px auto 28px !important; padding: 0 32px !important; gap: 20px !important; }
+    .h1 { font-size: 56px !important; }
+    .hero__lede, .hero__lede--centered { font-size: 17px !important; max-width: 100% !important; }
+    .ctas { flex-wrap: wrap !important; gap: 12px !important; }
+    .cta { padding: 16px 24px !important; font-size: 15px !important; }
+  .hero__viz { max-width: 100% !important; margin: 0 auto 24px !important; }
+    .hero__viz-stage, .hero__viz-trace { transform: none !important; }
+
+    /* fact strip pulled up tight against hero viz.
+       Restore relative positioning so the strip lives in flow on tablet/mobile
+       tablet/mobile: tighten the margin from the viz bottom. */
+    .hero--centered .fact-strip {
+      position: relative !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
+      margin: -120px 32px 0 !important;
+      padding: 24px 28px !important;
+      gap: 20px !important;
+      border-radius: 18px !important;
+    }
+    /* hero viz: drop the desktop max-height cap on tablet/mobile —
+       viz uses full natural 16/9 aspect at narrow widths */
+  .hero__viz { max-height: none !important; }
+    .fact-strip .divider { display: none !important; }
+    .fact__numeric { font-size: 24px !important; }
+
+    /* stats */
+    .stats { padding: 80px 32px !important; gap: 48px !important; }
+    .stat-row { flex-wrap: wrap !important; gap: 32px !important; }
+    .stat { flex: 0 0 calc(50% - 16px) !important; }
+    .stat__numeric { font-size: 64px !important; }
+    .h2 { font-size: 40px !important; }
+
+    /* products + bento — single column, viz BELOW content */
+    .products { padding: 80px 32px !important; gap: 40px !important; }
+    .bento, .bento__top, .bento__bot { flex-direction: column !important; gap: 20px !important; }
+    .tile__stack { width: 100% !important; }
+    .tile {
+      flex-direction: column !important;
+      gap: 24px !important;
+      padding: 32px !important;
+      align-items: stretch !important;
+    }
+    .tile--flagship {
+      display: flex !important;
+      grid-template-columns: none !important;
+      min-height: auto !important;
+      padding: 36px !important;
+    }
+    .tile__content { width: 100% !important; }
+    .tile-viz {
+      width: 100% !important;
+      flex: none !important;
+      min-height: 240px !important;
+      height: 240px !important;
+      order: 2 !important;
+    }
+    .tile--flagship .tile-viz { min-height: 280px !important; height: 280px !important; }
+    .tile--flagship .tile__name { font-size: 30px !important; }
+
+    /* advisory */
+    .advisory { flex-direction: column !important; align-items: flex-start !important; gap: 28px !important; padding: 36px !important; }
+    .advisory__title { font-size: 26px !important; }
+    .advisory__asset { display: none !important; }
+
+    /* how it works */
+    .how { padding: 80px 32px !important; gap: 48px !important; }
+    .steps { flex-direction: column !important; gap: 28px !important; }
+    .step { padding-top: 20px !important; border-top: 1px solid rgba(6,26,46,0.12); }
+    .step__num { font-size: 56px !important; }
+
+    /* calculator twin-panel STACKS vertically */
+    .calc { padding: 80px 32px !important; gap: 40px !important; }
+    .twin { flex-direction: column !important; border-radius: 24px !important; }
+    .input-panel, .output-panel { padding: 36px !important; }
+    .output-big { font-size: 56px !important; }
+    .field__value { font-size: 30px !important; }
+    .output-ctas { flex-direction: column !important; gap: 10px !important; }
+
+    /* trust 4-col → 2-col */
+    .trust { padding: 80px 32px !important; gap: 40px !important; }
+    .reg-grid { flex-wrap: wrap !important; gap: 32px !important; padding-top: 32px !important; }
+    .reg { flex: 0 0 calc(50% - 16px) !important; }
+
+    /* news featured + secondary stack vertical */
+    .news { padding: 72px 32px 88px !important; gap: 40px !important; }
+    .news__head { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
+    .news__row, .news__row--rotating { flex-direction: column !important; gap: 32px !important; }
+    .featured, .secondary { width: 100% !important; }
+    .featured__tile { width: 100% !important; height: 480px !important; padding: 32px !important; }
+    .featured__title, .featured__title-overlay { font-size: 26px !important; max-width: 100% !important; }
+    .featured__dek { font-size: 16px !important; }
+    .story--image { grid-template-columns: 140px 1fr !important; gap: 20px !important; }
+    .story__thumb { width: 140px !important; height: 100px !important; }
+    .story.story--rotating:hover { grid-template-columns: 120px 1fr !important; }
+    .story.story--rotating:hover .story__thumb { width: 120px !important; margin-right: 16px !important; }
+
+    /* footer */
+    .footer { padding: 56px 32px !important; }
+    .footer__panel { padding: 48px 36px !important; gap: 40px !important; border-radius: 24px !important; }
+    .footer__top { flex-direction: column !important; gap: 40px !important; }
+    .footer__cols { flex-wrap: wrap !important; gap: 32px 48px !important; }
+    .footer__col { width: calc(50% - 24px) !important; }
+    .footer__name { font-size: 24px !important; }
+  }
+
+  /* ═══════════════ ≤ 768px : TABLET PORTRAIT / MOBILE ═══════════════
+     Hero h1 72→44. Fact strip 2×2. Footer cols stack. Natural scale.
+  ─────────────────────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    body { zoom: unset !important; transform: none !important; width: 100% !important; }
+    .container { padding: 0 24px !important; }
+
+    /* hero */
+    .hero, .hero--centered { padding-bottom: 48px !important; }
+    .hero__content--centered { margin: 32px auto 24px !important; padding: 0 24px !important; gap: 18px !important; }
+    .h1 { font-size: 44px !important; letter-spacing: -0.045em !important; }
+    .h1 em, .h1--centered em { letter-spacing: -0.03em !important; }
+    .hero__lede, .hero__lede--centered { font-size: 16px !important; line-height: 1.55 !important; }
+    .ctas, .ctas--centered { flex-direction: column !important; width: 100% !important; align-items: stretch !important; }
+    .cta { width: 100% !important; justify-content: center !important; padding: 16px 24px !important; }
+
+    /* nav */
+    .nav { padding: 16px 24px !important; }
+    .logo__name { font-size: 14px !important; }
+    .logo__icon { width: 44px !important; }
+    .nav__links { gap: 16px !important; font-size: 14px !important; }
+    .nav__cta { padding: 9px 14px !important; font-size: 13px !important; }
+
+    /* fact strip → 2×2 grid */
+    .hero--centered .fact-strip {
+      margin: -80px 24px 0 !important;
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 20px !important;
+      padding: 24px !important;
+      border-radius: 16px !important;
+    }
+    .fact-strip .divider { display: none !important; }
+    .fact__numeric { font-size: 22px !important; }
+    .fact__eyebrow span:last-child { font-size: 10px !important; }
+
+    /* h2s */
+    .h2 { font-size: 32px !important; letter-spacing: -0.045em !important; }
+
+    /* stats — keep 2-col */
+    .stats { padding: 64px 24px !important; gap: 36px !important; }
+    .stat__numeric { font-size: 48px !important; }
+    .stat__cap { font-size: 13px !important; }
+
+    /* products / bento */
+    .products { padding: 64px 24px !important; gap: 32px !important; }
+    .tile { padding: 28px !important; gap: 20px !important; border-radius: 22px !important; }
+    .tile--flagship { padding: 30px !important; }
+    .tile__name { font-size: 22px !important; }
+    .tile--flagship .tile__name { font-size: 26px !important; }
+    .tile__copy { font-size: 14px !important; }
+    .tile-viz, .tile--flagship .tile-viz { min-height: 200px !important; height: 200px !important; }
+
+    /* advisory */
+    .advisory { padding: 28px !important; gap: 24px !important; border-radius: 22px !important; }
+    .advisory__title { font-size: 22px !important; }
+    .advisory__copy { font-size: 14px !important; }
+
+    /* how */
+    .how { padding: 64px 24px !important; gap: 40px !important; }
+    .step__num { font-size: 48px !important; }
+    .step__name { font-size: 19px !important; }
+
+    /* calculator */
+    .calc { padding: 64px 24px !important; gap: 32px !important; }
+    .input-panel, .output-panel { padding: 28px !important; gap: 24px !important; }
+    .output-big { font-size: 44px !important; }
+    .field__value { font-size: 26px !important; }
+    .twin { border-radius: 20px !important; }
+    .seg__item { padding: 7px 12px !important; font-size: 12px !important; }
+
+    /* trust — keep 2-col */
+    .trust { padding: 64px 24px !important; gap: 32px !important; }
+    .reg { flex: 0 0 calc(50% - 16px) !important; gap: 18px !important; }
+    .reg__name { font-size: 18px !important; }
+    .reg__copy { font-size: 13px !important; }
+
+    /* news */
+    .news { padding: 56px 24px 72px !important; }
+    .featured__tile { height: 380px !important; padding: 24px !important; }
+    .featured__title, .featured__title-overlay { font-size: 22px !important; }
+    .featured__title-overlay { bottom: 24px !important; left: 24px !important; right: 24px !important; }
+    .featured__dek { font-size: 15px !important; }
+    .featured__chip, .featured__date { top: 16px !important; }
+    .featured__chip { left: 16px !important; }
+    .featured__date { right: 16px !important; }
+    .story { padding: 22px 0 !important; }
+    .story--image { grid-template-columns: 120px 1fr !important; gap: 16px !important; }
+    .story__thumb { width: 120px !important; height: 84px !important; }
+    .story__title { font-size: 17px !important; }
+
+    /* footer — columns STACK */
+    .footer { padding: 48px 24px !important; }
+    .footer__panel { padding: 36px 28px !important; gap: 32px !important; border-radius: 22px !important; }
+    .footer__cols { flex-direction: column !important; gap: 32px !important; }
+    .footer__col { width: 100% !important; }
+    .footer__name { font-size: 22px !important; }
+    .footer__tag { font-size: 13px !important; }
+    .footer__disclosures { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+    .footer__disclosures .sep { display: none !important; }
+  }
+
+  /* ═══════════════ ≤ 480px : PHONE ═══════════════
+     Single-column everything. Tightest padding. Smaller type.
+  ─────────────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .container { padding: 0 16px !important; }
+
+    /* nav: single row on mobile — logo left, CTA right, secondary links hidden */
+    .nav {
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      padding: 12px 16px !important;
+    }
+    .nav--scrolled { padding: 10px 16px !important; }
+    .logo { gap: 10px !important; flex: 0 1 auto !important; min-width: 0 !important; overflow: hidden !important; }
+    .logo__icon { width: 32px !important; flex-shrink: 0 !important; }
+    .logo__text { min-width: 0 !important; }
+    .logo__name { font-size: 11px !important; letter-spacing: 0.05em !important; white-space: nowrap !important; }
+    .logo__sub { font-size: 9px !important; white-space: nowrap !important; }
+    .nav__links {
+      flex: 0 0 auto !important;
+      padding-top: 0 !important;
+      border-top: none !important;
+      gap: 0 !important;
+      width: auto !important;
+      margin-left: 0 !important;
+    }
+    .nav__links a:not(.nav__cta) { display: none !important; }
+    .nav__cta { padding: 9px 14px !important; font-size: 12px !important; }
+
+    /* hero */
+    .hero__content--centered { margin: 24px auto 20px !important; padding: 0 16px !important; gap: 16px !important; }
+    .h1 { font-size: 34px !important; line-height: 105% !important; }
+    .hero__lede, .hero__lede--centered { font-size: 15px !important; }
+    .status-line { font-size: 10px !important; gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
+    .cta { padding: 14px 20px !important; font-size: 14px !important; }
+
+    /* hero viz */
+  .hero__viz { margin: 0 auto 16px !important; }
+
+    /* fact strip — single column on phone */
+    .hero--centered .fact-strip {
+      margin: -48px 16px 0 !important;
+      grid-template-columns: 1fr !important;
+      padding: 20px !important;
+      gap: 16px !important;
+      border-radius: 14px !important;
+    }
+    .fact { gap: 6px !important; }
+    .fact__numeric { font-size: 20px !important; }
+    .fact__caption { font-size: 11px !important; }
+
+    /* h2 */
+    .h2 { font-size: 26px !important; letter-spacing: -0.04em !important; }
+
+    /* stats single column */
+    .stats { padding: 48px 16px !important; gap: 28px !important; }
+    .stat-row { flex-direction: column !important; gap: 24px !important; }
+    .stat { flex: 1 1 100% !important; }
+    .stat__numeric { font-size: 40px !important; }
+
+    /* products */
+    .products { padding: 48px 16px !important; gap: 24px !important; }
+    .tile { padding: 22px !important; border-radius: 18px !important; gap: 18px !important; }
+    .tile--flagship { padding: 24px !important; }
+    .tile__name { font-size: 19px !important; }
+    .tile--flagship .tile__name { font-size: 22px !important; }
+    .tile__copy, .tile--flagship .tile__copy { font-size: 13px !important; }
+    .tile-viz, .tile--flagship .tile-viz { min-height: 140px !important; height: 140px !important; }
+    .tile__icon { width: 38px !important; height: 38px !important; }
+
+    /* mobile: compact bento + Learn more anchored BELOW the dotted viz */
+    .tile { padding: 18px !important; gap: 14px !important; position: relative !important; padding-bottom: 58px !important; }
+    .tile--flagship { padding: 22px !important; padding-bottom: 62px !important; }
+    .tile__link, .tile--flagship .tile__link {
+      position: absolute !important;
+      left: 18px !important;
+      bottom: 20px !important;
+      margin: 0 !important;
+    }
+    .tile--flagship .tile__link { left: 22px !important; bottom: 22px !important; }
+
+    /* advisory — left-align on mobile, full-width CTA */
+    .advisory { padding: 22px !important; gap: 18px !important; border-radius: 18px !important; }
+    .advisory__title { font-size: 19px !important; }
+    .advisory__copy { font-size: 13px !important; }
+    .advisory__aside { width: 100% !important; align-items: flex-start !important; gap: 16px !important; }
+    .advisory__stat { text-align: left !important; }
+    .advisory__stat-num { font-size: 40px !important; }
+    .advisory__stat-num em { font-size: 46px !important; }
+    .advisory__stat-sub { margin-left: 0 !important; font-size: 12px !important; max-width: 100% !important; }
+    .advisory__cta { width: 100% !important; justify-content: center !important; padding: 14px 22px !important; font-size: 14px !important; }
+
+    /* how */
+    .how { padding: 48px 16px !important; gap: 28px !important; }
+    .step__num { font-size: 40px !important; }
+    .step__name { font-size: 17px !important; }
+    .step__copy { font-size: 13px !important; }
+
+    /* calculator phone — stack route label + seg vertically, keep seg on one line */
+    .calc { padding: 48px 16px !important; gap: 24px !important; }
+    .input-panel, .output-panel { padding: 22px !important; gap: 20px !important; }
+    .output-big { font-size: 36px !important; }
+    .field__value { font-size: 22px !important; }
+    .twin { border-radius: 18px !important; }
+    .output-cta { padding: 14px 18px !important; font-size: 14px !important; }
+    .input-top { flex-direction: column !important; align-items: stretch !important; gap: 14px !important; }
+    .seg {
+      flex-wrap: nowrap !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      padding: 3px !important;
+    }
+    .seg__item {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      padding: 8px 6px !important;
+      font-size: 11px !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+
+    /* trust — card-style separation per .reg, gold-bordered panels */
+    .trust { padding: 48px 16px !important; gap: 24px !important; }
+    .reg-grid { flex-direction: column !important; gap: 16px !important; padding-top: 24px !important; }
+    .reg {
+      flex: 1 1 100% !important;
+      padding: 22px 20px 20px !important;
+      padding-top: 32px !important;
+      background: rgba(240,196,65,0.04) !important;
+      border: 1px solid rgba(240,196,65,0.18) !important;
+      border-radius: 14px !important;
+      gap: 12px !important;
+    }
+    .reg__chip { right: 16px !important; top: -1px !important; transform: translateY(50%) !important; }
+    .reg__name { font-size: 19px !important; }
+    .reg__copy { font-size: 13px !important; }
+
+    /* news single column */
+    .news { padding: 40px 16px 56px !important; gap: 28px !important; }
+    .featured__tile { height: 320px !important; padding: 20px !important; border-radius: 18px !important; }
+    .featured__title, .featured__title-overlay { font-size: 19px !important; }
+    .featured__title-overlay { bottom: 18px !important; left: 18px !important; right: 18px !important; }
+    .featured__dek { font-size: 14px !important; }
+    .story--image { grid-template-columns: 1fr !important; gap: 12px !important; }
+    .story__thumb { width: 100% !important; height: 180px !important; }
+    .story__title { font-size: 16px !important; }
+
+    /* news rotating: disable hover-thumbnail reveal on phone */
+    .story.story--rotating { grid-template-columns: 1fr !important; padding: 16px 0 !important; }
+    .story.story--rotating:hover { grid-template-columns: 1fr !important; padding-left: 0 !important; }
+    .story.story--rotating .story__thumb,
+    .story.story--rotating:hover .story__thumb { width: 0 !important; height: 0 !important; opacity: 0 !important; margin-right: 0 !important; }
+
+    /* footer — compact 2-col grid for link cols, tighter line-height */
+    .footer { padding: 32px 16px !important; }
+    .footer__panel { padding: 28px 22px !important; gap: 24px !important; border-radius: 18px !important; }
+    .footer__top { gap: 24px !important; }
+    .footer__name { font-size: 19px !important; }
+    .footer__tag { font-size: 12px !important; }
+    .footer__cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      flex-direction: unset !important;
+      flex-wrap: unset !important;
+      gap: 20px 18px !important;
+    }
+    .footer__col { width: auto !important; gap: 12px !important; }
+    .footer__col:nth-child(3) { grid-column: 1 / -1 !important; }
+    .footer__col h4 { font-size: 10px !important; }
+    .footer__col ul { gap: 4px !important; }
+    .footer__col li { font-size: 13px !important; line-height: 155% !important; }
+    /* hide regulatory disclosure links on mobile — they're in the bottom stamp anyway */
+    .footer__disclosures { display: none !important; }
+    .footer__rule { display: none !important; }
+    .footer__bottom { gap: 8px !important; }
+    .footer__bottom > div { font-size: 11px !important; }
+  }
+  /* ── Phase F.6 closeout — large desktop-only widths reset for tablet ── */
+  @media (max-width: 1024px) {
+    .hero__asset { display: none !important; }
+    .hero__content { width: 100% !important; max-width: calc(100% - 64px) !important; }
+    .featured, .featured__tile { width: 100% !important; max-width: 100% !important; }
+  }
+</style>
+<style id="agmb-motion-css">
+  /* ───── AGMB shared motion module (loader + cascade + reveal + hover) ───── */
+
+  /* page-load loader */
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .page-loader__mark {
+    width: 64px;
+    height: 64px;
+    opacity: 0.9;
+    animation: agmbLoaderPulse 1.2s ease-in-out infinite;
+  }
+  .page-loader--hidden { opacity: 0; pointer-events: none; }
+  @keyframes agmbLoaderPulse {
+    0%, 100% { opacity: 0.55; transform: scale(0.96); }
+    50%      { opacity: 1;    transform: scale(1.00); }
+  }
+
+  /* hero cascade keyframes */
+  @keyframes agmbFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes agmbFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  /* parallax-rise — for bottom-locked viz emerging from beneath the hero */
+  @keyframes agmbFadeRise {
+    from { opacity: 0; transform: translateY(60vh); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* While agmb-cascade is set on <html>, hero children start hidden.
+     They reveal once .agmb-cascade-run is also set (added by JS after loader). */
+  html.agmb-cascade .hero .status-row,
+  html.agmb-cascade .hero .hero__eyebrow,
+  html.agmb-cascade .hero .h1,
+  html.agmb-cascade .hero .h1--centered,
+  html.agmb-cascade .hero .hero__lede,
+  html.agmb-cascade .hero .hero__lede--centered,
+  html.agmb-cascade .hero .ctas,
+  html.agmb-cascade .hero .ctas--centered,
+  html.agmb-cascade .hero .hero__viz,
+  html.agmb-cascade .hero .fact-strip,
+  html.agmb-cascade .hero .hero-stat-bar,
+  html.agmb-cascade .hero .hero-ctas,
+  html.agmb-cascade .hero-stat-bar,
+  html.agmb-cascade .hero--calculator .hero__col-text > *,
+  html.agmb-cascade .hero--calculator .hero__col-calc {
+    opacity: 0;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .status-row,
+  html.agmb-cascade.agmb-cascade-run .hero .hero__eyebrow {
+    animation: agmbFadeUp 300ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .h1,
+  html.agmb-cascade.agmb-cascade-run .hero .h1--centered {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 80ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .hero__lede,
+  html.agmb-cascade.agmb-cascade-run .hero .hero__lede--centered {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .ctas,
+  html.agmb-cascade.agmb-cascade-run .hero .ctas--centered,
+  html.agmb-cascade.agmb-cascade-run .hero .hero-ctas {
+    animation: agmbFadeUp 440ms cubic-bezier(0.16, 1, 0.3, 1) 280ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .hero__viz {
+    animation: agmbFadeRise 1400ms cubic-bezier(0.22, 1, 0.36, 1) 220ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .fact-strip,
+  html.agmb-cascade.agmb-cascade-run .hero .hero-stat-bar,
+  html.agmb-cascade.agmb-cascade-run .hero-stat-bar {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 380ms both;
+  }
+  /* calculator hero — col text children + the calc widget */
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(1) {
+    animation: agmbFadeUp 440ms cubic-bezier(0.16, 1, 0.3, 1)   0ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(2) {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1)  80ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(3) {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-text > *:nth-child(4) {
+    animation: agmbFadeUp 440ms cubic-bezier(0.16, 1, 0.3, 1) 280ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero--calculator .hero__col-calc {
+    animation: agmbFadeIn 700ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+  }
+
+  /* ── scroll-reveal: re-enable the .reveal cascade earlier rules nuked ── */
+  body .reveal,
+  body .reveal .stagger > * {
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  /* sections themselves stay visible — only inner .stagger children animate */
+  body .reveal, body .reveal:not(.in-view) {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  body .reveal:not(.in-view) .stagger > * {
+    opacity: 0 !important;
+    transform: translateY(14px) !important;
+  }
+  body .reveal.in-view .stagger > * {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  body .reveal.in-view .stagger > *:nth-child(1) { transition-delay: 0.06s; }
+  body .reveal.in-view .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+  body .reveal.in-view .stagger > *:nth-child(3) { transition-delay: 0.18s; }
+  body .reveal.in-view .stagger > *:nth-child(4) { transition-delay: 0.24s; }
+  body .reveal.in-view .stagger > *:nth-child(5) { transition-delay: 0.30s; }
+  body .reveal.in-view .stagger > *:nth-child(6) { transition-delay: 0.36s; }
+
+  /* ── hover micro-interactions: restore minimal lift the kill block removed ── */
+  body .cta,
+  body .nav__cta,
+  body .advisory__cta,
+  body .output-cta--primary {
+    transition:
+      transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.18s ease,
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      opacity 0.18s ease !important;
+  }
+  @media (hover: hover) {
+    body .cta:hover,
+    body .nav__cta:hover,
+    body .advisory__cta:hover,
+    body .output-cta--primary:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 20px -8px rgba(0,0,0,0.4) !important;
+      filter: brightness(1.04);
+    }
+    body .cta:active,
+    body .nav__cta:active,
+    body .advisory__cta:active,
+    body .output-cta--primary:active {
+      transform: translateY(0) !important;
+      filter: brightness(0.96);
+    }
+  }
+
+  body .tile {
+    transition:
+      transform 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.24s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.24s ease !important;
+  }
+  @media (hover: hover) {
+    body .tile:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 12px 32px -10px rgba(0,0,0,0.25) !important;
+    }
+  }
+
+  body .featured__tile {
+    transition:
+      transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.28s ease,
+      box-shadow 0.28s ease !important;
+  }
+  @media (hover: hover) {
+    body .featured__tile:hover {
+      transform: translateY(-2px) !important;
+    }
+  }
+
+  /* reduced motion: nuke loader + cascade animations + hover lift */
+  @media (prefers-reduced-motion: reduce) {
+    .page-loader { transition: none !important; }
+    .page-loader__mark { animation: none !important; }
+    html.agmb-cascade .hero .status-row,
+    html.agmb-cascade .hero .hero__eyebrow,
+    html.agmb-cascade .hero .h1,
+    html.agmb-cascade .hero .h1--centered,
+    html.agmb-cascade .hero .hero__lede,
+    html.agmb-cascade .hero .hero__lede--centered,
+    html.agmb-cascade .hero .ctas,
+    html.agmb-cascade .hero .ctas--centered,
+    html.agmb-cascade .hero .hero__viz,
+    html.agmb-cascade .hero .fact-strip,
+    html.agmb-cascade .hero .hero-stat-bar,
+    html.agmb-cascade .hero .hero-ctas,
+    html.agmb-cascade .hero-stat-bar,
+    html.agmb-cascade .hero--calculator .hero__col-text > *,
+    html.agmb-cascade .hero--calculator .hero__col-calc {
+      opacity: 1 !important;
+      animation: none !important;
+    }
+    body .reveal,
+    body .reveal .stagger > * {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    body .cta:hover, body .nav__cta:hover, body .advisory__cta:hover,
+    body .tile:hover, body .featured__tile:hover,
+    body .output-cta--primary:hover {
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+
+  /* ───── Floating-pill nav (post-pivot, applies on top of legacy .nav rules) ───── */
+  body .nav {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 24px 160px !important;
+    background: #000 !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(250,243,232,0.06) !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    z-index: 50;
+    transition: padding 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.32s ease,
+                margin 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                border-radius 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.32s ease;
+  }
+  body .nav--scrolled {
+    position: fixed !important;
+    top: 16px !important;
+    margin: 0 80px !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 14px 32px !important;
+    background: rgba(6,26,46,0.62) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(250,243,232,0.10) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.55) !important;
+  }
+  @media (max-width: 1024px) {
+    body .nav { padding: 16px 32px !important; }
+    body .nav--scrolled { margin: 0 16px !important; padding: 12px 20px !important; }
+  }
+
+/* ───── Mobile hamburger + drawer (≤1024px) ───── */
+.nav__hamburger {
+  display: none;
+  position: relative;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 60;
+}
+.nav__hamburger-bar {
+  position: absolute;
+  left: 10px; right: 10px;
+  height: 2px;
+  background: var(--cream-warm);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease;
+}
+.nav__hamburger-bar:nth-child(1) { top: 14px; }
+.nav__hamburger-bar:nth-child(2) { top: 21px; }
+.nav__hamburger-bar:nth-child(3) { top: 28px; }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(2) { opacity: 0; }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,26,46,0.95);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+  z-index: 55;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-nav.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-nav__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 48px;
+  width: min(100%, 480px);
+  align-items: stretch;
+}
+.mobile-nav__panel > a {
+  font: 500 28px/1.1 'Inter', sans-serif;
+  letter-spacing: -0.025em;
+  color: var(--cream-warm);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(250,243,232,0.10);
+  transition: color 0.18s ease, opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(8px);
+}
+.mobile-nav__panel > a:hover { color: var(--gold-vivid); }
+.mobile-nav__panel > .mobile-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 18px 28px;
+  background: var(--cream-warm);
+  color: var(--navy-deep);
+  border-radius: 999px;
+  border: 0;
+  font: 500 16px/1 'Inter', sans-serif;
+  letter-spacing: -0.005em;
+  text-align: center;
+}
+.mobile-nav.is-open .mobile-nav__panel > a {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* stagger entries */
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(1) { transition-delay: 0.08s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(2) { transition-delay: 0.14s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(3) { transition-delay: 0.20s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(4) { transition-delay: 0.26s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(5) { transition-delay: 0.32s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(6) { transition-delay: 0.38s; }
+
+@media (max-width: 1024px) {
+  body .nav__hamburger { display: block; }
+  body .nav .nav__links { display: none; }
+  body .nav { padding: 14px 24px !important; }
+  body .nav--scrolled { margin: 0 12px !important; padding: 10px 16px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav, .mobile-nav__panel > a, .nav__hamburger-bar { transition: none !important; }
+}
+/* ───── /Mobile hamburger + drawer ───── */
+</style>
+<script id="agmb-motion-head-bootstrap">
+  /* Synchronous head-stage bootstrap: decide whether to show the loader,
+     and pre-apply .agmb-cascade so hero children render hidden (no FOUC). */
+  (function () {
+    try {
+      /* Force native scroll restoration on refresh — without this the page-loader
+         + cascade can race the browser's restore and snap the page back to the hero. */
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch (e) {}
+
+      var KEY = 'agmb-loaded';
+      var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasFlag = false;
+      try { hasFlag = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+      var isReload = false;
+      try {
+        if (performance && performance.navigation) isReload = performance.navigation.type === 1;
+        else if (performance && performance.getEntriesByType) {
+          var n = performance.getEntriesByType('navigation');
+          if (n && n[0]) isReload = n[0].type === 'reload';
+        }
+      } catch (e) {}
+      /* On a real reload the browser will restore scroll itself — skip the loader so
+         we don't repaint a fullscreen overlay over a mid-page restore. The loader
+         only fires on a genuine first-load (no session flag, not a reload). */
+      var showLoader = !hasFlag && !isReload;
+      window.__agmbMotion = { showLoader: showLoader, reduced: REDUCED, hasFlag: hasFlag, isReload: isReload };
+      /* Only arm the hero cascade on a true first paint. Reloads + back-nav use
+         scroll restoration and shouldn't re-play the hero animation. */
+      if (!REDUCED && !hasFlag && !isReload) {
+        document.documentElement.classList.add('agmb-cascade');
+      }
+    } catch (e) { /* swallow */ }
+  })();
+</script>
+</head>
+<body>
+<!-- scroll progress thread -->
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scroll-progress"></div></div>
+
+<div class="page">
+
+  <!-- CONSTRUCTION HERO -->
+  <section class="hero hero--centered">
+    {% include "header.njk" %}
+
+    <div class="hero__content hero__content--centered">
+      <h1 class="h1 h1--centered">Build it stage by stage, <em style="color:#C8972A;">financed</em> stage by stage.</h1>
+      <p class="hero__lede hero__lede--centered">AG Mortgage Bank's Construction Finance facility funds the building of a single residential home on land you already own, drawn down in tranches against verified completion of foundation, lintel, roof, and finishing stages. Rates begin at approximately 14.0% per annum on a reducing-balance basis, with tenors of up to 10 years for the construction-and-mortgage combined package.</p>
+      <div class="con-stat-bar">
+        <div class="con-stat-cell">
+          <div class="con-stat-num">14.0% p.a.</div>
+          <div class="con-stat-label">Tranche rate</div>
+        </div>
+        <div class="con-stat-div"></div>
+        <div class="con-stat-cell">
+          <div class="con-stat-num">₦250M</div>
+          <div class="con-stat-label">Maximum loan</div>
+        </div>
+        <div class="con-stat-div"></div>
+        <div class="con-stat-cell">
+          <div class="con-stat-num">36 months</div>
+          <div class="con-stat-label">Build window</div>
+        </div>
+      </div>
+      <div class="ctas ctas--centered">
+        <a class="cta cta--primary" href="agmb-apply.html?route=classic">Start application <span>→</span></a>
+        <a class="cta cta--secondary" href="#calc">See your monthly <span>↓</span></a>
+      </div>
+    </div>
+
+    <div class="hero__viz" data-viz="construction" data-accent="#C8972A" style="max-width: 1600px;" aria-hidden="true">
+      <canvas class="tile-viz__canvas"></canvas>
+    </div>
+  </section>
+
+  <!-- CONSTRUCTION: HOW THIS WORKS -->
+  <section class="how con-how">
+    <div class="how__head">
+      <div class="eyebrow-row"><span style="background:#C8972A;border-radius:50%;display:inline-block;width:8px;height:8px;"></span><span>How it works</span></div>
+      <h2 class="h2">Four tranches. Four verified milestones.</h2>
+    </div>
+    <div class="steps">
+      <div class="step" style="border-top:3px solid #C8972A;">
+        <div class="step__num">01</div>
+        <div class="step__name">Foundation slab and DPC</div>
+        <div class="step__copy">Tranche one releases on site-prep completion. Funds the foundation slab and damp-proof course. A AGMB-appointed quantity surveyor verifies on site before disbursement — no self-certification.</div>
+      </div>
+      <div class="step" style="border-top:3px solid rgba(200,151,42,0.60);">
+        <div class="step__num">02</div>
+        <div class="step__name">Walls to lintel level</div>
+        <div class="step__copy">Tranche two funds walls rising to lintel level. Your contractor cannot draw the next tranche until the current stage is signed off by the QS and filed with us.</div>
+      </div>
+      <div class="step" style="border-top:3px solid rgba(200,151,42,0.38);">
+        <div class="step__num">03</div>
+        <div class="step__name">Roofing and external block-work</div>
+        <div class="step__copy">Tranche three funds roofing structure and external block-work to completion. At this point the building is weathertight and the risk profile materially reduces.</div>
+      </div>
+      <div class="step" style="border-top:3px solid rgba(200,151,42,0.18);">
+        <div class="step__num">04</div>
+        <div class="step__name">Plastering, electrical, plumbing, fit-out</div>
+        <div class="step__copy">Tranche four funds all interior finishing: plastering, electrical installation, plumbing, and final fittings. On practical completion the facility converts to a standard 15–20-year mortgage.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTRUCTION: ELIGIBILITY -->
+  <section class="con-eligibility">
+    <div class="con-eligibility__inner">
+      <div class="con-section-head">
+        <div class="eyebrow-row con-eyebrow-row"><span class="con-dot"></span><span>Eligibility</span></div>
+        <h2 class="h2" style="color:var(--cream-warm);">Who this is for.</h2>
+      </div>
+      <ul class="con-checklist">
+        <li class="con-check-item">
+          <span class="con-check-icon">✓</span>
+          <span>You hold a registered Governor's Consent or Certificate of Occupancy on the land — title must be perfected in your name before we open a file.</span>
+        </li>
+        <li class="con-check-item">
+          <span class="con-check-icon">✓</span>
+          <span>The plot carries an approved Lagos State Physical Planning (or relevant state) building permit and a stamped architectural drawing set from a COREN-registered firm.</span>
+        </li>
+        <li class="con-check-item">
+          <span class="con-check-icon">✓</span>
+          <span>You have a bill of quantities prepared by an NIQS-registered quantity surveyor, and a CAC-registered, tax-compliant, insured contractor ready to mobilise.</span>
+        </li>
+        <li class="con-check-item">
+          <span class="con-check-icon">✓</span>
+          <span>You can fund a 30% equity contribution into project escrow before the foundation tranche releases. We lend up to 70% of the verified BoQ figure.</span>
+        </li>
+        <li class="con-check-item">
+          <span class="con-check-icon">✓</span>
+          <span>The property is not on flood-prone unzoned land, family land with unclear title, or land in an area under active demolition order.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONSTRUCTION: DOCUMENTS -->
+  <section class="con-docs">
+    <div class="con-docs__inner">
+      <div class="con-section-head">
+        <div class="eyebrow-row con-eyebrow-row con-eyebrow-row--dark"><span class="con-dot con-dot--dark"></span><span>Documents</span></div>
+        <h2 class="h2" style="color:var(--navy-deep);">What you'll need.</h2>
+        <p class="lede" style="color:rgba(6,26,46,0.65);max-width:600px;margin-top:12px;">File completeness is the single biggest cause of tranche delays. Prepare these before submitting.</p>
+      </div>
+      <div class="con-docs-grid">
+        <div class="con-doc-item">
+          <div class="con-doc-cat">Title</div>
+          <div class="con-doc-name">Governor's Consent or C of O</div>
+          <div class="con-doc-note">Registered and perfected in your name. Family land or bare letters of allocation are not accepted.</div>
+        </div>
+        <div class="con-doc-item">
+          <div class="con-doc-cat">Planning</div>
+          <div class="con-doc-name">Approved building permit</div>
+          <div class="con-doc-note">State Physical Planning Authority approval with stamped drawing set from a COREN-registered architect.</div>
+        </div>
+        <div class="con-doc-item">
+          <div class="con-doc-cat">Costing</div>
+          <div class="con-doc-name">Bill of quantities (NIQS-registered QS)</div>
+          <div class="con-doc-note">Itemised BoQ signed and stamped by a NIQS-registered quantity surveyor. This is the basis for the loan amount.</div>
+        </div>
+        <div class="con-doc-item">
+          <div class="con-doc-cat">Contractor</div>
+          <div class="con-doc-name">Contractor profile + CAC + insurance</div>
+          <div class="con-doc-note">CAC registration, tax clearance, and contractors' all-risks insurance. Panel contractors available if needed.</div>
+        </div>
+        <div class="con-doc-item">
+          <div class="con-doc-cat">Identification</div>
+          <div class="con-doc-name">BVN, NIN, and proof of income</div>
+          <div class="con-doc-note">Last six months bank statements and proof of income or pension. Three payslips for salaried applicants.</div>
+        </div>
+        <div class="con-doc-item">
+          <div class="con-doc-cat">Equity</div>
+          <div class="con-doc-name">Equity contribution deposit confirmation</div>
+          <div class="con-doc-note">30% of the BoQ value deposited into the project escrow account before the foundation tranche releases.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTRUCTION: RATE + TENURE PANEL -->
+  <section class="con-numbers">
+    <div class="con-numbers__inner">
+      <div class="con-section-head">
+        <div class="eyebrow-row con-eyebrow-row"><span class="con-dot"></span><span>Pricing</span></div>
+        <h2 class="h2" style="color:var(--cream-warm);">The numbers, in plain sight.</h2>
+      </div>
+      <div class="con-numbers-grid">
+        <div class="con-num-cell">
+          <div class="con-num-big">14.0%</div>
+          <div class="con-num-label">Per annum — reducing balance</div>
+          <div class="con-num-note">Construction phase rate. Applied to drawn-down tranches only, not the full facility.</div>
+        </div>
+        <div class="con-num-cell">
+          <div class="con-num-big">₦250M</div>
+          <div class="con-num-label">Maximum facility size</div>
+          <div class="con-num-note">Subject to verified BoQ and 70% LTV. Minimum facility is ₦15M.</div>
+        </div>
+        <div class="con-num-cell">
+          <div class="con-num-big">36 mo.</div>
+          <div class="con-num-label">Build window</div>
+          <div class="con-num-note">Construction phase must complete within 36 months. Converts to a 15–20-year mortgage on practical completion.</div>
+        </div>
+      </div>
+      <p class="con-rate-note">Rate is frozen at offer for ninety days. Construction-phase rates are reviewed at tranche release, not locked for the full build window — variable-rate adjustments are published quarterly. On conversion to a standard mortgage, the rate is reset at conversion against the prevailing AGMB indicative rate.</p>
+    </div>
+  </section>
+
+  <!-- (calculator lives on agmb-calculator.html — use the link in nav) -->
+
+  <!-- CONSTRUCTION: USE CASES -->
+  <section class="con-usecases">
+    <div class="con-usecases__inner">
+      <div class="con-section-head">
+        <div class="eyebrow-row con-eyebrow-row con-eyebrow-row--dark"><span class="con-dot con-dot--dark"></span><span>Use cases</span></div>
+        <h2 class="h2" style="color:var(--navy-deep);">Three builds, three plans.</h2>
+      </div>
+      <div class="con-scenario-grid">
+        <div class="con-scenario">
+          <div class="con-scenario-label">Scenario 01</div>
+          <div class="con-scenario-name">Lagos Island — 4-bedroom detached</div>
+          <div class="con-scenario-body">A Lagos-based civil engineer owns a 450m² plot in Lekki Phase 2 with a registered C of O. BoQ: ₦180M. AGMB funds ₦126M (70%), with ₦54M in escrow. Four tranches over 28 months. On completion, the facility converts to a 20-year mortgage at the prevailing rate.</div>
+          <div class="con-scenario-stat"><span>₦126M</span> <span>funded at 14.0% p.a.</span></div>
+        </div>
+        <div class="con-scenario">
+          <div class="con-scenario-label">Scenario 02</div>
+          <div class="con-scenario-name">Abuja — 3-bedroom semi-detached</div>
+          <div class="con-scenario-body">A civil servant couple holds Governor's Consent on a 300m² plot in Gwarimpa. BoQ: ₦65M. AGMB funds ₦45.5M. Build target: 18 months. They select a panel contractor from the Abuja register. Tranche inspection intervals: 5–7 working days per sign-off.</div>
+          <div class="con-scenario-stat"><span>₦45.5M</span> <span>four tranches, 18 months</span></div>
+        </div>
+        <div class="con-scenario">
+          <div class="con-scenario-label">Scenario 03</div>
+          <div class="con-scenario-name">Port Harcourt — 2-bedroom bungalow + BQ</div>
+          <div class="con-scenario-body">A retired teacher owns a plot in Rumuola and is using her gratuity as the 30% equity. BoQ: ₦38M. AGMB funds ₦26.6M. Smaller facility, shorter tenor. Build window: 14 months. Converts to a 10-year mortgage at completion.</div>
+          <div class="con-scenario-stat"><span>₦26.6M</span> <span>10-year mortgage on completion</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTRUCTION: FAQ -->
+  <section class="con-faq">
+    <div class="con-faq__inner">
+      <div class="con-section-head">
+        <div class="eyebrow-row con-eyebrow-row"><span class="con-dot"></span><span>FAQ</span></div>
+        <h2 class="h2" style="color:var(--cream-warm);">Frequently asked.</h2>
+      </div>
+      <div class="con-faq-list" role="list">
+        <div class="con-faq-item" role="listitem">
+          <button class="con-faq-q" aria-expanded="false">Can I act as my own contractor?</button>
+          <div class="con-faq-a" hidden>Only if you are a COREN-registered builder or engineer and you carry the insurance equivalent. We will accept owner-builder applications case by case.</div>
+        </div>
+        <div class="con-faq-item" role="listitem">
+          <button class="con-faq-q" aria-expanded="false">How long does each tranche take to release?</button>
+          <div class="con-faq-a" hidden>Five to ten working days from the QS inspection report being filed.</div>
+        </div>
+        <div class="con-faq-item" role="listitem">
+          <button class="con-faq-q" aria-expanded="false">What if my contractor walks off mid-project?</button>
+          <div class="con-faq-a" hidden>The retention bond covers re-procurement costs. We will introduce you to a panel contractor and the file continues — provided the unfinished work is recoverable.</div>
+        </div>
+        <div class="con-faq-item" role="listitem">
+          <button class="con-faq-q" aria-expanded="false">Can I switch the bill of quantities mid-build?</button>
+          <div class="con-faq-a" hidden>Yes, through formal variation orders. Material reductions in scope may trigger a loan-amount adjustment downwards.</div>
+        </div>
+        <div class="con-faq-item" role="listitem">
+          <button class="con-faq-q" aria-expanded="false">Do you lend on land purchase plus construction in one facility?</button>
+          <div class="con-faq-a" hidden>No. Land purchase is a separate transaction and is not a product we finance. Title must already be perfected in your name before we open the construction file.</div>
+        </div>
+        <div class="con-faq-item" role="listitem">
+          <button class="con-faq-q" aria-expanded="false">What happens if the project runs over budget?</button>
+          <div class="con-faq-a" hidden>A 10% contingency is held back against material-price moves and scope variations. If the project runs materially over budget, the loan can be reviewed upward subject to fresh appraisal — but not automatically. Documented variation orders signed by you, the contractor, and the QS are required.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSTRUCTION: FINAL CTA -->
+  <section class="con-final-cta">
+    <div class="con-final-cta__inner">
+      <div class="con-section-head">
+        <h2 class="h2" style="color:var(--navy-deep);max-width:700px;">Submit a project brief for a no-obligation feasibility review.</h2>
+        <p class="lede" style="color:rgba(6,26,46,0.65);max-width:580px;margin-top:16px;">We review title, planning approval, and BoQ completeness before issuing an indicative offer. No commitment, no credit check at this stage. A Construction Finance advisor calls within two working days.</p>
+      </div>
+      <div class="ctas" style="margin-top:8px;">
+        <a class="cta cta--primary" href="agmb-apply.html?route=classic" style="background:#C8972A;color:#fff;border-color:#C8972A;">Start your Construction Finance application <span>→</span></a>
+      </div>
+      <p class="con-reassurance">Reviewed by a human. No automated pipeline. Your documents are handled under AGMB's ISO 9001:2015 quality-management framework.</p>
+    </div>
+  </section>
+
+  <!-- ADVISORY (LOCKED) -->
+  <section style="background:#000;padding:80px;">
+    <div class="advisory">
+      <div class="advisory__inner">
+        <div class="advisory__cat">Talk to a mortgage advisor</div>
+        <div class="advisory__title">Not sure which product fits? We'll route you.</div>
+        <div class="advisory__copy">One call to walk through eligibility for NHF, M-REIF, Commercial, Construction, and REI. No commitment.</div>
+      </div>
+      <div class="advisory__aside">
+        <div class="advisory__stat">
+          <div class="advisory__stat-num"><em>21</em> years</div>
+          <div class="advisory__stat-sub">advising Nigerian homebuyers since 2005</div>
+        </div>
+        <a class="advisory__cta" href="agmb-contact.html">Book a 15-minute call <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <!-- (regulatory disclosures live on agmb-about.html — single source of truth) -->
+
+  <!-- (newsroom lives on the home page) -->
+
+  <!-- FOOTER -->
+  {% include "footer.njk" %}
+
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ───── calculator: routes per /apply spec ─────────────────────── */
+  const SEGMENTS = {
+    nhf:      { rate: 6.0,  cap: 15_000_000,  label: 'National Housing Fund', short: 'NHF',      rateLabel: '6.0% p.a. · fixed' },
+    mreif:    { rate: 9.5,  cap: 50_000_000,  label: 'M-REIF · Underserved',  short: 'M-REIF',   rateLabel: '9.5% p.a. · indicative' },
+    classic:  { rate: 22.0, cap: null,        label: 'Classic Mortgage',      short: 'Classic',  rateLabel: '22.0% p.a. · indicative' },
+    diaspora: { rate: 18.0, cap: 80_000_000,  label: 'Diaspora-NHF',          short: 'Diaspora', rateLabel: '18.0% p.a. · indicative' }
+  };
+
+  const state = {
+    segment: 'nhf',
+    property: 116_500_000,
+    downPct: 20,
+    tenor: 20
+  };
+
+  const $ = id => document.getElementById(id);
+
+  // Reducing-balance amortization per CBN guidelines
+  function amortize(P, annualRatePct, years) {
+    const r = annualRatePct / 100 / 12;
+    const n = years * 12;
+    if (P <= 0 || n <= 0) return { monthly: 0, total: 0, interest: 0 };
+    if (r === 0) return { monthly: P / n, total: P, interest: 0 };
+    const factor = Math.pow(1 + r, n);
+    const M = P * r * factor / (factor - 1);
+    return { monthly: M, total: M * n, interest: M * n - P };
+  }
+
+  function naira(n) {
+    return '₦' + Math.round(n).toLocaleString('en-NG');
+  }
+
+  function update() {
+    const seg = SEGMENTS[state.segment];
+    const desired = state.property * (1 - state.downPct / 100);
+    const principal = seg.cap ? Math.min(desired, seg.cap) : desired;
+    const downAmount = state.property * state.downPct / 100;
+    const out = amortize(principal, seg.rate, state.tenor);
+    const ltv = (principal / state.property) * 100;
+    const interestPct = out.total > 0 ? (out.interest / out.total) * 100 : 0;
+    const principalPct = 100 - interestPct;
+
+    $('val-property').textContent = naira(state.property);
+    $('val-downpayment-amt').textContent = naira(downAmount);
+    $('val-downpayment-pct').textContent = '% ' + state.downPct;
+    $('val-tenor').textContent = '↳ ' + state.tenor;
+    $('val-ltv-pct').textContent = ltv.toFixed(0) + '%';
+    $('val-ltv-bar').style.width = ltv + '%';
+    $('val-route-label').textContent = 'Route · ' + seg.label;
+    $('val-rate-label').textContent = 'At ' + seg.rateLabel;
+    $('val-monthly').textContent = naira(out.monthly) + '/mo';
+    $('val-interest-pct').textContent = 'Interest ' + interestPct.toFixed(0) + '%';
+    $('val-pi-principal').textContent = naira(principal);
+    $('val-pi-interest').textContent = naira(out.interest);
+    $('val-ratio-principal').style.width = principalPct + '%';
+    $('val-ratio-interest').style.width = interestPct + '%';
+    $('val-principal').textContent = naira(principal);
+    $('val-total-repay').textContent = naira(out.total);
+
+    const cap = $('cap-notice');
+    if (seg.cap && desired > seg.cap) {
+      const shortfall = desired - seg.cap;
+      cap.textContent = seg.short + ' caps principal at ' + naira(seg.cap) + ' — ' + naira(shortfall) + ' top-up arranged separately.';
+      cap.style.display = 'block';
+    } else {
+      cap.style.display = 'none';
+    }
+  }
+
+  /* GUARD: calc widget removed — bind sliders only if DOM present */
+  if ($('slider-property')) {
+    $('slider-property').addEventListener('input', e => { state.property = +e.target.value; update(); });
+    $('slider-downpayment').addEventListener('input', e => { state.downPct = +e.target.value; update(); });
+    $('slider-tenor').addEventListener('input', e => { state.tenor = +e.target.value; update(); });
+  }
+
+  function pulseMonthly() {
+    const big = $('val-monthly');
+    big.classList.remove('updating');
+    void big.offsetWidth; // force reflow so class re-add triggers animation
+    big.classList.add('updating');
+  }
+
+  document.querySelectorAll('.seg__item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.seg__item').forEach(b => b.classList.remove('seg__item--active'));
+      btn.classList.add('seg__item--active');
+      state.segment = btn.dataset.segment;
+      update();
+      pulseMonthly();
+    });
+  });
+
+  if ($('val-property')) update();
+
+  /* render the data-animate stat numerics statically (no count-up) */
+  document.querySelectorAll('[data-animate]').forEach(el => {
+    const target = parseFloat(el.dataset.target);
+    el.textContent = el.dataset.format === 'billions'
+      ? '₦' + target.toFixed(1) + 'B+'
+      : Math.round(target).toString();
+  });
+
+  /* nav: solid bar at top → floating glass pill on scroll
+     + hero parallax: viz-stage + viz-trace scale 1.00 → 1.05 over scrollY 0–600 */
+  const nav = document.querySelector('.nav');
+  const heroStage = document.querySelector('.hero__viz-stage');
+  const heroTrace = document.querySelector('.hero__viz-trace');
+  const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let rafQ = false;
+  window.addEventListener('scroll', () => {
+    if (rafQ) return; rafQ = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      nav.classList.toggle('nav--scrolled', y > 80);
+
+      if (heroStage && !REDUCED_MOTION) {
+        const t = Math.min(Math.max(y / 600, 0), 1);
+        const scale = 1 + t * 0.05;
+        const tr = `translateY(-60px) scale(${scale.toFixed(4)})`;
+        heroStage.style.transform = tr;
+        if (heroTrace) heroTrace.style.transform = tr;
+      }
+      rafQ = false;
+    });
+  }, { passive: true });
+
+  /* hero building viz: trace canvas — particles light up the building's
+     bright pixels only where the cursor passes (no flying, no scatter) */
+  const traceCanvas = document.getElementById('trace-canvas');
+  if (traceCanvas) {
+    const tctx = traceCanvas.getContext('2d');
+    const HOVER_RADIUS = 200;        // wider area lights up at once
+    const STEP = 4;                  // tighter sampling = more particles available
+    const BRIGHTNESS_THR = 130;
+    const PT_SIZE = 2.6;             // bigger dots so they read
+
+    let lines = [];                  // {x, y} cells lying on bright building pixels
+    const mouse = { x: -10000, y: -10000 };
+    let drawing = false;
+
+    const tImg = new Image();
+    tImg.src = 'agmb-particle-building.png';
+    tImg.onload = () => {
+      const targetW = 1600;
+      const s = targetW / tImg.naturalWidth;
+      const w = Math.floor(tImg.naturalWidth * s);
+      const h = Math.floor(tImg.naturalHeight * s);
+      traceCanvas.width = w;
+      traceCanvas.height = h;
+
+      const off = document.createElement('canvas');
+      off.width = w; off.height = h;
+      const octx = off.getContext('2d');
+      octx.drawImage(tImg, 0, 0, w, h);
+      const d = octx.getImageData(0, 0, w, h).data;
+
+      for (let y = 0; y < h; y += STEP) {
+        for (let x = 0; x < w; x += STEP) {
+          const i = (y * w + x) * 4;
+          const lum = (d[i] + d[i+1] + d[i+2]) / 3;
+          if (lum > BRIGHTNESS_THR) {
+            lines.push({ x: x, y: y, lum: lum });
+          }
+        }
+      }
+      drawing = true;
+      requestAnimationFrame(traceLoop);
+    };
+
+    function traceLoop() {
+      tctx.clearRect(0, 0, traceCanvas.width, traceCanvas.height);
+      const R = HOVER_RADIUS;
+      const R2 = R * R;
+      for (let i = 0, n = lines.length; i < n; i++) {
+        const p = lines[i];
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < R2) {
+          const k = 1 - Math.sqrt(d2) / R;
+          /* much brighter — base 0.85 + lum boost, sqrt curve so the
+             halo fades softer at the edge instead of sharply */
+          const a = Math.sqrt(k) * (0.85 + (p.lum / 255) * 0.15);
+          tctx.fillStyle = `rgba(250,243,232,${a.toFixed(3)})`;
+          tctx.fillRect(p.x, p.y, PT_SIZE, PT_SIZE);
+        }
+      }
+      if (drawing) requestAnimationFrame(traceLoop);
+    }
+
+    function setTraceMouse(e) {
+      const rect = traceCanvas.getBoundingClientRect();
+      const sx = traceCanvas.width / rect.width;
+      const sy = traceCanvas.height / rect.height;
+      mouse.x = (e.clientX - rect.left) * sx;
+      mouse.y = (e.clientY - rect.top) * sy;
+    }
+    traceCanvas.addEventListener('mousemove', setTraceMouse);
+    traceCanvas.addEventListener('mouseleave', () => { mouse.x = -10000; mouse.y = -10000; });
+    traceCanvas.addEventListener('touchmove', e => {
+      if (e.touches && e.touches[0]) setTraceMouse(e.touches[0]);
+    }, { passive: true });
+  }
+
+  /* tile + story + featured keyboard activation */
+  document.querySelectorAll('.tile, .story, .featured__tile').forEach(el => {
+    el.setAttribute('tabindex', '0');
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
+
+  /* ───── BENTO TILE INTERACTIVE VISUALS ───────────────────────────
+     Each tile carries its own silhouette: house (NHF), refinance arch
+     (M-REIF), stacked construction (Construction), skyline (REIF),
+     storefront (Commercial). Particles sit at low default alpha and
+     brighten where the cursor passes, in the tile's accent colour. */
+  function hexToRgb(hex) {
+    const m = hex.replace('#','');
+    return {
+      r: parseInt(m.substring(0,2), 16),
+      g: parseInt(m.substring(2,4), 16),
+      b: parseInt(m.substring(4,6), 16)
+    };
+  }
+
+  const SILHOUETTES = {
+    /* NHF — rigid filled 2-storey home with chunky roof, chimney, gridded
+       windows + door punched out. Filled trees flank. */
+    nhf(ctx, w, h) {
+      ctx.fillStyle = '#fff';
+      const base = h * 0.88;
+      const houseW = w * 0.50;
+      const houseH = h * 0.60;
+      const hx = (w - houseW) / 2;
+      const hy = base - houseH;
+
+      // pitched roof (filled triangle, slight overhang)
+      ctx.beginPath();
+      ctx.moveTo(hx - 14, hy + 6);
+      ctx.lineTo(hx + houseW / 2, hy - houseH * 0.32);
+      ctx.lineTo(hx + houseW + 14, hy + 6);
+      ctx.closePath();
+      ctx.fill();
+
+      // chimney (filled block on right side of roof)
+      ctx.fillRect(hx + houseW * 0.74, hy - houseH * 0.24, houseW * 0.08, houseH * 0.30);
+
+      // main body (filled mass)
+      ctx.fillRect(hx, hy, houseW, houseH);
+
+      // upper floor — 3 windows punched out (rigid grid)
+      const upH = houseH * 0.22, upY = hy + houseH * 0.10;
+      const upW = houseW * 0.18;
+      ctx.clearRect(hx + houseW * 0.10, upY, upW, upH);
+      ctx.clearRect(hx + houseW * 0.41, upY, upW, upH);
+      ctx.clearRect(hx + houseW * 0.72, upY, upW, upH);
+
+      // floor divider (kept as solid mass via not punching anything here)
+
+      // ground floor — 2 windows + central door
+      const gfTop = hy + houseH * 0.52, gfH = houseH * 0.36;
+      ctx.clearRect(hx + houseW * 0.08, gfTop, houseW * 0.20, gfH * 0.78);  // L window
+      ctx.clearRect(hx + houseW * 0.72, gfTop, houseW * 0.20, gfH * 0.78);  // R window
+      // door — taller, reaches near base
+      ctx.clearRect(hx + houseW * 0.41, gfTop - houseH * 0.04, houseW * 0.18, gfH * 0.96);
+
+      // filled trees flanking — chunky foliage masses + trunks
+      ctx.beginPath();
+      ctx.arc(hx - houseW * 0.10, base - houseH * 0.18, houseH * 0.10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(hx - houseW * 0.10 - 3, base - houseH * 0.08, 6, houseH * 0.08);
+      ctx.beginPath();
+      ctx.arc(hx + houseW + houseW * 0.10, base - houseH * 0.18, houseH * 0.10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(hx + houseW + houseW * 0.10 - 3, base - houseH * 0.08, 6, houseH * 0.08);
+
+      // ground line (thick filled strip)
+      ctx.fillRect(0, base, w, 3);
+    },
+
+    /* M-REIF — refinance: small filled bungalow → tall filled apartment.
+       Both filled solid with window grids punched out. */
+    mreif(ctx, w, h) {
+      ctx.fillStyle = '#fff';
+      const base = h * 0.88;
+
+      // LEFT: small bungalow (single storey, pitched roof)
+      const lw = w * 0.30, lh = h * 0.36;
+      const lx = w * 0.04, ly = base - lh;
+      // roof
+      ctx.beginPath();
+      ctx.moveTo(lx - 6, ly + 4);
+      ctx.lineTo(lx + lw / 2, ly - lh * 0.40);
+      ctx.lineTo(lx + lw + 6, ly + 4);
+      ctx.closePath();
+      ctx.fill();
+      // body
+      ctx.fillRect(lx, ly, lw, lh);
+      // punch window + door
+      ctx.clearRect(lx + lw * 0.12, ly + lh * 0.20, lw * 0.30, lh * 0.45);
+      ctx.clearRect(lx + lw * 0.58, ly + lh * 0.32, lw * 0.30, lh * 0.60);
+
+      // arrow connecting them (filled chevron)
+      const ax = w * 0.40, ay = base - h * 0.28;
+      const ah = h * 0.06;
+      ctx.fillRect(ax, ay, w * 0.14, ah);
+      ctx.beginPath();
+      ctx.moveTo(ax + w * 0.14, ay - ah * 0.6);
+      ctx.lineTo(ax + w * 0.14 + ah * 1.2, ay + ah / 2);
+      ctx.lineTo(ax + w * 0.14, ay + ah * 1.6);
+      ctx.closePath();
+      ctx.fill();
+
+      // RIGHT: tall 3-storey apartment (filled with window grid)
+      const rw = w * 0.32, rh = h * 0.74;
+      const rx = w * 0.62, ry = base - rh;
+      // flat roof cap
+      ctx.fillRect(rx - 4, ry - h * 0.025, rw + 8, h * 0.025);
+      // body
+      ctx.fillRect(rx, ry, rw, rh);
+      // 3 rows × 3 cols window grid punched out
+      const rows = 3, cols = 3;
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const wx = rx + rw * (0.10 + col * 0.28);
+          const wy = ry + rh * (0.08 + row * 0.25);
+          ctx.clearRect(wx, wy, rw * 0.20, rh * 0.16);
+        }
+      }
+      // entrance door at ground centre
+      ctx.clearRect(rx + rw * 0.38, ry + rh * 0.84, rw * 0.24, rh * 0.16);
+
+      ctx.fillRect(0, base, w, 3);
+    },
+
+    /* Construction — 4 sequential build phases, left to right.
+       Each phase grows in density and detail. */
+    construction(ctx, w, h) {
+      ctx.fillStyle = '#fff';
+      const base = h * 0.93;
+      const pw = w * 0.20, gap = w * 0.046;
+      let x = w * 0.025;
+
+      // PHASE 1: foundation slab (low filled strip)
+      ctx.fillRect(x, base - h * 0.12, pw, h * 0.12);
+      x += pw + gap;
+
+      // PHASE 2: skeleton frame — 4 columns + 3 horizontal floor lines
+      const fh = h * 0.72, fy = base - fh;
+      const colW = pw * 0.06;
+      for (let i = 0; i < 4; i++) {
+        ctx.fillRect(x + (pw - colW) * (i / 3), fy, colW, fh);
+      }
+      ctx.fillRect(x, fy, pw, h * 0.020);                  // top
+      ctx.fillRect(x, fy + fh * 0.50 - h * 0.010, pw, h * 0.020);  // mid
+      ctx.fillRect(x, fy + fh - h * 0.020, pw, h * 0.020); // bottom
+      x += pw + gap;
+
+      // PHASE 3: walls going up — filled with open right side at ground
+      const wh3 = h * 0.80, w3y = base - wh3;
+      ctx.fillRect(x, w3y, pw, wh3);
+      // open right ground (still under construction)
+      ctx.clearRect(x + pw * 0.52, w3y + wh3 * 0.50, pw * 0.50, wh3 * 0.50);
+      // small window upper-left
+      ctx.clearRect(x + pw * 0.15, w3y + wh3 * 0.15, pw * 0.28, wh3 * 0.18);
+      // small window upper-right
+      ctx.clearRect(x + pw * 0.55, w3y + wh3 * 0.15, pw * 0.28, wh3 * 0.18);
+      x += pw + gap;
+
+      // PHASE 4: complete — pitched roof + 2x3 window grid
+      const wh4 = h * 0.83, w4y = base - wh4;
+      ctx.beginPath();
+      ctx.moveTo(x - 4, w4y + 4);
+      ctx.lineTo(x + pw / 2, w4y - h * 0.05);
+      ctx.lineTo(x + pw + 4, w4y + 4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillRect(x, w4y, pw, wh4);
+      // 2 cols × 3 rows windows
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 2; col++) {
+          ctx.clearRect(x + pw * (0.18 + col * 0.40), w4y + wh4 * (0.10 + row * 0.22), pw * 0.26, wh4 * 0.14);
+        }
+      }
+      // door
+      ctx.clearRect(x + pw * 0.40, w4y + wh4 * 0.78, pw * 0.22, wh4 * 0.22);
+
+      ctx.fillRect(0, base, w, 3);
+    },
+
+    /* REIF — dense city skyline with 10 filled buildings of varied
+       heights, each carrying a rigid grid of punched window slots.
+       Matches the reference image: rigid blocks, dotted facades, scattered
+       reflection points beneath. */
+    reif(ctx, w, h) {
+      ctx.fillStyle = '#fff';
+      const base = h * 0.84;
+
+      const buildings = [
+        { x: 0.00, w: 0.10, hRatio: 0.42, cols: 3, rows: 5 },
+        { x: 0.09, w: 0.09, hRatio: 0.60, cols: 3, rows: 7 },
+        { x: 0.17, w: 0.12, hRatio: 0.86, cols: 4, rows: 10 },  // tower
+        { x: 0.28, w: 0.10, hRatio: 0.55, cols: 3, rows: 6 },
+        { x: 0.37, w: 0.09, hRatio: 0.72, cols: 3, rows: 8 },
+        { x: 0.45, w: 0.13, hRatio: 0.98, cols: 4, rows: 12 },  // tallest centre tower
+        { x: 0.57, w: 0.09, hRatio: 0.62, cols: 3, rows: 7 },
+        { x: 0.65, w: 0.12, hRatio: 0.80, cols: 4, rows: 9 },
+        { x: 0.76, w: 0.10, hRatio: 0.55, cols: 3, rows: 6 },
+        { x: 0.85, w: 0.10, hRatio: 0.42, cols: 3, rows: 5 },
+        { x: 0.93, w: 0.07, hRatio: 0.36, cols: 2, rows: 4 }
+      ];
+
+      for (const b of buildings) {
+        const bx = b.x * w;
+        const bw = b.w * w;
+        const bh = b.hRatio * base * 0.90;
+        const by = base - bh;
+        // body
+        ctx.fillRect(bx, by, bw, bh);
+        // window grid punched out
+        const padX = 0.14, padY = 0.05;
+        const colW = (bw * (1 - 2 * padX)) / b.cols;
+        const rowH = (bh * (1 - 2 * padY)) / b.rows;
+        const winW = colW * 0.55;
+        const winH = rowH * 0.55;
+        const offX = (colW - winW) / 2;
+        const offY = (rowH - winH) / 2;
+        for (let r = 0; r < b.rows; r++) {
+          for (let c = 0; c < b.cols; c++) {
+            const wx = bx + bw * padX + c * colW + offX;
+            const wy = by + bh * padY + r * rowH + offY;
+            if (winW > 0.8 && winH > 0.8) ctx.clearRect(wx, wy, winW, winH);
+          }
+        }
+      }
+
+      // ground line
+      ctx.fillRect(0, base, w, 3);
+    },
+
+    /* Commercial — rigid filled storefront: signage band, awning strip,
+       big glass storefront windows punched out at ground level, smaller
+       upper-floor windows in a strict grid. */
+    commercial(ctx, w, h) {
+      ctx.fillStyle = '#fff';
+      const base = h * 0.88;
+      const bw = w * 0.76;
+      const bh = h * 0.66;
+      const bx = (w - bw) / 2;
+      const by = base - bh;
+
+      // building body
+      ctx.fillRect(bx, by, bw, bh);
+
+      // signage band (filled bar across the top)
+      const sigY = by + bh * 0.04;
+      const sigH = bh * 0.10;
+      ctx.fillRect(bx - 6, sigY, bw + 12, sigH);
+      // punch 5 letter slots for "SIGNAGE" feel
+      for (let i = 0; i < 5; i++) {
+        ctx.clearRect(bx + bw * (0.22 + i * 0.12), sigY + sigH * 0.25, bw * 0.06, sigH * 0.50);
+      }
+
+      // awning strip — narrow protruding horizontal bar above ground floor
+      const awY = by + bh * 0.46;
+      ctx.fillRect(bx - 10, awY, bw + 20, bh * 0.05);
+
+      // upper-floor window row (4 small windows, strict grid)
+      const upY = by + bh * 0.22, upH = bh * 0.16;
+      for (let i = 0; i < 4; i++) {
+        const wx = bx + bw * (0.09 + i * 0.21);
+        ctx.clearRect(wx, upY, bw * 0.14, upH);
+      }
+
+      // ground floor storefront — 3 large windows + central entrance
+      const gfY = by + bh * 0.58, gfH = bh * 0.36;
+      ctx.clearRect(bx + bw * 0.07, gfY, bw * 0.22, gfH * 0.92);
+      ctx.clearRect(bx + bw * 0.39, gfY, bw * 0.22, gfH * 0.92);
+      ctx.clearRect(bx + bw * 0.71, gfY, bw * 0.22, gfH * 0.92);
+
+      ctx.fillRect(0, base, w, 3);
+    }
+  };
+
+  /* legacy outline silhouettes removed — superseded by filled+windowed blocks above */
+  const _UNUSED_OUTLINE_LEGACY = { _placeholder(ctx, w, h) {
+      const base = h * 0.86, cx = w * 0.5;
+      const ww = w * 0.52, hh = h * 0.62;
+      const x = cx - ww / 2;
+      const y = base - hh;
+      /* main facade — 2 storeys */
+      ctx.strokeRect(x, y, ww, hh);
+      /* floor divider */
+      ctx.beginPath();
+      ctx.moveTo(x, y + hh * 0.50);
+      ctx.lineTo(x + ww, y + hh * 0.50);
+      ctx.stroke();
+      /* hipped roof */
+      ctx.beginPath();
+      ctx.moveTo(x - 12, y);
+      ctx.lineTo(x + ww * 0.30, y - hh * 0.22);
+      ctx.lineTo(x + ww * 0.70, y - hh * 0.22);
+      ctx.lineTo(x + ww + 12, y);
+      ctx.stroke();
+      /* roof ridge tick */
+      ctx.beginPath();
+      ctx.moveTo(x + ww * 0.30, y - hh * 0.22);
+      ctx.lineTo(x + ww * 0.70, y - hh * 0.22);
+      ctx.stroke();
+      /* chimney */
+      ctx.strokeRect(x + ww * 0.78, y - hh * 0.32, ww * 0.08, hh * 0.18);
+      /* upper-floor windows (4) */
+      const uy = y + hh * 0.10, uw = ww * 0.14, uh = hh * 0.22;
+      for (let i = 0; i < 4; i++) {
+        const ux = x + ww * (0.07 + i * 0.22);
+        ctx.strokeRect(ux, uy, uw, uh);
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(ux + uw/2, uy); ctx.lineTo(ux + uw/2, uy + uh);
+        ctx.moveTo(ux, uy + uh/2); ctx.lineTo(ux + uw, uy + uh/2);
+        ctx.stroke();
+        ctx.lineWidth = 2;
+      }
+      /* ground floor: porch + columns + door + flanking windows */
+      const gfy = y + hh * 0.55;
+      /* porch roof */
+      ctx.beginPath();
+      ctx.moveTo(x + ww * 0.22, gfy);
+      ctx.lineTo(x + ww * 0.22, gfy + hh * 0.10);
+      ctx.lineTo(x + ww * 0.78, gfy + hh * 0.10);
+      ctx.lineTo(x + ww * 0.78, gfy);
+      ctx.stroke();
+      /* columns */
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(x + ww * 0.26, gfy + hh * 0.10);
+      ctx.lineTo(x + ww * 0.26, gfy + hh * 0.40);
+      ctx.moveTo(x + ww * 0.46, gfy + hh * 0.10);
+      ctx.lineTo(x + ww * 0.46, gfy + hh * 0.40);
+      ctx.moveTo(x + ww * 0.54, gfy + hh * 0.10);
+      ctx.lineTo(x + ww * 0.54, gfy + hh * 0.40);
+      ctx.moveTo(x + ww * 0.74, gfy + hh * 0.10);
+      ctx.lineTo(x + ww * 0.74, gfy + hh * 0.40);
+      ctx.stroke();
+      /* door under porch */
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x + ww * 0.44, gfy + hh * 0.16, ww * 0.12, hh * 0.28);
+      /* door handle */
+      ctx.beginPath();
+      ctx.arc(x + ww * 0.52, gfy + hh * 0.30, 1.2, 0, Math.PI * 2);
+      ctx.stroke();
+      /* steps to door */
+      ctx.lineWidth = 1.2;
+      for (let s = 0; s < 3; s++) {
+        ctx.beginPath();
+        ctx.moveTo(x + ww * 0.38, gfy + hh * 0.44 + s * 2);
+        ctx.lineTo(x + ww * 0.62, gfy + hh * 0.44 + s * 2);
+        ctx.stroke();
+      }
+      /* flanking ground-floor windows */
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x + ww * 0.06, gfy + hh * 0.14, ww * 0.14, hh * 0.22);
+      ctx.strokeRect(x + ww * 0.80, gfy + hh * 0.14, ww * 0.14, hh * 0.22);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x + ww * 0.06 + ww * 0.07, gfy + hh * 0.14);
+      ctx.lineTo(x + ww * 0.06 + ww * 0.07, gfy + hh * 0.36);
+      ctx.moveTo(x + ww * 0.06, gfy + hh * 0.25);
+      ctx.lineTo(x + ww * 0.20, gfy + hh * 0.25);
+      ctx.moveTo(x + ww * 0.80 + ww * 0.07, gfy + hh * 0.14);
+      ctx.lineTo(x + ww * 0.80 + ww * 0.07, gfy + hh * 0.36);
+      ctx.moveTo(x + ww * 0.80, gfy + hh * 0.25);
+      ctx.lineTo(x + ww * 0.94, gfy + hh * 0.25);
+      ctx.stroke();
+      /* low fence around the property */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(x - w * 0.04, base);
+      ctx.lineTo(x - w * 0.04, base - hh * 0.10);
+      ctx.lineTo(x + ww + w * 0.04, base - hh * 0.10);
+      ctx.lineTo(x + ww + w * 0.04, base);
+      ctx.stroke();
+      ctx.lineWidth = 1;
+      for (let i = 0; i < 9; i++) {
+        const fx = x - w * 0.04 + (i + 1) * (ww + w * 0.08) / 10;
+        ctx.beginPath();
+        ctx.moveTo(fx, base - hh * 0.10);
+        ctx.lineTo(fx, base);
+        ctx.stroke();
+      }
+      /* trees on either flank */
+      function tree(tx, ty, scale) {
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.arc(tx, ty - 10 * scale, 16 * scale, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(tx, ty + 6 * scale);
+        ctx.lineTo(tx, ty + 18 * scale);
+        ctx.stroke();
+      }
+      tree(x - w * 0.08, base - hh * 0.04, hh / 220);
+      tree(x + ww + w * 0.08, base - hh * 0.04, hh / 220);
+      /* ground line */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(0, base);
+      ctx.lineTo(w, base);
+      ctx.stroke();
+    },
+
+    /* M-REIF — bungalow → arrow → 2-storey upgraded home (refinance) */
+    mreif(ctx, w, h) {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+      const base = h * 0.86;
+      /* left: small bungalow */
+      const sw = w * 0.24, sh = h * 0.40;
+      const sx = w * 0.06;
+      const sy = base - sh;
+      ctx.strokeRect(sx, sy + sh * 0.32, sw, sh * 0.68);
+      ctx.beginPath();
+      ctx.moveTo(sx - 6, sy + sh * 0.32);
+      ctx.lineTo(sx + sw / 2, sy);
+      ctx.lineTo(sx + sw + 6, sy + sh * 0.32);
+      ctx.stroke();
+      /* small house door */
+      ctx.strokeRect(sx + sw * 0.42, sy + sh * 0.62, sw * 0.18, sh * 0.38);
+      /* small house window */
+      ctx.strokeRect(sx + sw * 0.10, sy + sh * 0.42, sw * 0.26, sh * 0.22);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(sx + sw * 0.10 + sw * 0.13, sy + sh * 0.42);
+      ctx.lineTo(sx + sw * 0.10 + sw * 0.13, sy + sh * 0.64);
+      ctx.moveTo(sx + sw * 0.10, sy + sh * 0.53);
+      ctx.lineTo(sx + sw * 0.36, sy + sh * 0.53);
+      ctx.stroke();
+      ctx.lineWidth = 2;
+
+      /* right: upgraded 2-storey home */
+      const bw = w * 0.34, bh = h * 0.60;
+      const bx = w - bw - w * 0.06;
+      const by = base - bh;
+      ctx.strokeRect(bx, by + bh * 0.22, bw, bh * 0.78);
+      /* gabled roof */
+      ctx.beginPath();
+      ctx.moveTo(bx - 10, by + bh * 0.22);
+      ctx.lineTo(bx + bw / 2, by);
+      ctx.lineTo(bx + bw + 10, by + bh * 0.22);
+      ctx.stroke();
+      /* floor divider */
+      ctx.beginPath();
+      ctx.moveTo(bx, by + bh * 0.56);
+      ctx.lineTo(bx + bw, by + bh * 0.56);
+      ctx.stroke();
+      /* upper windows */
+      const uwW = bw * 0.18, uwH = bh * 0.18;
+      ctx.strokeRect(bx + bw * 0.10, by + bh * 0.32, uwW, uwH);
+      ctx.strokeRect(bx + bw * 0.41, by + bh * 0.32, uwW, uwH);
+      ctx.strokeRect(bx + bw * 0.72, by + bh * 0.32, uwW, uwH);
+      ctx.lineWidth = 1;
+      [0.10, 0.41, 0.72].forEach(p => {
+        ctx.beginPath();
+        ctx.moveTo(bx + bw * p + uwW/2, by + bh * 0.32);
+        ctx.lineTo(bx + bw * p + uwW/2, by + bh * 0.32 + uwH);
+        ctx.moveTo(bx + bw * p, by + bh * 0.32 + uwH/2);
+        ctx.lineTo(bx + bw * p + uwW, by + bh * 0.32 + uwH/2);
+        ctx.stroke();
+      });
+      ctx.lineWidth = 2;
+      /* door + flanking windows on ground floor */
+      ctx.strokeRect(bx + bw * 0.43, by + bh * 0.68, bw * 0.14, bh * 0.32);
+      ctx.strokeRect(bx + bw * 0.10, by + bh * 0.62, bw * 0.22, bh * 0.26);
+      ctx.strokeRect(bx + bw * 0.68, by + bh * 0.62, bw * 0.22, bh * 0.26);
+      /* small fence in front of upgrade */
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(bx - 12, base);
+      ctx.lineTo(bx - 12, base - bh * 0.07);
+      ctx.lineTo(bx + bw + 12, base - bh * 0.07);
+      ctx.lineTo(bx + bw + 12, base);
+      ctx.stroke();
+
+      /* upgrade arrow between houses (gold accent shape) */
+      const ax1 = sx + sw + 14;
+      const ax2 = bx - 14;
+      const ay = base - h * 0.34;
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      ctx.moveTo(ax1, ay);
+      ctx.lineTo(ax2 - 10, ay);
+      ctx.stroke();
+      /* arrowhead */
+      ctx.beginPath();
+      ctx.moveTo(ax2 - 12, ay - 9);
+      ctx.lineTo(ax2, ay);
+      ctx.lineTo(ax2 - 12, ay + 9);
+      ctx.stroke();
+      /* ₦ glyph above arrow */
+      ctx.font = '18px "Inter", sans-serif';
+      ctx.fillStyle = '#fff';
+      ctx.textAlign = 'center';
+      ctx.fillText('₦', (ax1 + ax2) / 2, ay - 14);
+      /* ground line */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(0, base);
+      ctx.lineTo(w, base);
+      ctx.stroke();
+    },
+
+    /* Construction — 4 phases of the same house drawn side-by-side */
+    construction(ctx, w, h) {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.6;
+      const base = h * 0.84;
+      const ph = w / 4;
+      const houseW = ph * 0.60, houseH = h * 0.50;
+
+      function houseAt(cx, stage) {
+        const x = cx - houseW / 2;
+        const y = base - houseH;
+        if (stage >= 1) {
+          /* foundation: U-shape footing */
+          ctx.beginPath();
+          ctx.moveTo(x, y + houseH * 0.80);
+          ctx.lineTo(x, base);
+          ctx.lineTo(x + houseW, base);
+          ctx.lineTo(x + houseW, y + houseH * 0.80);
+          ctx.stroke();
+          /* footing hatch */
+          ctx.lineWidth = 1;
+          for (let i = 0; i < 5; i++) {
+            const fx = x + houseW * ((i + 0.5) / 5);
+            ctx.beginPath();
+            ctx.moveTo(fx, base - 6);
+            ctx.lineTo(fx, base);
+            ctx.stroke();
+          }
+          ctx.lineWidth = 1.6;
+        }
+        if (stage >= 2) {
+          /* frame: vertical posts + roof beams */
+          ctx.beginPath();
+          ctx.moveTo(x, y + houseH * 0.80);
+          ctx.lineTo(x, y + houseH * 0.20);
+          ctx.moveTo(x + houseW, y + houseH * 0.80);
+          ctx.lineTo(x + houseW, y + houseH * 0.20);
+          ctx.moveTo(x + houseW * 0.5, y + houseH * 0.80);
+          ctx.lineTo(x + houseW * 0.5, y + houseH * 0.20);
+          /* roof skeleton */
+          ctx.moveTo(x, y + houseH * 0.20);
+          ctx.lineTo(x + houseW * 0.5, y);
+          ctx.lineTo(x + houseW, y + houseH * 0.20);
+          /* horizontal cross-beams */
+          ctx.moveTo(x, y + houseH * 0.50);
+          ctx.lineTo(x + houseW, y + houseH * 0.50);
+          ctx.stroke();
+        }
+        if (stage >= 3) {
+          /* walls fill: rectangle outline */
+          ctx.beginPath();
+          ctx.rect(x, y + houseH * 0.20, houseW, houseH * 0.60);
+          ctx.stroke();
+          /* window openings */
+          ctx.lineWidth = 1.2;
+          ctx.strokeRect(x + houseW * 0.10, y + houseH * 0.30, houseW * 0.22, houseH * 0.22);
+          ctx.strokeRect(x + houseW * 0.68, y + houseH * 0.30, houseW * 0.22, houseH * 0.22);
+          ctx.lineWidth = 1.6;
+        }
+        if (stage >= 4) {
+          /* fully detailed: door + window mullions + roof tile hatches */
+          ctx.strokeRect(x + houseW * 0.42, y + houseH * 0.50, houseW * 0.16, houseH * 0.30);
+          /* roof tile hatch */
+          ctx.lineWidth = 1;
+          for (let i = 1; i < 6; i++) {
+            const t = i / 6;
+            ctx.beginPath();
+            ctx.moveTo(x + houseW * t * 0.5, y + houseH * t * 0.20);
+            ctx.lineTo(x + houseW * (1 - t * 0.5), y + houseH * t * 0.20);
+            ctx.stroke();
+          }
+          /* window mullions */
+          ctx.beginPath();
+          ctx.moveTo(x + houseW * 0.21, y + houseH * 0.30);
+          ctx.lineTo(x + houseW * 0.21, y + houseH * 0.52);
+          ctx.moveTo(x + houseW * 0.10, y + houseH * 0.41);
+          ctx.lineTo(x + houseW * 0.32, y + houseH * 0.41);
+          ctx.moveTo(x + houseW * 0.79, y + houseH * 0.30);
+          ctx.lineTo(x + houseW * 0.79, y + houseH * 0.52);
+          ctx.moveTo(x + houseW * 0.68, y + houseH * 0.41);
+          ctx.lineTo(x + houseW * 0.90, y + houseH * 0.41);
+          ctx.stroke();
+          /* chimney */
+          ctx.lineWidth = 1.6;
+          ctx.strokeRect(x + houseW * 0.70, y - houseH * 0.16, houseW * 0.10, houseH * 0.18);
+        }
+      }
+      /* draw 4 phases */
+      for (let i = 0; i < 4; i++) {
+        const cx = ph * (i + 0.5);
+        houseAt(cx, i + 1);
+        /* phase number above */
+        ctx.font = '600 11px "Inter", sans-serif';
+        ctx.fillStyle = '#fff';
+        ctx.textAlign = 'center';
+        ctx.fillText('0' + (i + 1), cx, h * 0.12);
+      }
+      /* phase dividers */
+      ctx.lineWidth = 1;
+      for (let i = 1; i < 4; i++) {
+        ctx.beginPath();
+        ctx.moveTo(ph * i, h * 0.16);
+        ctx.lineTo(ph * i, h * 0.94);
+        ctx.stroke();
+      }
+      /* ground */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(0, base);
+      ctx.lineTo(w, base);
+      ctx.stroke();
+    },
+
+    /* REIF — varied city skyline (6 buildings: tower, setback, twin,
+       apartment with balconies, rooftop garden, low storefront) */
+    reif(ctx, w, h) {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.8;
+      const base = h * 0.88;
+      const slot = w / 7;
+      /* 1 — tall tower with antenna */
+      {
+        const bx = slot * 0.4, bw = slot * 0.7, bh = h * 0.72;
+        const by = base - bh;
+        ctx.strokeRect(bx, by, bw, bh);
+        /* antenna */
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(bx + bw/2, by);
+        ctx.lineTo(bx + bw/2, by - h * 0.10);
+        ctx.stroke();
+        /* window grid */
+        ctx.lineWidth = 0.8;
+        for (let r = 1; r < 10; r++) {
+          ctx.beginPath();
+          ctx.moveTo(bx, by + bh * r/10);
+          ctx.lineTo(bx + bw, by + bh * r/10);
+          ctx.stroke();
+        }
+        for (let c = 1; c < 4; c++) {
+          ctx.beginPath();
+          ctx.moveTo(bx + bw * c/4, by);
+          ctx.lineTo(bx + bw * c/4, by + bh);
+          ctx.stroke();
+        }
+        ctx.lineWidth = 1.8;
+      }
+      /* 2 — stepped/setback mid-rise */
+      {
+        const bx = slot * 1.4, bw = slot * 0.7, bh = h * 0.50;
+        const by = base - bh;
+        ctx.strokeRect(bx, by + bh * 0.30, bw, bh * 0.70);
+        ctx.strokeRect(bx + bw * 0.10, by + bh * 0.15, bw * 0.80, bh * 0.15);
+        ctx.strokeRect(bx + bw * 0.20, by, bw * 0.60, bh * 0.15);
+        /* windows */
+        ctx.lineWidth = 0.8;
+        for (let r = 0; r < 4; r++) {
+          for (let c = 0; c < 3; c++) {
+            ctx.strokeRect(bx + bw * (0.12 + c * 0.30), by + bh * (0.38 + r * 0.14), bw * 0.18, bh * 0.08);
+          }
+        }
+        ctx.lineWidth = 1.8;
+      }
+      /* 3 — apartment with balconies */
+      {
+        const bx = slot * 2.4, bw = slot * 0.7, bh = h * 0.62;
+        const by = base - bh;
+        ctx.strokeRect(bx, by, bw, bh);
+        /* balconies */
+        ctx.lineWidth = 1;
+        for (let r = 0; r < 4; r++) {
+          const by2 = by + bh * (0.15 + r * 0.21);
+          ctx.beginPath();
+          ctx.moveTo(bx - 4, by2);
+          ctx.lineTo(bx + bw + 4, by2);
+          ctx.stroke();
+          /* railings */
+          for (let c = 0; c < 6; c++) {
+            const cx = bx + bw * ((c + 0.5) / 6);
+            ctx.beginPath();
+            ctx.moveTo(cx, by2);
+            ctx.lineTo(cx, by2 + bh * 0.04);
+            ctx.stroke();
+          }
+        }
+        ctx.lineWidth = 1.8;
+      }
+      /* 4 — twin towers connected by sky bridge */
+      {
+        const bx = slot * 3.4, bw = slot * 0.30, bh = h * 0.55;
+        const by = base - bh;
+        ctx.strokeRect(bx, by, bw, bh);
+        ctx.strokeRect(bx + bw + slot * 0.10, by, bw, bh);
+        /* sky bridge */
+        ctx.strokeRect(bx + bw, by + bh * 0.40, slot * 0.10, bh * 0.10);
+        /* window grids */
+        ctx.lineWidth = 0.8;
+        [0, bw + slot * 0.10].forEach(off => {
+          for (let r = 1; r < 7; r++) {
+            ctx.beginPath();
+            ctx.moveTo(bx + off, by + bh * r/7);
+            ctx.lineTo(bx + off + bw, by + bh * r/7);
+            ctx.stroke();
+          }
+        });
+        ctx.lineWidth = 1.8;
+      }
+      /* 5 — rooftop garden building */
+      {
+        const bx = slot * 4.4, bw = slot * 0.75, bh = h * 0.46;
+        const by = base - bh;
+        ctx.strokeRect(bx, by, bw, bh);
+        /* trees on roof */
+        ctx.lineWidth = 1.2;
+        for (let i = 0; i < 4; i++) {
+          const tx = bx + bw * (0.15 + i * 0.24);
+          ctx.beginPath();
+          ctx.arc(tx, by - 6, 5, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        /* window grid */
+        ctx.lineWidth = 0.8;
+        for (let r = 0; r < 3; r++) {
+          for (let c = 0; c < 4; c++) {
+            ctx.strokeRect(bx + bw * (0.08 + c * 0.22), by + bh * (0.18 + r * 0.24), bw * 0.16, bh * 0.16);
+          }
+        }
+        ctx.lineWidth = 1.8;
+      }
+      /* 6 — low storefront */
+      {
+        const bx = slot * 5.4, bw = slot * 0.70, bh = h * 0.28;
+        const by = base - bh;
+        ctx.strokeRect(bx, by, bw, bh);
+        /* canopy */
+        ctx.beginPath();
+        ctx.moveTo(bx - 6, by + bh * 0.40);
+        ctx.lineTo(bx + bw + 6, by + bh * 0.40);
+        ctx.stroke();
+        /* sign */
+        ctx.strokeRect(bx + bw * 0.20, by + bh * 0.08, bw * 0.60, bh * 0.28);
+        /* door */
+        ctx.strokeRect(bx + bw * 0.42, by + bh * 0.50, bw * 0.16, bh * 0.50);
+      }
+      /* street level: ground + lampposts */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(0, base);
+      ctx.lineTo(w, base);
+      ctx.stroke();
+      ctx.lineWidth = 1;
+      for (let i = 0; i < 5; i++) {
+        const lx = w * (0.12 + i * 0.18);
+        ctx.beginPath();
+        ctx.moveTo(lx, base);
+        ctx.lineTo(lx, base + h * 0.04);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(lx, base + h * 0.05, 1.2, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    },
+
+    /* Commercial — 2-storey detailed storefront: signage, awning with
+       stripes + brand name, glass storefront windows with reflection
+       lines, interior shelving visible, side alley, sidewalk planter. */
+    commercial(ctx, w, h) {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+      const base = h * 0.88;
+      const cx = w * 0.5;
+      const ww = w * 0.62, fh = h * 0.70;
+      const x = cx - ww/2, y = base - fh;
+      /* main facade — 2 storeys */
+      ctx.strokeRect(x, y, ww, fh);
+      /* floor divider */
+      ctx.beginPath();
+      ctx.moveTo(x, y + fh * 0.36);
+      ctx.lineTo(x + ww, y + fh * 0.36);
+      ctx.stroke();
+      /* cornice */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(x - 6, y);
+      ctx.lineTo(x + ww + 6, y);
+      ctx.stroke();
+      ctx.lineWidth = 2;
+      /* signage band */
+      ctx.strokeRect(x + ww * 0.05, y + fh * 0.04, ww * 0.90, fh * 0.12);
+      /* business name lettering — abstracted as horizontal lines */
+      ctx.lineWidth = 1.4;
+      for (let i = 0; i < 7; i++) {
+        ctx.beginPath();
+        ctx.moveTo(x + ww * (0.12 + i * 0.11), y + fh * 0.07);
+        ctx.lineTo(x + ww * (0.12 + i * 0.11 + 0.05), y + fh * 0.07);
+        ctx.moveTo(x + ww * (0.12 + i * 0.11), y + fh * 0.12);
+        ctx.lineTo(x + ww * (0.12 + i * 0.11 + 0.05), y + fh * 0.12);
+        ctx.stroke();
+      }
+      ctx.lineWidth = 2;
+      /* upper-floor windows */
+      const uy = y + fh * 0.18, uw = ww * 0.20, uh = fh * 0.14;
+      ctx.strokeRect(x + ww * 0.08, uy, uw, uh);
+      ctx.strokeRect(x + ww * 0.40, uy, uw, uh);
+      ctx.strokeRect(x + ww * 0.72, uy, uw, uh);
+      ctx.lineWidth = 1;
+      [0.08, 0.40, 0.72].forEach(p => {
+        ctx.beginPath();
+        ctx.moveTo(x + ww * p + uw/2, uy);
+        ctx.lineTo(x + ww * p + uw/2, uy + uh);
+        ctx.moveTo(x + ww * p, uy + uh/2);
+        ctx.lineTo(x + ww * p + uw, uy + uh/2);
+        ctx.stroke();
+      });
+      ctx.lineWidth = 2;
+      /* awning above ground floor */
+      ctx.beginPath();
+      ctx.moveTo(x - 14, y + fh * 0.50);
+      ctx.lineTo(x + 12, y + fh * 0.38);
+      ctx.lineTo(x + ww - 12, y + fh * 0.38);
+      ctx.lineTo(x + ww + 14, y + fh * 0.50);
+      ctx.closePath();
+      ctx.stroke();
+      /* awning stripes */
+      ctx.lineWidth = 1;
+      for (let i = 1; i < 8; i++) {
+        const t = i / 8;
+        ctx.beginPath();
+        ctx.moveTo(x - 14 + t * 26, y + fh * 0.50);
+        ctx.lineTo(x + 12 + t * (ww - 24), y + fh * 0.38);
+        ctx.stroke();
+      }
+      ctx.lineWidth = 2;
+      /* glass storefront with reflection lines */
+      const gx = x + ww * 0.06, gy = y + fh * 0.55, gw = ww * 0.88, gh = fh * 0.42;
+      ctx.strokeRect(gx, gy, gw, gh);
+      /* door in the middle */
+      const dw = ww * 0.16, dh = fh * 0.38;
+      ctx.strokeRect(cx - dw/2, gy + gh - dh, dw, dh);
+      /* door handle */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(cx + dw * 0.25, gy + gh - dh * 0.5);
+      ctx.lineTo(cx + dw * 0.35, gy + gh - dh * 0.5);
+      ctx.stroke();
+      /* glass mullions */
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(gx + gw * 0.30, gy);
+      ctx.lineTo(gx + gw * 0.30, gy + gh);
+      ctx.moveTo(gx + gw * 0.70, gy);
+      ctx.lineTo(gx + gw * 0.70, gy + gh);
+      ctx.stroke();
+      /* reflection diagonals */
+      ctx.lineWidth = 0.6;
+      [0.07, 0.16, 0.74, 0.83].forEach(p => {
+        ctx.beginPath();
+        ctx.moveTo(gx + gw * p, gy + 4);
+        ctx.lineTo(gx + gw * (p + 0.06), gy + gh - 4);
+        ctx.stroke();
+      });
+      /* interior shelves visible through glass */
+      ctx.lineWidth = 0.8;
+      [0.08, 0.20].forEach(left => {
+        for (let r = 0; r < 3; r++) {
+          ctx.beginPath();
+          ctx.moveTo(gx + gw * left, gy + gh * (0.20 + r * 0.20));
+          ctx.lineTo(gx + gw * (left + 0.18), gy + gh * (0.20 + r * 0.20));
+          ctx.stroke();
+        }
+      });
+      [0.74, 0.86].forEach(left => {
+        for (let r = 0; r < 3; r++) {
+          ctx.beginPath();
+          ctx.moveTo(gx + gw * left, gy + gh * (0.20 + r * 0.20));
+          ctx.lineTo(gx + gw * (left + 0.12), gy + gh * (0.20 + r * 0.20));
+          ctx.stroke();
+        }
+      });
+      /* sidewalk planter beside door */
+      ctx.lineWidth = 1.4;
+      ctx.strokeRect(x + ww * 0.04, base - 12, 10, 12);
+      ctx.strokeRect(x + ww - 14, base - 12, 10, 12);
+      /* small leaves */
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(x + ww * 0.04 + 5, base - 16, 5, 0, Math.PI * 2);
+      ctx.arc(x + ww - 9, base - 16, 5, 0, Math.PI * 2);
+      ctx.stroke();
+      /* lamppost outside */
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(x - 36, base);
+      ctx.lineTo(x - 36, base - fh * 0.34);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x - 36, base - fh * 0.36, 4, 0, Math.PI * 2);
+      ctx.stroke();
+      /* ground line */
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(0, base);
+      ctx.lineTo(w, base);
+      ctx.stroke();
+    }
+  };
+
+  /* DitheredLogo-style tile viz: deterministic Bayer 8x8 ordered dither
+     of the silhouette field — the dot field is rendered whole every
+     frame in the per-tile accent colour. Cursor proximity displaces dots
+     outward with smoothed iron-filings repulsion; on leave the per-dot
+     displacement lerps back to zero. */
+  const BAYER8 = (() => {
+    const m = [
+       0,32, 8,40, 2,34,10,42,
+      48,16,56,24,50,18,58,26,
+      12,44, 4,36,14,46, 6,38,
+      60,28,52,20,62,30,54,22,
+       3,35,11,43, 1,33, 9,41,
+      51,19,59,27,49,17,57,25,
+      15,47, 7,39,13,45, 5,37,
+      63,31,55,23,61,29,53,21
+    ];
+    const out = new Float32Array(64);
+    for (let i = 0; i < 64; i++) out[i] = m[i] / 64;   // 0..0.984
+    return out;
+  })();
+  const REDUCED_TILE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function initTileViz(host) {
+    const canvas = host.querySelector('.tile-viz__canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const accent = host.dataset.accent || '#061A2E';
+    const accentRGB = hexToRgb(accent);
+    const kind = host.dataset.viz;
+    const silhouetteFn = SILHOUETTES[kind];
+    if (!silhouetteFn) return;
+
+    const RADIUS      = 130;
+    const MAX_PUSH    = 14;
+    const FOLLOW_LERP = 0.15;
+    const DISP_LERP   = 0.20;
+    const DOT_ALPHA   = 0.88;
+    const DOT         = 2;
+    const SAMPLE_STEP = 3;
+
+    let particles = [];
+    const mouse  = { x: -10000, y: -10000, active: false };
+    const smooth = { x: -10000, y: -10000 };
+    let raf = 0;
+    let needsSeed = true;
+    let cw = 0, ch = 0;
+
+    function seed() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(2, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(2, Math.floor(rect.height * dpr));
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      cw = rect.width; ch = rect.height;
+
+      const off = document.createElement('canvas');
+      off.width = Math.floor(cw); off.height = Math.floor(ch);
+      const octx = off.getContext('2d');
+      silhouetteFn(octx, off.width, off.height);
+      const data = octx.getImageData(0, 0, off.width, off.height).data;
+
+      particles = [];
+      for (let y = 0; y < off.height; y += SAMPLE_STEP) {
+        for (let x = 0; x < off.width; x += SAMPLE_STEP) {
+          const i = (y * off.width + x) * 4;
+          const a8 = data[i + 3];
+          if (a8 > 24) {                                    // candidate cell
+            const lum = a8 / 255;
+            const threshold = BAYER8[(y & 7) * 8 + (x & 7)];
+            if (lum > threshold) {                          // ordered dither keep
+              const jx = (Math.random() - 0.5) * 1.4;
+              const jy = (Math.random() - 0.5) * 1.4;
+              particles.push({
+                bx: x + jx, by: y + jy,
+                dx: 0, dy: 0
+              });
+            }
+          }
+        }
+      }
+      needsSeed = false;
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, cw, ch);
+
+      // smoothed pointer follower
+      if (mouse.active) {
+        if (smooth.x < -9000) { smooth.x = mouse.x; smooth.y = mouse.y; }
+        else {
+          smooth.x += (mouse.x - smooth.x) * FOLLOW_LERP;
+          smooth.y += (mouse.y - smooth.y) * FOLLOW_LERP;
+        }
+      }
+
+      const R = RADIUS;
+      // single fillStyle for the whole frame — accent colour, constant alpha
+      ctx.fillStyle = `rgba(${accentRGB.r},${accentRGB.g},${accentRGB.b},${DOT_ALPHA})`;
+
+      for (let i = 0, n = particles.length; i < n; i++) {
+        const p = particles[i];
+
+        // target displacement
+        let tx = 0, ty = 0;
+        if (mouse.active) {
+          const dx = p.bx - smooth.x;
+          const dy = p.by - smooth.y;
+          const d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < R && d > 0.0001) {
+            const k = 1 - d / R;
+            const s = k * k;                  // (1 - d/R)^2 falloff
+            tx = (dx / d) * MAX_PUSH * s;     // unit vector away × push
+            ty = (dy / d) * MAX_PUSH * s;
+          }
+        }
+
+        // ease current displacement toward target
+        p.dx += (tx - p.dx) * DISP_LERP;
+        p.dy += (ty - p.dy) * DISP_LERP;
+
+        ctx.fillRect(p.bx + p.dx, p.by + p.dy, DOT, DOT);
+      }
+    }
+
+    function drawStatic() {
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.fillStyle = `rgba(${accentRGB.r},${accentRGB.g},${accentRGB.b},${DOT_ALPHA})`;
+      for (let i = 0, n = particles.length; i < n; i++) {
+        const p = particles[i];
+        ctx.fillRect(p.bx, p.by, DOT, DOT);
+      }
+    }
+
+    function loop() {
+      render();
+      raf = requestAnimationFrame(loop);
+    }
+
+    function start() {
+      if (needsSeed) seed();
+      if (REDUCED_TILE) { drawStatic(); return; }
+      if (!raf) loop();
+    }
+    function stop() {
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    }
+
+    const tile = host.closest('.tile') || host;
+    if (!REDUCED_TILE) {
+      tile.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        if (!mouse.active) { smooth.x = mouse.x; smooth.y = mouse.y; }
+        mouse.active = true;
+      });
+      tile.addEventListener('mouseleave', () => {
+        // do NOT reset coords — short-circuit via `active=false`
+        // lets the per-dot DISP_LERP ease displacement back to zero
+        mouse.active = false;
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => e.isIntersecting ? start() : stop());
+      }, { threshold: 0.15 });
+      io.observe(host);
+    } else {
+      start();
+    }
+
+    window.addEventListener('resize', () => { needsSeed = true; }, { passive: true });
+  }
+
+  /* Wire up both bento tile-vizzes AND the hero viz using the same dither pipeline */
+  document.querySelectorAll('.tile-viz, .hero__viz[data-viz]').forEach(host => {
+    /* For the hero viz, mouse events attach to the section, not a .tile parent */
+    if (host.classList.contains('hero__viz')) {
+      /* Override: host IS the container; canvas is already .tile-viz__canvas inside */
+      const hCanvas = host.querySelector('.tile-viz__canvas');
+      if (!hCanvas) { initTileViz(host); return; }
+
+      /* Patch: initTileViz uses host.closest('.tile') — for hero__viz that returns null,
+         so we set a synthetic parent by temporarily adding a proxy .tile class, then strip it */
+      host.classList.add('tile');
+      initTileViz(host);
+      host.classList.remove('tile');
+    } else {
+      initTileViz(host);
+    }
+  });
+
+  /* Pre-select Classic segment (Construction uses classic mortgage rates for amortization) */
+  document.querySelector('[data-segment="classic"]')?.click();
+
+  /* FAQ accordion toggle */
+  document.querySelectorAll('.con-faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      /* Close all first */
+      document.querySelectorAll('.con-faq-q').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        const a = b.nextElementSibling;
+        if (a) a.hidden = true;
+      });
+      /* Toggle current */
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        const ans = btn.nextElementSibling;
+        if (ans) ans.hidden = false;
+      }
+    });
+  });
+
+  /* Scroll progress bar (gold thread at top) — re-enable on construction page */
+  const progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    progressBar.parentElement.style.display = 'block';
+    const updateProgress = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+      progressBar.style.width = pct.toFixed(2) + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+})();
+</script>
+
+<script id="agmb-motion-js">
+(function () {
+  'use strict';
+
+  var cfg = window.__agmbMotion || { showLoader: false, reduced: false, hasFlag: true };
+  var REDUCED = cfg.reduced;
+  var SESSION_KEY = 'agmb-loaded';
+  var docEl = document.documentElement;
+
+  /* ───── 1. Page loader (hard-refresh / direct-load only) ───── */
+  var loader = null;
+  if (cfg.showLoader && !REDUCED) {
+    loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.setAttribute('aria-hidden', 'true');
+    var mark = document.createElement('img');
+    mark.className = 'page-loader__mark';
+    mark.src = 'agmb-icon-white.svg';
+    mark.alt = '';
+    loader.appendChild(mark);
+    document.body.insertBefore(loader, document.body.firstChild);
+  }
+
+  /* Longest cascade animation = 380ms delay + 720ms duration ≈ 1100ms.
+     After this we strip .agmb-cascade so the cascade rules (which carry
+     will-change + animation declarations) no longer match the hero children.
+     Without this strip, any layer invalidation (nav-state toggle, scrollback
+     into the hero) can re-paint with the cascade keyframes still attached
+     and cause the fact-strip / stat-bar to "jump" back into place. */
+  var CASCADE_RUN_MS = 1200;
+  function endCascade() {
+    docEl.classList.remove('agmb-cascade');
+    docEl.classList.remove('agmb-cascade-run');
+  }
+
+  function startCascade() {
+    /* Skip entirely when the cascade was never armed (reload / back-nav path). */
+    if (!docEl.classList.contains('agmb-cascade')) return;
+    docEl.classList.add('agmb-cascade-run');
+    setTimeout(endCascade, CASCADE_RUN_MS);
+  }
+
+  function hideLoader() {
+    if (!loader) { startCascade(); return; }
+    loader.classList.add('page-loader--hidden');
+    startCascade();
+    setTimeout(function () {
+      if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+    }, 700);
+  }
+
+  try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+
+  if (REDUCED) {
+    docEl.classList.remove('agmb-cascade'); // ensure no hidden hero
+    /* No animation needed — reduced-motion users skip the cascade entirely. */
+  } else if (cfg.isReload || cfg.hasFlag) {
+    /* Reload or in-session navigation — let the browser restore scroll cleanly
+       and skip the hero cascade. The bootstrap already left .agmb-cascade off
+       <html>, so hero children render at their natural opacity. */
+  } else if (loader) {
+    var HOLD = 500;
+    var t0 = Date.now();
+    function release() {
+      var wait = Math.max(0, HOLD - (Date.now() - t0));
+      setTimeout(hideLoader, wait);
+    }
+    if (document.readyState === 'complete') {
+      release();
+    } else {
+      window.addEventListener('load', release, { once: true });
+      setTimeout(release, 2500); // hard cap
+    }
+  } else {
+    // No loader: trigger the cascade immediately so hero children animate in.
+    if (document.readyState !== 'loading') {
+      startCascade();
+    } else {
+      document.addEventListener('DOMContentLoaded', startCascade, { once: true });
+    }
+  }
+
+  /* ───── 2. Scroll-reveal IntersectionObserver ───── */
+  function initReveals() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('in-view');
+      });
+      return;
+    }
+
+    // Tag every top-level section (and the footer) with .reveal — except the hero.
+    // Also auto-tag inner grid/list containers with .stagger so their children
+    // cascade in (per Adewale's "micro animations in inner sections" ask).
+    var sections = document.querySelectorAll('section, footer.footer');
+    var STAGGER_SELECTOR = '.bento, .bento__top, .bento__bot, .reg-grid, .stat-row, .stats, .news__row, .featured__body, .use-case-cards, .rate-stat-grid, .step-grid, .trust-grid, .press-grid, .leadership-grid, .chapter-grid, .news-grid, .cards-track, .nhf-grid, .accordion, .accordions, .reasons, .reasons__grid, .principles, .principles__grid, .timeline, .audience-grid, .pillars, .pillars__grid, [data-stagger]';
+    sections.forEach(function (sec) {
+      if (sec.classList.contains('hero') ||
+          sec.classList.contains('hero--centered') ||
+          sec.classList.contains('hero--about') ||
+          sec.classList.contains('hero--calculator') ||
+          sec.classList.contains('hero--apply')) return;
+      if (!sec.classList.contains('reveal')) sec.classList.add('reveal');
+      sec.querySelectorAll(STAGGER_SELECTOR).forEach(function (cont) {
+        if (!cont.classList.contains('stagger') && cont.children.length >= 2) cont.classList.add('stagger');
+      });
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      // If already in view at init (above the fold), mark visible immediately
+      if (rect.top < window.innerHeight * 0.88 && rect.bottom > 0) {
+        el.classList.add('in-view');
+      } else {
+        io.observe(el);
+      }
+    });
+  }
+
+  /* ───── 3. Number-counter for [data-animate] stats ───── */
+  function easeOutHouse(t) {
+    // ease-out approximation matching cubic-bezier(0.16, 1, 0.3, 1)
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function tweenNumber(el) {
+    var target = parseFloat(el.dataset.target);
+    if (!isFinite(target)) return;
+    var format = el.dataset.format || 'int';
+    if (REDUCED) {
+      el.textContent = format === 'billions'
+        ? '₦' + target.toFixed(1) + 'B+'
+        : Math.round(target).toString();
+      return;
+    }
+    var DURATION = 1200;
+    var start = null;
+    function frame(ts) {
+      if (start === null) start = ts;
+      var p = Math.min(1, (ts - start) / DURATION);
+      var eased = easeOutHouse(p);
+      var value = target * eased;
+      if (format === 'billions') {
+        el.textContent = '₦' + value.toFixed(1) + 'B+';
+      } else {
+        el.textContent = Math.round(value).toString();
+      }
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        el.textContent = format === 'billions'
+          ? '₦' + target.toFixed(1) + 'B+'
+          : Math.round(target).toString();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function initStatCounters() {
+    var nodes = document.querySelectorAll('[data-animate]');
+    if (!nodes.length) return;
+
+    // Reset to zero state for re-animation (the existing inline home script renders
+    // these statically at parse time — we override that here).
+    nodes.forEach(function (el) {
+      var fmt = el.dataset.format || 'int';
+      el.textContent = fmt === 'billions' ? '₦0.0B+' : '0';
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach(tweenNumber);
+      return;
+    }
+    var statsIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          tweenNumber(entry.target);
+          statsIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    nodes.forEach(function (el) { statsIO.observe(el); });
+  }
+
+  /* ───── In-page anchor smooth-scroll (scoped, off by default) ─────
+     scroll-behavior: smooth lives behind .smooth-scroll on <html> so browser
+     scroll-restoration on refresh isn't animated from 0. We turn it on for
+     the duration of an in-page anchor click, then strip it. */
+  function initAnchorSmoothScroll() {
+    if (REDUCED) return;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      var id = href.slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      docEl.classList.add('smooth-scroll');
+      setTimeout(function () { docEl.classList.remove('smooth-scroll'); }, 900);
+    }, true);
+  }
+
+  /* ───── boot ───── */
+  function boot() {
+    initReveals();
+    initStatCounters();
+    initAnchorSmoothScroll();
+  }
+  if (document.readyState !== 'loading') {
+    boot();
+  } else {
+    document.addEventListener('DOMContentLoaded', boot);
+  }
+})();
+</script>
+
+<script>
+  /* Floating-pill nav scroll handler */
+  (function () {
+    function initNavScroll() {
+      var nav = document.querySelector('.nav');
+      if (!nav) return;
+      var threshold = 24;
+      function update() {
+        if (window.scrollY > threshold) nav.classList.add('nav--scrolled');
+        else nav.classList.remove('nav--scrolled');
+      }
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initNavScroll);
+    else initNavScroll();
+  })();
+</script>
+<script>
+/* ───── Mobile hamburger + drawer ───── */
+(function () {
+  function initMobileNav() {
+    var hamburger = document.querySelector('.nav__hamburger');
+    var drawer = document.querySelector('.mobile-nav');
+    if (!hamburger || !drawer) return;
+    function toggle(open) {
+      hamburger.classList.toggle('is-open', open);
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.classList.toggle('is-open', open);
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', function () {
+      toggle(!hamburger.classList.contains('is-open'));
+    });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { toggle(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && hamburger.classList.contains('is-open')) toggle(false);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMobileNav);
+  else initMobileNav();
+})();
+</script>
+</body>
+</html>

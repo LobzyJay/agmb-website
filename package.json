@@ -1,0 +1,16 @@
+{
+  "name": "agmb-marketing-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AG Mortgage Bank Plc — marketing site static prototypes",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "preview": "npx --yes http-server _site -p 8765 -c-1",
+    "serve-src": "npx --yes http-server . -p 8765 -c-1",
+    "stop": "lsof -ti:8765 8080 | xargs kill -9 2>/dev/null || true"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5"
+  }
+}

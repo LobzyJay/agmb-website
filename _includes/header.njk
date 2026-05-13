@@ -1,0 +1,51 @@
+<script>
+  /* Self-evict any old service worker registered against this origin in earlier
+     dev sessions. Without this, returning visitors can get stale HTML served
+     from SW cache (the bug that surfaced raw {% raw %}{% include "header.njk" %}{% endraw %}
+     placeholders before the Eleventy migration). One-shot, no-op once removed. */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (regs) {
+      regs.forEach(function (r) { r.unregister(); });
+    }).catch(function () { /* fail silent — defensive only */ });
+  }
+</script>
+<!-- Critical inline: ensures black page bg before external CSS arrives -->
+<style>html{background:#000}</style>
+<!-- Shared styles: nav, transitions, scroll-reveal -->
+<link rel="stylesheet" href="assets/css/shared.css">
+<!-- GSAP for hero entrance + ScrollTrigger scroll-reveal -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+<nav class="nav" id="main-nav">
+  <a class="logo" href="agmb-direction-1.1-rebuild.html">
+    <img class="logo__icon" src="agmb-wordmark-white.svg" alt="AG Mortgage Bank">
+    <div class="logo__text">
+      <div class="logo__name">AG Mortgage Bank</div>
+    </div>
+  </a>
+  <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+    <span class="nav__hamburger-bar"></span>
+    <span class="nav__hamburger-bar"></span>
+    <span class="nav__hamburger-bar"></span>
+  </button>
+  <div class="nav__links">
+    <a href="agmb-mortgages.html"{% if pageId == "mortgages" or pageId == "nhf" or pageId == "commercial" or pageId == "construction" or pageId == "m-reif" or pageId == "reif" %} class="is-current" aria-current="page"{% endif %}>Mortgages</a>
+    <a href="agmb-calculator.html"{% if pageId == "calculator" %} class="is-current" aria-current="page"{% endif %}>Calculator</a>
+    <a href="agmb-about.html"{% if pageId == "about" %} class="is-current" aria-current="page"{% endif %}>About</a>
+    <a href="agmb-insights.html"{% if pageId == "insights" %} class="is-current" aria-current="page"{% endif %}>Insights</a>
+    <a href="agmb-contact.html"{% if pageId == "contact" %} class="is-current" aria-current="page"{% endif %}>Contact</a>
+    <a class="nav__cta" href="{{ applyHref | default('agmb-apply.html') }}">{{ applyLabel | default('Start application') }} <span>&rarr;</span></a>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <div class="mobile-nav__panel">
+      <a href="agmb-direction-1.1-rebuild.html">Home</a>
+      <a href="agmb-mortgages.html">Mortgages</a>
+      <a href="agmb-calculator.html">Calculator</a>
+      <a href="agmb-about.html">About</a>
+      <a href="agmb-insights.html">Insights</a>
+      <a href="agmb-contact.html">Contact</a>
+      <a class="mobile-nav__cta" href="{{ applyHref | default('agmb-apply.html') }}">{{ applyLabel | default('Start application') }} <span>&rarr;</span></a>
+    </div>
+  </div>
+</nav>

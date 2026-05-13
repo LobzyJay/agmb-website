@@ -1,0 +1,7 @@
+node_modules
+_site
+package*.json
+.eleventy.js
+.eleventyignore
+*.md
+partners/SOURCES.md

@@ -1,0 +1,2074 @@
+---
+pageId: insights
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AG Mortgage Bank Plc · Newsroom, insights & disclosures.</title>
+<meta name="viewport" content="width=2377">
+<link rel="icon" type="image/svg+xml" href="agmb-icon-white.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500&family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { overflow-x: hidden; max-width: 100%; overscroll-behavior-y: none; }
+  html { background: #000; }
+  html.smooth-scroll { scroll-behavior: smooth; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; background: #000; color: #FAF3E8; zoom: 0.8; }
+  @-moz-document url-prefix() {
+    body { zoom: unset; transform: scale(0.8); transform-origin: top left; width: 125%; }
+  }
+  .page { width: 100%; margin: 0; background: #000; }
+
+  /* tokens */
+  :root {
+    --navy-deep: #061A2E;
+    --navy: #0A2540;
+    --navy-vivid: #1F4FA8;
+    --navy-soft: #0F2F50;
+    --cream: #F8F5EF;
+    --cream-warm: #FAF3E8;
+    --cream-vivid: #FFEFC2;
+    --cream-deep: #EDE5D5;
+    --gold-rich: #E0B040;
+    --gold-vivid: #F0C441;
+    --green-deep: #14613A;
+    --green-vivid: #22C55E;
+  }
+
+  /* type helpers */
+  .h1 { font: 500 72px/104% 'Inter', sans-serif; font-size: clamp(40px, 4.2vw + 1rem, 72px); letter-spacing: -0.065em; color: var(--cream-warm); margin: 0; max-width: 900px; }
+  .h2 { font: 500 56px/105% 'Inter', sans-serif; font-size: clamp(30px, 3.0vw + 0.5rem, 56px); letter-spacing: -0.06em; margin: 0; }
+  .lede { font: 400 18px/162.5% 'Inter', sans-serif; font-size: clamp(15px, 0.6vw + 0.7rem, 18px); }
+  .eyebrow { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* ───── NAV (sticky, same as other pages) ───────────── */
+  .hero { position: relative; background: #000; }
+  .hero--centered {
+    background: #000;
+    height: auto;
+    min-height: clamp(560px, 90vh, 920px);
+    overflow: visible;
+    padding-bottom: 80px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    padding: 24px clamp(24px, 6vw, 160px);
+    background: #000;
+    border-bottom: 1px solid rgba(250,243,232,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+    transition: padding 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.32s ease,
+                margin 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                border-radius 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.32s ease;
+  }
+  .nav--scrolled {
+    position: fixed;
+    top: 16px;
+    margin: 0 80px;
+    left: 0; right: 0;
+    padding: 14px 32px;
+    background: rgba(6,26,46,0.62);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(250,243,232,0.10);
+    border-radius: 999px;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.55);
+  }
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo__icon { width: auto; height: 44px; display: block; }
+  .logo__text, .logo__name, .logo__sub { display: none; }
+  .nav__links { display: flex; align-items: center; gap: 36px; }
+  .nav__links a:not(.nav__cta) {
+    font: 500 14px/1 'Inter', sans-serif;
+    color: var(--cream-warm);
+    text-decoration: none;
+    letter-spacing: -0.005em;
+    transition: color 0.18s ease;
+  }
+  .nav__links a:not(.nav__cta):hover { color: var(--gold-vivid); }
+  /* mark Insights as current page — gold underline, slightly dimmer */
+  .nav__links a.is-current {
+    color: rgba(250,243,232,0.62);
+    border-bottom: 1px solid var(--gold-vivid);
+    padding-bottom: 4px;
+  }
+  .nav__cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    background: var(--cream-warm);
+    border-radius: 999px;
+    color: var(--navy-deep);
+    font: 500 14px/1 'Inter', sans-serif;
+    letter-spacing: -0.005em;
+    text-decoration: none;
+    transition: background-color 0.16s ease, transform 0.18s ease, box-shadow 0.22s ease;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 1px 2px rgba(0,0,0,0.18);
+  }
+  .nav__cta:hover { background: var(--cream); transform: translateY(-1px); box-shadow: 0 8px 24px -10px rgba(0,0,0,0.5), 0 2px 6px -2px rgba(0,0,0,0.25); }
+
+  /* ───── HERO content ───── */
+  .hero__content--centered {
+    position: relative;
+    z-index: 4;
+    max-width: 1280px;
+    margin: 64px auto 56px;
+    padding: 0 24px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 28px;
+    text-align: center;
+  }
+  .hero__eyebrow {
+    display: inline-flex; align-items: center; gap: 18px;
+    font: 600 11px/1 'Inter', sans-serif;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250,243,232,0.70);
+  }
+  .hero__eyebrow .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold-vivid);
+    display: inline-block;
+  }
+  .h1--centered { text-align: center; max-width: none; margin: 0 auto; }
+  .h1 em, .h1--centered em {
+    font-family: 'Libre Baskerville', serif;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    color: var(--gold-vivid);
+  }
+  .hero__lede--centered {
+    font: 400 20px/162.5% 'Inter', sans-serif;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+    color: rgba(250,243,232,0.78);
+  }
+  .ctas { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+  .ctas--centered { justify-content: center; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 18px 28px; border-radius: 14px;
+    font: 500 16px/1 'Inter', sans-serif; letter-spacing: -0.005em;
+    cursor: pointer; text-decoration: none;
+    transition:
+      transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.18s ease,
+      background-color 0.18s ease,
+      border-color 0.18s ease;
+  }
+  .cta--primary { background: var(--cream-warm); color: var(--navy-deep); border: 1px solid var(--cream-warm); box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 1px 2px rgba(0,0,0,0.18); }
+  .cta--primary:hover { background: var(--cream); transform: translateY(-1px); filter: brightness(1.04); box-shadow: 0 8px 24px -10px rgba(0,0,0,0.5), 0 2px 6px -2px rgba(0,0,0,0.25); }
+  .cta--secondary { background: var(--navy-vivid); color: var(--cream-warm); border: 1px solid var(--navy-vivid); }
+  .cta--secondary:hover { background: var(--navy); border-color: var(--navy-vivid); transform: translateY(-1px); }
+  .cta:focus-visible { outline: 2px solid var(--gold-vivid); outline-offset: 3px; }
+
+  /* hero spacer / decorative rule */
+  .hero__rule {
+    width: 100%; max-width: 1280px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 24px;
+    color: rgba(250,243,232,0.45);
+    font: 500 12px/1 'Inter', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .hero__rule::before, .hero__rule::after {
+    content: ''; flex: 1; height: 1px; background: rgba(250,243,232,0.10);
+  }
+
+  /* ───── FILTER CHIPS (between hero and grid) — LIGHT theme ─────── */
+  .filter-bar {
+    background: #fff;
+    padding: 80px clamp(24px, 6vw, 160px) 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .filter-bar__label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 600 11px/1 'Inter', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(6,26,46,0.55);
+  }
+  .filter-bar__label span:first-child {
+    width: 4px; height: 4px;
+    background: var(--gold-rich);
+    display: inline-block;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(6,26,46,0.18);
+    background: transparent;
+    color: var(--navy-deep);
+    font: 500 14px/1 'Inter', sans-serif;
+    letter-spacing: -0.005em;
+    cursor: pointer;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    font-family: inherit;
+  }
+  .chip:hover {
+    background: rgba(6,26,46,0.04);
+    border-color: rgba(6,26,46,0.32);
+  }
+  .chip.active {
+    background: var(--navy-deep);
+    border-color: var(--navy-deep);
+    color: var(--cream-warm);
+    box-shadow: 0 0 0 1px rgba(240,196,65,0.20) inset;
+  }
+  .chip__count {
+    font: 500 11px/1 'Inter Tight', sans-serif;
+    color: rgba(6,26,46,0.45);
+    font-variant-numeric: tabular-nums;
+  }
+  .chip.active .chip__count { color: rgba(250,243,232,0.65); }
+  .chip:focus-visible { outline: 2px solid var(--gold-vivid); outline-offset: 3px; }
+
+  /* ───── ARTICLE GRID — LIGHT section, DARK cards (cards keep their look) ───── */
+  .insights-grid {
+    background: #fff;
+    padding: 40px clamp(24px, 6vw, 160px) 120px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr));
+    gap: 32px;
+  }
+  .article {
+    display: flex; flex-direction: column;
+    gap: 18px;
+    padding: 36px;
+    background: var(--navy-deep);   /* solid dark navy so the card stays visually dark on the new white section bg */
+    border: 1px solid rgba(6,26,46,0.10);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--cream-warm);
+    cursor: pointer;
+    transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+                border-color 0.22s ease,
+                background-color 0.22s ease,
+                box-shadow 0.28s ease;
+  }
+  .article:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-rich);
+    background: var(--navy);
+    box-shadow: 0 24px 48px -16px rgba(6,26,46,0.28);
+  }
+  .article.is-hidden { display: none; }
+  .article__meta {
+    display: flex; align-items: center; gap: 12px;
+    flex-wrap: wrap;
+  }
+  .article__cat {
+    display: inline-flex; align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font: 600 10px/1 'Inter', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .article__cat--press { background: rgba(240,196,65,0.14); color: var(--gold-vivid); }
+  .article__cat--reports { background: rgba(34,197,94,0.14); color: var(--green-vivid); }
+  .article__cat--regulatory { background: rgba(31,79,168,0.18); color: #6F9DEB; }
+  .article__cat--market { background: rgba(250,243,232,0.10); color: var(--cream-warm); }
+  .article__cat--product { background: rgba(224,176,64,0.14); color: var(--gold-rich); }
+  .article__date {
+    font: 400 13px/1 'Inter Tight', sans-serif;
+    color: rgba(250,243,232,0.55);
+    font-variant-numeric: tabular-nums;
+  }
+  .article__title {
+    font: 500 26px/118% 'Inter', sans-serif;
+    letter-spacing: -0.04em;
+    color: var(--cream-warm);
+    margin: 0;
+  }
+  .article__dek {
+    font: 400 15px/160% 'Inter', sans-serif;
+    color: rgba(250,243,232,0.75);
+    margin: 0;
+    flex-grow: 1;
+  }
+  .article__link {
+    margin-top: 8px;
+    font: 500 14px/1 'Inter', sans-serif;
+    color: var(--cream-warm);
+    letter-spacing: -0.005em;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: gap 0.22s ease;
+  }
+  .article:hover .article__link { gap: 12px; }
+  .article__link span:last-child { transition: transform 0.22s cubic-bezier(0.4,0,0.2,1); }
+  .article:hover .article__link span:last-child { transform: translateX(3px); }
+  .article__link span:first-child { border-bottom: 1px solid rgba(250,243,232,0.32); padding-bottom: 2px; transition: border-color 0.18s ease; }
+  .article:hover .article__link span:first-child { border-bottom-color: var(--cream-warm); }
+  .article:focus-visible { outline: 2px solid var(--gold-vivid); outline-offset: 4px; }
+
+  /* external-link variant — articles linking out to publications */
+  .article--external .article__cat::after {
+    content: '↗';
+    margin-left: 8px;
+    font-size: 11px;
+    opacity: 0.9;
+  }
+  .article__source {
+    font: 500 11px/1 'Inter', sans-serif;
+    letter-spacing: 0.04em;
+    color: var(--gold-vivid);
+    text-transform: none;
+    padding-left: 6px;
+    border-left: 1px solid rgba(240,196,65,0.32);
+    margin-left: 4px;
+  }
+
+  /* empty state */
+  .insights-empty {
+    grid-column: 1 / -1;
+    padding: 80px 0;
+    text-align: center;
+    color: rgba(250,243,232,0.45);
+    font: 400 16px/1.4 'Inter', sans-serif;
+    display: none;
+  }
+  .insights-empty.is-shown { display: block; }
+
+  /* ───── REPORTS SECTION ───── */
+  .reports {
+    background: var(--navy-deep);
+    padding: 120px clamp(24px, 6vw, 160px);
+    display: flex; flex-direction: column; gap: 64px;
+  }
+  .reports__head .eyebrow-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .reports__head .eyebrow-row > span:first-child {
+    width: 4px; height: 4px; background: var(--gold-vivid);
+  }
+  .reports__head .eyebrow-row > span:last-child {
+    font: 600 11px/150% 'Inter', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,243,232,0.7);
+  }
+  .reports__head .h2 { color: var(--cream-warm); max-width: 900px; }
+  .reports__head .lede {
+    color: rgba(250,243,232,0.65);
+    max-width: 720px;
+    margin-top: 16px;
+  }
+  .reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr));
+    gap: 28px;
+  }
+  .report-card {
+    background: rgba(250,243,232,0.04);
+    border: 1px solid rgba(250,243,232,0.10);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex; flex-direction: column;
+    gap: 20px;
+    transition: transform 0.28s ease, border-color 0.22s ease, background-color 0.22s ease;
+  }
+  .report-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(240,196,65,0.5);
+    background: rgba(250,243,232,0.06);
+  }
+  .report-card__head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .report-card__year {
+    font: 400 80px/1 'Libre Baskerville', serif;
+    letter-spacing: -0.04em;
+    color: var(--cream-warm);
+  }
+  .report-card__chip {
+    font: 600 10px/1 'Inter', sans-serif;
+    letter-spacing: 0.18em;
+    color: var(--gold-vivid);
+    padding: 6px 10px;
+    border: 1px solid rgba(240,196,65,0.35);
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .report-card__filename {
+    font: 500 18px/130% 'Inter', sans-serif;
+    color: var(--cream-warm);
+    letter-spacing: -0.02em;
+  }
+  .report-card__meta {
+    font: 400 13px/1.5 'Inter Tight', sans-serif;
+    color: rgba(250,243,232,0.55);
+    font-variant-numeric: tabular-nums;
+  }
+  .report-card__cta {
+    margin-top: auto;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: var(--cream-warm);
+    color: var(--navy-deep);
+    border-radius: 999px;
+    font: 500 14px/1 'Inter', sans-serif;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: background-color 0.16s ease, transform 0.18s ease;
+  }
+  .report-card__cta:hover { background: var(--cream-vivid); transform: translateY(-1px); }
+  .report-card__cta span:last-child { transition: transform 0.22s ease; }
+  .report-card__cta:hover span:last-child { transform: translateX(3px); }
+  .report-card__cta:focus-visible { outline: 2px solid var(--gold-vivid); outline-offset: 3px; }
+
+  /* ───── SUBSCRIBE SECTION — dark theme, centered ───── */
+  .subscribe {
+    background: #000;
+    padding: 100px clamp(24px, 6vw, 160px);
+    color: var(--cream-warm);
+    display: flex; flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 48px;
+  }
+  .subscribe__head {
+    display: flex; flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .subscribe__head .eyebrow-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .subscribe__head .eyebrow-row > span:first-child {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green-vivid);
+  }
+  .subscribe__head .eyebrow-row > span:last-child {
+    font: 600 11px/150% 'Inter', sans-serif;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,243,232,0.7);
+  }
+  .subscribe__head .h2 { color: var(--cream-warm); }
+  .subscribe__head .lede {
+    color: rgba(250,243,232,0.65);
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 18px;
+  }
+  .subscribe__form {
+    display: flex; gap: 12px;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .subscribe__input {
+    flex: 1;
+    padding: 22px 28px;
+    border-radius: 14px;
+    border: 1px solid rgba(250,243,232,0.18);
+    background: rgba(250,243,232,0.04);
+    color: var(--cream-warm);
+    font: 400 17px/1 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.22s ease, background-color 0.18s ease;
+    text-align: left;
+  }
+  .subscribe__input::placeholder { color: rgba(250,243,232,0.42); }
+  .subscribe__input:focus-visible {
+    border-color: var(--cream-warm);
+    background: rgba(250,243,232,0.07);
+    box-shadow: 0 0 0 4px rgba(250,243,232,0.08);
+  }
+  .subscribe__btn {
+    padding: 22px 36px;
+    border-radius: 14px;
+    border: 1px solid var(--cream-warm);
+    background: var(--cream-warm);
+    color: var(--navy-deep);
+    font: 500 16px/1 'Inter', sans-serif;
+    letter-spacing: -0.005em;
+    cursor: pointer;
+    transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.22s ease;
+    font-family: inherit;
+  }
+  .subscribe__btn:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 8px 24px -10px rgba(0,0,0,0.55); }
+  .subscribe__btn:active { transform: translateY(0) scale(0.985); }
+  .subscribe__btn:focus-visible { outline: 2px solid var(--gold-vivid); outline-offset: 3px; }
+  .subscribe__fineprint {
+    font: 400 13px/1.6 'Inter', sans-serif;
+    color: rgba(250,243,232,0.55);
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .subscribe__stats {
+    display: flex; gap: 56px;
+    justify-content: center;
+    padding-top: 32px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(250,243,232,0.10);
+    width: 100%;
+    max-width: 920px;
+  }
+  .subscribe__stat { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .subscribe__stat-num {
+    font: 500 36px/1 'Inter Tight', sans-serif;
+    letter-spacing: -0.04em;
+    color: var(--cream-warm);
+    font-variant-numeric: tabular-nums;
+  }
+  .subscribe__stat-cap {
+    font: 400 12px/1.4 'Inter', sans-serif;
+    color: rgba(250,243,232,0.55);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ───── FOOTER ───── */
+  .footer { background: #000; padding: 80px; }
+  .footer__panel { background: var(--navy); border-radius: 36px; padding: 80px; display: flex; flex-direction: column; gap: 56px; }
+  .footer__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 80px; }
+  .footer__brand { display: flex; flex-direction: column; gap: 16px; }
+  .footer__brand-row { display: flex; align-items: center; gap: 14px; }
+  .footer__mark { display: inline-flex; align-items: center; }
+  .footer__mark img { width: auto; height: 48px; display: block; }
+  .footer__name { display: none; }
+  .footer__tag { font: 400 14px/162.5% 'Inter', sans-serif; color: rgba(250,243,232,0.7); max-width: 480px; }
+  .footer__cols { display: flex; gap: 64px; }
+  .footer__col { width: 220px; display: flex; flex-direction: column; gap: 20px; }
+  .footer__col h4 { margin: 0; font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.7); }
+  .footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .footer__col li { font: 400 15px/200% 'Inter', sans-serif; color: rgba(250,243,232,0.85); transition: color 0.18s ease, padding-left 0.22s ease; cursor: pointer; }
+  .footer__col li:hover { color: var(--cream-warm); padding-left: 4px; }
+  .footer__col li a { color: inherit; text-decoration: none; }
+  .footer__rule { width: 100%; height: 1px; background: rgba(250,243,232,0.15); }
+  .footer__disclosures { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; }
+  .footer__disclosures a { font: 500 13px/1.6 'Inter', sans-serif; letter-spacing: -0.005em; color: rgba(250,243,232,0.85); text-decoration: none; transition: color 0.15s ease; }
+  .footer__disclosures a:hover { color: var(--cream-warm); }
+  .footer__disclosures .sep { font: 500 13px/1.6 'Inter', sans-serif; color: rgba(250,243,232,0.3); padding: 0 14px; user-select: none; }
+  .footer__bottom { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; }
+  .footer__bottom > div { font: 400 12px/137.5% 'Inter', sans-serif; color: rgba(250,243,232,0.5); }
+  .footer__stamp { font: 600 11px/150% 'Inter', sans-serif !important; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* ───── REVEAL ON SCROLL ───── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  /* never hide whole sections — only inner stagger children fade in */
+  body .reveal { opacity: 1 !important; transform: none !important; }
+  body .reveal .stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body .reveal.in-view .stagger > * { opacity: 1; transform: translateY(0); }
+  body .reveal.in-view .stagger > *:nth-child(1) { transition-delay: 0.06s; }
+  body .reveal.in-view .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+  body .reveal.in-view .stagger > *:nth-child(3) { transition-delay: 0.18s; }
+  body .reveal.in-view .stagger > *:nth-child(4) { transition-delay: 0.24s; }
+  body .reveal.in-view .stagger > *:nth-child(5) { transition-delay: 0.30s; }
+  body .reveal.in-view .stagger > *:nth-child(6) { transition-delay: 0.36s; }
+  body .reveal.in-view .stagger > *:nth-child(7) { transition-delay: 0.42s; }
+  body .reveal.in-view .stagger > *:nth-child(8) { transition-delay: 0.48s; }
+  body .reveal.in-view .stagger > *:nth-child(9) { transition-delay: 0.54s; }
+  body .reveal.in-view .stagger > *:nth-child(10) { transition-delay: 0.60s; }
+  body .reveal.in-view .stagger > *:nth-child(11) { transition-delay: 0.66s; }
+  body .reveal.in-view .stagger > *:nth-child(12) { transition-delay: 0.72s; }
+  body .reveal.in-view .stagger > *:nth-child(n+13) { transition-delay: 0.78s; }
+
+  /* ───── HERO INTRO CASCADE ───── */
+  @keyframes agmbFadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes agmbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+  html.agmb-cascade .hero .hero__eyebrow,
+  html.agmb-cascade .hero .h1,
+  html.agmb-cascade .hero .h1--centered,
+  html.agmb-cascade .hero .hero__lede,
+  html.agmb-cascade .hero .hero__lede--centered,
+  html.agmb-cascade .hero .ctas,
+  html.agmb-cascade .hero .ctas--centered,
+  html.agmb-cascade .hero .hero__rule {
+    opacity: 0;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .hero__eyebrow {
+    animation: agmbFadeUp 300ms cubic-bezier(0.16, 1, 0.3, 1) 0ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .h1,
+  html.agmb-cascade.agmb-cascade-run .hero .h1--centered {
+    animation: agmbFadeUp 520ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .hero__lede,
+  html.agmb-cascade.agmb-cascade-run .hero .hero__lede--centered {
+    animation: agmbFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 220ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .ctas,
+  html.agmb-cascade.agmb-cascade-run .hero .ctas--centered {
+    animation: agmbFadeUp 440ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both;
+  }
+  html.agmb-cascade.agmb-cascade-run .hero .hero__rule {
+    animation: agmbFadeIn 600ms cubic-bezier(0.16, 1, 0.3, 1) 460ms both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.agmb-cascade .hero > *, html.agmb-cascade .hero .hero__content--centered > * {
+      opacity: 1 !important; animation: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    .reveal, .reveal .stagger > * { opacity: 1 !important; transform: none !important; }
+    html.smooth-scroll { scroll-behavior: auto; }
+  }
+
+  /* ═════════════ ≤ 1024px : TABLET / LARGE MOBILE ═════════════ */
+  @media (max-width: 1024px) {
+    body { zoom: unset !important; transform: none !important; width: 100% !important; }
+    @-moz-document url-prefix() {
+      body { zoom: unset !important; transform: none !important; width: 100% !important; }
+    }
+    .page { width: 100% !important; max-width: 100% !important; }
+
+    .nav {
+      position: sticky !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 16px !important;
+      padding: 20px 32px !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      background: #000 !important;
+      border-bottom: 1px solid rgba(250,243,232,0.08) !important;
+    }
+    .nav--scrolled {
+      top: 0 !important;
+      margin: 0 !important;
+      padding: 14px 32px !important;
+      border-radius: 0 !important;
+      box-shadow: 0 4px 16px -4px rgba(0,0,0,0.45) !important;
+    }
+    .nav__links {
+      flex-wrap: wrap !important;
+      gap: 20px 24px !important;
+      justify-content: flex-start !important;
+      padding-top: 12px !important;
+      border-top: 1px solid rgba(250,243,232,0.08) !important;
+    }
+    .nav__links a { font-size: 15px !important; }
+    .nav__cta { margin-left: auto !important; }
+
+    .hero, .hero--centered { min-height: auto !important; height: auto !important; padding-bottom: 56px !important; }
+    .hero__content--centered { margin: 48px auto 32px !important; padding: 0 32px !important; gap: 22px !important; }
+    .h1 { font-size: 64px !important; }
+    .hero__lede, .hero__lede--centered { font-size: 18px !important; max-width: 100% !important; }
+    .ctas { flex-wrap: wrap !important; gap: 12px !important; }
+    .cta { padding: 16px 24px !important; font-size: 15px !important; }
+    .hero__rule { padding: 0 32px !important; margin-top: 28px !important; }
+
+    .filter-bar { padding: 56px 32px 28px !important; }
+    .h2 { font-size: 40px !important; }
+
+    .insights-grid {
+      padding: 28px 32px 80px !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 24px !important;
+    }
+    .article { padding: 28px !important; }
+    .article__title { font-size: 22px !important; }
+    .article__dek { font-size: 14px !important; }
+
+    .reports { padding: 80px 32px !important; gap: 48px !important; }
+    .reports-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 24px !important;
+    }
+    .report-card { padding: 32px !important; }
+    .report-card__year { font-size: 64px !important; }
+
+    .subscribe { padding: 80px 32px !important; gap: 40px !important; }
+    .subscribe__form { flex-direction: column !important; gap: 12px !important; }
+    .subscribe__btn { width: 100% !important; }
+    .subscribe__stats { flex-wrap: wrap !important; gap: 32px 48px !important; }
+
+    .footer { padding: 56px 32px !important; }
+    .footer__panel { padding: 48px 36px !important; gap: 40px !important; border-radius: 24px !important; }
+    .footer__top { flex-direction: column !important; gap: 40px !important; }
+    .footer__cols { flex-wrap: wrap !important; gap: 32px 48px !important; }
+    .footer__col { width: calc(50% - 24px) !important; }
+    .footer__name { font-size: 24px !important; }
+  }
+
+  /* ═════════════ ≤ 768px ═════════════ */
+  @media (max-width: 768px) {
+    .h1 { font-size: 48px !important; letter-spacing: -0.045em !important; }
+    .hero__content--centered { margin: 32px auto 24px !important; padding: 0 24px !important; gap: 18px !important; }
+    .filter-bar { padding: 48px 24px 24px !important; }
+    .insights-grid { padding: 24px 24px 72px !important; gap: 20px !important; }
+    .reports { padding: 72px 24px !important; }
+    .reports-grid { grid-template-columns: 1fr !important; }
+    .report-card__year { font-size: 56px !important; }
+    .subscribe { padding: 72px 24px !important; }
+    .footer { padding: 48px 24px !important; }
+    .footer__col { width: 100% !important; }
+  }
+
+  /* ═════════════ ≤ 480px ═════════════ */
+  @media (max-width: 480px) {
+    .insights-grid { grid-template-columns: 1fr !important; }
+    .chips { gap: 8px !important; }
+    .chip { padding: 10px 16px !important; font-size: 13px !important; }
+    .h1 { font-size: 40px !important; }
+    .h2 { font-size: 32px !important; }
+    .subscribe__stats { flex-direction: column !important; gap: 24px !important; }
+  }
+
+
+/* ───── Mobile hamburger + drawer (≤1024px) ───── */
+.nav__hamburger {
+  display: none;
+  position: relative;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 60;
+}
+.nav__hamburger-bar {
+  position: absolute;
+  left: 10px; right: 10px;
+  height: 2px;
+  background: var(--cream-warm);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease;
+}
+.nav__hamburger-bar:nth-child(1) { top: 14px; }
+.nav__hamburger-bar:nth-child(2) { top: 21px; }
+.nav__hamburger-bar:nth-child(3) { top: 28px; }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(2) { opacity: 0; }
+.nav__hamburger.is-open .nav__hamburger-bar:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,26,46,0.95);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+  z-index: 55;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-nav.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-nav__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 48px;
+  width: min(100%, 480px);
+  align-items: stretch;
+}
+.mobile-nav__panel > a {
+  font: 500 28px/1.1 'Inter', sans-serif;
+  letter-spacing: -0.025em;
+  color: var(--cream-warm);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(250,243,232,0.10);
+  transition: color 0.18s ease, opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(8px);
+}
+.mobile-nav__panel > a:hover { color: var(--gold-vivid); }
+.mobile-nav__panel > .mobile-nav__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 18px 28px;
+  background: var(--cream-warm);
+  color: var(--navy-deep);
+  border-radius: 999px;
+  border: 0;
+  font: 500 16px/1 'Inter', sans-serif;
+  letter-spacing: -0.005em;
+  text-align: center;
+}
+.mobile-nav.is-open .mobile-nav__panel > a {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* stagger entries */
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(1) { transition-delay: 0.08s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(2) { transition-delay: 0.14s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(3) { transition-delay: 0.20s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(4) { transition-delay: 0.26s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(5) { transition-delay: 0.32s; }
+.mobile-nav.is-open .mobile-nav__panel > a:nth-child(6) { transition-delay: 0.38s; }
+
+@media (max-width: 1024px) {
+  body .nav__hamburger { display: block; }
+  body .nav .nav__links { display: none; }
+  body .nav { padding: 14px 24px !important; }
+  body .nav--scrolled { margin: 0 12px !important; padding: 10px 16px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav, .mobile-nav__panel > a, .nav__hamburger-bar { transition: none !important; }
+}
+/* ───── /Mobile hamburger + drawer ───── */
+
+/* ═══════════════════════════════════════════════════════════════
+   CLIPPINGS COLLAGE  — layered press-wall aesthetic
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Paper color tokens ── */
+:root {
+  --paper-cream:  #FAF3E8;
+  --paper-beige:  #F2E8D5;
+  --paper-peach:  #F5DEC8;
+  --paper-mint:   #E8F0E1;
+  --paper-white:  #F8F5EF;
+  --paper-khaki:  #EDE4CC;
+  --ink-dark:     #1A1209;
+  --ink-navy:     #061A2E;
+  --ink-mid:      rgba(26,18,9,0.72);
+  --ink-faint:    rgba(26,18,9,0.50);
+}
+
+/* ── Outer section shell ── */
+/* ── Hero squircle (exact-match dimensions of About's .hero__squircle) ── */
+.hero__squircle--clippings {
+  position: relative;
+  width: calc(100% - clamp(48px, 8vw, 160px));
+  aspect-ratio: 21 / 9;
+  margin: 24px clamp(24px, 4vw, 80px) 24px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--cream-warm);
+  box-shadow:
+    inset 0 0 0 1px rgba(6,26,46,0.06),
+    0 20px 60px -20px rgba(0,0,0,0.4);
+  will-change: transform;
+  transform-origin: center center;
+}
+.clippings__image {
+  position: absolute;
+  /* Fit the squircle exactly at scale 1.0 — the parallax JS animates the image
+     from scale(1.05) at rest down to scale(1.0) at max scroll. So at-rest the
+     content is 5% oversized (cropped slightly by overflow:hidden); at the end of
+     the parallax range the image lands at full width inside the squircle. */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transform: scale(1.05);
+  transform-origin: center center;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__squircle--clippings, .clippings__image { transform: none !important; }
+}
+
+/* ── Board: positioning container for the clippings inside the squircle ── */
+.clippings__board {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  overflow: visible;
+}
+
+/* ── Base clipping card ── */
+.clipping {
+  position: absolute;
+  background: var(--paper-cream);
+  padding: 22px 24px 26px;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.14),
+    0 10px 28px -6px rgba(0,0,0,0.42),
+    0 24px 48px -16px rgba(0,0,0,0.28);
+  cursor: default;
+  transform-origin: center center;
+  transition:
+    transform 0.42s cubic-bezier(0.34,1.26,0.64,1),
+    box-shadow 0.42s cubic-bezier(0.34,1.26,0.64,1);
+  will-change: transform;
+  isolation: isolate;
+}
+
+/* grain layer */
+.clipping::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+  z-index: 2;
+}
+
+/* hover lift */
+.clipping:hover {
+  transform: var(--clip-base-transform, rotate(0deg)) scale(1.04) rotate(0deg) !important;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.16),
+    0 16px 40px -8px rgba(0,0,0,0.55),
+    0 32px 64px -20px rgba(0,0,0,0.35);
+  z-index: 50 !important;
+}
+
+/* ── Typography inside clippings ── */
+.clipping__source {
+  font: 600 10px/1 'Inter', sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(26,18,9,0.12);
+  padding-bottom: 8px;
+}
+
+.clipping__headline {
+  font: 400 16px/130% 'Libre Baskerville', serif;
+  color: var(--ink-dark);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.clipping__dek {
+  font: 400 11px/162% 'Inter', sans-serif;
+  color: var(--ink-mid);
+  margin: 0;
+}
+
+/* ── CENTERPIECE ── */
+.clipping--center {
+  background: var(--paper-beige);
+  z-index: 20;
+}
+.clipping--center .clipping__headline {
+  font-size: 54px;
+  line-height: 103%;
+  letter-spacing: -0.035em;
+  color: var(--ink-navy);
+  margin-bottom: 20px;
+}
+.clipping--center .clipping__dek {
+  font-size: 12.5px;
+  line-height: 168%;
+  color: var(--ink-mid);
+  columns: 2;
+  column-gap: 28px;
+}
+.clipping--center .clipping__source {
+  font-size: 11px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  letter-spacing: 0.22em;
+  border-bottom-width: 1.5px;
+  border-color: rgba(6,26,46,0.18);
+  color: rgba(6,26,46,0.6);
+}
+.clipping--center {
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.18),
+    0 16px 48px -8px rgba(0,0,0,0.52),
+    0 40px 80px -20px rgba(0,0,0,0.38);
+}
+
+/* ── MINI clippings (bottom row — headline only) ── */
+.clipping--mini .clipping__headline {
+  font-size: 14px;
+  line-height: 128%;
+  margin-bottom: 6px;
+}
+.clipping--mini .clipping__dek {
+  font-size: 10.5px;
+  line-height: 155%;
+}
+
+/* ────────────────────────────────────────────────
+   PER-CARD PLACEMENT + CLIP SHAPES + COLORS
+
+   Board is 1520w x 720h (aspect ratio drives actual px at each viewport).
+   Positions are % of board. Z-indices control layering.
+   Clip-path polygons simulate torn/deckle paper edges.
+   ────────────────────────────────────────────────  */
+
+/* ── TOP ROW ── */
+
+/* Card A: "Eyes 2030" — top-left */
+.clipping--a {
+  left: 0.5%;
+  top: 1.5%;
+  width: 22%;
+  background: var(--paper-peach);
+  transform: rotate(-1.4deg);
+  --clip-base-transform: rotate(-1.4deg);
+  z-index: 8;
+  clip-path: polygon(
+    0.5% 0%, 3.2% 0.4%, 6.5% 0%, 10% 0.3%, 14% 0.1%,
+    18% 0.4%, 22.5% 0%, 27% 0.3%, 32% 0%,
+    37% 0.4%, 42.5% 0%, 48% 0.3%, 54% 0%,
+    60% 0.4%, 66% 0%, 72% 0.3%, 78% 0%,
+    84% 0.4%, 90% 0%, 95.5% 0.3%, 99.5% 0%,
+    100% 0.5%, 99.6% 4%, 100% 8.5%, 99.6% 14%,
+    100% 20%, 99.6% 26.5%, 100% 33.5%, 99.6% 41%,
+    100% 49%, 99.6% 57.5%, 100% 66.5%, 99.6% 75.5%,
+    100% 84.5%, 99.6% 93%, 100% 99.5%,
+    99.4% 100%, 95.5% 99.6%, 91% 100%, 85.5% 99.6%,
+    79.5% 100%, 73% 99.6%, 66% 100%, 58.5% 99.6%,
+    51% 100%, 43.5% 99.6%, 36% 100%, 28.5% 99.6%,
+    21.5% 100%, 15% 99.6%, 9% 100%, 3.5% 99.6%,
+    0.5% 100%, 0% 99.4%,
+    0.4% 93%, 0% 86%, 0.4% 79%, 0% 72%, 0.4% 65%,
+    0% 58%, 0.4% 51%, 0% 44%, 0.4% 37%,
+    0% 30%, 0.4% 23%, 0% 16%, 0.4% 9%, 0% 3.5%, 0.5% 0%
+  );
+}
+
+/* Card B: "AGMB + Cutstruct" */
+.clipping--b {
+  left: 23%;
+  top: 0%;
+  width: 21%;
+  background: var(--paper-white);
+  transform: rotate(1.2deg);
+  --clip-base-transform: rotate(1.2deg);
+  z-index: 9;
+  clip-path: polygon(
+    0.6% 0%, 4.5% 0.3%, 9% 0%, 14% 0.2%, 19.5% 0%,
+    25.5% 0.3%, 32% 0%, 38.5% 0.2%, 45.5% 0%,
+    52.5% 0.3%, 59.5% 0%, 66.5% 0.2%, 73.5% 0%,
+    80.5% 0.3%, 87.5% 0%, 93.5% 0.2%, 99.4% 0%,
+    100% 0.6%, 99.7% 5%, 100% 10.5%, 99.7% 16.5%,
+    100% 23%, 99.7% 30%, 100% 37.5%, 99.7% 45.5%,
+    100% 54%, 99.7% 62.5%, 100% 71%, 99.7% 79.5%,
+    100% 88%, 99.7% 96%, 100% 99.4%,
+    99.4% 100%, 94% 99.7%, 88% 100%, 81.5% 99.7%,
+    74.5% 100%, 67% 99.7%, 59% 100%, 51% 99.7%,
+    43% 100%, 35% 99.7%, 27.5% 100%, 20.5% 99.7%,
+    14% 100%, 8% 99.7%, 2.5% 100%, 0.6% 99.4%,
+    0% 99%, 0.3% 93%, 0% 87%, 0.3% 81%,
+    0% 75%, 0.3% 69%, 0% 63%, 0.3% 57%,
+    0% 51%, 0.3% 45%, 0% 39%, 0.3% 33%,
+    0% 27%, 0.3% 21%, 0% 15%, 0.3% 9%,
+    0% 3.5%, 0.6% 0%
+  );
+}
+
+/* Card C: "Agusto upgrade" */
+.clipping--c {
+  left: 44%;
+  top: 1%;
+  width: 20%;
+  background: var(--paper-mint);
+  transform: rotate(0.8deg);
+  --clip-base-transform: rotate(0.8deg);
+  z-index: 7;
+  clip-path: polygon(
+    0.6% 0%, 5% 0.3%, 10.5% 0%, 16.5% 0.2%, 23% 0%,
+    30% 0.3%, 37.5% 0%, 45% 0.2%, 52.5% 0%,
+    60% 0.3%, 67.5% 0%, 75% 0.2%, 82.5% 0%,
+    90% 0.3%, 97% 0%, 99.4% 0.2%,
+    100% 0.6%, 99.6% 5.5%, 100% 11%, 99.6% 17%,
+    100% 23.5%, 99.6% 30.5%, 100% 38%, 99.6% 46%,
+    100% 54.5%, 99.6% 63%, 100% 71.5%, 99.6% 80%,
+    100% 88.5%, 99.6% 97%, 100% 99.4%,
+    99.4% 100%, 93.5% 99.7%, 87% 100%, 80% 99.6%,
+    72.5% 100%, 65% 99.7%, 57% 100%, 49% 99.6%,
+    41% 100%, 33% 99.7%, 25% 100%, 17.5% 99.6%,
+    10.5% 100%, 4% 99.7%, 0.6% 100%,
+    0% 99.4%, 0.4% 93%, 0% 86.5%, 0.4% 80%,
+    0% 73.5%, 0.4% 67%, 0% 60.5%, 0.4% 54%,
+    0% 47.5%, 0.4% 41%, 0% 34.5%, 0.4% 28%,
+    0% 21.5%, 0.4% 15%, 0% 8.5%, 0.4% 3%, 0.6% 0%
+  );
+}
+
+/* Card D: "Shaping livable future" — top-right area */
+.clipping--d {
+  left: 63.5%;
+  top: 0%;
+  width: 18%;
+  background: var(--paper-khaki);
+  transform: rotate(-1.8deg);
+  --clip-base-transform: rotate(-1.8deg);
+  z-index: 8;
+  clip-path: polygon(
+    0.5% 0%, 4.5% 0.2%, 9% 0%, 14% 0.3%, 19.5% 0%,
+    25.5% 0.2%, 32% 0%, 38.5% 0.3%, 45.5% 0%,
+    52.5% 0.2%, 59.5% 0%, 66.5% 0.3%, 73.5% 0%,
+    80.5% 0.2%, 87.5% 0%, 93.5% 0.3%, 99.5% 0%,
+    100% 0.5%, 99.7% 5%, 100% 10.5%, 99.6% 16%,
+    100% 22%, 99.7% 28.5%, 100% 35%, 99.6% 42%,
+    100% 49%, 99.7% 56.5%, 100% 64%, 99.6% 71.5%,
+    100% 79%, 99.7% 86.5%, 100% 94%, 99.6% 99.5%,
+    99% 100%, 94% 99.7%, 88.5% 100%, 82.5% 99.6%,
+    76% 100%, 69.5% 99.7%, 62.5% 100%, 55.5% 99.6%,
+    48% 100%, 40.5% 99.7%, 33% 100%, 25.5% 99.6%,
+    18% 100%, 11% 99.7%, 4.5% 100%, 0.5% 99.5%,
+    0% 99%, 0.4% 94%, 0% 88.5%, 0.4% 83%,
+    0% 77.5%, 0.4% 72%, 0% 66.5%, 0.4% 61%,
+    0% 55.5%, 0.4% 50%, 0% 44.5%, 0.4% 39%,
+    0% 33.5%, 0.4% 28%, 0% 22.5%, 0.4% 17%,
+    0% 11.5%, 0.4% 6%, 0.5% 0%
+  );
+}
+
+/* Card E-top: "20% ROE" — top-far-right */
+.clipping--e-top {
+  left: 81%;
+  top: 2%;
+  width: 18.5%;
+  background: var(--paper-cream);
+  transform: rotate(1.6deg);
+  --clip-base-transform: rotate(1.6deg);
+  z-index: 6;
+  clip-path: polygon(
+    0.6% 0%, 5% 0.3%, 10.5% 0%, 16.5% 0.2%, 23% 0%,
+    30% 0.3%, 37.5% 0%, 45% 0.2%, 52.5% 0%,
+    60% 0.3%, 67.5% 0%, 75% 0.2%, 82.5% 0%,
+    90% 0.3%, 97% 0%, 99.4% 0.2%,
+    100% 0.6%, 99.6% 6%, 100% 12%, 99.7% 18.5%,
+    100% 25%, 99.6% 32%, 100% 39%, 99.7% 46.5%,
+    100% 54%, 99.6% 61.5%, 100% 69%, 99.7% 76.5%,
+    100% 84%, 99.6% 91.5%, 100% 99.4%,
+    99.4% 100%, 93.5% 99.7%, 87% 100%, 80% 99.6%,
+    72.5% 100%, 65% 99.7%, 57% 100%, 49% 99.6%,
+    41% 100%, 33% 99.7%, 25% 100%, 17.5% 99.6%,
+    10.5% 100%, 4% 99.7%, 0.6% 100%,
+    0% 99.4%, 0.4% 92%, 0% 85%, 0.4% 78%,
+    0% 71%, 0.4% 64%, 0% 57%, 0.4% 50%,
+    0% 43%, 0.4% 36%, 0% 29%, 0.4% 22%,
+    0% 15%, 0.4% 8%, 0.6% 0%
+  );
+}
+
+/* ── CENTERPIECE ── */
+.clipping--center {
+  left: 13.5%;
+  top: 19%;
+  width: 53%;
+  padding: 36px 40px 42px;
+  clip-path: polygon(
+    0.2% 0%, 1.5% 0.15%, 3% 0%, 4.5% 0.15%, 6% 0%,
+    7.5% 0.15%, 9% 0%, 10.5% 0.15%, 12% 0%, 13.5% 0.15%, 15% 0%,
+    16.5% 0.15%, 18% 0%, 19.5% 0.15%, 21% 0%, 22.5% 0.15%, 24% 0%,
+    25.5% 0.15%, 27% 0%, 28.5% 0.15%, 30% 0%, 31.5% 0.15%, 33% 0%,
+    34.5% 0.15%, 36% 0%, 37.5% 0.15%, 39% 0%, 40.5% 0.15%, 42% 0%,
+    43.5% 0.15%, 45% 0%, 46.5% 0.15%, 48% 0%, 49.5% 0.15%, 51% 0%,
+    52.5% 0.15%, 54% 0%, 55.5% 0.15%, 57% 0%, 58.5% 0.15%, 60% 0%,
+    61.5% 0.15%, 63% 0%, 64.5% 0.15%, 66% 0%, 67.5% 0.15%, 69% 0%,
+    70.5% 0.15%, 72% 0%, 73.5% 0.15%, 75% 0%, 76.5% 0.15%, 78% 0%,
+    79.5% 0.15%, 81% 0%, 82.5% 0.15%, 84% 0%, 85.5% 0.15%, 87% 0%,
+    88.5% 0.15%, 90% 0%, 91.5% 0.15%, 93% 0%, 94.5% 0.15%, 96% 0%,
+    97.5% 0.15%, 99% 0%, 99.8% 0.2%,
+    100% 0.2%, 99.85% 1.5%, 100% 3%, 99.85% 4.5%, 100% 6%,
+    99.85% 7.5%, 100% 9%, 99.85% 10.5%, 100% 12%,
+    99.85% 13.5%, 100% 15%, 99.85% 16.5%, 100% 18%,
+    99.85% 19.5%, 100% 21%, 99.85% 22.5%, 100% 24%,
+    99.85% 25.5%, 100% 27%, 99.85% 28.5%, 100% 30%,
+    99.85% 31.5%, 100% 33%, 99.85% 34.5%, 100% 36%,
+    99.85% 37.5%, 100% 39%, 99.85% 40.5%, 100% 42%,
+    99.85% 43.5%, 100% 45%, 99.85% 46.5%, 100% 48%,
+    99.85% 49.5%, 100% 51%, 99.85% 52.5%, 100% 54%,
+    99.85% 55.5%, 100% 57%, 99.85% 58.5%, 100% 60%,
+    99.85% 61.5%, 100% 63%, 99.85% 64.5%, 100% 66%,
+    99.85% 67.5%, 100% 69%, 99.85% 70.5%, 100% 72%,
+    99.85% 73.5%, 100% 75%, 99.85% 76.5%, 100% 78%,
+    99.85% 79.5%, 100% 81%, 99.85% 82.5%, 100% 84%,
+    99.85% 85.5%, 100% 87%, 99.85% 88.5%, 100% 90%,
+    99.85% 91.5%, 100% 93%, 99.85% 94.5%, 100% 96%,
+    99.85% 97.5%, 100% 99%, 99.8% 99.8%,
+    99.8% 100%, 98.5% 99.85%, 97% 100%, 95.5% 99.85%, 94% 100%,
+    92.5% 99.85%, 91% 100%, 89.5% 99.85%, 88% 100%,
+    86.5% 99.85%, 85% 100%, 83.5% 99.85%, 82% 100%,
+    80.5% 99.85%, 79% 100%, 77.5% 99.85%, 76% 100%,
+    74.5% 99.85%, 73% 100%, 71.5% 99.85%, 70% 100%,
+    68.5% 99.85%, 67% 100%, 65.5% 99.85%, 64% 100%,
+    62.5% 99.85%, 61% 100%, 59.5% 99.85%, 58% 100%,
+    56.5% 99.85%, 55% 100%, 53.5% 99.85%, 52% 100%,
+    50.5% 99.85%, 49% 100%, 47.5% 99.85%, 46% 100%,
+    44.5% 99.85%, 43% 100%, 41.5% 99.85%, 40% 100%,
+    38.5% 99.85%, 37% 100%, 35.5% 99.85%, 34% 100%,
+    32.5% 99.85%, 31% 100%, 29.5% 99.85%, 28% 100%,
+    26.5% 99.85%, 25% 100%, 23.5% 99.85%, 22% 100%,
+    20.5% 99.85%, 19% 100%, 17.5% 99.85%, 16% 100%,
+    14.5% 99.85%, 13% 100%, 11.5% 99.85%, 10% 100%,
+    8.5% 99.85%, 7% 100%, 5.5% 99.85%, 4% 100%,
+    2.5% 99.85%, 1% 100%, 0.2% 99.8%,
+    0% 99.8%, 0.15% 98.5%, 0% 97%, 0.15% 95.5%, 0% 94%,
+    0.15% 92.5%, 0% 91%, 0.15% 89.5%, 0% 88%,
+    0.15% 86.5%, 0% 85%, 0.15% 83.5%, 0% 82%,
+    0.15% 80.5%, 0% 79%, 0.15% 77.5%, 0% 76%,
+    0.15% 74.5%, 0% 73%, 0.15% 71.5%, 0% 70%,
+    0.15% 68.5%, 0% 67%, 0.15% 65.5%, 0% 64%,
+    0.15% 62.5%, 0% 61%, 0.15% 59.5%, 0% 58%,
+    0.15% 56.5%, 0% 55%, 0.15% 53.5%, 0% 52%,
+    0.15% 50.5%, 0% 49%, 0.15% 47.5%, 0% 46%,
+    0.15% 44.5%, 0% 43%, 0.15% 41.5%, 0% 40%,
+    0.15% 38.5%, 0% 37%, 0.15% 35.5%, 0% 34%,
+    0.15% 32.5%, 0% 31%, 0.15% 29.5%, 0% 28%,
+    0.15% 26.5%, 0% 25%, 0.15% 23.5%, 0% 22%,
+    0.15% 20.5%, 0% 19%, 0.15% 17.5%, 0% 16%,
+    0.15% 14.5%, 0% 13%, 0.15% 11.5%, 0% 10%,
+    0.15% 8.5%, 0% 7%, 0.15% 5.5%, 0% 4%,
+    0.15% 2.5%, 0% 1%, 0.2% 0%
+  );
+  transform: rotate(-0.5deg);
+  --clip-base-transform: rotate(-0.5deg);
+}
+
+/* ── BOTTOM ROW — 6 mini clippings ── */
+
+.clipping--m1 {
+  left: 0%;
+  top: 60%;
+  width: 16.5%;
+  background: var(--paper-cream);
+  transform: rotate(-1.1deg);
+  --clip-base-transform: rotate(-1.1deg);
+  z-index: 6;
+  clip-path: polygon(
+    0.5% 0%, 4% 0.3%, 8.5% 0%, 13.5% 0.2%, 19% 0%,
+    25% 0.3%, 31.5% 0%, 38.5% 0.2%, 46% 0%,
+    53.5% 0.3%, 61% 0%, 68.5% 0.2%, 76% 0%,
+    83% 0.3%, 90% 0%, 96.5% 0.2%, 99.5% 0%,
+    100% 0.5%, 99.7% 5.5%, 100% 11%, 99.7% 17%,
+    100% 23.5%, 99.7% 30%, 100% 37%, 99.7% 44.5%,
+    100% 52%, 99.7% 59.5%, 100% 67%, 99.7% 74.5%,
+    100% 82%, 99.7% 89.5%, 100% 99.5%,
+    96% 100%, 91% 99.7%, 85.5% 100%, 79.5% 99.7%,
+    73% 100%, 66% 99.7%, 58.5% 100%, 51% 99.7%,
+    43.5% 100%, 36% 99.7%, 28.5% 100%, 21.5% 99.7%,
+    15% 100%, 9% 99.7%, 3.5% 100%, 0.5% 99.5%,
+    0% 99%, 0.3% 93%, 0% 87%, 0.3% 81%,
+    0% 75%, 0.3% 69%, 0% 63%, 0.3% 57%,
+    0% 51%, 0.3% 45%, 0% 39%, 0.3% 33%,
+    0% 27%, 0.3% 21%, 0% 15%, 0.3% 9%,
+    0% 3.5%, 0.5% 0%
+  );
+}
+
+.clipping--m2 {
+  left: 16%;
+  top: 62%;
+  width: 15.5%;
+  background: var(--paper-beige);
+  transform: rotate(0.9deg);
+  --clip-base-transform: rotate(0.9deg);
+  z-index: 7;
+  clip-path: polygon(
+    0.6% 0%, 5.5% 0.2%, 11% 0%, 17% 0.3%, 23.5% 0%,
+    30.5% 0.2%, 38% 0%, 45.5% 0.3%, 53% 0%,
+    60.5% 0.2%, 68% 0%, 75.5% 0.3%, 82.5% 0%,
+    89% 0.2%, 95.5% 0%, 99.4% 0.2%,
+    100% 0.6%, 99.6% 6%, 100% 12%, 99.6% 18.5%,
+    100% 25.5%, 99.6% 33%, 100% 41%, 99.6% 49.5%,
+    100% 58%, 99.6% 66.5%, 100% 75%, 99.6% 83.5%,
+    100% 92%, 99.6% 99.4%,
+    99.4% 100%, 93.5% 99.7%, 87% 100%, 80% 99.7%,
+    72.5% 100%, 65% 99.7%, 57% 100%, 49% 99.7%,
+    41% 100%, 33% 99.7%, 25% 100%, 17.5% 99.7%,
+    10.5% 100%, 4% 99.7%, 0.6% 100%,
+    0% 99.4%, 0.4% 93%, 0% 86.5%, 0.4% 80%,
+    0% 73.5%, 0.4% 67%, 0% 60.5%, 0.4% 54%,
+    0% 47.5%, 0.4% 41%, 0% 34.5%, 0.4% 28%,
+    0% 21.5%, 0.4% 15%, 0% 8.5%, 0.4% 3%, 0.6% 0%
+  );
+}
+
+.clipping--m3 {
+  left: 31%;
+  top: 59%;
+  width: 16%;
+  background: var(--paper-white);
+  transform: rotate(-1.5deg);
+  --clip-base-transform: rotate(-1.5deg);
+  z-index: 6;
+  clip-path: polygon(
+    0.5% 0%, 4.5% 0.2%, 9% 0%, 14% 0.3%, 19.5% 0%,
+    25.5% 0.2%, 32% 0%, 38.5% 0.3%, 45.5% 0%,
+    52.5% 0.2%, 59.5% 0%, 66.5% 0.3%, 73.5% 0%,
+    80.5% 0.2%, 87.5% 0%, 93.5% 0.3%, 99.5% 0%,
+    100% 0.5%, 99.7% 5.5%, 100% 11.5%, 99.7% 18%,
+    100% 25%, 99.7% 32%, 100% 39.5%, 99.7% 47%,
+    100% 55%, 99.7% 63%, 100% 71%, 99.7% 79%,
+    100% 87%, 99.7% 95%, 99.6% 99.5%,
+    95.5% 100%, 90% 99.7%, 84% 100%, 77.5% 99.7%,
+    70.5% 100%, 63% 99.7%, 55.5% 100%, 48% 99.7%,
+    40.5% 100%, 33% 99.7%, 25.5% 100%, 18.5% 99.7%,
+    12% 100%, 6% 99.7%, 1% 100%, 0.5% 99.5%,
+    0% 99%, 0.3% 93%, 0% 87%, 0.3% 81%,
+    0% 75%, 0.3% 69%, 0% 63%, 0.3% 57%,
+    0% 51%, 0.3% 45%, 0% 39%, 0.3% 33%,
+    0% 27%, 0.3% 21%, 0% 15%, 0.3% 9%,
+    0% 3.5%, 0.5% 0%
+  );
+}
+
+.clipping--m4 {
+  left: 66%;
+  top: 61%;
+  width: 16%;
+  background: var(--paper-mint);
+  transform: rotate(1.3deg);
+  --clip-base-transform: rotate(1.3deg);
+  z-index: 7;
+  clip-path: polygon(
+    0.5% 0%, 4% 0.3%, 8.5% 0%, 13.5% 0.2%, 19% 0%,
+    25% 0.3%, 31.5% 0%, 38.5% 0.2%, 46% 0%,
+    53.5% 0.3%, 61% 0%, 68.5% 0.2%, 76% 0%,
+    83% 0.3%, 90% 0%, 96.5% 0.2%, 99.5% 0%,
+    100% 0.5%, 99.7% 5.5%, 100% 11%, 99.7% 17%,
+    100% 23.5%, 99.7% 30%, 100% 37%, 99.7% 44.5%,
+    100% 52%, 99.7% 59.5%, 100% 67%, 99.7% 74.5%,
+    100% 82%, 99.7% 89.5%, 100% 97%, 99.6% 99.5%,
+    96% 100%, 91% 99.7%, 85.5% 100%, 79.5% 99.7%,
+    73% 100%, 66% 99.7%, 58.5% 100%, 51% 99.7%,
+    43.5% 100%, 36% 99.7%, 28.5% 100%, 21.5% 99.7%,
+    15% 100%, 9% 99.7%, 3.5% 100%, 0.5% 99.5%,
+    0% 99%, 0.3% 93%, 0% 87%, 0.3% 81%,
+    0% 75%, 0.3% 69%, 0% 63%, 0.3% 57%,
+    0% 51%, 0.3% 45%, 0% 39%, 0.3% 33%,
+    0% 27%, 0.3% 21%, 0% 15%, 0.3% 9%,
+    0% 3.5%, 0.5% 0%
+  );
+}
+
+.clipping--m5 {
+  left: 81.5%;
+  top: 58%;
+  width: 9%;
+  background: var(--paper-peach);
+  transform: rotate(-2.1deg);
+  --clip-base-transform: rotate(-2.1deg);
+  z-index: 6;
+  clip-path: polygon(
+    0.8% 0%, 7% 0.3%, 14.5% 0%, 22.5% 0.2%, 31% 0%,
+    39.5% 0.3%, 48.5% 0%, 57.5% 0.2%, 66.5% 0%,
+    75.5% 0.3%, 84% 0%, 91.5% 0.2%, 97.5% 0%, 99.2% 0%,
+    100% 0.8%, 99.5% 7%, 100% 14%, 99.5% 21.5%,
+    100% 29%, 99.5% 37%, 100% 45.5%, 99.5% 54.5%,
+    100% 64%, 99.5% 73.5%, 100% 83%, 99.5% 92.5%,
+    100% 99.2%,
+    99.2% 100%, 92.5% 99.6%, 85.5% 100%, 78% 99.6%,
+    70% 100%, 62% 99.6%, 53.5% 100%, 45% 99.6%,
+    36.5% 100%, 28.5% 99.6%, 21% 100%, 14% 99.6%,
+    7.5% 100%, 1.5% 99.6%, 0.8% 100%,
+    0% 99.2%, 0.5% 92%, 0% 84.5%, 0.5% 77%,
+    0% 69.5%, 0.5% 62%, 0% 54.5%, 0.5% 47%,
+    0% 39.5%, 0.5% 32%, 0% 24.5%, 0.5% 17%,
+    0% 9.5%, 0.5% 3%, 0.8% 0%
+  );
+}
+
+.clipping--m6 {
+  left: 90%;
+  top: 59.5%;
+  width: 10%;
+  background: var(--paper-khaki);
+  transform: rotate(1.7deg);
+  --clip-base-transform: rotate(1.7deg);
+  z-index: 5;
+  clip-path: polygon(
+    0.8% 0%, 7% 0.3%, 14% 0%, 21.5% 0.2%, 29.5% 0%,
+    38% 0.3%, 47% 0%, 56% 0.2%, 65% 0%,
+    73.5% 0.3%, 81.5% 0%, 89% 0.2%, 95.5% 0%, 99.2% 0%,
+    100% 0.8%, 99.5% 7.5%, 100% 15%, 99.5% 23%,
+    100% 31.5%, 99.5% 40.5%, 100% 50%, 99.5% 60%,
+    100% 70%, 99.5% 80%, 100% 90%, 99.5% 99.2%,
+    99.2% 100%, 92% 99.6%, 84.5% 100%, 77% 99.6%,
+    69% 100%, 61% 99.6%, 52.5% 100%, 44% 99.6%,
+    35.5% 100%, 27.5% 99.6%, 20% 100%, 13% 99.6%,
+    6.5% 100%, 1% 99.6%, 0.8% 100%,
+    0% 99.2%, 0.5% 91.5%, 0% 83.5%, 0.5% 75.5%,
+    0% 67.5%, 0.5% 59.5%, 0% 51.5%, 0.5% 43.5%,
+    0% 35.5%, 0.5% 27.5%, 0% 19.5%, 0.5% 11.5%,
+    0% 4%, 0.8% 0%
+  );
+}
+
+/* Spacer below the board */
+.clippings__spacer {
+  height: 80px;
+  background: #000;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .clipping {
+    transform: none !important;
+    transition: none !important;
+  }
+  .clipping:hover {
+    transform: none !important;
+  }
+}
+
+/* ── Responsive: tablet ≤ 1024px ── */
+@media (max-width: 1024px) {
+  .clippings__board {
+    aspect-ratio: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 32px 48px;
+    position: static;
+  }
+  .clipping,
+  .clipping--center,
+  .clipping--a,
+  .clipping--b,
+  .clipping--c,
+  .clipping--d,
+  .clipping--e-top,
+  .clipping--m1,
+  .clipping--m2,
+  .clipping--m3,
+  .clipping--m4,
+  .clipping--m5,
+  .clipping--m6 {
+    position: static !important;
+    width: 100% !important;
+    transform: none !important;
+    clip-path: none !important;
+    border-radius: 3px;
+  }
+  .clipping--center {
+    grid-column: 1 / -1;
+    padding: 28px 32px !important;
+  }
+  .clipping--center .clipping__headline {
+    font-size: 36px !important;
+  }
+  .clipping--center .clipping__dek {
+    columns: 2 !important;
+  }
+  .clippings__spacer { display: none; }
+}
+
+/* ── Responsive: mobile ≤ 768px ── */
+@media (max-width: 768px) {
+  .clippings__board {
+    grid-template-columns: 1fr;
+    padding: 0 24px 32px;
+  }
+  .clipping--center .clipping__headline {
+    font-size: 28px !important;
+  }
+  .clipping--center .clipping__dek {
+    columns: 1 !important;
+  }
+  .clipping--m5,
+  .clipping--m6 {
+    display: none;
+  }
+}
+</style>
+<script id="agmb-motion-head-bootstrap">
+  (function () {
+    try {
+      /* Force native scroll restoration on refresh — without this the cascade
+         can race the browser's restore and snap the page back to the hero. */
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'auto'; } catch (e) {}
+      var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var KEY = 'agmb-loaded';
+      var hasFlag = false;
+      try { hasFlag = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+      var isReload = false;
+      try {
+        if (performance && performance.navigation) isReload = performance.navigation.type === 1;
+        else if (performance && performance.getEntriesByType) {
+          var n = performance.getEntriesByType('navigation');
+          if (n && n[0]) isReload = n[0].type === 'reload';
+        }
+      } catch (e) {}
+      window.__agmbMotion = { reduced: REDUCED, hasFlag: hasFlag, isReload: isReload };
+      /* Only arm the hero cascade on a true first paint. Reloads + back-nav use
+         scroll restoration and shouldn't re-play the hero animation. */
+      if (!REDUCED && !hasFlag && !isReload) document.documentElement.classList.add('agmb-cascade');
+    } catch (e) { /* swallow */ }
+  })();
+</script>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero hero--centered">
+    {% include "header.njk" %}
+
+    <div class="hero__content hero__content--centered">
+      <h1 class="h1 h1--centered">What we've put on <em>paper.</em></h1>
+      <p class="hero__lede hero__lede--centered">Rate moves, regulatory filings, annual reports, and quiet quarterly notes. The same disclosures that go to the Central Bank, the NDIC, and the Mortgage Bankers Association — published here, dated and timestamped.</p>
+      <div class="ctas ctas--centered">
+        <a class="cta cta--primary" href="#reports">See our regulatory standing <span>→</span></a>
+        <a class="cta cta--secondary" href="agmb-contact.html">Talk to an advisor <span>→</span></a>
+      </div>
+    </div>
+
+    <!-- Clippings collage lives INSIDE the hero as a squircle frame, matching the About hero pattern -->
+    <div class="hero__squircle hero__squircle--clippings" aria-hidden="true">
+      <img class="hero__squircle-img clippings__image" src="NEWSPAPER-cut-out-well.webp" alt="" loading="lazy">
+      <div class="clippings__board" hidden>
+
+      <!-- ── TOP ROW (5 cards) ── -->
+      <article class="clipping clipping--a">
+        <div class="clipping__source">BusinessDay · Feb 2026</div>
+        <div class="clipping__headline">AG Mortgage Bank eyes 2030 to become Nigeria&rsquo;s largest housing finance group</div>
+        <div class="clipping__dek">The strategy will be driven by customer-centric solutions, strategic partnerships, and technology-led efficiency to become the country&rsquo;s pre-eminent mortgage institution.</div>
+      </article>
+
+      <article class="clipping clipping--b">
+        <div class="clipping__source">Punch · 5 Mar 2026</div>
+        <div class="clipping__headline">AGMB, Cutstruct unveil delivery-linked housing finance model</div>
+        <div class="clipping__dek">AG Mortgage Bank Plc and Cutstruct Limited have announced a delivery-linked housing finance model designed to accelerate the delivery of quality, affordable homes.</div>
+      </article>
+
+      <article class="clipping clipping--c">
+        <div class="clipping__source">Agusto &amp; Co. · 30 Aug 2023</div>
+        <div class="clipping__headline">Agusto &amp; Co. upgrades AG Mortgage Bank Plc to a &lsquo;Bb&rsquo;</div>
+        <div class="clipping__dek">The upgrade reflects confidence in the bank&rsquo;s strategy execution and its ability to deliver sustainable value for stakeholders.</div>
+      </article>
+
+      <article class="clipping clipping--d">
+        <div class="clipping__source">BusinessDay · 6 May 2025</div>
+        <div class="clipping__headline">AG Mortgage Bank: Shaping livable future for Nigerians</div>
+        <div class="clipping__dek">AGMB is committed to building communities and financing dreams, creating access to quality, affordable homes contributing to a more livable Nigeria.</div>
+      </article>
+
+      <article class="clipping clipping--e-top">
+        <div class="clipping__source">BusinessDay · 9 Dec 2025</div>
+        <div class="clipping__headline">AG Mortgage Bank eyes 20% return-on-equity for shareholders</div>
+        <div class="clipping__dek">The bank targets a 20% return on equity, founded on operational excellence, prudent risk management, and sustained growth across core lines of business.</div>
+      </article>
+
+      <!-- ── CENTERPIECE ── -->
+      <article class="clipping clipping--center">
+        <div class="clipping__source">BusinessDay &middot; 4 Jan 2026</div>
+        <div class="clipping__headline">AGMB: A compelling opportunity for investors</div>
+        <div class="clipping__dek">AG Mortgage Bank continues to attract strong investor interest on the back of robust fundamentals, a clear growth strategy, and rising demand for affordable housing finance across Nigeria. The Bank remains focused on creating long-term value and building a resilient platform that empowers more Nigerians to own homes and build better communities.</div>
+      </article>
+
+      <!-- ── BOTTOM ROW — 6 mini clippings ── -->
+      <article class="clipping clipping--mini clipping--m1">
+        <div class="clipping__source">BusinessDay · Sep 2025</div>
+        <div class="clipping__headline">N10bn capital raise to expand operations</div>
+        <div class="clipping__dek">AG Mortgage Bank announces a &#8358;10bn capital raise to scale operations and support business expansion.</div>
+      </article>
+
+      <article class="clipping clipping--mini clipping--m2">
+        <div class="clipping__source">BusinessDay · Dec 2025</div>
+        <div class="clipping__headline">Mortgage bank targets sustainable growth</div>
+        <div class="clipping__dek">AGMB reiterates its commitment to sustainable growth through responsible lending and strong corporate governance.</div>
+      </article>
+
+      <article class="clipping clipping--mini clipping--m3">
+        <div class="clipping__source">BusinessDay · Apr 2025</div>
+        <div class="clipping__headline">Housing finance ambitions gather pace</div>
+        <div class="clipping__dek">Demand for mortgage solutions continues to rise as AGMB scales initiatives to start housing needs nationwide.</div>
+      </article>
+
+      <article class="clipping clipping--mini clipping--m4">
+        <div class="clipping__source">BusinessDay · Mar 2026</div>
+        <div class="clipping__headline">Green housing strategy gains momentum</div>
+        <div class="clipping__dek">AGMB deepens its focus on green housing finance to support sustainable, eco-friendly construction and environmental impact.</div>
+      </article>
+
+      <article class="clipping clipping--mini clipping--m5">
+        <div class="clipping__source">Nairametrics · 2025</div>
+        <div class="clipping__headline">Investor confidence strengthens</div>
+        <div class="clipping__dek">Strong financial performance and governance restore investor confidence in AGMB.</div>
+      </article>
+
+      <article class="clipping clipping--mini clipping--m6">
+        <div class="clipping__source">BusinessDay · 2025</div>
+        <div class="clipping__headline">Nigeria housing future in focus</div>
+        <div class="clipping__dek">Stakeholders align on priorities and partnerships to unlock housing finance and drive national development.</div>
+      </article>
+
+      </div><!-- /.clippings__board -->
+    </div><!-- /.hero__squircle -->
+  </section>
+
+  <!-- FILTER BAR -->
+  <section class="filter-bar reveal">
+    <div class="filter-bar__label"><span></span><span>Filter by category</span></div>
+    <div class="chips stagger" role="tablist" aria-label="Filter updates by category">
+      <button class="chip active" data-filter="all" role="tab" aria-selected="true">All updates <span class="chip__count">12</span></button>
+      <button class="chip" data-filter="press" role="tab" aria-selected="false">Press releases <span class="chip__count">7</span></button>
+      <button class="chip" data-filter="regulatory" role="tab" aria-selected="false">Regulatory &amp; ratings <span class="chip__count">2</span></button>
+      <button class="chip" data-filter="market" role="tab" aria-selected="false">Market commentary <span class="chip__count">1</span></button>
+      <button class="chip" data-filter="product" role="tab" aria-selected="false">Product updates <span class="chip__count">2</span></button>
+    </div>
+  </section>
+
+  <!-- ARTICLE GRID -->
+  <section class="insights-grid reveal stagger" id="insights-grid">
+
+    <a class="article article--external" data-category="press" href="https://punchng.com/agmb-cutstruct-unveil-delivery-linked-housing-finance-model/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--press">Press <span class="article__source">Punch</span></span>
+        <span class="article__date">05 Mar 2026</span>
+      </div>
+      <h3 class="article__title">AGMB &amp; Cutstruct unveil delivery-linked housing finance model.</h3>
+      <p class="article__dek">AG Mortgage Bank Plc and Cutstruct Technologies Limited have launched a delivery-based funding architecture that separates material procurement from operational cash flow — the bank finances bulk building materials through Cutstruct while operational funds disburse separately. The model aims to minimise fund diversion and accelerate project completion across Nigeria's housing pipeline.</p>
+      <span class="article__link"><span>Read on Punch</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="press" href="https://businessday.ng/companies/article/agmb-a-compelling-opportunity-for-investors/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--press">Press <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">04 Jan 2026</span>
+      </div>
+      <h3 class="article__title">AGMB: A compelling opportunity for investors.</h3>
+      <p class="article__dek">AG Mortgage Bank Plc is raising ₦10 billion in debt/equity funding to expand operations and deliver efficient, eco-friendly mortgage solutions. The bank projects a 25% return on investment over the next year of capital injection, underpinned by its 2025–2030 strategic plan targeting 20% YoY growth on loans and 35% on gross earnings to ₦14.5bn by December 2028.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="regulatory" href="https://nairametrics.com/2025/08/19/pencom-blacklists-infinity-trust-ag-5-other-mortgage-banks-suspends-rsa-equity-contributions/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--regulatory">Regulatory <span class="article__source">Nairametrics</span></span>
+        <span class="article__date">19 Aug 2025</span>
+      </div>
+      <h3 class="article__title">PenCom suspends RSA equity contributions for seven mortgage banks.</h3>
+      <p class="article__dek">The National Pension Commission issued a directive halting acceptance and processing of equity contribution applications submitted by seven Primary Mortgage Banks, AGMB among them, citing alleged non-compliance with its housing loan guidelines. The notice instructs Pension Fund Administrators to suspend further processing until affected institutions resolve outstanding compliance items raised by the Commission.</p>
+      <span class="article__link"><span>Read on Nairametrics</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="press" href="https://businessday.ng/companies/article/ag-mortgage-bank-shaping-livable-future-for-nigerians/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--press">Press <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">06 May 2025</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank: Shaping a livable future for Nigerians.</h3>
+      <p class="article__dek">Recognising the transformative potential of the Mortgage-Backed Refinance Investment Facility (M-REIF), AGMB engaged the framework from its inception — partnering with the Nigeria Mortgage Refinance Company and capital markets institutions to channel long-term funding into affordable housing for low- and middle-income Nigerians.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="press" href="https://businessday.ng/news/article/ag-mortgage-bank-celebrates-20-years-announces-%E2%82%A610bn-capital/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--press">Press <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">29 Sep 2025</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank celebrates 20 years, announces ₦10bn capital.</h3>
+      <p class="article__dek">AGMB unveiled plans to raise ₦10 billion in fresh capital as it marked its 20th anniversary, framing the raise as a strategic lever to scale operations, strengthen its balance sheet and support Nigeria's housing finance sector. The bank reported gross earnings up 7% year-on-year to ₦3.47 billion, with total assets at ₦22.36 billion and shareholders' funds up 8% to ₦6.1 billion.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="product" href="https://businessday.ng/companies/article/ag-mortgage-bank-creates-home-ownership-pathway-for-17m-nigerians-in-diaspora/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--product">Product <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">02 Dec 2025</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank creates home ownership pathway for 17m Nigerians in diaspora.</h3>
+      <p class="article__dek">AGMB has opened an accessible pathway to home ownership for Diaspora Nigerians, with the Diaspora Home Ownership Scheme allowing lower- and middle-income families to own affordable, liveable homes in their preferred Nigerian cities regardless of country of residence. MD Ngozi Anyogu framed the 17m-strong diaspora as a culturally motivated, long-term investor base that has been structurally underserved by Nigerian real estate finance.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="press" href="https://businessday.ng/companies/article/ag-mortgage-bank-eyes-20-return-on-equity-for-shareholders/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--press">Press <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">09 Dec 2025</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank eyes 20% return-on-equity for shareholders.</h3>
+      <p class="article__dek">AGMB has set ambitious goals to increase shareholder value with a 20% return-on-equity, anchored in its 2025–2030 strategic plan. The bank is targeting growth across loans, customer deposits and gross earnings while diversifying revenue streams — positioning itself as a leading housing finance group serving low- to middle-income Nigerians.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="press" href="https://businessday.ng/companies/article/ag-mortgage-bank-eyes-2030-to-become-nigerias-largest-housing-finance-group/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--press">Press <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">Feb 2026</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank eyes 2030 to become Nigeria's largest Housing Finance Group.</h3>
+      <p class="article__dek">AGMB has activated Project Momentum 2025–2030 — a five-year transformational plan built on the "High 5s": organisational transformation, sustainable capital base, growth, impact, and shareholder value. Targets include one million mortgages, 20% return-on-equity, and a diversified group structure spanning mortgage finance, housing microfinance, development, insurance, brokerage and rental services.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="press" href="https://businessday.ng/companies/article/ag-mortgage-bank-invest-africa-moving-to-reshape-continents-mortgage-landscape/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--press">Press <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">29 Apr 2025</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank, Invest Africa: moving to reshape continent's mortgage landscape.</h3>
+      <p class="article__dek">With an audacious goal to create 300,000 mortgages within six years and scale to serve one million customers, AGMB's partnership with Invest Africa marks a pivotal step. The alliance — unveiled around the bank's 20th anniversary alongside Invest Africa CEO Chantele Carrington — promises to extend Nigeria's mortgage architecture across the continent and underwrite a new generation of affordable housing finance.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="regulatory" href="https://www.agusto.com/ratings/agusto-co-hereby-upgrades-the-rating-assigned-to-ag-mortgage-bank-plc-to-a-bb/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--regulatory">Credit rating <span class="article__source">Agusto &amp; Co.</span></span>
+        <span class="article__date">30 Aug 2023</span>
+      </div>
+      <h3 class="article__title">Agusto &amp; Co. upgrades AG Mortgage Bank rating to 'Bb'.</h3>
+      <p class="article__dek">Nigeria's first credit rating agency upgraded AGMB on the back of strengthened operational risk-management structures, enhanced board composition and an improved funding profile. The rating cites the bank's low leverage, satisfactory funding profile and experienced management team — positioning AGMB among the largest primary mortgage banks operating under a national CBN licence.</p>
+      <span class="article__link"><span>Read rating release</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="market" href="https://businessday.ng/companies/article/ag-mortgage-bank-grows-full-year-2023-profit-by-92/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--market">Results <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">11 Jun 2024</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank grows full-year 2023 profit by 92%.</h3>
+      <p class="article__dek">AGMB's full-year 2023 profit-after-tax climbed 92% to ₦428.86 million from ₦223.54 million in 2022, with gross earnings up ~60% to ₦3.24 billion. Pre-tax profit rose 85% YoY to ₦702.87 million; total assets grew 22% to ₦22.1 billion and shareholders' funds rose 8% to ₦5.64 billion — underwritten by stronger NHF disbursement volumes and improving regulatory reserves.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <a class="article article--external" data-category="product" href="https://businessday.ng/companies/article/ag-mortgage-bank-engages-market-players-on-suits-of-products/" target="_blank" rel="noopener noreferrer">
+      <div class="article__meta">
+        <span class="article__cat article__cat--product">Product <span class="article__source">BusinessDay</span></span>
+        <span class="article__date">30 Apr 2025</span>
+      </div>
+      <h3 class="article__title">AG Mortgage Bank engages market players on suite of products.</h3>
+      <p class="article__dek">AGMB convened a focus-group session with stakeholders from banking, insurance, fund management and FITC to re-examine a suite of new mortgage and real-estate financing products before market launch. MD Ngozi Anyogu framed the programme as a way to gather candid feedback on product acceptability, broaden perspectives beyond the conventional banking lens, and ensure the new offerings are market-aligned.</p>
+      <span class="article__link"><span>Read on BusinessDay</span><span>↗</span></span>
+    </a>
+
+    <div class="insights-empty" id="insights-empty">No updates in this category yet. Check back next quarter.</div>
+
+  </section>
+
+  <!-- ANNUAL REPORTS -->
+  <section class="reports reveal" id="reports">
+    <div class="reports__head">
+      <div class="eyebrow-row"><span></span><span>Reports · Archive</span></div>
+      <h2 class="h2">Annual reports &amp; factsheets.</h2>
+      <p class="lede">Audited accounts, board statements, and risk disclosures. Filed each April with the Central Bank of Nigeria, the NDIC, and the Securities and Exchange Commission — and published here, ungated, on the same day.</p>
+    </div>
+    <div class="reports-grid stagger">
+      <div class="report-card">
+        <div class="report-card__head">
+          <div class="report-card__year">2024</div>
+          <span class="report-card__chip">Audited</span>
+        </div>
+        <div class="report-card__filename">AGMB Annual Report 2024.pdf</div>
+        <div class="report-card__meta">4.2 MB · 84 pages · Published 22 Apr 2025</div>
+        <a class="report-card__cta" href="#" download>Download <span>↓</span></a>
+      </div>
+      <div class="report-card">
+        <div class="report-card__head">
+          <div class="report-card__year">2023</div>
+          <span class="report-card__chip">Audited</span>
+        </div>
+        <div class="report-card__filename">AGMB Annual Report 2023.pdf</div>
+        <div class="report-card__meta">3.9 MB · 78 pages · Published 19 Apr 2024</div>
+        <a class="report-card__cta" href="#" download>Download <span>↓</span></a>
+      </div>
+      <div class="report-card">
+        <div class="report-card__head">
+          <div class="report-card__year">2022</div>
+          <span class="report-card__chip">Audited</span>
+        </div>
+        <div class="report-card__filename">AGMB Annual Report 2022.pdf</div>
+        <div class="report-card__meta">3.6 MB · 72 pages · Published 14 Apr 2023</div>
+        <a class="report-card__cta" href="#" download>Download <span>↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE -->
+  <section class="subscribe reveal" id="subscribe">
+    <div class="subscribe__head">
+      <div class="eyebrow-row"><span></span><span>Stay posted</span></div>
+      <h2 class="h2">Quarterly updates to your inbox.</h2>
+      <p class="lede">No marketing emails. Just the same disclosures you'd find on the NSE listings page, two weeks earlier.</p>
+    </div>
+    <form class="subscribe__form" id="subscribe-form" onsubmit="return false;">
+      <input class="subscribe__input" type="email" name="email" placeholder="you@domain.com" aria-label="Email address" required>
+      <button class="subscribe__btn" type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  {% include "footer.njk" %}
+
+</div>
+
+<script>
+(function () {
+
+  /* ───── Trigger hero cascade ───── */
+  (function () {
+    var cfg = window.__agmbMotion || { reduced: false };
+    var docEl = document.documentElement;
+    /* Strip .agmb-cascade after the cascade animations finish so layer
+       invalidations (nav state, scrollback) can't re-trigger them. */
+    var CASCADE_RUN_MS = 1200;
+    function endCascade() {
+      docEl.classList.remove('agmb-cascade');
+      docEl.classList.remove('agmb-cascade-run');
+    }
+    function start() {
+      if (!docEl.classList.contains('agmb-cascade')) return;
+      docEl.classList.add('agmb-cascade-run');
+      setTimeout(endCascade, CASCADE_RUN_MS);
+    }
+    if (cfg.reduced) {
+      docEl.classList.remove('agmb-cascade');
+    } else if (cfg.isReload || cfg.hasFlag) {
+      /* Reload / in-session navigation: skip cascade so scroll restoration is clean. */
+    } else if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start, { once: true });
+    } else {
+      start();
+    }
+  })();
+
+  /* ───── Scroll-reveal IntersectionObserver ───── */
+  function initReveals() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+      return;
+    }
+    var sections = document.querySelectorAll('section, footer.footer');
+    var STAGGER_SELECTOR = '.chips, .insights-grid, .reports-grid, .subscribe__stats, [data-stagger]';
+    sections.forEach(function (sec) {
+      if (sec.classList.contains('hero') ||
+          sec.classList.contains('hero--centered')) return;
+      if (!sec.classList.contains('reveal')) sec.classList.add('reveal');
+      sec.querySelectorAll(STAGGER_SELECTOR).forEach(function (cont) {
+        if (!cont.classList.contains('stagger') && cont.children.length >= 2) cont.classList.add('stagger');
+      });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+        el.classList.add('in-view');
+      } else {
+        io.observe(el);
+      }
+    });
+    /* fallback: after 1.6s, force-reveal any section still hidden (covers
+       full-page screenshot tools and tabs restored after long inactivity) */
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.in-view)').forEach(function (el) {
+        el.classList.add('in-view');
+      });
+    }, 1600);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReveals);
+  } else {
+    initReveals();
+  }
+
+  /* ───── In-page anchor smooth-scroll (scoped, off by default) ─────
+     scroll-behavior: smooth lives behind .smooth-scroll on <html> so browser
+     scroll-restoration on refresh isn't animated from 0. */
+  (function () {
+    if (window.__agmbMotion && window.__agmbMotion.reduced) return;
+    var docEl = document.documentElement;
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      var target = document.getElementById(href.slice(1));
+      if (!target) return;
+      docEl.classList.add('smooth-scroll');
+      setTimeout(function () { docEl.classList.remove('smooth-scroll'); }, 900);
+    }, true);
+  })();
+
+  /* ───── Nav: sticky → floating-pill on scroll ───── */
+  function initNavScroll() {
+    var nav = document.querySelector('.nav');
+    if (!nav) return;
+    var threshold = 24;
+    function update() {
+      if (window.scrollY > threshold) {
+        nav.classList.add('nav--scrolled');
+      } else {
+        nav.classList.remove('nav--scrolled');
+      }
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavScroll);
+  } else {
+    initNavScroll();
+  }
+
+  /* ───── Filter chips: filter article grid by data-category ───── */
+  function initFilters() {
+    var chips = document.querySelectorAll('.chip[data-filter]');
+    var articles = document.querySelectorAll('#insights-grid .article');
+    var empty = document.getElementById('insights-empty');
+    if (!chips.length || !articles.length) return;
+
+    function applyFilter(category) {
+      var visible = 0;
+      articles.forEach(function (a) {
+        var cat = a.getAttribute('data-category');
+        var show = (category === 'all') || (cat === category);
+        if (show) {
+          a.classList.remove('is-hidden');
+          visible++;
+        } else {
+          a.classList.add('is-hidden');
+        }
+      });
+      if (empty) {
+        if (visible === 0) empty.classList.add('is-shown');
+        else empty.classList.remove('is-shown');
+      }
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) {
+          c.classList.remove('active');
+          c.setAttribute('aria-selected', 'false');
+        });
+        chip.classList.add('active');
+        chip.setAttribute('aria-selected', 'true');
+        applyFilter(chip.getAttribute('data-filter'));
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFilters);
+  } else {
+    initFilters();
+  }
+
+  /* ───── Subscribe form: client-side acknowledgement only ───── */
+  function initSubscribe() {
+    var form = document.getElementById('subscribe-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = form.querySelector('.subscribe__input');
+      var btn = form.querySelector('.subscribe__btn');
+      if (!input || !btn) return;
+      if (!input.value || input.value.indexOf('@') === -1) {
+        input.focus();
+        return;
+      }
+      btn.textContent = 'Subscribed ✓';
+      btn.disabled = true;
+      btn.style.background = 'var(--green-deep)';
+      btn.style.borderColor = 'var(--green-deep)';
+      input.value = '';
+      input.placeholder = 'Confirmation email on its way.';
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSubscribe);
+  } else {
+    initSubscribe();
+  }
+
+})();
+</script>
+
+<script>
+/* ───── Mobile hamburger + drawer ───── */
+(function () {
+  function initMobileNav() {
+    var hamburger = document.querySelector('.nav__hamburger');
+    var drawer = document.querySelector('.mobile-nav');
+    if (!hamburger || !drawer) return;
+    function toggle(open) {
+      hamburger.classList.toggle('is-open', open);
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      drawer.classList.toggle('is-open', open);
+      drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', function () {
+      toggle(!hamburger.classList.contains('is-open'));
+    });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { toggle(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && hamburger.classList.contains('is-open')) toggle(false);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initMobileNav);
+  else initMobileNav();
+
+  /* ── Hero squircle parallax — image SHRINKS as you scroll, settling to full fit ──
+     Reversed from the previous behavior. At rest, image is scale(1.05) — 5% oversize
+     so the newspaper collage feels close and tactile. As you scroll through the first
+     700px, image scale interpolates down to 1.0 (full width inside the squircle).
+     The container itself gets a small upward drift via translateY for depth. */
+  (function () {
+    var container = document.querySelector('.hero__squircle--clippings');
+    var img = document.querySelector('.clippings__image');
+    if (!container || !img) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      img.style.transform = 'scale(1.05)';
+      return;
+    }
+    var raf = false;
+    function update() {
+      var y = window.scrollY;
+      var t = Math.min(Math.max(y / 700, 0), 1);
+      // image: 1.05 at rest → 1.0 at max scroll (full fit inside squircle)
+      var imgScale = 1.05 - t * 0.05;
+      img.style.transform = 'scale(' + imgScale.toFixed(4) + ')';
+      // container: subtle upward drift, no scale (keeps the squircle shape stable)
+      var containerTy = t * -24;
+      container.style.transform = 'translateY(' + containerTy.toFixed(1) + 'px)';
+      raf = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (raf) return; raf = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  })();
+})();
+</script>
+</body>
+</html>
