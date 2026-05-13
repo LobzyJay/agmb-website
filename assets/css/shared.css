@@ -1,3 +1,9 @@
+/* ── HEADING WORD SPANS (created by line-reveal JS) ───────────────────────
+   display:inline-block lets getBoundingClientRect() return the correct
+   visual top per word so JS can group them into lines. Natural wrapping
+   is preserved — this doesn't change the visual layout of headings. ----- */
+.agmb-w { display: inline-block; }
+
 /* ── PAGE TRANSITIONS ─────────────────────────────────────────────────────
    Cross-page: native View Transitions API fade-to-black in Chrome/Edge/Safari.
    html background:#000 is set inline in header.njk so it applies before this
