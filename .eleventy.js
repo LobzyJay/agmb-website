@@ -11,12 +11,7 @@
 // verbatim via passthrough copy.
 
 module.exports = function (eleventyConfig) {
-  // Static assets — copy as-is into _site
-  eleventyConfig.addPassthroughCopy("*.png");
-  eleventyConfig.addPassthroughCopy("*.jpg");
-  eleventyConfig.addPassthroughCopy("*.webp");
-  eleventyConfig.addPassthroughCopy("*.svg");
-  eleventyConfig.addPassthroughCopy("*.gif");
+  // Static assets — images now live in assets/images/, logos in partners/
   eleventyConfig.addPassthroughCopy("partners/**/*");
   eleventyConfig.addPassthroughCopy("assets");
 
@@ -25,7 +20,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       if (data.page && data.page.inputPath && data.page.inputPath.endsWith(".html")) {
-        return `${data.page.fileSlug}.html`;
+        const slug = data.page.fileSlug;
+        // index.html has an empty fileSlug in Eleventy — preserve it as index.html
+        return slug ? `${slug}.html` : "index.html";
       }
       return data.permalink;
     },
