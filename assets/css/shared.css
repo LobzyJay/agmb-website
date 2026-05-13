@@ -1,3 +1,13 @@
+/* ── PARTNER LOGOS WITH WHITE BACKGROUNDS ──────────────────────────────────
+   mban.png, redan.png, family-homes-funds.png have opaque white backgrounds.
+   brightness(0)+invert(1) turns everything white → invisible grey box.
+   invert(1)+grayscale(1) instead: white bg → black (disappears on dark
+   marquee), logo shapes → white/grey — consistent with the transparent logos.
+   !important overrides the per-page filter rule. ------------------------- */
+.partners__logo img.logo--has-bg {
+  filter: invert(1) grayscale(1) !important;
+}
+
 /* ── HEADING WORD SPANS (created by line-reveal JS) ───────────────────────
    display:inline-block lets getBoundingClientRect() return the correct
    visual top per word so JS can group them into lines. Natural wrapping
