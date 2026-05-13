@@ -1374,6 +1374,10 @@ pageId: home
     justify-content: center;
     transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
+  /* Loader is hidden when cascade is NOT armed (reduced motion or in-session
+     no-cascade path) — bootstrap IIFE adds .agmb-cascade synchronously
+     before paint, so the loader shows on every fresh entry. */
+  html:not(.agmb-cascade) .page-loader { display: none; }
   .page-loader__mark {
     width: 64px;
     height: 64px;
@@ -1983,6 +1987,12 @@ pageId: home
 </script>
 </head>
 <body>
+<!-- Loader: rendered in HTML so it shows instantly on initial paint
+     (and is captured by the View Transition when arriving via nav). CSS
+     hides it on browsers without cascade armed (reduced motion users). -->
+<div class="page-loader" id="page-loader" aria-hidden="true">
+  <img class="page-loader__mark" src="assets/images/agmb-icon-white.svg" alt="">
+</div>
 <!-- scroll progress thread -->
 <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scroll-progress"></div></div>
 
@@ -3720,19 +3730,10 @@ pageId: home
   var SESSION_KEY = 'agmb-loaded';
   var docEl = document.documentElement;
 
-  /* ───── 1. Page loader (hard-refresh / direct-load only) ───── */
-  var loader = null;
-  if (cfg.showLoader && !REDUCED) {
-    loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.setAttribute('aria-hidden', 'true');
-    var mark = document.createElement('img');
-    mark.className = 'page-loader__mark';
-    mark.src = 'assets/images/agmb-icon-white.svg';
-    mark.alt = '';
-    loader.appendChild(mark);
-    document.body.insertBefore(loader, document.body.firstChild);
-  }
+  /* ───── 1. Page loader — element is rendered in HTML so it shows
+     instantly on first paint (and is captured by the View Transition
+     when arriving via nav). We just grab the existing element here. */
+  var loader = (cfg.showLoader && !REDUCED) ? document.getElementById('page-loader') : null;
 
   /* Longest cascade animation = 380ms delay + 720ms duration ≈ 1100ms.
      After this we strip .agmb-cascade so the cascade rules (which carry
