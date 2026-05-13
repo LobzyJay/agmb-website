@@ -194,6 +194,18 @@ pageId: insights
     flex-direction: column;
     gap: 24px;
   }
+  /* On mobile, the white background was leaking into the hero viewport
+     (hero is black, filter-bar starts right after it with no transition).
+     Match the hero bg on mobile so the section transition is clean. */
+  @media (max-width: 768px) {
+    .filter-bar {
+      background: #000 !important;
+      color: var(--cream-warm) !important;
+      padding-top: 64px !important;
+    }
+    .filter-bar__label { color: rgba(250,243,232,0.55) !important; }
+    .filter-bar__label span:first-child { background: var(--gold-vivid) !important; }
+  }
   .filter-bar__label {
     display: inline-flex; align-items: center; gap: 10px;
     font: 600 11px/1 'Inter', sans-serif;
