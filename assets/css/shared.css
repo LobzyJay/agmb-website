@@ -191,14 +191,21 @@
      hero image with only the top corners rounded so the bottom can
      extend through the section transition. */
   .hero__squircle {
-    width: 100% !important;
-    max-width: none !important;
-    margin: 24px 0 0 !important;
-    aspect-ratio: 3 / 4 !important;
-    border-radius: 24px 24px 0 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    /* Break out of hero's horizontal padding to reach viewport edges */
+    margin-left: calc(-1 * clamp(20px, 6vw, 32px)) !important;
+    margin-right: calc(-1 * clamp(20px, 6vw, 32px)) !important;
+    margin-top: 32px !important;
+    margin-bottom: 0 !important;
+    aspect-ratio: 4 / 5 !important;
+    border-radius: 0 !important;
   }
   .hero__squircle-img {
-    object-position: center top !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 25% !important;
   }
 }
 

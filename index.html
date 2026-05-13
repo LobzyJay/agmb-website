@@ -1092,14 +1092,25 @@ pageId: home
     .nav__links { gap: 16px !important; font-size: 14px !important; }
     .nav__cta { padding: 9px 14px !important; font-size: 13px !important; }
 
-    /* fact strip → 2×2 grid */
+    /* fact strip — peek 15px at bottom of hero
+       Position absolute at hero bottom, then translateY(100% - 15px) pushes
+       it down so only 15px of the rounded top edge peeks above the hero
+       bottom. The full 2×2 grid is revealed when the user scrolls. ------ */
+    .hero--centered { overflow: visible !important; }
+    .hero--centered .hero__viz { overflow: hidden !important; }
     .hero--centered .fact-strip {
-      margin: -80px 24px 0 !important;
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 16px !important;
+      right: 16px !important;
+      margin: 0 !important;
+      transform: translateY(calc(100% - 15px)) !important;
+      z-index: 5 !important;
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      gap: 20px !important;
-      padding: 24px !important;
-      border-radius: 16px !important;
+      gap: 16px !important;
+      padding: 20px 22px !important;
+      border-radius: 16px 16px 0 0 !important;
     }
     .fact-strip .divider { display: none !important; }
     .fact__numeric { font-size: 22px !important; }
@@ -1216,13 +1227,13 @@ pageId: home
     /* hero viz */
     .hero__viz { margin: 0 auto 16px !important; }
 
-    /* fact strip — single column on phone */
+    /* fact strip — keep peek (2-up grid) at very narrow widths too */
     .hero--centered .fact-strip {
-      margin: -48px 16px 0 !important;
-      grid-template-columns: 1fr !important;
-      padding: 20px !important;
-      gap: 16px !important;
-      border-radius: 14px !important;
+      left: 12px !important;
+      right: 12px !important;
+      grid-template-columns: 1fr 1fr !important;
+      padding: 16px 18px !important;
+      gap: 12px !important;
     }
     .fact { gap: 6px !important; }
     .fact__numeric { font-size: 20px !important; }
