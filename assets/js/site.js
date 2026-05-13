@@ -2,14 +2,16 @@
   'use strict';
 
   /* ── HEADING LINE REVEAL ────────────────────────────────────────────────
-     CSS (shared.css) sets .hero .h1 { opacity:0 } so text is hidden before
-     JS fires — no FOUC. This function:
-       1. Wraps text nodes into .agmb-w word spans (preserves <em> etc.)
-       2. Groups words by visual line via getBoundingClientRect
-       3. Sets words to opacity:0 via GSAP, then reveals heading container
-       4. Animates each line with gsap.to (slide-up + fade)
-       5. Fades in the lede after the last line completes
-     Cascade pages (home/about) are excluded — they use agmbFadeUp. ------- */
+     CSS sets all hero elements to opacity:0. This function:
+       1. Wraps text nodes into .agmb-w spans. Inline elements like <em>
+          are treated as ATOMIC units (pushed whole to words[]) — recursing
+          into them leaves the <em> container visible while its children are
+          at opacity:0, which creates a rendering artifact (small dot).
+       2. Groups words by visual line via getBoundingClientRect top.
+       3. Sets words to opacity:0/y:44 via gsap.set, then reveals heading.
+       4. Animates each line with gsap.to.
+       5. Fades in the lede after the last line.
+     Cascade pages excluded — they use agmbFadeUp. ------------------------ */
   function initHeadingReveal() {
     if (typeof gsap === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -21,7 +23,7 @@
         if (heading.dataset.agmbDone) return;
         heading.dataset.agmbDone = '1';
 
-        /* 1. Split text nodes into .agmb-w word spans */
+        /* 1. Wrap text nodes into word spans; inline elements are atomic */
         var words = [];
         function wrapNode(node) {
           if (node.nodeType === 3) {
@@ -39,7 +41,9 @@
             });
             node.parentNode.replaceChild(frag, node);
           } else if (node.nodeType === 1) {
-            Array.from(node.childNodes).forEach(wrapNode);
+            /* Inline element (em, strong, span): treat whole element as
+               one word unit. Avoids rendering dots from empty containers. */
+            words.push(node);
           }
         }
         Array.from(heading.childNodes).forEach(wrapNode);
@@ -55,7 +59,7 @@
           .sort(function (a, b) { return a - b; })
           .map(function (k) { return lineMap[k]; });
 
-        /* 3. Set words hidden, then reveal heading container */
+        /* 3. Words hidden via gsap.set → reveal heading container */
         gsap.set(words, { opacity: 0, y: 44 });
         heading.style.opacity = '1';
 
@@ -71,9 +75,10 @@
           });
         });
 
-        /* 5. Fade in the lede after heading finishes */
+        /* 5. Fade lede after heading finishes */
         var hero = heading.closest(
-          '.hero, .hero--centered, .hero--about, .hero--calculator, .hero--apply, .hero--nhf'
+          '.hero, .hero--centered, .hero--about, .hero--calculator,' +
+          '.hero--apply, .hero--nhf'
         );
         var lede = hero && hero.querySelector(
           '.hero__lede, .hero__lede--centered, .lede, .lede--centered'
@@ -83,7 +88,8 @@
           lede.style.opacity = '1';
           gsap.fromTo(lede,
             { opacity: 0, y: 16 },
-            { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', delay: 0.08 + lines.length * perLine + 0.08 }
+            { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out',
+              delay: 0.08 + lines.length * perLine + 0.08 }
           );
         }
       });
@@ -91,36 +97,40 @@
   }
 
   /* ── SUPPORTING HERO ELEMENTS ───────────────────────────────────────────
-     Stat bar, CTAs, viz canvas, form, contact card — fade up after heading.
-     Includes both .fact-strip (mortgages/NHF) and .hero__stat-bar (products)
-     and .hero-stat-bar (shared cascade name). ----------------------------- */
+     Cascade pages excluded — their cascade-run animation handles CTAs/viz.
+     Non-cascade: viz fades in opacity-only (no y transform, would conflict
+     with scroll-parallax JS). CTAs / stat bars fade+slide up together. ----- */
   function initHeroSupporting() {
     if (typeof gsap === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (document.documentElement.classList.contains('agmb-cascade')) return;
 
+    /* Viz: opacity only — product vizzes run scroll-parallax transforms */
+    var viz = document.querySelector('.hero__viz');
+    if (viz) {
+      gsap.to(viz, { opacity: 1, duration: 1.2, ease: 'power2.out', delay: 0.4 });
+    }
+
+    /* CTAs, stat bars, form, squircle: fade + slide up */
     var els = document.querySelectorAll(
       '.ctas, .ctas--centered, .hero-ctas,' +
       '.hero-stat-bar, .hero__stat-bar, .fact-strip,' +
       '.hero__col-calc, .form-shell, .contact-twin, .hero__squircle'
     );
-    // .hero__viz intentionally excluded — product page vizzes run their own
-    // scroll-parallax JS (heroStage translateY) that conflicts with GSAP y tween.
     if (!els.length) return;
 
-    gsap.from(els, {
-      opacity: 0,
-      y: 16,
-      duration: 0.52,
-      ease: 'power2.out',
-      delay: 0.6,
-      clearProps: 'all'
-    });
+    /* Use fromTo — CSS starts at opacity:0. clearProps:'transform' keeps
+       GSAP's opacity:1 inline style so elements don't go invisible again. */
+    gsap.fromTo(els,
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.52, ease: 'power2.out',
+        delay: 0.6, clearProps: 'transform' }
+    );
   }
 
   /* ── SCROLL REVEAL via ScrollTrigger ────────────────────────────────────
-     Runs alongside the per-page IntersectionObserver — both add .in-view,
-     idempotent. Double rAF lets page initReveals() stamp .reveal first. -- */
+     Double rAF: waits for per-page initReveals() to stamp .reveal before
+     ScrollTrigger queries them. ------------------------------------------ */
   function initScrollReveal() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -136,9 +146,7 @@
             return;
           }
           ScrollTrigger.create({
-            trigger: el,
-            start: 'top 88%',
-            once: true,
+            trigger: el, start: 'top 88%', once: true,
             onEnter: function () { el.classList.add('in-view'); }
           });
         });
@@ -146,21 +154,22 @@
     });
   }
 
-  /* ── GSAP FALLBACK ──────────────────────────────────────────────────────
-     If GSAP CDN fails, reveal all hidden headings/ledes immediately so the
-     page doesn't show blank text. ---------------------------------------- */
+  /* ── FALLBACK — show all hidden elements if GSAP CDN fails ------------- */
   function applyFallback() {
     document.querySelectorAll(
-      '.hero .h1, .hero .h1--centered, .hero .hero__lede, .hero .hero__lede--centered'
+      '.hero .h1, .hero .h1--centered,' +
+      '.hero .hero__lede, .hero .hero__lede--centered,' +
+      '.hero .hero__viz,' +
+      '.hero .ctas, .hero .ctas--centered, .hero .hero-ctas,' +
+      '.hero .hero-stat-bar, .hero .hero__stat-bar, .hero .fact-strip,' +
+      '.hero .hero__col-calc, .hero .form-shell, .hero .contact-twin,' +
+      '.hero .hero__squircle'
     ).forEach(function (el) { el.style.opacity = '1'; });
   }
 
   /* ── BOOT ──────────────────────────────────────────────────────────── */
   function boot() {
-    if (typeof gsap === 'undefined') {
-      applyFallback();
-      return;
-    }
+    if (typeof gsap === 'undefined') { applyFallback(); return; }
     initScrollReveal();
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function () {

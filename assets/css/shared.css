@@ -9,27 +9,27 @@
 }
 
 /* ── HERO ENTRANCE — initial hidden state ──────────────────────────────────
-   Headings and ledes start invisible so GSAP / cascade animation has
-   something to animate FROM. Without this, text is briefly visible before
-   JS fires (FOUC). Cascade pages override via agmbFadeUp. Non-cascade pages
-   are shown by site.js immediately before the word animation starts.
-   Fallback (reduced motion / no GSAP): opacity:1 always. --------------- */
-.hero .h1,
-.hero .h1--centered {
+   ALL hero entrance elements start at opacity:0 so nothing flashes before
+   JS/cascade animation fires. Cascade pages: cascade-run class triggers
+   agmbFadeUp/agmbFadeIn which animate from 0→1. Non-cascade pages: site.js
+   uses gsap.to/fromTo to reveal. Fallback: applyFallback() shows all. ----- */
+.hero .h1, .hero .h1--centered,
+.hero .hero__lede, .hero .hero__lede--centered,
+.hero .hero__viz,
+.hero .ctas, .hero .ctas--centered, .hero .hero-ctas,
+.hero .hero-stat-bar, .hero .hero__stat-bar, .hero .fact-strip,
+.hero .hero__col-calc, .hero .form-shell, .hero .contact-twin,
+.hero .hero__squircle {
   opacity: 0;
-}
-.hero .hero__lede,
-.hero .hero__lede--centered {
-  opacity: 0;
-  /* Safety clamp: hero ledes never exceed 5 lines regardless of content */
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero .h1, .hero .h1--centered,
-  .hero .hero__lede, .hero .hero__lede--centered {
+  .hero .hero__lede, .hero .hero__lede--centered,
+  .hero .hero__viz,
+  .hero .ctas, .hero .ctas--centered, .hero .hero-ctas,
+  .hero .hero-stat-bar, .hero .hero__stat-bar, .hero .fact-strip,
+  .hero .hero__col-calc, .hero .form-shell, .hero .contact-twin,
+  .hero .hero__squircle {
     opacity: 1 !important;
   }
 }
