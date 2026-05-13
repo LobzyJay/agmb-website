@@ -115,6 +115,30 @@
   }
 }
 
+/* ── HERO: unify mobile text/CTA positioning across all pages.
+   Reference is the contact page (image #24): padding-top:80px so H1
+   starts ~260px down, padding-bottom:40px, content stacked from the
+   top with a 28px gap between H1/lede/CTAs. Most other pages have
+   min-height:100-125vh + justify-content:center on desktop, which on
+   mobile pushes the H1 to the middle of a tall hero. Force the
+   contact-style flush-top layout on mobile only — desktop untouched. */
+@media (max-width: 768px) {
+  .hero,
+  .hero--centered {
+    min-height: auto !important;
+    padding-top: 80px !important;
+    padding-bottom: 40px !important;
+    padding-left: clamp(20px, 6vw, 32px) !important;
+    padding-right: clamp(20px, 6vw, 32px) !important;
+    justify-content: flex-start !important;
+  }
+  .hero__content,
+  .hero__content--centered {
+    gap: 28px !important;
+    margin: 0 auto !important;
+  }
+}
+
 /* ── FOOTER: unify mobile layout across all pages.
    Most pages have decent footer CSS at ≤1024px but a few (contact, etc.)
    are missing the column-width rule that makes the 4-up nav columns
