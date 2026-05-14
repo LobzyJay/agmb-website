@@ -90,6 +90,14 @@
   .nav__hamburger.is-open .nav__hamburger-bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
   .nav__hamburger.is-open .nav__hamburger-bar:nth-child(2) { opacity: 0; }
   .nav__hamburger.is-open .nav__hamburger-bar:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+  /* When menu is open: pin the X to the top-right of the viewport so it stays
+     visible even if the page scroll-bounces or the nav scrolls out of view. */
+  .nav__hamburger.is-open {
+    position: fixed !important;
+    top: 14px !important;
+    right: 16px !important;
+    z-index: 70 !important;
+  }
   .nav .nav__links { display: none !important; }
   .nav--scrolled { margin: 0 12px !important; padding: 10px 16px !important; }
 
@@ -338,19 +346,57 @@
   html .community__panel-art { column-gap: 16px !important; padding: 28px !important; }
 }
 
-/* ── PRODUCT TILES: equal height in bento rows ───────────────────────────
-   At ≤900px the bento rows go column; stretch ensures tiles match height.
-   min-height:0 removes the flagship tile's 600px desktop floor. ---------- */
+/* ── PRODUCT TILES: 445px height + scaled viz (Figma spec) ───────────────
+   At ≤900px the bento rows go column. ≤768px each tile is exactly 445px
+   (matching the Figma reference) with the tile-viz filling the remaining
+   space after the text/link content. Desktop unchanged. ------------------ */
 @media (max-width: 900px) {
   html .bento__top,
-  html .bento__bot {
-    align-items: stretch !important;
-  }
+  html .bento__bot { align-items: stretch !important; }
   html .tile { min-height: 0 !important; }
   html .tile--flagship { min-height: 0 !important; }
 }
 @media (max-width: 768px) {
-  html .tile { width: 100% !important; }
+  html .tile {
+    width: 100% !important;
+    height: 445px !important;
+    overflow: hidden !important;
+  }
+  /* Tile-viz fills remaining height inside the card after text content */
+  html .tile-viz,
+  html .tile--flagship .tile-viz {
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 1 1 auto !important;
+  }
+}
+
+/* ── MORTGAGES HERO VIZ: flow below content, don't overlap text ──────────
+   The mortgages viz is position:absolute;bottom:-24px which makes it
+   overlap H1/lede/CTAs at mobile. Convert to relative flow so it appears
+   below the content stack where there's space. Desktop unchanged. -------- */
+@media (max-width: 768px) {
+  html .hero__viz--mortgages,
+  html .hero--centered .hero__viz.hero__viz--mortgages {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 20px auto 0 !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+}
+
+/* ── HOME HERO VIZ: give the container height so canvas renders ──────────
+   The .hero__viz on home is position:relative with only abs children →
+   collapses to 0px. Explicit height makes the canvas fill the space
+   and the particle building renders visibly below the CTAs. -------------- */
+@media (max-width: 768px) {
+  .hero .hero__viz:not(.hero__viz--mortgages) {
+    height: 55vh !important;
+    display: block !important;
+  }
 }
 
 /* ── FOOTER: unify mobile layout across all pages.
@@ -380,6 +426,8 @@
   .footer__col li { font-size: 14px !important; line-height: 175% !important; }
   .footer__disclosures { flex-direction: column !important; gap: 10px !important; }
   .footer__disclosures .sep { display: none !important; }
+  /* Advisory wrap: tightest phone padding — overrides 768px rule above */
+  .advisory-wrap { padding: 16px !important; }
 }
 
 /* ── MOBILE DRAWER ─────────────────────────────────────────────────────── */
