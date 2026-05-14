@@ -516,6 +516,115 @@
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   BREAKPOINT CONTRACT (2026-05-15)
+   ──────────────────────────────────────────────────────────────────────────
+   Mobile  : ≤ 767px  (phones, all orientations — `@media (max-width: 767px)`)
+   Tablet  : 768–1023 (iPad portrait, small laptops — `@media (min-width: 768px) and (max-width: 1023px)`)
+   Desktop : ≥ 1024px (`@media (min-width: 1024px)`)
+   Desktop visual max-width: 1920px (canvas centers on ultra-wide monitors)
+
+   Legacy 480px rules still in per-page CSS act as fine-grained mobile refinements.
+
+   Desktop visual cap = 1920 visual px (Adewale, 2026-05-15). The site uses a
+   2377px design canvas scaled by `body { zoom: 0.8 }` (and 0.6 at ≤1440
+   viewport). To cap visual width at 1920, body CSS max-width = 1920 / 0.8 =
+   2400px. Gated to `min-width: 1024px` to match the BREAKPOINT CONTRACT
+   above. The cap is inert in the 1024–1440 zoom-0.6 range (natural body CSS
+   = viewport/0.6, which only reaches 2400 at viewport 1440 — i.e. exactly
+   the edge of that range), so it functionally engages only in the zoom-0.8
+   regime at viewport > 1920.
+   - 1024–1440 (zoom 0.6): natural body ≤ 2400 CSS, cap dormant.
+   - 1441–1920 (zoom 0.8): natural body ≤ 2400 CSS, cap dormant.
+   - >1920 (zoom 0.8): body caps at 2400 CSS = 1920 visual, auto margins
+     center the canvas with side gutters on ultra-wide monitors.
+   --------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  body {
+    max-width: 2400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* ── UNIFIED ADVISORY COMPONENT @ MOBILE ───────────────────────────────────
+   Mortgages + 5 product pages were rendering `.advisory` with left-aligned
+   content / smaller cards. Home page version is centered with specific
+   typography. This single block forces all pages to match the home
+   pattern at ≤480px. `html body` prefix beats per-page inline rules. */
+@media (max-width: 480px) {
+  /* Section wrapping .advisory has inline style="padding:80px" on product pages.
+     At mobile that eats ~160px of viewport (leaving advisory at ~230px).
+     Override the inline padding using `section:has(.advisory)` selector. */
+  html body section:has(> .advisory),
+  html body section:has(> .advisory-wrap) {
+    padding: 20px !important;
+  }
+  html body .advisory {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 32px 24px !important;
+    gap: 24px !important;
+    border-radius: 24px !important;
+    box-sizing: border-box !important;
+  }
+  html body .advisory__inner {
+    align-items: center !important;
+    text-align: center !important;
+    gap: 12px !important;
+    max-width: 100% !important;
+  }
+  html body .advisory__cat { text-align: center !important; }
+  html body .advisory__title {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.04em !important;
+    text-align: center !important;
+  }
+  html body .advisory__copy {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    text-align: center !important;
+  }
+  html body .advisory__aside {
+    align-items: center !important;
+    width: 100% !important;
+    gap: 16px !important;
+  }
+  html body .advisory__stat {
+    text-align: center !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+  html body .advisory__stat-num {
+    font-size: 56px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    display: flex !important;
+    width: 100% !important;
+    align-items: baseline !important;
+    gap: 6px !important;
+  }
+  html body .advisory__stat-num em { font-size: 64px !important; }
+  html body .advisory__stat-sub {
+    font-size: 13px !important;
+    text-align: center !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  html body .advisory__cta {
+    width: 100% !important;
+    height: 51px !important;
+    border-radius: 999px !important;
+    justify-content: center !important;
+    font-size: 15px !important;
+    padding: 0 28px !important;
+  }
+}
+
 /* ── BENTO TILE VISIBILITY (≤1024px) ───────────────────────────────────────
    At mobile/tablet, GSAP ScrollTrigger doesn't reliably add `.in-view` to
    `.products.reveal` containers, leaving bento tiles invisible (opacity:0)

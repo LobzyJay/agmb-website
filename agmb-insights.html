@@ -1515,6 +1515,15 @@ pageId: insights
 
 /* ── Responsive: mobile ≤ 768px ── */
 @media (max-width: 768px) {
+  /* Hide the entire clippings board (overlay article cards) at mobile.
+     The .clippings__image (squircle webp) stays visible underneath. The
+     `hidden` HTML attribute would normally hide this but the 1024px rule
+     sets `display: grid` which overrides it. Force `display: none` here. */
+  html body .clippings__board,
+  html body .clippings__board[hidden],
+  html body .hero__squircle--clippings .clippings__board {
+    display: none !important;
+  }
   .clippings__board {
     grid-template-columns: 1fr;
     padding: 0 24px 32px;
