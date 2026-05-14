@@ -1105,13 +1105,15 @@ pageId: home
       right: 16px !important;
       margin: 0 !important;
       transform: translateY(calc(100% - 15px)) !important;
-      z-index: 5 !important;
+      z-index: 10 !important; /* raised above partners section */
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
       gap: 16px !important;
       padding: 20px 22px !important;
       border-radius: 16px 16px 0 0 !important;
     }
+    /* partners section must sit below fact-strip peek */
+    .hero--centered + .partners { position: relative !important; z-index: 1 !important; }
     .fact-strip .divider { display: none !important; }
     .fact__numeric { font-size: 22px !important; }
     .fact__eyebrow span:last-child { font-size: 10px !important; }

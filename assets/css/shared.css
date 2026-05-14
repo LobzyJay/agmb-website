@@ -209,6 +209,137 @@
   }
 }
 
+/* ── QA BATCH FIXES (mobile only) ─────────────────────────────────────────
+   All rules in @media (max-width:768px). Desktop unchanged. -------------- */
+
+@media (max-width: 768px) {
+
+  /* A — Advisory card: full-width + centred to match footer / nav pill */
+  .advisory-wrap { padding: 40px 20px !important; }
+  .advisory {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 32px 24px !important;
+    gap: 24px !important;
+    border-radius: 24px !important;
+    width: 100% !important;
+  }
+  .advisory__inner { width: 100% !important; max-width: none !important; }
+  .advisory__aside { width: 100% !important; align-items: center !important; }
+  .advisory__stat { justify-content: center !important; }
+  .advisory__cta {
+    align-self: center !important;
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* B — About hero: no min-height gap below squircle before OUR PARTNERS */
+  .hero--about { min-height: auto !important; padding-bottom: 0 !important; }
+  .hero--about + .partners { padding-top: 16px !important; }
+
+  /* C — About offices: centre text + layout on mobile */
+  .branches { align-items: center !important; text-align: center !important; }
+  .branches__head { text-align: center !important; }
+  .branches__head .lede { text-align: center !important; }
+
+  /* L — About offices: tighten gap between lede and photo */
+  .branches { gap: 24px !important; }
+  .branches__layout { gap: 16px !important; }
+
+  /* D — Calculator affordability: collapse huge empty white space */
+  .afford-section { padding-top: 40px !important; padding-bottom: 40px !important; }
+  .afford-results { min-height: 0 !important; }
+
+  /* E — Calculator results: 2-up grid (was vertical column) */
+  .afford-results {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+  .afford-cell {
+    flex: 1 1 calc(50% - 6px) !important;
+    min-width: 0 !important;
+    padding: 18px 14px !important;
+  }
+  .afford-cell:last-child { flex: 1 1 100% !important; }
+
+  /* F — M-REIF hero stats: .hero-stats / .hero-stat (not caught by earlier fix) */
+  .hero-stats {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-around !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    border-radius: 16px !important;
+  }
+  .hero-stat {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    padding: 16px 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .hero-stat__num { font-size: clamp(18px, 4vw, 26px) !important; white-space: nowrap !important; }
+  .hero-stat__label { font-size: 9px !important; letter-spacing: 0.12em !important; }
+
+  /* G — Construction stats: .con-stat-bar / .con-stat-cell */
+  .con-stat-bar {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-around !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    border-radius: 16px !important;
+  }
+  .con-stat-cell {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    padding: 14px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .con-stat-num { font-size: clamp(16px, 3.8vw, 24px) !important; white-space: nowrap !important; }
+  .con-stat-label { font-size: 9px !important; letter-spacing: 0.1em !important; }
+
+  /* H — Hero CTAs: stack side-by-side to save vertical space */
+  .hero--centered .ctas--centered {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+  }
+  .hero--centered .ctas--centered .cta {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 14px 12px !important;
+    font-size: 14px !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+
+  /* I — Product viz: move up ~15px so building base sits at viewport bottom */
+  .hero--centered .hero__viz[data-viz] { bottom: -48px !important; }
+
+  /* K — Apply page: form shell full-width to match footer */
+  .hero--apply {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .form-shell {
+    width: 100% !important;
+    border-radius: 24px !important;
+  }
+}
+
 /* ── FOOTER: unify mobile layout across all pages.
    Most pages have decent footer CSS at ≤1024px but a few (contact, etc.)
    are missing the column-width rule that makes the 4-up nav columns
