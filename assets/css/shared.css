@@ -214,8 +214,8 @@
 
 @media (max-width: 768px) {
 
-  /* A — Advisory card: full-width + centred to match footer / nav pill */
-  .advisory-wrap { padding: 40px 20px !important; }
+  /* A — Advisory card: exact width match to footer panel (32px margins each side) */
+  .advisory-wrap { padding: 40px 32px !important; }
   .advisory {
     flex-direction: column !important;
     align-items: center !important;
@@ -235,24 +235,21 @@
     justify-content: center !important;
   }
 
-  /* B — About hero: no min-height gap below squircle before OUR PARTNERS */
-  .hero--about { min-height: auto !important; padding-bottom: 0 !important; }
+  /* B — About hero: html-prefixed to beat per-page min-height clamp */
+  html .hero--about { min-height: auto !important; padding-bottom: 0 !important; }
   .hero--about + .partners { padding-top: 16px !important; }
 
   /* C — About offices: centre text + layout on mobile */
-  .branches { align-items: center !important; text-align: center !important; }
+  .branches { align-items: center !important; text-align: center !important; gap: 24px !important; }
   .branches__head { text-align: center !important; }
   .branches__head .lede { text-align: center !important; }
-
-  /* L — About offices: tighten gap between lede and photo */
-  .branches { gap: 24px !important; }
   .branches__layout { gap: 16px !important; }
 
-  /* D — Calculator affordability: collapse huge empty white space */
+  /* D — Calculator affordability: collapse empty white space */
   .afford-section { padding-top: 40px !important; padding-bottom: 40px !important; }
   .afford-results { min-height: 0 !important; }
 
-  /* E — Calculator results: 2-up grid (was vertical column) */
+  /* E — Calculator results: 2-up grid */
   .afford-results {
     flex-direction: row !important;
     flex-wrap: wrap !important;
@@ -265,8 +262,8 @@
   }
   .afford-cell:last-child { flex: 1 1 100% !important; }
 
-  /* F — M-REIF hero stats: .hero-stats / .hero-stat (not caught by earlier fix) */
-  .hero-stats {
+  /* F — M-REIF stats: html-prefixed to beat per-page flex-direction:column */
+  html .hero-stats {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -275,7 +272,7 @@
     gap: 0 !important;
     border-radius: 16px !important;
   }
-  .hero-stat {
+  html .hero-stat {
     flex: 1 1 0 !important;
     min-width: 0 !important;
     text-align: center !important;
@@ -285,11 +282,11 @@
     align-items: center !important;
     justify-content: center !important;
   }
-  .hero-stat__num { font-size: clamp(18px, 4vw, 26px) !important; white-space: nowrap !important; }
-  .hero-stat__label { font-size: 9px !important; letter-spacing: 0.12em !important; }
+  html .hero-stat__num { font-size: clamp(18px, 4vw, 26px) !important; white-space: nowrap !important; }
+  html .hero-stat__label { font-size: 9px !important; letter-spacing: 0.12em !important; }
 
-  /* G — Construction stats: .con-stat-bar / .con-stat-cell */
-  .con-stat-bar {
+  /* G — Construction stats: html-prefixed to beat per-page flex-direction:column */
+  html .con-stat-bar {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -298,7 +295,7 @@
     gap: 0 !important;
     border-radius: 16px !important;
   }
-  .con-stat-cell {
+  html .con-stat-cell {
     flex: 1 1 0 !important;
     min-width: 0 !important;
     text-align: center !important;
@@ -308,36 +305,52 @@
     align-items: center !important;
     justify-content: center !important;
   }
-  .con-stat-num { font-size: clamp(16px, 3.8vw, 24px) !important; white-space: nowrap !important; }
-  .con-stat-label { font-size: 9px !important; letter-spacing: 0.1em !important; }
+  html .con-stat-num { font-size: clamp(16px, 3.8vw, 24px) !important; white-space: nowrap !important; }
+  html .con-stat-label { font-size: 9px !important; letter-spacing: 0.1em !important; }
 
-  /* H — Hero CTAs: stack side-by-side to save vertical space */
-  .hero--centered .ctas--centered {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 10px !important;
-  }
-  .hero--centered .ctas--centered .cta {
-    flex: 1 1 0 !important;
-    min-width: 0 !important;
-    padding: 14px 12px !important;
-    font-size: 14px !important;
-    justify-content: center !important;
-    white-space: nowrap !important;
-  }
+  /* [Fix H removed] — horizontal CTAs broke home page button text. CTAs
+     revert to per-page CSS which stacks them as full-width column. */
 
-  /* I — Product viz: move up ~15px so building base sits at viewport bottom */
+  /* I — Product viz: move up ~15px */
   .hero--centered .hero__viz[data-viz] { bottom: -48px !important; }
 
-  /* K — Apply page: form shell full-width to match footer */
-  .hero--apply {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+  /* K — Apply page: form shell full-width */
+  .hero--apply { padding-left: 20px !important; padding-right: 20px !important; }
+  .form-shell { width: 100% !important; border-radius: 24px !important; }
+
+  /* Community panel art: scale the 88px stat text DOWN for mobile.
+     Use html prefix so it beats the per-page 56-64px override.
+     em element has its own font: shorthand — must override separately. */
+  html .community__panel-art-stat {
+    font-size: clamp(28px, 7vw, 36px) !important;
+    line-height: 1.05 !important;
+    margin-top: 12px !important;
   }
-  .form-shell {
-    width: 100% !important;
-    border-radius: 24px !important;
+  html .community__panel-art-stat em {
+    font-size: clamp(28px, 7vw, 36px) !important;
+    line-height: 1.05 !important;
   }
+  html .community__panel-art-cap {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    max-width: 160px !important;
+  }
+  html .community__panel-art { column-gap: 16px !important; padding: 28px !important; }
+}
+
+/* ── PRODUCT TILES: equal height in bento rows ───────────────────────────
+   At ≤900px the bento rows go column; stretch ensures tiles match height.
+   min-height:0 removes the flagship tile's 600px desktop floor. ---------- */
+@media (max-width: 900px) {
+  html .bento__top,
+  html .bento__bot {
+    align-items: stretch !important;
+  }
+  html .tile { min-height: 0 !important; }
+  html .tile--flagship { min-height: 0 !important; }
+}
+@media (max-width: 768px) {
+  html .tile { width: 100% !important; }
 }
 
 /* ── FOOTER: unify mobile layout across all pages.
