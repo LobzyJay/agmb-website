@@ -1277,7 +1277,14 @@ pageId: mortgages
     .advisory__copy { font-size: 14px !important; }
 
     /* how */
-    .how { padding: 64px 24px !important; gap: 40px !important; }
+    .how {
+      padding: 64px 24px !important;
+      gap: 40px !important;
+      margin-top: -40px !important;
+      border-radius: 28px 28px 0 0 !important;
+      position: relative !important;
+      z-index: 3 !important;
+    }
     .step__num { font-size: 48px !important; }
     .step__name { font-size: 19px !important; }
 
@@ -1403,22 +1410,54 @@ pageId: mortgages
     }
     .tile--flagship .tile__link { left: 22px !important; bottom: 22px !important; }
 
-    /* advisory — left-align on mobile, full-width CTA */
-    .advisory { padding: 22px !important; gap: 18px !important; border-radius: 18px !important; }
-    .advisory__title { font-size: 19px !important; }
-    .advisory__copy { font-size: 13px !important; }
-    .advisory__aside { width: 100% !important; align-items: flex-start !important; gap: 16px !important; }
-    .advisory__stat { text-align: left !important; }
+    /* advisory — centered card layout matching Figma mobile spec */
+    .advisory-wrap { padding: 40px 32px !important; }
+    .advisory {
+      padding: 32px 24px !important;
+      gap: 24px !important;
+      border-radius: 24px !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+    .advisory__inner { align-items: center !important; max-width: 100% !important; }
+    .advisory__cat { font-size: 11px !important; }
+    .advisory__title { font-size: 19px !important; text-align: center !important; }
+    .advisory__copy { font-size: 13px !important; text-align: center !important; }
+    .advisory__aside { width: 100% !important; align-items: center !important; gap: 16px !important; }
+    .advisory__stat { text-align: left !important; width: 100% !important; }
     .advisory__stat-num { font-size: 40px !important; }
     .advisory__stat-num em { font-size: 46px !important; }
     .advisory__stat-sub { margin-left: 0 !important; font-size: 12px !important; max-width: 100% !important; }
-    .advisory__cta { width: 100% !important; justify-content: center !important; padding: 14px 22px !important; font-size: 14px !important; }
+    .advisory__cta {
+      width: 100% !important;
+      justify-content: center !important;
+      padding: 0 22px !important;
+      font-size: 14px !important;
+      height: 42px !important;
+      min-height: 42px !important;
+      box-sizing: border-box !important;
+    }
 
-    /* how */
-    .how { padding: 48px 16px !important; gap: 28px !important; }
+    /* how — overlaps hero, top-rounded card covers base of building viz */
+    .how {
+      padding: 48px 20px !important;
+      gap: 28px !important;
+      margin-top: -32px !important;
+      border-radius: 24px 24px 0 0 !important;
+      position: relative !important;
+      z-index: 3 !important;
+    }
     .step__num { font-size: 40px !important; }
     .step__name { font-size: 17px !important; }
     .step__copy { font-size: 13px !important; }
+
+    /* mortgages hero viz: move building DOWN so it sits at the very bottom
+       of the hero, ready for the .how card to overlap and cover its base */
+    .hero--centered .hero__viz.hero__viz--mortgages {
+      margin: 0 auto !important;
+      padding-top: 60px !important;
+    }
 
     /* calculator phone — stack route label + seg vertically, keep seg on one line */
     .calc { padding: 48px 16px !important; gap: 24px !important; }
@@ -1476,8 +1515,8 @@ pageId: mortgages
     .story.story--rotating:hover .story__thumb { width: 0 !important; height: 0 !important; opacity: 0 !important; margin-right: 0 !important; }
 
     /* footer — compact 2-col grid for link cols, tighter line-height */
-    .footer { padding: 32px 16px !important; }
-    .footer__panel { padding: 28px 22px !important; gap: 24px !important; border-radius: 18px !important; }
+    .footer { padding: 40px 20px !important; }
+    .footer__panel { padding: 32px 22px !important; gap: 28px !important; border-radius: 20px !important; }
     .footer__top { gap: 24px !important; }
     .footer__name { font-size: 19px !important; }
     .footer__tag { font-size: 12px !important; }
@@ -1766,7 +1805,7 @@ pageId: mortgages
 
     <div class="hero__content hero__content--centered">
       <h1 class="h1 h1--centered">Five mortgages, built <span style="white-space:nowrap">around <em>you.</em></span></h1>
-      <p class="hero__lede hero__lede--centered">From salaried Nigerians on the National Housing Fund to landlords financing yield, AG Mortgage Bank Plc offers five distinct routes — each underwritten to the same prudential standards since 2004.</p>
+      <p class="hero__lede hero__lede--centered">From salaried Nigerians on the National Housing Fund to landlords financing yield, AG Mortgage Bank Plc offers five distinct routes, each underwritten to the same prudential standards since 2004.</p>
       <div class="ctas ctas--centered">
         <a class="cta cta--primary" href="agmb-apply.html">Start your application <span>→</span></a>
         <a class="cta cta--secondary" href="agmb-calculator.html">See your monthly <span>↓</span></a>

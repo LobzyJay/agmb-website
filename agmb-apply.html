@@ -1751,37 +1751,128 @@ applyLabel: Apply now
 
   /* ── APPLY PAGE RESPONSIVE ── */
   @media (max-width: 1024px) {
-    /* Reset the desktop "player" viewport-lock — at sub-1024 the form should
-       size to its content, stacked under the hero text, not try to fill 125vh. */
-    .hero--apply { min-height: auto !important; display: block !important; padding-bottom: 64px !important; }
-    .hero--apply .form-section { flex: none !important; display: block !important; padding: 56px 32px 80px !important; }
-    .form-shell { flex: none !important; min-height: auto !important; padding: 40px 36px !important; }
+    .hero--apply { min-height: auto !important; display: block !important; padding-bottom: 20px !important; }
+    .hero--apply .form-section { flex: none !important; display: block !important; padding: 0 20px 20px !important; }
+    .form-shell { flex: none !important; min-height: auto !important; padding: 28px 24px !important; }
     .step-panel { flex: none !important; min-height: 0 !important; gap: 24px !important; }
     .step-h2 { font-size: 32px !important; }
   }
   @media (max-width: 768px) {
-    .form-section { padding: 40px 24px 64px !important; }
-    .form-shell { padding: 32px 28px !important; border-radius: 24px !important; }
+    .form-section { padding: 28px 20px 20px !important; }
+    .form-shell { padding: 22px 20px !important; border-radius: 24px !important; }
     .radio-grid { grid-template-columns: 1fr !important; }
     .field-row-2 { grid-template-columns: 1fr !important; }
     .step-h2 { font-size: 28px !important; }
-    .progress { gap: 6px !important; }
-    .progress__item { padding: 7px 12px !important; font-size: 12px !important; }
+    .progress { gap: 6px !important; margin-bottom: 32px !important; }
+    .progress__item { padding: 7px 11px !important; font-size: 11px !important; }
     .form-nav { flex-direction: row; gap: 12px; }
     .form-nav .cta { padding: 14px 22px !important; font-size: 14px !important; }
   }
   @media (max-width: 480px) {
-    .form-section { padding: 32px 16px 56px !important; }
-    .form-shell { padding: 22px 20px !important; border-radius: 18px !important; }
-    .progress__item { padding: 6px 10px !important; font-size: 11px !important; }
-    /* show only numbers on phone, hide labels of inactive/done steps */
+    .form-section { padding: 0 20px 20px !important; }
+    .form-shell { padding: 22px 20px !important; border-radius: 24px !important; }
+    /* Active step: show label in pill. Inactive/done: shrink to circle, hide label */
+    .progress { gap: 6px !important; margin-bottom: 28px !important; }
+    .progress__item { padding: 7px 11px !important; font-size: 11px !important; }
+    .progress__item:not(.progress--active):not(.progress--done) {
+      width: 22px !important;
+      height: 25px !important;
+      padding: 0 !important;
+      justify-content: center !important;
+    }
     .progress__item:not(.progress--active) .progress__label { display: none !important; }
     .step-h2 { font-size: 24px !important; }
-    .radio-card { padding: 18px !important; }
+    .radio-card { padding: 18px !important; border-radius: 18px !important; }
     .radio-card__title { font-size: 16px !important; }
-    .form-nav { flex-direction: column !important; align-items: stretch !important; }
-    .form-nav .cta { width: 100% !important; justify-content: center !important; }
-    .form-nav__back { text-align: center !important; }
+    .radio-card__copy { font-size: 13px !important; }
+    .radio-card__check { top: 16px !important; right: 16px !important; width: 24px !important; height: 24px !important; border-radius: 12px !important; }
+    /* Continue button: full-width gold pill at the bottom of the card */
+    .form-nav { flex-direction: column !important; align-items: stretch !important; gap: 0 !important; }
+    .form-nav .cta {
+      width: 100% !important;
+      justify-content: center !important;
+      background: #e8c576 !important;
+      color: #061a2e !important;
+      border-radius: 14px !important;
+      height: 42px !important;
+      font-size: 14px !important;
+      padding: 0 !important;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.18) !important;
+    }
+    .form-nav__back { text-align: center !important; padding: 12px 0 4px !important; order: 2 !important; }
+    .form-nav__spacer { display: none !important; }
+    /* ── Advisory: black wrapper + centered blue card ── */
+    .apply-advisory-wrap { padding: 20px !important; }
+    .apply-advisory-wrap .advisory {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      padding: 32px 24px !important;
+      border-radius: 24px !important;
+      gap: 24px !important;
+    }
+    .apply-advisory-wrap .advisory__inner {
+      align-items: center !important;
+      text-align: center !important;
+      gap: 12px !important;
+    }
+    .apply-advisory-wrap .advisory__cat {
+      font-size: 11px !important;
+      letter-spacing: 0.18em !important;
+      color: rgba(250,243,232,0.4) !important;
+      text-align: center !important;
+    }
+    .apply-advisory-wrap .advisory__title {
+      font-size: 30px !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.04em !important;
+      text-align: center !important;
+      color: #faf3e8 !important;
+    }
+    .apply-advisory-wrap .advisory__copy {
+      font-size: 15px !important;
+      line-height: 1.55 !important;
+      text-align: center !important;
+      color: rgba(250,243,232,0.6) !important;
+    }
+    .apply-advisory-wrap .advisory__aside {
+      align-items: center !important;
+      width: 100% !important;
+      gap: 16px !important;
+    }
+    .apply-advisory-wrap .advisory__stat { text-align: center !important; align-items: center !important; }
+    .apply-advisory-wrap .advisory__stat-num {
+      font-size: 56px !important;
+      display: flex !important;
+      align-items: baseline !important;
+      justify-content: center !important;
+      text-align: center !important;
+      line-height: 1 !important;
+      width: 100% !important;
+      gap: 6px !important;
+    }
+    .apply-advisory-wrap .advisory__stat-num em {
+      font-size: 64px !important;
+    }
+    .apply-advisory-wrap .advisory__stat-sub {
+      font-size: 13px !important;
+      text-align: center !important;
+      margin-left: 0 !important;
+    }
+    .apply-advisory-wrap .advisory__cta {
+      width: 100% !important;
+      height: 51px !important;
+      border-radius: 999px !important;
+      background: #faf3e8 !important;
+      color: #061a2e !important;
+      font-size: 15px !important;
+      font-weight: 500 !important;
+      justify-content: center !important;
+      padding: 0 28px !important;
+    }
+    /* ── Footer: match Figma padding + border-radius ── */
+    .footer { padding: 40px 20px !important; }
+    .footer__panel { padding: 32px 22px !important; border-radius: 20px !important; gap: 28px !important; }
   }
 
 </style>
@@ -2195,7 +2286,7 @@ applyLabel: Apply now
 
     <div class="hero__content hero__content--centered">
       <h1 class="h1 h1--centered">Start your<br><em>application.</em></h1>
-      <p class="hero__lede hero__lede--centered">Five short steps. Save and resume any time. No commitment, no credit check at this stage — and no fee for NHF-eligible borrowers.</p>
+      <p class="hero__lede hero__lede--centered">Five short steps. Save and resume any time. No commitment, no credit check at this stage, and no fee for NHF-eligible borrowers.</p>
       <a href="#form-shell" style="font:500 14px/1 'Inter',sans-serif;color:rgba(250,243,232,0.55);text-decoration:none;letter-spacing:-0.005em;">Already started? Resume <span style="color:rgba(250,243,232,0.7);">→</span></a>
     </div>
 
@@ -2472,7 +2563,7 @@ applyLabel: Apply now
   </section>
 
   <!-- ADVISORY -->
-  <section style="background:#000;padding:80px;">
+  <section class="apply-advisory-wrap" style="background:#000;padding:80px;">
     <div class="advisory">
       <div class="advisory__inner">
         <div class="advisory__cat">Talk to a mortgage advisor</div>
