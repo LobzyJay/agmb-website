@@ -163,34 +163,53 @@
     overflow: hidden !important;
   }
 
-  /* ── STATS CARD: stay HORIZONTAL on mobile ────────────────────────────
-     Product pages have .hero__stat-bar { flex-direction:column !important }
-     in their per-page CSS, which stacks rate / loan / tenure vertically
-     and eats 200+px of hero space. Force horizontal 3-column. ----------- */
+  /* ── STATS CARD: pill/squircle container with 3 columns + dividers ────
+     Product pages (commercial, NHF, M-REIF, construction, REIF) all use
+     this stat bar. Wrap in a rounded pill with subtle border, vertical
+     dividers between cells, value on top + label below per Figma. ----- */
   .hero__stat-bar {
+    display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     align-items: stretch !important;
     justify-content: space-around !important;
-    gap: 8px !important;
+    gap: 0 !important;
+    border: 1px solid rgba(250,243,232,0.22) !important;
+    border-radius: 18px !important;
+    padding: 14px 8px !important;
+    margin: 16px auto 0 !important;
+    width: fit-content !important;
+    max-width: calc(100% - 32px) !important;
   }
   .hero__stat-cell {
     align-items: center !important;
     text-align: center !important;
     flex: 1 1 0 !important;
     min-width: 0 !important;
+    padding: 0 14px !important;
+    border-left: 1px solid rgba(250,243,232,0.18) !important;
+    border-top: none !important;
+    gap: 4px !important;
+  }
+  .hero__stat-cell:first-child {
+    border-left: none !important;
+    border-top: none !important;
+    padding-top: 0 !important;
   }
   .hero__stat-cell .stat-num,
   .hero__stat-cell .hero__stat-cell__num {
-    font-size: clamp(18px, 4.5vw, 28px) !important;
+    font-size: clamp(15px, 4vw, 20px) !important;
     white-space: nowrap !important;
+    line-height: 1.1 !important;
   }
   .hero__stat-cell .stat-lbl,
   .hero__stat-cell .hero__stat-cell__label {
-    font-size: 10px !important;
-    letter-spacing: 0.12em !important;
+    font-size: 9px !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    line-height: 1.3 !important;
   }
-  .hero__stat-sep { display: block !important; width: 1px !important; }
+  .hero__stat-sep { display: none !important; }
 
   /* ── ABOUT HERO SQUIRCLE: edge-to-edge, bottom-cropped by viewport ──
      Default desktop CSS gives it width: calc(100% − clamp(48,8vw,160px))
@@ -359,15 +378,25 @@
 @media (max-width: 768px) {
   html .tile {
     width: 100% !important;
-    height: 445px !important;
+    min-height: 445px !important;
+    height: auto !important;
     overflow: hidden !important;
   }
-  /* Tile-viz fills remaining height inside the card after text content */
+  /* Tile-viz: fixed height at mobile so the canvas viz is visible.
+     Text content takes ~420px; tile grows to fit viz+content together. */
   html .tile-viz,
   html .tile--flagship .tile-viz {
-    height: auto !important;
-    min-height: 0 !important;
-    flex: 1 1 auto !important;
+    height: 200px !important;
+    min-height: 200px !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+}
+@media (max-width: 480px) {
+  html .tile-viz,
+  html .tile--flagship .tile-viz {
+    height: 180px !important;
+    min-height: 180px !important;
   }
 }
 
@@ -391,11 +420,34 @@
 /* ── HOME HERO VIZ: give the container height so canvas renders ──────────
    The .hero__viz on home is position:relative with only abs children →
    collapses to 0px. Explicit height makes the canvas fill the space
-   and the particle building renders visibly below the CTAs. -------------- */
+   and the particle building renders visibly below the CTAs.
+   Excludes [data-viz] (product pages: commercial/nhf/mreif/construction/reif)
+   which use their own absolute positioning + aspect-ratio. -------------- */
 @media (max-width: 768px) {
-  .hero .hero__viz:not(.hero__viz--mortgages) {
+  .hero .hero__viz:not(.hero__viz--mortgages):not([data-viz]) {
     height: 55vh !important;
     display: block !important;
+  }
+}
+
+/* ── PRODUCT HERO VIZ: enforce aspect-ratio sizing at mobile ────────────
+   Product pages (commercial, NHF, M-REIF, construction, REIF) have
+   absolute-positioned viz with bottom:-48px. Without an explicit top,
+   the height should follow aspect-ratio 16/9, but Safari/some engines
+   compute based on inset. Force the height explicitly so the building
+   silhouette reads at a clean rectangle, not overstretched. ------------- */
+@media (max-width: 768px) {
+  .hero--centered .hero__viz[data-viz] {
+    height: 340px !important;
+    aspect-ratio: auto !important;
+    max-height: none !important;
+    bottom: -40px !important;  /* was -48px — pulled UP 8px */
+  }
+}
+@media (max-width: 480px) {
+  .hero--centered .hero__viz[data-viz] {
+    height: 280px !important;
+    bottom: -40px !important;
   }
 }
 
@@ -462,4 +514,25 @@
 /* ── REDUCED MOTION ────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ── BENTO TILE VISIBILITY (≤1024px) ───────────────────────────────────────
+   At mobile/tablet, GSAP ScrollTrigger doesn't reliably add `.in-view` to
+   `.products.reveal` containers, leaving bento tiles invisible (opacity:0)
+   via the `body .reveal:not(.in-view) .stagger > *` rule. Bumping
+   specificity with `html` prefix to beat the per-page motion CSS. */
+@media (max-width: 1024px) {
+  html body .reveal:not(.in-view) .stagger > *,
+  html body .products .tile,
+  html body .products .tile--flagship,
+  html body .products .tile__stack,
+  html body .products .bento,
+  html body .products .bento__top,
+  html body .products .bento__bot,
+  html body .bento .tile,
+  html body .bento__top .tile,
+  html body .bento__bot .tile {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

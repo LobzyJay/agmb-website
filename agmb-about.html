@@ -1204,12 +1204,14 @@ pageId: about
     .nav__links a:not(.nav__cta) { display: none !important; }
     .nav__cta { padding: 9px 14px !important; font-size: 12px !important; }
 
-    /* hero */
+    /* hero — Figma: h1 34px, lede 15px, CTAs stacked full-width */
     .hero__content--centered { margin: 24px auto 20px !important; padding: 0 16px !important; gap: 16px !important; }
     .h1 { font-size: 34px !important; line-height: 105% !important; }
     .hero__lede, .hero__lede--centered { font-size: 15px !important; }
     .status-line { font-size: 10px !important; gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
-    .cta { padding: 14px 20px !important; font-size: 14px !important; }
+    /* CTA primary: 58px tall pill, secondary: 44px — both full-width */
+    .cta--primary { height: 58px !important; padding: 0 20px !important; font-size: 14px !important; border-radius: 14px !important; }
+    .cta--secondary { height: 44px !important; padding: 0 20px !important; font-size: 14px !important; border-radius: 14px !important; }
 
     /* hero viz */
     .hero__viz { margin: 0 auto 16px !important; }
@@ -1256,16 +1258,42 @@ pageId: about
     }
     .tile--flagship .tile__link { left: 22px !important; bottom: 22px !important; }
 
-    /* advisory — left-align on mobile, full-width CTA */
-    .advisory { padding: 22px !important; gap: 18px !important; border-radius: 18px !important; }
-    .advisory__title { font-size: 19px !important; }
-    .advisory__copy { font-size: 13px !important; }
-    .advisory__aside { width: 100% !important; align-items: flex-start !important; gap: 16px !important; }
-    .advisory__stat { text-align: left !important; }
-    .advisory__stat-num { font-size: 40px !important; }
-    .advisory__stat-num em { font-size: 46px !important; }
-    .advisory__stat-sub { margin-left: 0 !important; font-size: 12px !important; max-width: 100% !important; }
-    .advisory__cta { width: 100% !important; justify-content: center !important; padding: 14px 22px !important; font-size: 14px !important; }
+    /* advisory — centered on mobile, Figma spec: br-24 / p-32x24 / title-30px / stat 21=64px years=56px / full-width CTA 51px */
+    .advisory {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      padding: 32px 24px !important;
+      gap: 20px !important;
+      border-radius: 24px !important;
+    }
+    .advisory__inner { align-items: center !important; max-width: 100% !important; }
+    .advisory__title { font-size: 30px !important; line-height: 110% !important; }
+    .advisory__copy { font-size: 14px !important; }
+    .advisory__cat { text-align: center !important; }
+    .advisory__aside {
+      width: 100% !important;
+      align-items: center !important;
+      gap: 20px !important;
+      order: -1 !important;
+    }
+    .advisory__stat { text-align: center !important; }
+    .advisory__stat-num {
+      font-size: 56px !important;
+      display: flex !important;
+      align-items: baseline !important;
+      justify-content: center !important;
+    }
+    .advisory__stat-num em { font-size: 64px !important; margin-right: 6px !important; }
+    .advisory__stat-sub { margin-left: 0 !important; font-size: 12px !important; max-width: 100% !important; text-align: center !important; }
+    .advisory__cta {
+      width: 100% !important;
+      justify-content: center !important;
+      height: 51px !important;
+      padding: 0 24px !important;
+      font-size: 15px !important;
+      border-radius: 999px !important;
+    }
 
     /* how */
     .how { padding: 48px 16px !important; gap: 28px !important; }
@@ -1328,9 +1356,9 @@ pageId: about
     .story.story--rotating .story__thumb,
     .story.story--rotating:hover .story__thumb { width: 0 !important; height: 0 !important; opacity: 0 !important; margin-right: 0 !important; }
 
-    /* footer — compact 2-col grid for link cols, tighter line-height */
-    .footer { padding: 32px 16px !important; }
-    .footer__panel { padding: 28px 22px !important; gap: 24px !important; border-radius: 18px !important; }
+    /* footer — Figma: outer 40px 20px, card br-20, card p-32x22 */
+    .footer { padding: 40px 20px !important; }
+    .footer__panel { padding: 32px 22px !important; gap: 24px !important; border-radius: 20px !important; }
     .footer__top { gap: 24px !important; }
     .footer__name { font-size: 19px !important; }
     .footer__tag { font-size: 12px !important; }
@@ -1703,9 +1731,19 @@ pageId: about
     .emerged { padding: 80px 32px !important; gap: 36px !important; }
     .emerged__body { grid-template-columns: 1fr !important; gap: 24px !important; }
     .awards { padding: 80px 32px !important; gap: 36px !important; }
-    .award { grid-template-columns: 4px 1fr !important; gap: 16px !important; padding: 24px 0 !important; }
-    .award__name, .award__by, .award__citation { padding: 0 !important; }
-    .award__by { flex-direction: row !important; gap: 12px !important; align-items: baseline; }
+    .award {
+      display: grid !important;
+      grid-template-columns: 4px 1fr !important;
+      grid-template-rows: auto auto auto !important;
+      column-gap: 20px !important;
+      row-gap: 10px !important;
+      padding: 32px 0 !important;
+      align-items: start !important;
+    }
+    .award__accent { grid-column: 1 !important; grid-row: 1 / -1 !important; align-self: stretch !important; }
+    .award__name { grid-column: 2 !important; grid-row: 1 !important; padding: 0 !important; }
+    .award__by { grid-column: 2 !important; grid-row: 2 !important; padding: 0 !important; flex-direction: row !important; justify-content: space-between !important; align-items: baseline !important; gap: 16px !important; }
+    .award__citation { grid-column: 2 !important; grid-row: 3 !important; padding: 0 !important; }
     .directors { padding: 80px 32px !important; gap: 36px !important; }
     .directors__grid { grid-template-columns: 1fr !important; gap: 16px !important; }
     .directors__grid--four { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
@@ -1738,32 +1776,156 @@ pageId: about
     .advisory-wrap { padding: 0 32px 56px !important; }
   }
   @media (max-width: 768px) {
+    /* hero--about: override the 1400px desktop min-height at tablet portrait */
+    .hero--about { min-height: 0 !important; padding-bottom: 40px !important; }
+
     .timeline { padding: 64px 24px !important; }
     .milestone__year { font-size: 36px !important; }
     .leadership { padding: 64px 24px !important; }
     .leader { flex: 1 1 100% !important; }
     .leader__photo { aspect-ratio: 16 / 9 !important; }
     .reg--about-grid { padding: 64px 24px !important; }
+    /* branches: stack map above addresses at tablet portrait */
     .branches { padding: 64px 24px !important; }
+    .branches__layout { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .branches__media { max-width: 100% !important; }
     .faq { padding: 64px 24px !important; }
     .faq__q-text { font-size: 17px !important; }
     .about-cta { padding: 64px 24px !important; }
     .about-cta .h2 { font-size: 32px !important; }
     .advisory-wrap { padding: 0 24px 40px !important; }
+
+    /* Emerged section */
+    .emerged { padding: 64px 24px !important; gap: 28px !important; }
+    .emerged__body { gap: 20px !important; }
+    .emerged__para { font-size: 15px !important; }
+
+    /* Awards */
+    .awards { padding: 64px 24px !important; gap: 28px !important; }
+    .award__name { font-size: 17px !important; }
+
+    /* Directors */
+    .directors__grid--four { grid-template-columns: repeat(2, 1fr) !important; }
   }
   @media (max-width: 480px) {
+    /* About page sections — Figma mobile sizes */
+
+    /* hero--about: kill the 1400px desktop min-height on phone */
+    .hero--about { min-height: 0 !important; padding-bottom: 32px !important; }
+
+    /* hero squircle (team photo): proper squircle card on mobile.
+       Desktop 21/9 aspect is too wide for 390px viewport (would crush to ~167px). */
+    .hero__squircle {
+      width: calc(100% - 32px) !important;
+      aspect-ratio: 4 / 3 !important;
+      margin: 16px 16px 0 !important;
+      border-radius: 28px !important;
+    }
+    .hero__squircle-img {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      object-position: center 35% !important;
+    }
+
+    /* "How we emerged" steps section */
+    .emerged { padding: 48px 16px !important; gap: 24px !important; }
+    .emerged__head { gap: 12px !important; }
+    .emerged__body { gap: 20px !important; padding-top: 20px !important; }
+    .emerged__para { font-size: 14px !important; line-height: 160% !important; }
+
+    /* Awards / Recognition — proper stacked layout (accent | content column) */
+    .awards { padding: 48px 16px !important; gap: 24px !important; }
+    .award {
+      display: grid !important;
+      grid-template-columns: 4px 1fr !important;
+      grid-template-rows: auto auto auto !important;
+      column-gap: 16px !important;
+      row-gap: 8px !important;
+      padding: 24px 0 !important;
+      align-items: start !important;
+    }
+    .award__accent {
+      grid-column: 1 !important;
+      grid-row: 1 / -1 !important;
+      align-self: stretch !important;
+    }
+    .award__name {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+      padding: 0 !important;
+      font-size: 18px !important;
+      line-height: 1.3 !important;
+    }
+    .award__by {
+      grid-column: 2 !important;
+      grid-row: 2 !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: baseline !important;
+      gap: 12px !important;
+    }
+    .award__citation {
+      grid-column: 2 !important;
+      grid-row: 3 !important;
+      padding: 0 !important;
+      font-size: 13px !important;
+      line-height: 1.55 !important;
+    }
+
+    /* Directors */
+    .directors { padding: 48px 16px !important; gap: 24px !important; }
+    .directors__grid--four { grid-template-columns: 1fr !important; }
+    .director-card { grid-template-columns: 72px 1fr !important; gap: 16px !important; padding: 20px !important; }
+    .director-card__portrait { width: 72px !important; height: 72px !important; }
+    .director-card__photo { width: 72px !important; height: 72px !important; }
+    .director-card__portrait:has(> .director-card__photo) { width: 72px !important; height: 72px !important; }
+    .director-card__name { font-size: 16px !important; }
+    .director-card__role { font-size: 10px !important; }
+
+    /* Timeline */
     .timeline { padding: 48px 16px !important; }
     .milestone__year { font-size: 32px !important; }
+    .milestone__name { font-size: 15px !important; }
+    .milestone__copy { font-size: 12px !important; }
+
+    /* Leadership */
     .leadership { padding: 48px 16px !important; }
+
+    /* By the books — regulatory grid */
     .reg--about-grid { padding: 48px 16px !important; }
-    .branches { padding: 48px 16px !important; }
-    .branch__city { font-size: 24px !important; }
+
+    /* Branches: stack map above addresses on mobile */
+    .branches { padding: 48px 16px !important; text-align: left !important; }
+    .branches__head, .branches__head * { text-align: left !important; }
+    .branches__layout { grid-template-columns: 1fr !important; gap: 32px !important; text-align: left !important; }
+    .branches__addresses { text-align: left !important; align-items: flex-start !important; }
+    .branches__media { max-width: 100% !important; aspect-ratio: 16 / 9 !important; }
+    .branch-row { text-align: left !important; align-items: flex-start !important; }
+    .branch-row__type { text-align: left !important; }
+    .branch-row__city { font-size: 22px !important; text-align: left !important; }
+    .branch-row__address { font-size: 13px !important; text-align: left !important; }
+    .branch-row__phone { text-align: left !important; }
+    .branch__city { font-size: 24px !important; text-align: left !important; }
+    .branch__body { align-items: flex-start !important; text-align: left !important; }
     .branch__media { aspect-ratio: 16 / 10 !important; }
+
+    /* FAQ */
     .faq { padding: 48px 16px !important; }
     .faq__q-text { font-size: 16px !important; }
+    .faq__q { padding: 20px 0 !important; gap: 16px !important; }
+
+    /* Bottom CTA */
     .about-cta { padding: 48px 16px !important; }
+
+    /* Advisory wrapper */
     .advisory-wrap { padding: 0 16px 32px !important; }
-    .directors__grid--four { grid-template-columns: 1fr !important; }
+
+    /* Partners marquee head on mobile */
+    .partners--slim .partners__head { padding: 0 16px 16px !important; }
   }
   /* ── Phase F.6 closeout — large desktop-only widths reset for tablet ── */
   @media (max-width: 1024px) {
@@ -2249,7 +2411,7 @@ pageId: about
   <section class="hero hero--centered hero--about">
     <div class="hero__content hero__content--centered">
       <h1 class="h1 h1--centered"><em>21</em> years of mortgage origination, audited every step.</h1>
-      <p class="hero__lede hero__lede--centered">Licensed by the Central Bank of Nigeria in December 2004, AG Mortgage Bank has grown from a single Primary Mortgage Institution into a diversified housing-finance group — serving Nigerians at home and across the diaspora.</p>
+      <p class="hero__lede hero__lede--centered">Licensed by the Central Bank of Nigeria in December 2004, AG Mortgage Bank has grown from a single Primary Mortgage Institution into a diversified housing-finance group serving Nigerians at home and across the diaspora.</p>
       <div class="ctas ctas--centered">
         <a class="cta cta--primary" href="#regulatory">See our regulatory standing <span>↓</span></a>
         <a class="cta cta--secondary" href="agmb-contact.html">Talk to an advisor <span>→</span></a>

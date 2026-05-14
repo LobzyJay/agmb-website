@@ -731,13 +731,19 @@ pageId: insights
   @media (max-width: 768px) {
     .h1 { font-size: 48px !important; letter-spacing: -0.045em !important; }
     .hero__content--centered { margin: 32px auto 24px !important; padding: 0 24px !important; gap: 18px !important; }
+    .hero__lede--centered { font-size: 14px !important; line-height: 165% !important; }
     .filter-bar { padding: 48px 24px 24px !important; }
-    .insights-grid { padding: 24px 24px 72px !important; gap: 20px !important; }
+    .insights-grid { padding: 24px !important; gap: 20px !important; background: var(--cream-warm) !important; }
+    .article { padding: 29px !important; gap: 15px !important; border-radius: 20px !important; }
+    .article__title { font-size: 22px !important; }
+    .article__dek { display: none !important; }
     .reports { padding: 72px 24px !important; }
     .reports-grid { grid-template-columns: 1fr !important; }
+    .report-card { border-radius: 24px !important; padding: 32px !important; }
     .report-card__year { font-size: 56px !important; }
     .subscribe { padding: 72px 24px !important; }
-    .footer { padding: 48px 24px !important; }
+    .footer { padding: 40px 20px !important; }
+    .footer__panel { border-radius: 20px !important; padding: 32px 22px !important; gap: 28px !important; }
     .footer__col { width: 100% !important; }
   }
 
@@ -745,7 +751,20 @@ pageId: insights
   @media (max-width: 480px) {
     .insights-grid { grid-template-columns: 1fr !important; }
     .chips { gap: 8px !important; }
-    .chip { padding: 10px 16px !important; font-size: 13px !important; }
+    .chip {
+      padding: 10px 16px !important;
+      font-size: 13px !important;
+      color: rgba(250,243,232,0.85) !important;
+      border-color: rgba(250,243,232,0.18) !important;
+    }
+    .chip:hover { background: rgba(250,243,232,0.06) !important; border-color: rgba(250,243,232,0.32) !important; }
+    .chip.active {
+      background: var(--cream-warm) !important;
+      border-color: var(--cream-warm) !important;
+      color: var(--navy-deep) !important;
+    }
+    .chip__count { color: rgba(250,243,232,0.55) !important; }
+    .chip.active .chip__count { color: rgba(6,26,46,0.55) !important; }
     .h1 { font-size: 40px !important; }
     .h2 { font-size: 32px !important; }
     .subscribe__stats { flex-direction: column !important; gap: 24px !important; }
@@ -1511,6 +1530,42 @@ pageId: insights
     display: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE OVERRIDES — must come last to win cascade over all
+   ≤ 1024px blocks above (hamburger, clippings, etc.)
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* hero lede smaller at mobile */
+  .hero__lede--centered { font-size: 14px !important; line-height: 165% !important; }
+
+  /* HERO SQUIRCLE CLIPPINGS: force visible, proper mobile dimensions.
+     Replaces the article cards section per Figma mobile design. */
+  .hero__squircle--clippings {
+    opacity: 1 !important;
+    width: calc(100% - 32px) !important;
+    aspect-ratio: 4 / 3 !important;
+    margin: 24px 16px 32px !important;
+    border-radius: 24px !important;
+    transform: none !important;
+  }
+  .clippings__image {
+    transform: scale(1) !important;
+  }
+
+  /* DELETE article cards section on mobile — replaced by squircle collage */
+  .insights-grid {
+    display: none !important;
+  }
+  .article { display: none !important; }
+
+  /* report cards: 24px radius, 32px padding */
+  .report-card { border-radius: 24px !important; padding: 32px !important; }
+
+  /* footer: outer 40px/20px, inner card 20px radius 32px/22px padding 28px gap */
+  .footer { padding: 40px 20px !important; }
+  .footer__panel { border-radius: 20px !important; padding: 32px 22px !important; gap: 28px !important; }
+}
 </style>
 <script id="agmb-motion-head-bootstrap">
   (function () {
@@ -1549,7 +1604,7 @@ pageId: insights
 
     <div class="hero__content hero__content--centered">
       <h1 class="h1 h1--centered">What we've put on <em>paper.</em></h1>
-      <p class="hero__lede hero__lede--centered">Rate moves, regulatory filings, annual reports, and quiet quarterly notes. The same disclosures that go to the Central Bank, the NDIC, and the Mortgage Bankers Association — published here, dated and timestamped.</p>
+      <p class="hero__lede hero__lede--centered">Rate moves, regulatory filings, annual reports, &amp; quiet quarterly notes. The same disclosures that go to the Central Bank, the NDIC, &amp; the Mortgage Bankers Association — published here, dated &amp; timestamped.</p>
       <div class="ctas ctas--centered">
         <a class="cta cta--primary" href="#reports">See our regulatory standing <span>→</span></a>
         <a class="cta cta--secondary" href="agmb-contact.html">Talk to an advisor <span>→</span></a>

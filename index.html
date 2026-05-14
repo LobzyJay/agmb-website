@@ -111,6 +111,7 @@ pageId: home
   .tile--flagship .tile__copy { font-size: 16px; max-width: 560px; }
   .tile__link { font: 500 13px/1 'Inter', sans-serif; letter-spacing: -0.005em; margin-top: auto; }
   /* advisory */
+  .advisory-wrap { background: #000; padding: 80px; }
   .advisory { position: relative; background: var(--navy-vivid); border-radius: 28px; padding: 48px; display: flex; align-items: center; justify-content: space-between; gap: 48px; overflow: hidden; }
   .advisory__inner { display: flex; flex-direction: column; gap: 12px; max-width: 1200px; z-index: 2; }
   .advisory__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,243,232,0.4); }
@@ -145,9 +146,10 @@ pageId: home
   .input-panel { flex: 1; background: var(--cream-warm); padding: 56px; display: flex; flex-direction: column; gap: 32px; color: var(--navy-deep); }
   .input-top { display: flex; justify-content: space-between; align-items: center; }
   .input-top__cat { font: 600 11px/150% 'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-deep); }
-  .seg { display: flex; gap: 4px; padding: 4px; background: var(--green-vivid); border-radius: 999px; }
-  .seg__item { padding: 8px 16px; color: var(--navy-deep); font: 500 13px/1 'Inter', sans-serif; }
-  .seg__item--active { background: #000; color: var(--cream-warm); border-radius: 999px; }
+  .seg { position: relative; display: flex; gap: 4px; padding: 4px; background: var(--green-vivid); border-radius: 999px; }
+  .seg__indicator { position: absolute; top: 4px; left: 4px; height: calc(100% - 8px); background: #000; border-radius: 999px; transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), width 0.28s cubic-bezier(0.4,0,0.2,1); pointer-events: none; z-index: 1; }
+  .seg__item { position: relative; z-index: 2; padding: 8px 16px; color: var(--navy-deep); font: 500 13px/1 'Inter', sans-serif; cursor: pointer; user-select: none; transition: color 0.24s ease; white-space: nowrap; border-radius: 999px; }
+  .seg__item--active { color: var(--cream-warm); }
   .field { display: flex; flex-direction: column; gap: 8px; }
   .field__row { display: flex; justify-content: space-between; }
   .field__label { font: 400 13px/1 'Inter', sans-serif; color: rgba(6,26,46,0.5); }
@@ -925,6 +927,21 @@ pageId: home
     .page { width: 100% !important; max-width: 100% !important; }
     .container { padding: 0 32px !important; }
 
+    /* GSAP stagger reveals leave bento tiles at opacity:0 on mobile because
+       ScrollTrigger doesn't always fire reliably. The existing selector
+       `body .reveal:not(.in-view) .stagger > *` keeps tiles invisible —
+       overriding with matching specificity below to force visibility. */
+    body .products.reveal .stagger > *,
+    body .products .bento,
+    body .products .bento__top,
+    body .products .bento__bot,
+    body .products .tile,
+    body .products .tile--flagship,
+    body .products .tile__stack {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
     /* nav: stack links vertically below the logo */
     .nav {
       position: sticky !important;
@@ -1018,6 +1035,7 @@ pageId: home
     .tile--flagship .tile__name { font-size: 30px !important; }
 
     /* advisory */
+    .advisory-wrap { padding: 32px !important; }
     .advisory { flex-direction: column !important; align-items: flex-start !important; gap: 28px !important; padding: 36px !important; }
     .advisory__title { font-size: 26px !important; }
     .advisory__asset { display: none !important; }
@@ -1076,9 +1094,13 @@ pageId: home
     .hero__viz-trace { display: none !important; }
     .hero__viz-stage { height: 80vh !important; max-height: 80vh !important; }
 
-    /* hero */
-    .hero, .hero--centered { padding-bottom: 48px !important; }
-    .hero__content--centered { margin: 32px auto 24px !important; padding: 0 24px !important; gap: 18px !important; }
+    /* hero: shrink to content height so viz sits right under CTAs */
+    .hero, .hero--centered {
+      padding-bottom: 0 !important;
+      min-height: 0 !important;
+      height: auto !important;
+    }
+    .hero__content--centered { margin: 32px auto 0 !important; padding: 0 24px !important; gap: 18px !important; }
     .h1 { font-size: 44px !important; letter-spacing: -0.045em !important; }
     .h1 em, .h1--centered em { letter-spacing: -0.03em !important; }
     .hero__lede, .hero__lede--centered { font-size: 16px !important; line-height: 1.55 !important; }
@@ -1093,24 +1115,39 @@ pageId: home
     .nav__cta { padding: 9px 14px !important; font-size: 13px !important; }
 
     /* fact strip — peek 15px at bottom of hero
-       Position absolute at hero bottom, then translateY(100% - 15px) pushes
-       it down so only 15px of the rounded top edge peeks above the hero
-       bottom. The full 2×2 grid is revealed when the user scrolls. ------ */
+       At 480-768px: same leaking-card pattern as 480px. Hero shrinks to
+       content+viz+strip, fact-strip overlaps viz by ~100px. */
     .hero--centered { overflow: visible !important; }
-    .hero--centered .hero__viz { overflow: hidden !important; }
+    html .hero .hero__viz:not(.hero__viz--mortgages):not([data-viz]) {
+      aspect-ratio: auto !important;
+      max-height: none !important;
+      height: 360px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 16px auto 0 !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    .hero__viz-stage { height: 100% !important; max-height: 100% !important; transform: none !important; transform-origin: bottom center !important; }
+    .hero__viz-trace { transform: none !important; transform-origin: bottom center !important; }
+    .hero__viz-img, .hero__viz-bg {
+      opacity: 1 !important;
+      object-fit: contain !important;
+      object-position: bottom center !important;
+    }
     .hero--centered .fact-strip {
-      position: absolute !important;
-      bottom: 0 !important;
-      left: 16px !important;
-      right: 16px !important;
-      margin: 0 !important;
-      transform: translateY(calc(100% - 15px)) !important;
-      z-index: 10 !important; /* raised above partners section */
+      position: relative !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
+      margin: -100px clamp(-32px, -4vw, -24px) 0 !important;
+      transform: none !important;
+      z-index: 5 !important;
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      gap: 16px !important;
-      padding: 20px 22px !important;
-      border-radius: 16px 16px 0 0 !important;
+      gap: 20px 16px !important;
+      padding: 28px 24px !important;
+      border-radius: 24px 24px 0 0 !important;
     }
     /* partners section must sit below fact-strip peek */
     .hero--centered + .partners { position: relative !important; z-index: 1 !important; }
@@ -1136,6 +1173,7 @@ pageId: home
     .tile-viz, .tile--flagship .tile-viz { min-height: 200px !important; height: 200px !important; }
 
     /* advisory */
+    .advisory-wrap { padding: 24px !important; }
     .advisory { padding: 28px !important; gap: 24px !important; border-radius: 22px !important; }
     .advisory__title { font-size: 22px !important; }
     .advisory__copy { font-size: 14px !important; }
@@ -1190,9 +1228,66 @@ pageId: home
   @media (max-width: 480px) {
     .container { padding: 0 16px !important; }
 
-    /* viz on phone: building only, shorter, lighter overlay so the image reads. */
-    .hero__viz-stage { height: 50vh !important; max-height: 50vh !important; }
-    .hero__viz-fade--bottom { opacity: 0.75 !important; }   /* was effectively 1.0 */
+    /* hero: tighten content↔viz gap; let fact-strip peek out below */
+    .hero, .hero--centered { padding-bottom: 0 !important; overflow: visible !important; }
+    .hero__content--centered { margin: 24px auto 0 !important; }
+
+    /* viz on phone: container sized to actually fit the building image, no
+       empty bottom space. Building fills the container so when the regulator
+       card overlaps -100px, it overlaps into the visible building (not
+       a hollow black band). Uses html prefix to beat shared.css 55vh rule. */
+    html .hero .hero__viz:not(.hero__viz--mortgages):not([data-viz]) {
+      aspect-ratio: auto !important;
+      max-height: none !important;
+      height: 320px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 11px auto 0 !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    /* Both stage (img) and trace (canvas) move together with matching translateY
+       so the building shifts UP 40px — plant bases visible above the leaking card.
+       html prefix bumps specificity to beat the 768px `transform: none` rule. */
+    html .hero .hero__viz-stage {
+      height: 100% !important;
+      max-height: 100% !important;
+      transform: translateY(-40px) scale(1) !important;
+      transform-origin: bottom center !important;
+    }
+    html .hero .hero__viz-trace {
+      transform: translateY(-40px) scale(1) !important;
+      transform-origin: bottom center !important;
+    }
+    /* contain: full building width shows. bottom-center: building anchors to
+       the bottom of the viz container. opacity 0.93 lets background FX read more. */
+    .hero__viz-img, .hero__viz-bg {
+      opacity: 0.93 !important;
+      object-fit: contain !important;
+      object-position: bottom center !important;
+    }
+    /* Fades on mobile — soft vignette around the building */
+    .hero__viz-fade--top {
+      display: block !important;
+      height: 8% !important;
+      opacity: 0.65 !important;
+    }
+    .hero__viz-fade--bottom {
+      display: block !important;
+      height: 32% !important;
+      opacity: 0.95 !important;
+    }
+    .hero__viz-fade--left {
+      display: block !important;
+      width: 18% !important;
+      opacity: 0.85 !important;
+    }
+    .hero__viz-fade--right {
+      display: block !important;
+      width: 18% !important;
+      opacity: 0.85 !important;
+    }
+    .hero__viz-blur { display: none !important; }
 
     /* nav: single row on mobile — logo left, CTA right, secondary links hidden */
     .nav {
@@ -1229,17 +1324,30 @@ pageId: home
     /* hero viz */
     .hero__viz { margin: 0 auto 16px !important; }
 
-    /* fact strip — keep peek (2-up grid) at very narrow widths too */
+    /* fact strip — full-width "leaking card" pattern matching the mortgages
+       page How-It-Works card. Top corners rounded, leaks 100px into viz.
+       Negative horizontal margins push it beyond hero's side padding to be
+       edge-to-edge with the page (same visual as mortgages .how section). */
     .hero--centered .fact-strip {
-      left: 12px !important;
-      right: 12px !important;
+      position: relative !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
+      margin: -100px clamp(-32px, -6vw, -20px) 0 !important;
+      display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      padding: 16px 18px !important;
-      gap: 12px !important;
+      gap: 20px 16px !important;
+      padding: 28px 24px !important;
+      border-radius: 24px 24px 0 0 !important;
+      z-index: 5 !important;
     }
-    .fact { gap: 6px !important; }
-    .fact__numeric { font-size: 20px !important; }
-    .fact__caption { font-size: 11px !important; }
+    /* Edge-extension on viz handled in the main viz rule above (margin clamp) */
+    .fact { gap: 8px !important; }
+    .fact__numeric { font-size: 26px !important; letter-spacing: -0.04em !important; }
+    .fact__caption { font-size: 12px !important; line-height: 1.4 !important; }
+    .fact__eyebrow { gap: 6px !important; }
+    .fact__eyebrow span:last-child { font-size: 10px !important; }
 
     /* h2 */
     .h2 { font-size: 26px !important; letter-spacing: -0.04em !important; }
@@ -1271,16 +1379,41 @@ pageId: home
     }
     .tile--flagship .tile__link { left: 22px !important; bottom: 22px !important; }
 
-    /* advisory — left-align on mobile, full-width CTA */
-    .advisory { padding: 22px !important; gap: 18px !important; border-radius: 18px !important; }
-    .advisory__title { font-size: 19px !important; }
-    .advisory__copy { font-size: 13px !important; }
-    .advisory__aside { width: 100% !important; align-items: flex-start !important; gap: 16px !important; }
-    .advisory__stat { text-align: left !important; }
-    .advisory__stat-num { font-size: 40px !important; }
-    .advisory__stat-num em { font-size: 46px !important; }
-    .advisory__stat-sub { margin-left: 0 !important; font-size: 12px !important; max-width: 100% !important; }
-    .advisory__cta { width: 100% !important; justify-content: center !important; padding: 14px 22px !important; font-size: 14px !important; }
+    /* advisory — centered layout matching Figma mobile design */
+    .advisory-wrap { padding: 16px !important; }
+    .advisory {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      padding: 32px 24px !important;
+      gap: 24px !important;
+      border-radius: 24px !important;
+    }
+    .advisory__inner { align-items: center !important; text-align: center !important; gap: 12px !important; }
+    .advisory__cat { text-align: center !important; }
+    .advisory__title { font-size: 30px !important; line-height: 1.1 !important; letter-spacing: -0.04em !important; text-align: center !important; }
+    .advisory__copy { font-size: 15px !important; line-height: 1.55 !important; text-align: center !important; }
+    .advisory__aside { width: 100% !important; align-items: center !important; gap: 16px !important; }
+    .advisory__stat { text-align: center !important; align-items: center !important; width: 100% !important; }
+    .advisory__stat-num {
+      display: flex !important;
+      align-items: center !important;
+      font-size: 56px !important;
+      line-height: 1 !important;
+      text-align: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+    }
+    .advisory__stat-num em { font-size: 64px !important; }
+    .advisory__stat-sub { margin-left: 0 !important; font-size: 13px !important; text-align: center !important; max-width: 100% !important; width: 100% !important; }
+    .advisory__cta {
+      width: 100% !important;
+      height: 51px !important;
+      border-radius: 999px !important;
+      justify-content: center !important;
+      font-size: 15px !important;
+      padding: 0 28px !important;
+    }
 
     /* how */
     .how { padding: 48px 16px !important; gap: 28px !important; }
@@ -1344,8 +1477,8 @@ pageId: home
     .story.story--rotating:hover .story__thumb { width: 0 !important; height: 0 !important; opacity: 0 !important; margin-right: 0 !important; }
 
     /* footer — compact 2-col grid for link cols, tighter line-height */
-    .footer { padding: 32px 16px !important; }
-    .footer__panel { padding: 28px 22px !important; gap: 24px !important; border-radius: 18px !important; }
+    .footer { padding: 40px 20px !important; }
+    .footer__panel { padding: 32px 22px !important; gap: 28px !important; border-radius: 20px !important; }
     .footer__top { gap: 24px !important; }
     .footer__name { font-size: 19px !important; }
     .footer__tag { font-size: 12px !important; }
@@ -1967,6 +2100,24 @@ pageId: home
   .mobile-nav, .mobile-nav__panel > a, .nav__hamburger-bar { transition: none !important; }
 }
 /* ───── /Mobile hamburger + drawer ───── */
+
+/* ───── BENTO TILE VISIBILITY OVERRIDE (end-of-cascade, beats motion CSS) ─────
+   At ≤1024px the `body .reveal:not(.in-view) .stagger > *` rule (line ~1648)
+   keeps bento tiles invisible because GSAP ScrollTrigger doesn't reliably
+   add .in-view on mobile. This override sits AFTER the motion CSS rules so
+   it wins by cascade order at same specificity. */
+@media (max-width: 1024px) {
+  body .products.reveal .stagger > *,
+  body .products .bento,
+  body .products .bento__top,
+  body .products .bento__bot,
+  body .products .tile,
+  body .products .tile--flagship,
+  body .products .tile__stack {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
 </style>
 <script id="agmb-motion-head-bootstrap">
   /* Synchronous head-stage bootstrap: decide whether to show the loader,
@@ -1999,6 +2150,7 @@ pageId: home
     } catch (e) { /* swallow */ }
   })();
 </script>
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
 </head>
 <body>
 <!-- Loader: rendered in HTML so it shows instantly on initial paint
@@ -2019,7 +2171,7 @@ pageId: home
 
     <div class="hero__content hero__content--centered">
       <h1 class="h1 h1--centered">Homes for working <em>Nigerians</em>, financed with care.</h1>
-      <p class="hero__lede hero__lede--centered">AG Mortgage Bank Plc is a Central Bank of Nigeria–licensed Primary Mortgage Bank. Tenors to 25 years. Indicative rates from 6.0% per annum under the National Housing Fund. ISO 9001:2015 quality-management certified since 2018.</p>
+      <p class="hero__lede hero__lede--centered">AG Mortgage Bank Plc is a Central Bank of Nigeria–licensed Primary Mortgage Bank. Tenors to 25 years. Indicative rates from 6.0% per annum under the National Housing Fund.</p>
       <div class="ctas ctas--centered">
         <a class="cta cta--primary" href="agmb-apply.html">Start your application <span>→</span></a>
         <a class="cta cta--secondary" href="agmb-calculator.html">See your monthly <span>↓</span></a>
@@ -2256,6 +2408,7 @@ pageId: home
         <div class="input-top">
           <div class="input-top__cat" id="val-route-label">Route · National Housing Fund</div>
           <div class="seg" role="tablist">
+            <div class="seg__indicator" id="seg-indicator"></div>
             <span class="seg__item seg__item--active" data-segment="nhf" role="tab">NHF</span>
             <span class="seg__item" data-segment="mreif" role="tab">M-REIF</span>
             <span class="seg__item" data-segment="classic" role="tab">Classic</span>
@@ -2435,7 +2588,7 @@ pageId: home
   </section>
 
   <!-- ADVISORY (sits right above footer site-wide) -->
-  <section class="advisory-wrap" style="background:#000;padding:80px 80px;">
+  <section class="advisory-wrap">
     <div class="advisory">
       <div class="advisory__inner">
         <div class="advisory__cat">Talk to a mortgage advisor</div>
@@ -2541,15 +2694,44 @@ pageId: home
     big.classList.add('updating');
   }
 
+  // Position the sliding pill indicator over the active segment item
+  function posSegIndicator(activeItem) {
+    const indicator = document.getElementById('seg-indicator');
+    if (!indicator || !activeItem) return;
+    const segContainer = activeItem.parentElement;
+    const segRect = segContainer.getBoundingClientRect();
+    const itemRect = activeItem.getBoundingClientRect();
+    const left = itemRect.left - segRect.left - 4; // -4 to account for seg padding
+    indicator.style.width = itemRect.width + 'px';
+    indicator.style.transform = 'translateX(' + left + 'px)';
+  }
+
   document.querySelectorAll('.seg__item').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.seg__item').forEach(b => b.classList.remove('seg__item--active'));
       btn.classList.add('seg__item--active');
       state.segment = btn.dataset.segment;
+      posSegIndicator(btn);
       update();
       pulseMonthly();
     });
   });
+
+  // Initialize indicator position on load
+  window.addEventListener('load', () => {
+    const active = document.querySelector('.seg__item--active');
+    if (active) posSegIndicator(active);
+  });
+  // Reposition on resize
+  window.addEventListener('resize', () => {
+    const active = document.querySelector('.seg__item--active');
+    if (active) posSegIndicator(active);
+  });
+  // Initial position attempt (in case DOM is ready)
+  setTimeout(() => {
+    const active = document.querySelector('.seg__item--active');
+    if (active) posSegIndicator(active);
+  }, 100);
 
   update();
 
