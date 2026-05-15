@@ -2694,16 +2694,19 @@ pageId: home
     big.classList.add('updating');
   }
 
-  // Position the sliding pill indicator over the active segment item
+  // Position the sliding pill indicator over the active segment item.
+  // Use offsetLeft/offsetWidth (CSS px, zoom-invariant) rather than
+  // getBoundingClientRect (visual px) — body { zoom: 0.8/0.6 } on desktop
+  // makes getBoundingClientRect return scaled values, which would then get
+  // zoom-scaled a second time when written back as CSS, narrowing and
+  // mis-positioning the indicator. .seg has position: relative so
+  // activeItem.offsetLeft is measured against it; -4 subtracts the .seg
+  // container's 4px padding so the indicator aligns with the item edge.
   function posSegIndicator(activeItem) {
     const indicator = document.getElementById('seg-indicator');
     if (!indicator || !activeItem) return;
-    const segContainer = activeItem.parentElement;
-    const segRect = segContainer.getBoundingClientRect();
-    const itemRect = activeItem.getBoundingClientRect();
-    const left = itemRect.left - segRect.left - 4; // -4 to account for seg padding
-    indicator.style.width = itemRect.width + 'px';
-    indicator.style.transform = 'translateX(' + left + 'px)';
+    indicator.style.width = activeItem.offsetWidth + 'px';
+    indicator.style.transform = 'translateX(' + (activeItem.offsetLeft - 4) + 'px)';
   }
 
   document.querySelectorAll('.seg__item').forEach(btn => {
