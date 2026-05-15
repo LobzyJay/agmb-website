@@ -538,6 +538,19 @@
    - 1441–1920 (zoom 0.8): natural body ≤ 2400 CSS, cap dormant.
    - >1920 (zoom 0.8): body caps at 2400 CSS = 1920 visual, auto margins
      center the canvas with side gutters on ultra-wide monitors.
+
+   ── Apple silicon laptop reference (Desktop tier, no special handling) ──
+   13″ MBP        1440 × 900   zoom 0.6 — body CSS 2400 (cap edge)
+   14″ MBP        1512 × 982   zoom 0.8 — body CSS 1890
+   14″ MBP tight  1296 × 841   zoom 0.6 — body CSS 2160
+   16″ MBP        1728 × 1117  zoom 0.8 — body CSS 2160
+   16″ MBP large  1536 × 992   zoom 0.8 — body CSS 1920
+
+   Note the zoom regime crossover at 1440↔1441: body CSS drops from 2400
+   (zoom 0.6) to ~1890 (zoom 0.8). Audit MUST spot-check viewport 1512
+   (14″ default) and 1728 (16″ default) for any layout that breaks across
+   that inflection. Existing per-page inline rules `@media (max-width:
+   1440px) { body { zoom: 0.6 } }` define the crossover.
    --------------------------------------------------------------------- */
 @media (min-width: 1024px) {
   body {
